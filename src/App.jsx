@@ -1,43 +1,36 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import logo from './logo.svg'
 import './App.css'
+import Item from './components/Item';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(0);
+  const [products, setProducts] = useState([]) // 1
+  
 
-  return (
+  useEffect(() => { // 3
+    console.log('1');
+    const getProducts = async () => {
+      const response = await fetch('http://localhost:3001/products');
+      const data = await response.json();
+      setProducts(data);
+    }
+    getProducts();
+  }, [count])
+
+  const onRemove = async (id) => {
+    fetch('http://localhost:3001/products/'+id, {
+      method: "DELETE"
+    });
+
+    const newProducts = products.filter(item => item.id !== id)
+    setProducts(newProducts)
+  }
+  return ( // 2
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>Hello Vite + React!</p>
-        <p>
-          <button type="button" onClick={() => setCount((count) => count + 1)}>
-            count is: {count}
-          </button>
-        </p>
-        <p>
-          Edit <code>App.jsx</code> and save to test HMR updates.
-        </p>
-        <p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-          {' | '}
-          <a
-            className="App-link"
-            href="https://vitejs.dev/guide/features.html"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Vite Docs
-          </a>
-        </p>
-      </header>
+      {count}
+      {products.map((item, index) => <Item key={index} product={item} onHandleRemove={onRemove} />)}
+      <button onClick={() => setCount(count + 1)}>Click</button>
     </div>
   )
 }
