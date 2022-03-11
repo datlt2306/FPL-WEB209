@@ -1,38 +1,42 @@
-import { useState, useEffect } from 'react'
-import logo from './logo.svg'
-import './App.css'
-import Item from './components/Item';
+import React, { useState, useEffect } from 'react'
+import 'antd/dist/antd.css';
 
-function App() {
-  const [count, setCount] = useState(0);
-  const [products, setProducts] = useState([]) // 1
-  
+import { Menu } from 'antd';
+import { MailOutlined, AppstoreOutlined, SettingOutlined } from '@ant-design/icons';
+const { SubMenu } = Menu;
 
-  useEffect(() => { // 3
-    console.log('1');
-    const getProducts = async () => {
-      const response = await fetch('http://localhost:3001/products');
-      const data = await response.json();
-      setProducts(data);
-    }
-    getProducts();
-  }, [count])
 
-  const onRemove = async (id) => {
-    fetch('http://localhost:3001/products/'+id, {
-      method: "DELETE"
-    });
-
-    const newProducts = products.filter(item => item.id !== id)
-    setProducts(newProducts)
-  }
-  return ( // 2
-    <div className="App">
-      {count}
-      {products.map((item, index) => <Item key={index} product={item} onHandleRemove={onRemove} />)}
-      <button onClick={() => setCount(count + 1)}>Click</button>
+function App(){
+  const [current, setCurrent] = useState("mail");
+  const handleClick = e => {
+    setCurrent(e.key)
+  };
+  return ( 
+    <div>
+      <Menu onClick={handleClick} selectedKeys={[current]} mode="horizontal">
+        <Menu.Item key="mail" icon={<MailOutlined />}>
+          Navigation One
+        </Menu.Item>
+        <Menu.Item key="app" disabled icon={<AppstoreOutlined />}>
+          Navigation Two
+        </Menu.Item>
+        <SubMenu key="SubMenu" icon={<SettingOutlined />} title="Navigation Three - Submenu">
+          <Menu.ItemGroup title="Item 1">
+            <Menu.Item key="setting:1">Option 1</Menu.Item>
+            <Menu.Item key="setting:2">Option 2</Menu.Item>
+          </Menu.ItemGroup>
+          <Menu.ItemGroup title="Item 2">
+            <Menu.Item key="setting:3">Option 3</Menu.Item>
+            <Menu.Item key="setting:4">Option 4</Menu.Item>
+          </Menu.ItemGroup>
+        </SubMenu>
+        <Menu.Item key="alipay">
+          <a href="https://ant.design" target="_blank" rel="noopener noreferrer">
+            Navigation Four - Link
+          </a>
+        </Menu.Item>
+      </Menu>
     </div>
   )
 }
-
 export default App
