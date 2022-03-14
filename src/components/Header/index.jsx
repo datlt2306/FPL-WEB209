@@ -16,6 +16,11 @@ const Header = () => {
             Product Page
           </NavLink>
         </Menu.Item>
+        <Menu.Item>
+          <NavLink to="/dashboard">
+            Product Page
+          </NavLink>
+        </Menu.Item>
       </Menu>
     </>
   )
