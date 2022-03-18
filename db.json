@@ -1,7 +1,19 @@
 {
   "products": [
     {
+      "name": "product A",
+      "price": "1000",
       "id": 1
+    },
+    {
+      "name": "123123",
+      "price": "1321312",
+      "id": 2
+    },
+    {
+      "name": "product B",
+      "price": "12347",
+      "id": 3
     }
   ]
 }
