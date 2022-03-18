@@ -12,7 +12,9 @@ const ProductAdd = (props) => {
     }
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-        <input type="text" {...register('name')}/>
+        <input type="text" {...register('name', { required: true, minLength: 5})}/>
+        {errors.name && errors.name.type === "required" && <span>This field is required</span>}
+        {errors.name && errors.name.type === "minLength" && <span>Trên 5 ký tự</span>}
         <input type="text" {...register('price')}/>
         <button>Thêm sản phẩm</button>
     </form>
