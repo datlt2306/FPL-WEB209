@@ -1,3 +1,7 @@
 {
-  "products": []
+  "products": [
+    {
+      "id": 1
+    }
+  ]
 }

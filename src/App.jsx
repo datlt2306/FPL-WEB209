@@ -9,17 +9,31 @@ import WebsiteLayout from './pages/layouts/WebsiteLayout';
 import Home from './pages/Home';
 import Products from './pages/Products';
 import ProductDetail from './pages/ProductDetail';
+import ProductAdd from './pages/ProductAdd';
+import { create, list } from './api/products';
+import ProductManager from './pages/ProductManager';
 
 
 function App(){
+  const [products,setProducts] = useState([]);
 
+  useEffect(() => {
+    const getProducts = async () => {
+        const { data } = await list();
+        setProducts(data);
+    }
+    getProducts()
+  },[])
+  const onHandleAdd = async product => {
+    const { data } = await create(product);
+    setProducts([...products, data]);
+  }
   return ( 
     <div>
       <Header />
       <Routes>
         <Route path="/" element={<WebsiteLayout />}>
             <Route index element={<Home />}/>
-            {/* Cách 1:  */}
             <Route path="product">
                 <Route index element={<Products />}/>
                 <Route path=":id" element={<ProductDetail />} />
@@ -29,8 +43,11 @@ function App(){
         <Route path="admin" element={<AdminLayout />}>
           <Route index element={<Navigate to="dashboard" />} />
           <Route path="dashboard" element={<Dashboard />} />
-          <Route path="manager-product" element={<h1>Product Manager</h1>} />
-          <Route path="manager-post" element={<h1>Post Manager</h1>} />
+          <Route path="product">
+              <Route index  element={<ProductManager products={products}/>} />
+              <Route path="add" element={<ProductAdd onAdd={onHandleAdd} />} />
+          </Route>
+          <Route path="post" element={<h1>Post Manager</h1>} />
         </Route>
       </Routes>
     </div>
