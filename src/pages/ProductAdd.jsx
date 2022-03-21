@@ -1,14 +1,17 @@
 import React from 'react'
 import { useForm } from 'react-hook-form';
+import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 const ProductAdd = (props) => {
     const { register, handleSubmit, formState: { errors }} = useForm();
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     const onSubmit = (data) => {
-        props.onAdd(data);
-        navigate("/admin/product");
+      dispatch({type: "ADD_PRODUCT", payload: {id: 5, ...data}});
+        // props.onAdd(data);
+        // navigate("/admin/product");
     }
   return (
     <form onSubmit={handleSubmit(onSubmit)}>

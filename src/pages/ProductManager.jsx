@@ -1,8 +1,10 @@
 import React from 'react'
 import { Table, Tag, Space } from 'antd';
+import { useSelector } from 'react-redux';
 
-const ProductManager = (props) => {
-    const result = props.products?.map((item,index) => {
+const ProductManager = () => {
+    const data = useSelector(data => data.products);
+    const result = data?.map((item,index) => {
         return {
             key: index + 1,
             name: item.name,

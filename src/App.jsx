@@ -17,6 +17,7 @@ import ProductManager from './pages/ProductManager';
 function App(){
   const [products,setProducts] = useState([]);
 
+
   useEffect(() => {
     const getProducts = async () => {
         const { data } = await list();
@@ -44,7 +45,7 @@ function App(){
           <Route index element={<Navigate to="dashboard" />} />
           <Route path="dashboard" element={<Dashboard />} />
           <Route path="product">
-              <Route index  element={<ProductManager products={products}/>} />
+              <Route index  element={<ProductManager />} />
               <Route path="add" element={<ProductAdd onAdd={onHandleAdd} />} />
           </Route>
           <Route path="post" element={<h1>Post Manager</h1>} />
