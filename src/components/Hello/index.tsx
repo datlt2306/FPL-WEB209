@@ -5,9 +5,8 @@ type helloProps = {
     age: number;
 };
 
-const Hello = (props: helloProps) => {
-    console.log("props", props);
-    return <div>Hello {props.age}</div>;
+const Hello = ({ name, age }: helloProps) => {
+    return <div>Hello {age}</div>;
 };
 
 export default Hello;
