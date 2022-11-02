@@ -10,17 +10,41 @@ const Lifecycle = () => {
     const [products, setProducts] = useState<IProduct[]>([]); // 1
     useEffect(() => {
         (async () => {
-            const data = await (await fetch("http://localhost:3000/products")).json();
-            setProducts(data);
+            try {
+                const data = await (await fetch("http://localhost:3000/products")).json();
+                setProducts(data);
+            } catch (error) {
+                console.log(error);
+            }
         })();
     }, []);
+
+    const removeProduct = async (id: number) => {
+        try {
+            await (
+                await fetch(`http://localhost:3000/products/${id}`, {
+                    method: "DELETE",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                })
+            ).json();
+            // Rerender
+            setProducts(products.filter((item) => item.id !== id));
+        } catch (error) {}
+    };
     return (
         <div>
-            {products.map((product) => (
-                <div key={product.id}>
-                    {product.name} - {product.price} - {product.quantity}
-                </div>
-            ))}
+            {products.length > 0
+                ? products.map((product) => (
+                      <div key={product.id}>
+                          <span>
+                              {product.name} - {product.price} - {product.quantity}
+                          </span>
+                          <button onClick={() => removeProduct(product.id)}>Remove</button>
+                      </div>
+                  ))
+                : "Loading..."}
         </div>
     );
 };
