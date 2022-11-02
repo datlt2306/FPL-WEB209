@@ -48,10 +48,29 @@ const Lifecycle = () => {
             setProducts(data);
         })();
     }, []);
+
+    const removeItem = async (id: number) => {
+        // call api xóa sản phẩm
+        await fetch(`http://localhost:3000/products/${id}`, {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json",
+            },
+        });
+        // cập nhật lại danh sách sản phẩm
+        const newProducts = products.filter((item) => item.id !== id);
+        setProducts(newProducts);
+    };
     return (
         // 2
         <div>
-            {products.length > 0 ? products.map((item) => <div>{item.name}</div>) : "Loading..."}
+            {products.length > 0
+                ? products.map((item) => (
+                      <div>
+                          {item.name} <button onClick={() => removeItem(item.id)}>Remove</button>
+                      </div>
+                  ))
+                : "Loading..."}
         </div>
     );
 };
