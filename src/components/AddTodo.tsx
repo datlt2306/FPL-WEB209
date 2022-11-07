@@ -1,31 +1,29 @@
 import { ITodo } from "@/interfaces/todo";
 import React, { useState } from "react";
+import { useForm, SubmitHandler } from "react-hook-form";
 
 type AddTodoProps = {
     addTodo: (todo: ITodo) => void;
 };
 
 const AddTodo = (props: AddTodoProps) => {
-    const [value, setValue] = useState<ITodo>({ id: 0, name: "", price: 0 });
-    const onHandleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const target = e.target;
-        const name = target.name;
-        setValue({
-            id: Math.random(),
-            ...value,
-            [name]: target.value,
-        });
+    const {
+        register,
+        handleSubmit,
+        watch,
+        formState: { errors },
+    } = useForm<ITodo>();
+
+    const onSubmit: SubmitHandler<ITodo> = (data) => {
+        props.addTodo({ id: 123, ...data });
     };
-    const onHandleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-        props.addTodo(value);
-    };
+
     return (
         <>
-            <div>{JSON.stringify(value)}</div>
-            <form onSubmit={onHandleSubmit}>
-                <input type="text" name="name" onChange={onHandleChange} />
-                <input type="number" name="price" onChange={onHandleChange} />
+            <form onSubmit={handleSubmit(onSubmit)}>
+                <input type="text" {...register("name")} />
+                <input type="number" {...register("price", { required: true })} />
+                {errors.price && <span>This field is required</span>}
                 <button>Thêm mới</button>
             </form>
         </>
