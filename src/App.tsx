@@ -1,12 +1,12 @@
 import { useState } from "react";
 import reactLogo from "./assets/react.svg";
 import "./App.css";
-import Lifecycle from "./components/Lifecycle";
+import Todo from "./components/Todo";
 
 function App() {
     return (
         <div className="App">
-            <Lifecycle />
+            <Todo />
         </div>
     );
 }
