@@ -1,26 +1,26 @@
-import React, { useState } from "react";
+import { useForm, SubmitHandler } from "react-hook-form";
+import { ITodo } from "../interfaces/todo";
 
 type TodoProps = {
-    addTodo: (todo: string) => void;
+    addTodo: (todo: ITodo) => void;
 };
 const AddTodo = (props: TodoProps) => {
-    const [value, setValue] = useState({});
+    const {
+        register,
+        handleSubmit,
+        formState: { errors },
+    } = useForm<ITodo>();
 
-    const onHandleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const event = e.target;
-        console.log(event.value);
-        setValue({ ...value, [event.name]: event.value });
-    };
-    const onHandleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-        // props.addTodo(value);
+    const onHandleSubmit: SubmitHandler<ITodo> = (data) => {
+        // bắn dữ liệu lên trên todo
+        props.addTodo(data);
     };
     return (
         <>
-            {JSON.stringify(value)}
-            <form onSubmit={onHandleSubmit}>
-                <input type="text" name="name" onChange={onHandleChange} />
-                <input type="text" name="price" onChange={onHandleChange} />
+            <form onSubmit={handleSubmit(onHandleSubmit)}>
+                <input {...register("name")} />
+                <input {...register("price", { required: true })} />
+                {errors.price && <span>This field is required</span>}
                 <button>Add Todo</button>
             </form>
         </>

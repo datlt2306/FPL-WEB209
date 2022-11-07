@@ -1,15 +1,17 @@
 import React from "react";
+import { ITodo } from "../interfaces/todo";
 import ItemTodo from "./ItemTodo";
 
-type Props = {};
+type ListTodoProps = {
+    todos: ITodo[];
+};
 
-const ListTodo = (props: Props) => {
+const ListTodo = (props: ListTodoProps) => {
     return (
         <>
-            <ItemTodo />
-            <ItemTodo />
-            <ItemTodo />
-            <ItemTodo />
+            {props.todos.map((todo) => (
+                <ItemTodo todo={todo} />
+            ))}
         </>
     );
 };
