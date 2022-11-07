@@ -1,4 +1,5 @@
 export interface ITodo {
     id?: number;
-    name: string
+    name: string,
+    price: number
 }

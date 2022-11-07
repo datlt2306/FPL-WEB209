@@ -6,11 +6,14 @@ type AddTodoProps = {
 };
 
 const AddTodo = (props: AddTodoProps) => {
-    const [value, setValue] = useState<ITodo>();
+    const [value, setValue] = useState<ITodo>({ id: 0, name: "", price: 0 });
     const onHandleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const target = e.target;
+        const name = target.name;
         setValue({
-            id: 1,
-            name: e.target.value,
+            id: Math.random(),
+            ...value,
+            [name]: target.value,
         });
     };
     const onHandleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -21,7 +24,8 @@ const AddTodo = (props: AddTodoProps) => {
         <>
             <div>{JSON.stringify(value)}</div>
             <form onSubmit={onHandleSubmit}>
-                <input type="text" onChange={onHandleChange} />
+                <input type="text" name="name" onChange={onHandleChange} />
+                <input type="number" name="price" onChange={onHandleChange} />
                 <button>Thêm mới</button>
             </form>
         </>
