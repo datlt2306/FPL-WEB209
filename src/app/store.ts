@@ -1,10 +1,14 @@
 
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
 import productReducer from '../slice/product';
+import { productApi } from '../apiSlice/product';
 const store = configureStore({
     reducer: {
-        products: productReducer
+        products: productReducer,
+        [productApi.reducerPath]: productApi.reducer,
     },
+    middleware: (getDefaultMiddleware) =>
+        getDefaultMiddleware().concat(productApi.middleware),
 })
 export type AppDispatch = typeof store.dispatch;
 export type RootState = ReturnType<typeof store.getState>;
