@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Route, Routes } from "react-router-dom";
+import { Link, Route, Routes } from "react-router-dom";
 import "./App.css";
 import Product from "./components/product";
 import ProductEdit from "./components/product-edit";
@@ -9,6 +9,14 @@ import LayoutWebsite from "./layouts/LayoutWebsite";
 function App() {
     return (
         <div className="App">
+            <header>
+                <Link to="/admin">Dashboard</Link> <br />
+                <Link to="/admin/products">Products</Link>
+                <br />
+                <Link to="/admin/products/add">Add SP</Link>
+                <br />
+                <Link to="/admin/products/:id/edit">Edit</Link>
+            </header>
             <Routes>
                 <Route path="/" element={<LayoutWebsite />}>
                     <Route index element={<h1>Home Page</h1>} />
