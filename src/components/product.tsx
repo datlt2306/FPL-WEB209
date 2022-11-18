@@ -12,7 +12,7 @@ const Product = (props: Props) => {
     // const products = useAppSelector((state) => state.products.value);
     // useEffect(() => {
     //     dispatch(fetchProducts());
-    // }, []);
+    // }, []
     if (isLoading) return <div>Loading...</div>;
     if (error) return <div>Error</div>;
     return (
