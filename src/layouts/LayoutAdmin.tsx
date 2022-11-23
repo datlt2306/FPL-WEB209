@@ -1,60 +1,20 @@
-import React from "react";
-
-import { Link, Outlet } from "react-router-dom";
-import { LaptopOutlined, NotificationOutlined, UserOutlined } from "@ant-design/icons";
-import type { MenuProps } from "antd";
-import { Breadcrumb, Layout, Menu } from "antd";
+import { Breadcrumb, Layout } from "antd";
+import { Outlet } from "react-router-dom";
+import MenuAdmin from "../components/MenuAdmin";
+import MenuAdminTop from "../components/MenuAdminTop";
 
 const { Header, Content, Sider } = Layout;
 
 const LayoutAdmin = () => {
     return (
-        <Layout>
+        <Layout style={{ height: "100vh" }}>
             <Header className="header">
                 <div className="logo" />
-                <Menu theme="dark" mode="horizontal">
-                    <Menu.Item>
-                        <Link to="/admin">
-                            <LaptopOutlined /> Thống kê
-                        </Link>
-                    </Menu.Item>
-                    <Menu.Item>
-                        <Link to="/admin/products">
-                            <NotificationOutlined />
-                            Sản phẩm
-                        </Link>
-                    </Menu.Item>
-                    <Menu.SubMenu title="sub menu">
-                        <Menu.Item>
-                            <Link to="/admin/products/add">
-                                <UserOutlined /> Thêm sản phẩm
-                            </Link>
-                        </Menu.Item>
-                    </Menu.SubMenu>
-                </Menu>
+                <MenuAdminTop />
             </Header>
             <Layout>
                 <Sider width={200} className="site-layout-background">
-                    <Menu>
-                        <Menu.Item>
-                            <Link to="/admin">
-                                <LaptopOutlined /> Thống kê
-                            </Link>
-                        </Menu.Item>
-                        <Menu.Item>
-                            <Link to="/admin/products">
-                                <NotificationOutlined />
-                                Sản phẩm
-                            </Link>
-                        </Menu.Item>
-                        <Menu.SubMenu title="sub menu">
-                            <Menu.Item>
-                                <Link to="/admin/products/add">
-                                    <UserOutlined /> Thêm sản phẩm
-                                </Link>
-                            </Menu.Item>
-                        </Menu.SubMenu>
-                    </Menu>
+                    <MenuAdmin />
                 </Sider>
                 <Layout style={{ padding: "0 24px 24px" }}>
                     <Breadcrumb style={{ margin: "16px 0" }}>

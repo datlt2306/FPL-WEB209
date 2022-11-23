@@ -4,54 +4,11 @@ import { useGetProductsQuery } from "../apiSlice/product";
 import { useAppDispatch, useAppSelector } from "../app/hook";
 import { fetchProducts } from "../slice/product";
 import { Space, Table, Button, Popconfirm, message } from "antd";
+import { getProduct } from "../api/product";
 const { Column } = Table;
-type Props = {};
-const dataSource = [
-    {
-        key: "1",
-        name: "Mike",
-        age: 32,
-        address: "10 Downing Street",
-    },
-    {
-        key: "2",
-        name: "John",
-        age: 42,
-        address: "10 Downing Street",
-    },
-];
-const columns = [
-    {
-        title: "Name",
-        dataIndex: "name",
-        key: "name",
-    },
-    {
-        title: "Price",
-        dataIndex: "price",
-        key: "price",
-    },
-    {
-        title: "Quantity",
-        dataIndex: "quantity",
-        key: "quantity",
-    },
-];
 
-// "id": 1,
-//       "name": "Product 1",
-//       "price": 100,
-//       "quantity": 1
-
-const Product = (props: Props) => {
+const Product = () => {
     const { data: products = [], isLoading, error } = useGetProductsQuery();
-    // const dispatch = useAppDispatch();
-    // const products = useAppSelector((state) => state.products.value);
-    // useEffect(() => {
-    //     dispatch(fetchProducts());
-    // }, []
-    // if (isLoading) return <div>Loading...</div>;
-    // if (error) return <div>Error</div>;
 
     const getData = () => {
         return products.map((product) => ({
@@ -62,17 +19,17 @@ const Product = (props: Props) => {
         }));
     };
 
-    const confirm = () => {
+    const confirm = (id: number) => {
+        console.log(id);
         message.info("Clicked on Yes.");
     };
+    if (isLoading) return <div>Loading...</div>;
+    if (error) return <div>Error</div>;
     return (
         <div>
             <Link type="primary" to="/admin/products/add">
                 Add
             </Link>
-            {/* {products!.map((product) => (
-                <div key={product.id}>{product.name}</div>
-            ))} */}
             <Table dataSource={getData()}>
                 <Column title="Name" dataIndex="name" key="name" />
                 <Column title="Price" dataIndex="price" key="price" />
@@ -80,13 +37,13 @@ const Product = (props: Props) => {
                 <Column
                     title="Action"
                     key="action"
-                    render={() => {
+                    render={(product) => {
                         return (
                             <Space size="middle">
                                 <Popconfirm
                                     title="Mày có muốn xóa không?"
                                     placement="top"
-                                    onConfirm={confirm}
+                                    onConfirm={() => confirm(product.key)}
                                     okText="Yes"
                                     cancelText="No"
                                 >
