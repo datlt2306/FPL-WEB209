@@ -3,7 +3,6 @@ import { Provider } from "react-redux";
 import App from "./App";
 import store from "./app/store";
 import "antd/dist/reset.css";
-// import "./index.css";
 import { BrowserRouter } from "react-router-dom";
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
