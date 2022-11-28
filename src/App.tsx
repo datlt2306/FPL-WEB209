@@ -2,6 +2,8 @@ import { useState } from "react";
 import { Link, Route, Routes } from "react-router-dom";
 import Product from "./components/product";
 import ProductAdd from "./components/product-add";
+import Signin from "./components/Signin";
+import Signup from "./components/Signup";
 import LayoutAdmin from "./layouts/LayoutAdmin";
 import LayoutWebsite from "./layouts/LayoutWebsite";
 
@@ -18,6 +20,8 @@ function App() {
                     <Route path="products" element={<Product />} />
                     <Route path="products/add" element={<ProductAdd />} />
                 </Route>
+                <Route path="/signup" element={<Signup />} />
+                <Route path="/signin" element={<Signin />} />
             </Routes>
         </div>
     );

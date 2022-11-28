@@ -3,7 +3,16 @@ import { IProduct } from '../interfaces/product';
 
 export const productApi = createApi({
     reducerPath: 'productApi',
-    baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:3000" }),
+    baseQuery: fetchBaseQuery({
+        baseUrl: "http://localhost:3000",
+        prepareHeaders(headers, api) {
+            const token = localStorage.getItem('token');
+            if (token) {
+                headers.set('authorization', token);
+            }
+            return headers;
+        },
+    }),
     tagTypes: ['Product'],
     endpoints: (builder) => ({
         getProducts: builder.query<IProduct[], void>({
