@@ -1,11 +1,11 @@
 import { SubmitHandler, useForm } from "react-hook-form";
+import { useAppDispatch } from "../app/hook";
 import { IAuth } from "../interfaces/auth";
 import { useSignupMutation } from "../services/auth";
+import { signupApi } from "../slice/auth";
 
-// window : ctrl + shift + o
-// macos : option + shift + o
 const Signup = () => {
-    const [useSignup] = useSignupMutation();
+    const dispatch = useAppDispatch();
     const {
         register,
         handleSubmit,
@@ -14,9 +14,7 @@ const Signup = () => {
     } = useForm<IAuth>();
 
     const onSubmit: SubmitHandler<IAuth> = (data) => {
-        useSignup(data)
-            .unwrap()
-            .then((response) => console.log(response));
+        dispatch(signupApi(data));
     };
     return (
         <div>
