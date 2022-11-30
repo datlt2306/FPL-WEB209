@@ -5,6 +5,7 @@ import ProductAdd from "./components/product-add";
 import Signin from "./components/Signin";
 import Signup from "./components/Signup";
 import LayoutAdmin from "./layouts/LayoutAdmin";
+import LayoutPrivate from "./layouts/LayoutPrivate";
 import LayoutWebsite from "./layouts/LayoutWebsite";
 
 function App() {
@@ -15,7 +16,14 @@ function App() {
                     <Route index element={<h1>Home Page</h1>} />
                     <Route path="about" element={<h1>About Page</h1>} />
                 </Route>
-                <Route path="/admin" element={<LayoutAdmin />}>
+                <Route
+                    path="/admin"
+                    element={
+                        <LayoutPrivate>
+                            <LayoutAdmin />
+                        </LayoutPrivate>
+                    }
+                >
                     <Route index element={<h1>Dashboard</h1>} />
                     <Route path="products" element={<Product />} />
                     <Route path="products/add" element={<ProductAdd />} />
