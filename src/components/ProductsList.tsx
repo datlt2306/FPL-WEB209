@@ -1,15 +1,21 @@
 import React from "react";
+import { IProduct } from "../interfaces/Product";
 
 type ProductsListProps = {
-    data: { id?: number; name: string }[];
+    data: IProduct[];
     onClick: (id: number) => void;
 };
 
-const ProductsList = ({ data }: ProductsListProps) => {
+const ProductsList = ({ data, onClick }: ProductsListProps) => {
     return (
         <div>
-            ProductsList
-            {/* <button onClick={() => onHandleRemove(10)}>Click</button> */}
+            ProductsList $
+            {data.map((product) => (
+                <div key={product.id}>
+                    {product.name}
+                    <button onClick={() => onClick(10)}>Click</button>
+                </div>
+            ))}
         </div>
     );
 };
