@@ -26,6 +26,3 @@ function App() {
 }
 
 export default App;
-function fetch(arg0: string) {
-    throw new Error("Function not implemented.");
-}
