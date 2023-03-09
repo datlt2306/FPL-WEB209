@@ -4,6 +4,7 @@ import "./App.css";
 import ProductsList from "./components/ProductsList";
 import { IProduct } from "./interfaces/Product";
 import axios from "axios";
+import Counter from "./components/Counter";
 
 function App() {
     const [products, setProducts] = useState<IProduct[]>([
@@ -20,6 +21,7 @@ function App() {
 
     return (
         <div className="App">
+            <Counter />
             <ProductsList data={products} onClick={onHandleRemove} />
         </div>
     );

@@ -1,7 +1,8 @@
+import { ICounter } from "../interfaces/Counter";
+
 const intitialState = {
-    count: 0,
-    value: 0,
-};
+    count: 10,
+} as ICounter;
 
 const counterReducer = (state = intitialState, action: any) => {
     switch (action.type) {
