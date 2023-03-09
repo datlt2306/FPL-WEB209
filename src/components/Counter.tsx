@@ -1,11 +1,20 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { ICounter } from "../interfaces/Counter";
 type Props = {};
 
 const Counter = () => {
     const counter = useSelector((state: ICounter) => state.count);
-    return <div>{counter}</div>;
+    const dispatch = useDispatch();
+    return (
+        <div>
+            {counter}
+
+            <button onClick={() => dispatch({ type: "INCREMENT" })}>INCREMENT</button>
+            <button onClick={() => dispatch({ type: "DECREMENT" })}>DECREMENT</button>
+            <button onClick={() => dispatch({ type: "INCREASE", payload: 10 })}>DECREMENT</button>
+        </div>
+    );
 };
 
 export default Counter;
