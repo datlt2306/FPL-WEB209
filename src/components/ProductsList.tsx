@@ -1,21 +1,18 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { fetchProducts } from "../actions/product";
 import { IProduct } from "../interfaces/Product";
-
-type ProductsListProps = {
-    data: IProduct[];
-    onClick: (id: number) => void;
-};
-
-const ProductsList = ({ data, onClick }: ProductsListProps) => {
+const ProductsList = () => {
+    const products = useSelector(({ product }) => product.value);
+    const dispatch = useDispatch();
+    useEffect(() => {
+        dispatch(fetchProducts());
+    }, []);
     return (
         <div>
-            ProductsList $
-            {data.map((product) => (
-                <div key={product.id}>
-                    {product.name}
-                    <button onClick={() => onClick(10)}>Click</button>
-                </div>
-            ))}
+            {products.map((product: IProduct) => {
+                return <div>{product.name}</div>;
+            })}
         </div>
     );
 };
