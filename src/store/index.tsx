@@ -1,6 +1,6 @@
-import { createStore } from "redux";
-import counterReducer from "../reducers/counter";
-
-const store = createStore(counterReducer); // state => counterReducer
+import { createStore, applyMiddleware } from "redux";
+import thunk from "redux-thunk";
+import rootReducer from "../reducers";
+const store = createStore(rootReducer, applyMiddleware(thunk));
 
 export default store;
