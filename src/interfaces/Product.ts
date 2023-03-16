@@ -2,8 +2,6 @@ export interface IProduct {
     id?: number;
     name: string
 }
-
-
 interface IActionGetProducts {
     type: "GET_PRODUCTS";
     payload: IProduct[];

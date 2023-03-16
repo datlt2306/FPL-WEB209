@@ -1,9 +1,14 @@
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Dispatch } from "redux";
-import { addProducts, fetchProducts, deleteProduct, changeProduct } from "../actions/product";
+import {
+    addProducts,
+    fetchProducts,
+    deleteProduct,
+    changeProduct,
+} from "../actions[draft]/product";
 import { IProduct } from "../interfaces/Product";
-import { RootState } from "../reducers";
+import { RootState } from "../reducers[draft]";
 const ProductsList = () => {
     const products = useSelector((state: RootState) => state.product.value);
     const dispatch: Dispatch<any> = useDispatch();
@@ -26,7 +31,7 @@ const ProductsList = () => {
             {products.map((product: IProduct) => {
                 return (
                     <div>
-                        {product.name}{" "}
+                        {product.name}
                         <button onClick={() => removeProduct(product.id)}>Xóa</button>
                     </div>
                 );

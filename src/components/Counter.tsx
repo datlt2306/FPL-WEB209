@@ -1,18 +1,15 @@
-import React from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { ICounter } from "../interfaces/Counter";
-type Props = {};
+import { decrement, increaseByAmount, increment } from "../slice/counter";
+import { useAppDispatch, useAppSelector } from "../store/hooks";
 
 const Counter = () => {
-    const counter = useSelector((state: ICounter) => state.count);
-    const dispatch = useDispatch();
+    const counter = useAppSelector((state) => state.counter.value);
+    const dispatch = useAppDispatch();
     return (
         <div>
             {counter}
-
-            <button onClick={() => dispatch({ type: "INCREMENT" })}>INCREMENT</button>
-            <button onClick={() => dispatch({ type: "DECREMENT" })}>DECREMENT</button>
-            <button onClick={() => dispatch({ type: "INCREASE", payload: 10 })}>DECREMENT</button>
+            <button onClick={() => dispatch(increment())}>INCREMENT</button>
+            <button onClick={() => dispatch(decrement())}>DECREMENT</button>
+            <button onClick={() => dispatch(increaseByAmount(10))}>INCREASE</button>
         </div>
     );
 };
