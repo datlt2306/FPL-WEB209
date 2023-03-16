@@ -1,11 +1,11 @@
-const initialState = {
+import { IActionProduct, IProduct } from "../interfaces/Product";
+
+const initialState: { value: IProduct[]; isLoading: boolean } = {
     value: [],
     isLoading: false,
 };
 
-const productReducer = (state = initialState, action: any) => {
-    // {type: "GET_PRODUCTS", payload: [ {id: 1, name: "Product A"} ]
-    // {type: "CREATE_PRODUCT", payload: {id: 2, name: "Product C"}
+const productReducer = (state = initialState, action: IActionProduct) => {
     switch (action.type) {
         case "GET_PRODUCTS":
             return {
@@ -20,12 +20,12 @@ const productReducer = (state = initialState, action: any) => {
         case "DELETE_PRODUCT":
             return {
                 ...state,
-                value: state.value.filter((item) => item.id != action.payload),
+                value: state.value.filter((item: IProduct) => item.id != action.payload),
             };
         case "UPDATE_PRODUCT":
             return {
                 ...state,
-                value: state.value.map((item) =>
+                value: state.value.map((item: IProduct) =>
                     item.id === action.payload.id ? action.payload : item
                 ),
             };

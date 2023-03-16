@@ -1,13 +1,15 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { Dispatch } from "redux";
 import { addProducts, fetchProducts, deleteProduct, changeProduct } from "../actions/product";
 import { IProduct } from "../interfaces/Product";
+import { RootState } from "../reducers";
 const ProductsList = () => {
-    const products = useSelector((state) => state.product.value);
-    const dispatch = useDispatch();
+    const products = useSelector((state: RootState) => state.product.value);
+    const dispatch: Dispatch<any> = useDispatch();
     useEffect(() => {
         dispatch(fetchProducts());
-    }, []);
+    }, [dispatch]);
     const createProduct = () => {
         dispatch(addProducts({ name: "Product C" }));
     };
