@@ -7,6 +7,26 @@
     {
       "name": "Product C",
       "id": 3
+    },
+    {
+      "name": "product A",
+      "price": "123",
+      "id": 4
+    },
+    {
+      "name": "product A",
+      "price": "12345",
+      "id": 5
+    },
+    {
+      "name": "san pham 5",
+      "price": "123",
+      "id": 6
+    },
+    {
+      "name": "san pham 6",
+      "price": "123",
+      "id": 7
     }
   ]
 }
