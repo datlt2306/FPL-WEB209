@@ -1,40 +1,20 @@
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Dispatch } from "redux";
-import {
-    addProducts,
-    fetchProducts,
-    deleteProduct,
-    changeProduct,
-} from "../actions[draft]/product";
 import { IProduct } from "../interfaces/Product";
 import { RootState } from "../reducers[draft]";
+import { fetchProducts } from "../slice/product";
 const ProductsList = () => {
-    const products = useSelector((state: RootState) => state.product.value);
+    const { value: products, isLoading } = useSelector((state: RootState) => state.product);
     const dispatch: Dispatch<any> = useDispatch();
     useEffect(() => {
         dispatch(fetchProducts());
     }, [dispatch]);
-    const createProduct = () => {
-        dispatch(addProducts({ name: "Product C" }));
-    };
-    const removeProduct = (id: any) => {
-        dispatch(deleteProduct(id));
-    };
-    const updateProduct = () => {
-        dispatch(changeProduct({ id: 1, name: "Product A updated" }));
-    };
+    if (isLoading) return <div>Loading...</div>;
     return (
         <div>
-            <button onClick={createProduct}>Add Product</button>
-            <button onClick={updateProduct}>Update Product</button>
             {products.map((product: IProduct) => {
-                return (
-                    <div>
-                        {product.name}
-                        <button onClick={() => removeProduct(product.id)}>Xóa</button>
-                    </div>
-                );
+                return <div>{product.name}</div>;
             })}
         </div>
     );
