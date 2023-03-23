@@ -1,55 +1,85 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { IProduct } from "../interfaces/Product";
 
-export const fetchProducts = createAsyncThunk("product/fetchProducts", async () => {
-    const response = await fetch('http://localhost:3001/products');
-    const data = await response.json();
+
+
+
+type StateProduct = {
+    value: IProduct[];
+    item: IProduct,
+    loading: boolean
+}
+const initialState: StateProduct = {
+    value: [],
+    item: { name: "" },
+    loading: false
+};
+
+
+export const fetchProduct = createAsyncThunk('product/fetchProduct', async (id: number | string) => {
+    const response = await fetch('http://localhost:3001/products/' + id)
+    const data = await response.json()
     return data
-})
-// Sử dụng createAsyncThunk Call API sau đó trả về dữ liệu
-export const addProduct = createAsyncThunk('product/addProduct', async (product) => {
+});
+
+export const fetchProducts = createAsyncThunk('product/fetchProducts', async () => {
+    const response = await fetch('http://localhost:3001/products')
+    const data = await response.json()
+    return data
+});
+
+export const createProduct = createAsyncThunk('product/create', async (product: IProduct) => {
     const response = await fetch('http://localhost:3001/products', {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
         },
         body: JSON.stringify(product)
-    });
-    const data = await response.json();
+    })
+    const data = await response.json()
     return data
-})
+});
+export const updateProduct = createAsyncThunk('product/update', async (product: IProduct) => {
+    const response = await fetch('http://localhost:3001/products/' + product.id, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(product)
+    })
+    const data = await response.json()
+    return data
+});
 const productSlice = createSlice({
     name: "product",
-    initialState: {
-        value: [],
-        isLoading: false
-    },
+    initialState,
     reducers: {},
     extraReducers: (builder) => {
-        // GET Products
-        builder.addCase(fetchProducts.pending, (state, action) => {
-            state.isLoading = true
+        // fetch
+        builder.addCase(fetchProducts.pending, (state) => {
+            state.loading = true
         })
         builder.addCase(fetchProducts.fulfilled, (state, action) => {
-            state.value = action.payload;
-            state.isLoading = false
+            state.value = action.payload
+            state.loading = false;
         })
-        builder.addCase(fetchProducts.rejected, (state, action) => {
-            state.isLoading = true
+
+        // add
+        builder.addCase(createProduct.fulfilled, (state, action) => {
+            state.value.push(action.payload)
+            state.loading = false;
         })
-        // POST product
-        builder.addCase(addProduct.pending, (state, action) => {
-            state.isLoading = true
+        // Get
+        builder.addCase(fetchProduct.fulfilled, (state, action) => {
+            state.item = action.payload
+            state.loading = false;
         })
-        // action.payload là giá trị sau khi call API Thành công
-        builder.addCase(addProduct.fulfilled, (state, action) => {
-            const product = action.payload;
-            state.value.push(product);
-            state.isLoading = false
-        })
-        builder.addCase(addProduct.rejected, (state, action) => {
-            state.isLoading = true
+        // Update
+        builder.addCase(updateProduct.fulfilled, (state, action) => {
+            state.value = state.value.map(item => item.id === action.payload.id ? action.payload : item)
+            state.loading = false;
         })
     }
-})
+});
 
 export default productSlice.reducer;

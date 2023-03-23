@@ -2,7 +2,7 @@
   "products": [
     {
       "id": 1,
-      "name": "Product A updated"
+      "name": "Product A updated 123"
     },
     {
       "name": "Product C",
@@ -27,6 +27,18 @@
       "name": "san pham 6",
       "price": "123",
       "id": 7
+    },
+    {
+      "name": "dat",
+      "id": 8
+    },
+    {
+      "name": "dat 2",
+      "id": 9
+    },
+    {
+      "name": "Product A updated 1",
+      "id": 10
     }
   ]
 }
