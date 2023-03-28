@@ -9,7 +9,7 @@ const Product = (props: Props) => {
     if (isLoading) return <div>Loading...</div>;
     if (error) return <div>Error</div>;
 
-    return <div>{products.map((item: IProduct) => item.name)}</div>;
+    return <div>{products!.map((item: IProduct) => item.name)}</div>;
 };
 
 export default Product;
