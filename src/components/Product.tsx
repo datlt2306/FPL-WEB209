@@ -1,20 +1,15 @@
-import React, { useEffect } from "react";
-import { fetchProducts } from "../slice/product";
-import { RootState } from "../store";
-import { useAppDispatch, useAppSelector } from "../store/hooks";
+import { IProduct } from "../interfaces/Product";
+import { useGetProductsQuery } from "../services/product";
 
 type Props = {};
 
 const Product = (props: Props) => {
-    const dispatch = useAppDispatch();
-    const { value: products, loading } = useAppSelector((state: RootState) => state.product);
+    const { data: products, isLoading, error } = useGetProductsQuery();
 
-    useEffect(() => {
-        dispatch(fetchProducts());
-    }, []);
+    if (isLoading) return <div>Loading...</div>;
+    if (error) return <div>Error</div>;
 
-    if (loading) return <div>Loading...</div>;
-    return <div>{products.map((item) => item.name)}</div>;
+    return <div>{products.map((item: IProduct) => item.name)}</div>;
 };
 
 export default Product;

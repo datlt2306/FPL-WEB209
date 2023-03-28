@@ -14,7 +14,6 @@ const ProductEdit = () => {
         handleSubmit,
         formState: { errors },
     } = useForm<IProduct>();
-    const navigate = useNavigate();
     const dispatch = useAppDispatch();
 
     const onHandleSubmit: SubmitHandler<IProduct> = (data) => {
@@ -22,7 +21,7 @@ const ProductEdit = () => {
     };
 
     useEffect(() => {
-        dispatch(fetchProduct(id));
+        dispatch(fetchProduct(id!));
     }, []);
     return (
         <div>
