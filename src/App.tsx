@@ -1,20 +1,14 @@
 import { useState } from "react";
 import "./App.css";
-import { Hello, Sum } from "./components";
-import { IUser } from "./interfaces/User";
+import { ICar } from "./interfaces/Car";
 
 function App() {
-    const [info] = useState<{ name: string; children: IUser[] }>({
-        name: "Dat",
-        children: [
-            { id: 1, name: "Tung Lam" },
-            { id: 2, name: "Thanh Tung" },
-        ],
-    });
+    const [cars, setCars] = useState<ICar[]>([]);
+    const [isLoading, setIsLoading] = useState<boolean>(false);
+    const [error, setError] = useState<null>(null);
     return (
         <div>
-            <Hello name="Dat" age={20} info={info} />
-            <Sum />
+            <h1 className="text-3xl font-bold underline">Hello world!</h1>
         </div>
     );
 }
