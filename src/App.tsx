@@ -1,11 +1,17 @@
-import { useState } from "react";
 import "./App.css";
 import { Hello, Sum } from "@/components";
 
 function App() {
+    const info = {
+        name: "Kien",
+        children: [
+            { id: 1, name: "Lam" },
+            { id: 2, name: "Tung" },
+        ],
+    };
     return (
         <>
-            <Hello />
+            <Hello name="Dat" age={20} info={info} />
             <Sum />
         </>
     );
