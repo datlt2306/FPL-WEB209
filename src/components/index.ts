@@ -1,4 +1,5 @@
 import Hello from './Hello'
 import Sum from './Sum';
+import Button from './Button';
 
-export { Hello, Sum }
+export { Hello, Sum, Button }
