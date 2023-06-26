@@ -1,8 +1,6 @@
-import React from "react";
+type SumProps = {};
 
-type Props = {};
-
-const Sum = (props: Props) => {
+const Sum = (props: SumProps) => {
     return <div>Sum</div>;
 };
 

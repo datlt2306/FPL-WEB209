@@ -1,5 +1,4 @@
-import Hello from './Hello'
-import Sum from './Sum';
-import Button from './Button';
+import Hello from '@/components/Hello';
+import Sum from '@/components/Sum';
 
-export { Hello, Sum, Button }
+export { Hello, Sum }

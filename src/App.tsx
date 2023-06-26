@@ -1,26 +1,29 @@
 import { useState } from "react";
 import "./App.css";
-import { Button, Hello, Sum } from "@/components";
+import { Hello, Sum } from "./components";
+import { IUser } from "./interfaces/User";
 
 function App() {
-    const [info] = useState({
-        name: "Kien",
+    const [info] = useState<{ name: string; children: IUser[] }>({
+        name: "Dat",
         children: [
-            { id: 1, name: "Lam" },
-            { id: 2, name: "Tung" },
+            { id: 1, name: "Tung Lam" },
+            { id: 2, name: "Thanh Tung" },
         ],
     });
-    const handleLog = () => {
-        console.log("hello");
-    };
     return (
-        <>
+        <div>
             <Hello name="Dat" age={20} info={info} />
             <Sum />
-            <Button color="#fff" background="blue" text="Nút 1" onHandleClick={handleLog} />
-            <Button color="#fff" background="green" text="Nút 2" />
-        </>
+        </div>
     );
 }
 
 export default App;
+// npm i -g pnpm
+// pnpm create vite@latest -- --template react-ts
+// cd vite-react-ts
+// pnpm i
+// Chỉnh sửa file tsconfig.json
+// cài đặt thêm module vite paths: vite-tsconfig-paths
+// chỉnh sửa file vite.config.ts
