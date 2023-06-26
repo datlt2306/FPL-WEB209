@@ -7,6 +7,11 @@ function App() {
     const [cars, setCars] = useState<ICar[]>([]);
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [error, setError] = useState<null>(null);
+
+    const addCar = (car: ICar) => {};
+    const removeCar = (id: number) => {};
+    const updateCar = (car: ICar) => {};
+    const fetchCars = () => {};
     return (
         <div>
             <div className="w-96 mx-auto border">
