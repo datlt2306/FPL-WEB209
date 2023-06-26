@@ -1,9 +1,13 @@
-import React from "react";
+import { Button } from "@/components";
 
 type Props = {};
 
 const Item = (props: Props) => {
-    return <div>Item</div>;
+    return (
+        <li>
+            Item <Button>Remove</Button>
+        </li>
+    );
 };
 
 export default Item;

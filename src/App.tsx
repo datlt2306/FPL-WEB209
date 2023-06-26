@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "./App.css";
 import { ICar } from "./interfaces/Car";
+import { Button, Input, List } from "./components";
 
 function App() {
     const [cars, setCars] = useState<ICar[]>([]);
@@ -8,7 +9,13 @@ function App() {
     const [error, setError] = useState<null>(null);
     return (
         <div>
-            <h1 className="text-3xl font-bold underline">Hello world!</h1>
+            <div className="w-96 mx-auto border">
+                <form className="border-b mb-3 p-3 flex justify-between items-center">
+                    <Input />
+                    <Button>Add</Button>
+                </form>
+                <List />
+            </div>
         </div>
     );
 }

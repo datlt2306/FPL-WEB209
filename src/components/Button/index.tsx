@@ -1,9 +1,11 @@
 import React from "react";
 
-type Props = {};
+type Props = {
+    children: React.ReactNode;
+};
 
-const Button = (props: Props) => {
-    return <div>index</div>;
+const Button = ({ children }: Props) => {
+    return <button>{children}</button>;
 };
 
 export default Button;

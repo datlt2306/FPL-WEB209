@@ -1,9 +1,13 @@
-import React from "react";
+import { Item } from "@/components";
 
 type Props = {};
 
 const List = (props: Props) => {
-    return <div>List</div>;
+    return (
+        <ul>
+            <Item />
+        </ul>
+    );
 };
 
 export default List;
