@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "./App.css";
-import Hello from "./components/Hello";
+import { Hello, Sum } from "./components";
 
 type AppState = {
     name: string;
@@ -18,6 +18,7 @@ function App() {
     return (
         <>
             <Hello name="Son" age={20} info={info} />
+            <Sum />
         </>
     );
 }
