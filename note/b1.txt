@@ -19,7 +19,7 @@ B5: pnpm dev
 
 
 === PATH ALIAS ===
-B1: truy cập file tsconfig.json
+B1: truy cập file tsconfig.json, thêm thuộc tính cho compilerOptions.
     "baseUrl": "./",
     "paths": {
         "@/*": ["src/*"]
