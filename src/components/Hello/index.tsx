@@ -9,10 +9,16 @@ type HelloProps = {
     };
 };
 
-const Hello = (props: HelloProps) => {
+const Hello = ({ name, age, info }: HelloProps) => {
     return (
         <div>
-            <h2 className={styles["main-title"]}>Hello component</h2>
+            <h2 className={styles["main-title"]}>Hello {name}</h2>
+            <p>Age: {age}</p>
+            <ul>
+                {info?.children?.map((child) => (
+                    <li key={child.id}>{child.name}</li>
+                ))}
+            </ul>
         </div>
     );
 };
