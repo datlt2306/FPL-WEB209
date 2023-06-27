@@ -16,3 +16,16 @@ B4: Thêm CSS trong file src/index.css
     @tailwind components;
     @tailwind utilities;
 B5: pnpm dev
+
+
+=== PATH ALIAS ===
+B1: truy cập file tsconfig.json
+    "baseUrl": "./",
+    "paths": {
+        "@/*": ["src/*"]
+    }
+B2: Cài đặt package vite-tsconfig-paths 
+B3: truy cập file vite.config.ts
+
+    import tsconfigPaths from 'vite-tsconfig-paths'
+    plugins: [react(), tsconfigPaths()],

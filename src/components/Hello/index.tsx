@@ -1,11 +1,24 @@
+import { IInfo } from "@/interfaces/info";
 import styles from "./Hello.module.css";
 
-type Props = {};
+type HelloProps = {
+    name: string;
+    age: number;
+    info: IInfo;
+};
 
-const Hello = (props: Props) => {
+const Hello = ({ name, age, info }: HelloProps) => {
     return (
         <div>
-            <h1 className={styles.title}>Hello Components</h1>
+            <h1 className={styles.title}>Hello {name}</h1>
+            <p className="font-bold">{age}</p>
+            <ul>
+                {info.children.map((child) => (
+                    <li key={child.id}>
+                        {child.name} - {child.age}
+                    </li>
+                ))}
+            </ul>
         </div>
     );
 };
