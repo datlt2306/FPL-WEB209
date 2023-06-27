@@ -5,7 +5,7 @@ type Props = {};
 const Item = (props: Props) => {
     return (
         <li>
-            Item <Button>Remove</Button>
+            Item <Button primary>Remove</Button>
         </li>
     );
 };
