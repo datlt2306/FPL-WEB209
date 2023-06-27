@@ -1,0 +1,46 @@
+B1: npm i -g pnpm 
+B2: pnpm create vite@latest WD17305 -- --template react-ts
+B3: cd WD17305
+B4: pnpm i
+B5: pnpm dev
+
+// Macos
+B1: brew install pnpm 
+
+===== TAILWINDCSS ===
+B1: Chạy câu lệnh
+    pnpm install -D tailwindcss postcss autoprefixer
+    npx tailwindcss init -p
+B2: Modify tailwind.config.js
+    content: [
+        "./index.html",
+        "./src/**/*.{js,ts,jsx,tsx}",
+    ],
+B3: Copy css, paste into src/index.css
+    @tailwind base;
+    @tailwind components;
+    @tailwind utilities;
+B4: pnpm run dev
+
+==== PATH ALIAS ====
+B1: Modify tsconfig.json 
+    "baseUrl": "./",
+    "paths": {
+        "@/*": ["src/*"]
+    }
+B2: pnpm i -D vite-tsconfig-paths
+ 
+B3: Mofify vite.config.js 
+
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+import tsconfigPaths from 'vite-tsconfig-paths'
+
+// https://vitejs.dev/config/
+export default defineConfig({
+  plugins: [react(), tsconfigPaths()],
+})
+
+
+
+
