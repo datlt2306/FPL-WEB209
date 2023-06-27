@@ -1,0 +1,18 @@
+
+B1: npm create vite@latest web209 -- --template react-ts
+B2: cd web209
+B3: npm i -g pnpm && pnpm i
+
+====== Cài đặt tailwindcss ====
+B1: pnpm i -D tailwindcss postcss autoprefixer
+B2: npx tailwindcss init -p
+B3: Thay đổi nội dung trong file vite.config.js
+    content: [
+        "./index.html",
+        "./src/**/*.{js,ts,jsx,tsx}",
+    ],
+B4: Thêm CSS trong file src/index.css
+    @tailwind base;
+    @tailwind components;
+    @tailwind utilities;
+B5: pnpm dev
