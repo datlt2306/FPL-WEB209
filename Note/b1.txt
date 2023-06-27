@@ -1,0 +1,26 @@
+==== SET UP môi trường===
+b1: npm i -g pnpm
+b2: npm create vite@latest wd17306 -- --template react-ts
+b3: cd wd17306
+b4: pnpm i 
+
+==== Cài đặt tailwindcss ====
+
+==== path alias ==== 
+b1: truy cập tsconfig.json, thêm code trong compilerOptions
+    "baseUrl": "./",
+    "paths": {
+        "@/*": ["src/*"]
+    }
+b2: pnpm i -D vite-tsconfig-paths 
+b3: truy cập file vite.config.ts 
+
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+import tsconfigPaths from 'vite-tsconfig-paths'
+
+// https://vitejs.dev/config/
+export default defineConfig({
+  plugins: [react(), tsconfigPaths()],
+})
+
