@@ -1,9 +1,10 @@
 import "./App.css";
+import Hello from "./components/Hello";
 
 function App() {
     return (
         <>
-            <h1 className="text-red-500">Hello</h1>
+            <Hello />
         </>
     );
 }
