@@ -1,29 +1,22 @@
 import { useState } from "react";
 import "./App.css";
-import ShowInfo from "@/components/ShowInfo";
-
-type Skill = {
-    id?: number;
-    name: string;
-};
+import { Form, List } from "./components";
+import { ICar } from "./interfaces/car";
 
 function App() {
-    const [skill] = useState<Skill[]>([
-        {
-            id: 1,
-            name: "ReactJS",
-        },
-        {
-            id: 2,
-            name: "Nodejs",
-        },
-    ]);
+    //State
+    const [cars, setCars] = useState<ICar[]>([]);
+    const [isLoading, setIsLoading] = useState<Boolean>(false);
+    const [error, setError] = useState<string>("");
+
+    // Action
+    const addCar = (car: ICar) => {};
+    const removeCar = (id: number) => {};
+    const listCar = () => {};
     return (
         <>
-            <h1 className="text-red-500">App</h1>
-            <ShowInfo name="Dat" age={20} isMarried={true} skill={skill}>
-                Ahihi
-            </ShowInfo>
+            <Form />
+            <List />
         </>
     );
 }
