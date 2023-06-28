@@ -12,14 +12,14 @@ function App() {
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [error, setError] = useState<null>(null);
 
-    const addCar = (car: ICar) => {};
+    const addCar = (car: ICar) => {
+        setCars([...cars, car]);
+    };
     const removeCar = (id: number) => {};
-    const updateCar = (car: ICar) => {};
-    const fetchCars = () => {};
     return (
         <div>
             <div className="w-96 mx-auto border">
-                <Form />
+                <Form onAdd={addCar} />
                 <List cars={cars} />
             </div>
         </div>
