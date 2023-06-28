@@ -1,0 +1,3 @@
+.item {
+    @apply flex justify-between items-center p-2 border-b border-gray-500 hover:bg-red-500 hover:text-white;
+}

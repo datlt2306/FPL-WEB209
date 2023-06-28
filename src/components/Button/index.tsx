@@ -1,16 +1,9 @@
-type Props = {
-    background: string;
-    color: string;
-    text: string;
-    onHandleClick?: () => void;
-};
+import React from "react";
 
-const Button = ({ color, background, text, onHandleClick }: Props) => {
-    return (
-        <div style={{ color, background }} onClick={onHandleClick}>
-            {text}
-        </div>
-    );
+type Props = {};
+
+const Button = (props: Props) => {
+    return <button className="border p-2 rounded border-gray-500">Button</button>;
 };
 
 export default Button;

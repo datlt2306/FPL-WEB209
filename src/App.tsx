@@ -1,24 +1,29 @@
 import { useState } from "react";
 import "./App.css";
-import { Button, Hello, Sum } from "@/components";
+import { Form, List } from "./components";
+import { ICar } from "./interfaces/car";
+
+const carsData = [
+    { id: 1, name: "Car A", price: 100 },
+    { id: 2, name: "Car B", price: 200 },
+    { id: 3, name: "Car B", price: 300 },
+];
 
 function App() {
-    const [info] = useState({
-        name: "Kien",
-        children: [
-            { id: 1, name: "Lam" },
-            { id: 2, name: "Tung" },
-        ],
-    });
-    const handleLog = () => {
-        console.log("hello");
-    };
+    const [cars, setCars] = useState<ICar[]>(carsData);
+    const [isLoading, setIsLoading] = useState<boolean>(false);
+    const [error, setError] = useState<string>("");
+
+    const addCar = (car: ICar) => {};
+    const removeCar = (id: number) => {};
+    const listCar = () => {};
+
     return (
         <>
-            <Hello name="Dat" age={20} info={info} />
-            <Sum />
-            <Button color="#fff" background="blue" text="Nút 1" onHandleClick={handleLog} />
-            <Button color="#fff" background="green" text="Nút 2" />
+            <div className="w-96 border border-red-500 mx-auto my-5">
+                <Form />
+                <List cars={cars} />
+            </div>
         </>
     );
 }
