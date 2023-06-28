@@ -7,7 +7,16 @@ type Props = {
 };
 
 const Button = ({ primary, children, danger }: Props) => {
-    return <button className={primary ? "bg-green-500" : "bg-red-500"}>{children}</button>;
+    return (
+        <button
+            className={`p-2 border border-gray-400 rounded
+        ${primary && "bg-blue-500 text-white"}
+        ${danger && "bg-red-500 text-white"}
+    `}
+        >
+            {children}
+        </button>
+    );
 };
 
 export default Button;

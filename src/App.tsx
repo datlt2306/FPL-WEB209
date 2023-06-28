@@ -1,10 +1,14 @@
 import { useState } from "react";
 import "./App.css";
+import { Form, List } from "./components";
 import { ICar } from "./interfaces/Car";
-import { Button, Input, List } from "./components";
-
+const carsData = [
+    { id: 1, name: "BMW" },
+    { id: 2, name: "Mercedes" },
+    { id: 3, name: "Ford" },
+];
 function App() {
-    const [cars, setCars] = useState<ICar[]>([]);
+    const [cars, setCars] = useState<ICar[]>(carsData);
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [error, setError] = useState<null>(null);
 
@@ -15,21 +19,11 @@ function App() {
     return (
         <div>
             <div className="w-96 mx-auto border">
-                <form className="border-b mb-3 p-3 flex justify-between items-center">
-                    <Input />
-                    <Button>Add</Button>
-                </form>
-                <List />
+                <Form />
+                <List cars={cars} />
             </div>
         </div>
     );
 }
 
 export default App;
-// npm i -g pnpm
-// pnpm create vite@latest -- --template react-ts
-// cd vite-react-ts
-// pnpm i
-// Chỉnh sửa file tsconfig.json
-// cài đặt thêm module vite paths: vite-tsconfig-paths
-// chỉnh sửa file vite.config.ts

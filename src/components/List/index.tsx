@@ -1,11 +1,16 @@
 import { Item } from "@/components";
+import { ICar } from "@/interfaces/Car";
 
-type Props = {};
+type ListProps = {
+    cars: ICar[];
+};
 
-const List = (props: Props) => {
+const List = ({ cars }: ListProps) => {
     return (
         <ul>
-            <Item />
+            {cars?.map((car: ICar) => (
+                <Item key={car.id} car={car} />
+            ))}
         </ul>
     );
 };

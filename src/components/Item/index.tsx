@@ -1,11 +1,14 @@
 import { Button } from "@/components";
+import { ICar } from "@/interfaces/Car";
 
-type Props = {};
+type ItemProps = {
+    car: ICar;
+};
 
-const Item = (props: Props) => {
+const Item = ({ car }: ItemProps) => {
     return (
-        <li>
-            Item <Button primary>Remove</Button>
+        <li className="flex justify-between items-center p-2 border-b border-red-200">
+            {car.name} <Button danger>Remove</Button>
         </li>
     );
 };
