@@ -1,9 +1,11 @@
 import React from "react";
 
-type Props = {};
+type InputProps = {
+    onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+};
 
-const Input = (props: Props) => {
-    return <input className="border border-gray-500 p-2 w-full mr-2" />;
+const Input = ({ onChange }: InputProps) => {
+    return <input onChange={onChange} className="border border-gray-500 p-2 w-full mr-2" />;
 };
 
 export default Input;

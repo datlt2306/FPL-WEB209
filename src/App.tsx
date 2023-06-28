@@ -14,14 +14,19 @@ function App() {
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [error, setError] = useState<string>("");
 
-    const addCar = (car: ICar) => {};
+    const addCar = (car: ICar) => {
+        setCars([...cars, car]);
+    };
     const removeCar = (id: number) => {};
     const listCar = () => {};
 
+    // const onHandleChange = (e: any) => {
+    //     console.log(e.target.value);
+    // };
     return (
         <>
             <div className="w-96 border border-red-500 mx-auto my-5">
-                <Form />
+                <Form onAdd={addCar} />
                 <List cars={cars} />
             </div>
         </>
