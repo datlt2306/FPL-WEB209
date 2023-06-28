@@ -1,21 +1,24 @@
 import React from "react";
 
-type Props = {
+type ButtonProps = {
+    type?: "primary" | "danger";
+    icon?: React.ReactNode;
     primary?: boolean;
     danger?: boolean;
     onClick?: () => void;
-    children: React.ReactNode;
+    children?: React.ReactNode;
 };
 
-const Button = ({ primary, children, danger, onClick }: Props) => {
+const Button = ({ type, icon, primary, children, danger, onClick }: ButtonProps) => {
     return (
         <button
             onClick={onClick}
             className={`p-2 border border-gray-400 rounded
-        ${primary && "bg-blue-500 text-white"}
-        ${danger && "bg-red-500 text-white"}
-    `}
+                        ${type == "primary" && "bg-blue-500 text-white"}
+                        ${type == "danger" && "bg-red-500 text-white"}
+        `}
         >
+            {icon && icon}
             {children}
         </button>
     );
