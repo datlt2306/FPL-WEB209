@@ -17,17 +17,14 @@ function App() {
     const addCar = (car: ICar) => {
         setCars([...cars, car]);
     };
-    const removeCar = (id: number) => {};
-    const listCar = () => {};
-
-    // const onHandleChange = (e: any) => {
-    //     console.log(e.target.value);
-    // };
+    const removeCar = (id: number) => {
+        setCars(cars.filter((car) => car.id !== id));
+    };
     return (
         <>
             <div className="w-96 border border-red-500 mx-auto my-5">
                 <Form onAdd={addCar} />
-                <List cars={cars} />
+                <List cars={cars} onRemove={removeCar} />
             </div>
         </>
     );
