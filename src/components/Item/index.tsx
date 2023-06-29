@@ -8,7 +8,7 @@ type ItemProps = {
 const Item = ({ car }: ItemProps) => {
     return (
         <li className={styles.item}>
-            {car.name} <Button>Remove</Button>
+            {car.name} <Button type="danger">Remove</Button>
         </li>
     );
 };
