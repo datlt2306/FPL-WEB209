@@ -18,7 +18,8 @@ const Form = ({ onAdd }: FormProps) => {
         });
 
         setValueInput("");
-        e.target.reset();
+        const form = e.target as HTMLFormElement;
+        form.reset();
     };
     const onHanleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setValueInput(e.target.value);
