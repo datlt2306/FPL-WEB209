@@ -1,14 +1,16 @@
-import React from "react";
+import { ICar } from "@/interfaces/car";
 import { Item } from "..";
 
-type Props = {};
+type ListProps = {
+    data: ICar[];
+};
 
-const List = (props: Props) => {
+const List = ({ data }: ListProps) => {
     return (
         <ul>
-            <Item />
-            <Item />
-            <Item />
+            {data?.map((car) => (
+                <Item key={car.id} car={car} />
+            ))}
         </ul>
     );
 };
