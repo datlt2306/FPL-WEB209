@@ -1,11 +1,14 @@
+import { ICar } from "@/interfaces/car";
 import { Button } from "..";
 import styles from "./Item.module.css";
-type Props = {};
+type ItemProps = {
+    car: ICar;
+};
 
-const Item = (props: Props) => {
+const Item = ({ car }: ItemProps) => {
     return (
         <li className={styles.item}>
-            Item <Button>Remove</Button>
+            {car.name} <Button>Remove</Button>
         </li>
     );
 };
