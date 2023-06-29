@@ -1,13 +1,12 @@
-import React from "react";
 import { Button, Input } from "..";
+import { AiOutlinePlus, AiOutlineUser } from "react-icons/ai";
+type FormProps = {};
 
-type Props = {};
-
-const Form = (props: Props) => {
+const Form = (props: FormProps) => {
     return (
-        <form>
-            <Input />
-            <Button />
+        <form className="flex items-center justify-between">
+            <Input placeholder="Car name" prefix={<AiOutlineUser />} />
+            <Button type="primary" icon={<AiOutlinePlus className="text-2xl" />} />
         </form>
     );
 };

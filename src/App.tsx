@@ -15,8 +15,10 @@ function App() {
     const listCar = () => {};
     return (
         <>
-            <Form />
-            <List />
+            <div className="w-96 border border-gray-500 p-2 mx-auto">
+                <Form />
+                <List />
+            </div>
         </>
     );
 }

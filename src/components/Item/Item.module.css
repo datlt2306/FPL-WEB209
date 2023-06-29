@@ -1,0 +1,6 @@
+.item {
+    @apply flex items-center justify-between p-2 border-b border-gray-500;
+}
+.item:last-child {
+    @apply border-0;
+}
