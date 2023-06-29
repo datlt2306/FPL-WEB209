@@ -1,9 +1,15 @@
-import React from "react";
+type InputProps = {
+    onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+};
 
-type Props = {};
-
-const Input = (props: Props) => {
-    return <input className="border border-green-500 p-2 w-full mr-2" placeholder="Car Name" />;
+const Input = ({ onChange }: InputProps) => {
+    return (
+        <input
+            onChange={onChange}
+            className="border border-green-500 p-2 w-full mr-2"
+            placeholder="Car Name"
+        />
+    );
 };
 
 export default Input;

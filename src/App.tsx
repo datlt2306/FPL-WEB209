@@ -15,13 +15,15 @@ function App() {
     const [isLoading, setIsLoading] = useState<boolean>(true);
     const [error, setError] = useState<null>(null);
 
-    const addCar = (car: ICar) => {};
+    const addCar = (car: ICar) => {
+        setCars([...cars, car]);
+    };
     const removeCar = (id: number | string) => {};
     const listCar = () => {};
     return (
         <>
             <div className="w-96 mx-auto border border-gray-500 p-2">
-                <Form />
+                <Form onAdd={addCar} />
                 <List data={cars} />
             </div>
         </>
