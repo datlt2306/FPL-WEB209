@@ -1,9 +1,11 @@
 import React from "react";
 
-type Props = {};
+type ButtonProps = {
+    children: React.ReactNode;
+};
 
-const Button = (props: Props) => {
-    return <div>Button</div>;
+const Button = ({ children }: ButtonProps) => {
+    return <button className={`border border-gray-300 p-1 rounded`}>{children}</button>;
 };
 
 export default Button;

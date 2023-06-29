@@ -1,9 +1,13 @@
-import React from "react";
-
+import { Button } from "..";
+import styles from "./Item.module.css";
 type Props = {};
 
 const Item = (props: Props) => {
-    return <div>Item</div>;
+    return (
+        <li className={styles.item}>
+            Item <Button>Remove</Button>
+        </li>
+    );
 };
 
 export default Item;

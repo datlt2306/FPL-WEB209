@@ -1,0 +1,6 @@
+.item {
+    @apply flex justify-between items-center py-2 border-b border-red-300;
+}
+.item:last-child {
+    @apply border-b-0;
+}
