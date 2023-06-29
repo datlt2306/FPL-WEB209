@@ -3,21 +3,29 @@ import "./App.css";
 import { Form, List } from "./components";
 import { ICar } from "./interfaces/car";
 
+const carsData: ICar[] = [
+    { id: 1, name: "BMW" },
+    { id: 2, name: "FORD" },
+    { id: 3, name: "TOYOTA" },
+];
+
 function App() {
     //State
-    const [cars, setCars] = useState<ICar[]>([]);
+    const [cars, setCars] = useState<ICar[]>(carsData);
     const [isLoading, setIsLoading] = useState<Boolean>(false);
     const [error, setError] = useState<string>("");
 
     // Action
-    const addCar = (car: ICar) => {};
+    const addCar = (car: ICar) => {
+        setCars([...cars, car]);
+    };
     const removeCar = (id: number) => {};
     const listCar = () => {};
     return (
         <>
             <div className="w-96 border border-gray-500 p-2 mx-auto">
-                <Form />
-                <List />
+                <Form onAdd={addCar} />
+                <List dataSource={cars} />
             </div>
         </>
     );

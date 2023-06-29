@@ -1,11 +1,32 @@
+import { useState } from "react";
 import { Button, Input } from "..";
 import { AiOutlinePlus, AiOutlineUser } from "react-icons/ai";
-type FormProps = {};
+import { ICar } from "@/interfaces/car";
+type FormProps = {
+    onAdd: (car: ICar) => void;
+};
 
-const Form = (props: FormProps) => {
+const Form = ({ onAdd }: FormProps) => {
+    const [valueInput, setValueInput] = useState<string>("");
+
+    const onHandleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        if (!valueInput) return;
+        onAdd({
+            id: Math.floor(Math.random() * 1000),
+            name: valueInput,
+        });
+
+        setValueInput("");
+        e.target.reset();
+    };
+    const onHanleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setValueInput(e.target.value);
+    };
     return (
-        <form className="flex items-center justify-between">
-            <Input placeholder="Car name" prefix={<AiOutlineUser />} />
+        <form onSubmit={onHandleSubmit} className="flex items-center justify-between">
+            {JSON.stringify(valueInput)}
+            <Input onChange={onHanleChange} placeholder="Car name" prefix={<AiOutlineUser />} />
             <Button type="primary" icon={<AiOutlinePlus className="text-2xl" />} />
         </form>
     );

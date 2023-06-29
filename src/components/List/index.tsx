@@ -1,15 +1,18 @@
 import React from "react";
 import { Item } from "..";
+import { ICar } from "@/interfaces/car";
 
-type Props = {};
+type ListProps = {
+    dataSource: ICar[];
+};
 
-const List = (props: Props) => {
+const List = ({ dataSource }: ListProps) => {
     return (
         <>
             <ul>
-                <Item />
-                <Item />
-                <Item />
+                {dataSource?.map((car) => (
+                    <Item key={car.id} car={car} />
+                ))}
             </ul>
         </>
     );
