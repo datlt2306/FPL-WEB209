@@ -20,7 +20,7 @@ const Form = ({ onAdd }: FormProps) => {
         // Reset State ve trang thai ban dau
         setInputValue("");
         // Reset form
-        e.target.reset();
+        // e.target.reset();
     };
     const onHanleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setInputValue(e.target.value);
