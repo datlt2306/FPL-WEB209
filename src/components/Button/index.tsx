@@ -1,19 +1,27 @@
 import React from "react";
 
 type ButtonProps = {
-    primary?: boolean;
-    danger?: boolean;
-    text: string;
+    type?: "primary" | "danger";
     loading?: boolean;
+    shape?: "round" | "circle" | "default";
+    icon?: React.ReactNode;
+    children?: React.ReactNode;
 };
 
-const Button = ({ primary, danger, text, loading }: ButtonProps) => {
+const Button = ({ icon, type, loading, shape, children }: ButtonProps) => {
     return (
-        <div>
-            {loading ? "Loading..." : ""}
-            {primary ? <button className="text-green-500 bg-black">{text}</button> : ""}
-            {danger ? <button className="text-red-500 bg-green-500">{text}</button> : ""}
-        </div>
+        <button
+            className={`border border-gray-500 py-2 px-4
+            ${type === "primary" && "text-white bg-blue-500"}
+            ${type === "danger" && "text-white bg-red-500"}
+            ${shape === "round" && "rounded-full"}
+            ${shape === "circle" && "rounded-full w-10 h-10"}
+            ${shape === "default" && "rounded-md"}
+    `}
+        >
+            {icon && icon}
+            {children}
+        </button>
     );
 };
 

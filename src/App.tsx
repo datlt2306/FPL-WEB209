@@ -1,7 +1,8 @@
 import { useState } from "react";
 import "./App.css";
 import { ICar } from "./interfaces/car";
-import { Button } from "./components";
+import { Button, List } from "./components";
+import Form from "./components/Form";
 
 function App() {
     const [cars, setCars] = useState<ICar[]>();
@@ -13,8 +14,10 @@ function App() {
     const listCar = () => {};
     return (
         <>
-            <Button loading={isLoading} primary text="Them" />
-            <Button danger text="Xoa" />
+            <div className="w-96 mx-auto border border-gray-500 p-2">
+                <Form />
+                <List />
+            </div>
         </>
     );
 }
