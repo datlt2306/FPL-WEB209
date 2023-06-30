@@ -12,9 +12,7 @@ const Item = ({ car, onRemove }: ItemProps) => {
     return (
         <li className={styles.item}>
             {car.name}
-            <Button danger onClick={() => onRemove(car.id!)}>
-                <GoTrash />
-            </Button>
+            <Button type="danger" onClick={() => onRemove(car.id!)} icon={<GoTrash />} />
         </li>
     );
 };

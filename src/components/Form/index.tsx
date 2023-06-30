@@ -9,21 +9,25 @@ type FormProps = {
 };
 
 const Form = ({ onAdd }: FormProps) => {
-    const [value, setValue] = useState<string>("");
-    const onHandleSubmit = (e: any) => {
+    const [valueInput, setValueInput] = useState<string>("");
+    const onHandleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        e.target.reset();
-        onAdd({ id: 10, name: value });
+        if (!valueInput) return;
+        onAdd({ id: 10, name: valueInput });
+
+        // Reset form
+        const form = e.target as HTMLFormElement;
+        form.reset();
+        // Reset State
+        setValueInput("");
     };
     const onHandleChange = (e: any) => {
-        setValue(e.target.value);
+        setValueInput(e.target.value);
     };
     return (
         <form onSubmit={onHandleSubmit} className="flex justify-between items-center p-2">
             <Input onChange={onHandleChange} />
-            <Button primary>
-                <AiOutlinePlus />
-            </Button>
+            <Button type="primary" icon={<AiOutlinePlus />} />
         </form>
     );
 };
