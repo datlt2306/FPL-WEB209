@@ -9,7 +9,7 @@ type ButtonProps = {
     children?: React.ReactNode;
 };
 
-const Button = ({ type, icon, primary, children, danger, onClick }: ButtonProps) => {
+const Button = ({ type, icon, children, onClick }: ButtonProps) => {
     return (
         <button
             onClick={onClick}
