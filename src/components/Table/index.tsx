@@ -11,8 +11,15 @@ const Table = ({ data, config }: Props) => {
         return <th key={column.key}>{column.label}</th>;
     });
     const renderRows = data.map((item) => {
+        // item { name: "Dat", age: 18}
         const renderCell = config.map((column) => {
-            return <td key={column.key}>{column.render(item)}</td>;
+            // column { label: "Name", key: "name",  }
+            // object.property | object[property]
+            return (
+                <td key={column.key}>
+                    {column.render ? column.render(item) : item[column["key"]]}
+                </td>
+            );
         });
         return <tr key={item.id}>{renderCell}</tr>;
     });
