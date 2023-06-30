@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { AiOutlinePlus } from "react-icons/ai";
+import { AiFillBook, AiOutlinePlus } from "react-icons/ai";
 
 import { ICar } from "@/interfaces/car";
 import { Button, Input } from "..";
@@ -26,7 +26,7 @@ const Form = ({ onAdd }: FormProps) => {
     };
     return (
         <form onSubmit={onHandleSubmit} className="flex justify-between items-center p-2">
-            <Input onChange={onHandleChange} />
+            <Input onChange={onHandleChange} placeholder="Car Name" prefix={<AiFillBook />} />
             <Button type="primary" icon={<AiOutlinePlus />} />
         </form>
     );
