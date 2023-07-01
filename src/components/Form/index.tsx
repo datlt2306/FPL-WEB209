@@ -27,7 +27,7 @@ const Form = ({ onAdd }: FormProps) => {
     };
     return (
         <form onSubmit={onHandleSubmit} className="flex justify-between items-center py-2">
-            <Input onChange={onHanleChange} />
+            <Input placeholder="Car Name" onChange={onHanleChange} />
             <Button shape="round" type="primary" icon={<BsPlus className="text-2xl" />} />
         </form>
     );
