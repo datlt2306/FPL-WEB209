@@ -10,8 +10,14 @@ const carData = [
     { id: 3, name: "MERCEDES", price: 400 }, // item
 ];
 const columns = [
-    { title: "Name", dataIndex: "name" }, // column
-    { title: "Price", dataIndex: "price" }, // column
+    {
+        title: "Name",
+        dataIndex: "name",
+        key: "name",
+        render: ({ name }: any) => <a className="text-red-500">{name}</a>,
+        header: ({ title }: any) => <div className="bg-green-500">{title}</div>,
+    }, // column
+    { title: "Price", dataIndex: "price", key: "price", render: ({ price }: any) => price * 2 }, // column
 ];
 /**
  * postData = [{ id: 1, title: 'Post A', desc: 'Mô tả', author: "Datlt"}]

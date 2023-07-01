@@ -5,11 +5,17 @@ type Props = {
 
 const Table = ({ data, columns }: Props) => {
     const renderHeaders = columns.map((column: any) => {
-        return <th key={column.dataIndex}>{column.title}</th>;
+        return (
+            <th key={column.dataIndex}>{column.header ? column.header(column) : column.title}</th>
+        );
     });
     const renderRows = data.map((item: any) => {
         const renderCells = columns.map((column: any) => {
-            return <td key={column.dataIndex}>{item[column.dataIndex]}</td>;
+            return (
+                <td key={column.key}>
+                    {column.render ? column.render(item) : item[column.dataIndex]}
+                </td>
+            );
         });
         return <tr key={item.id}>{renderCells}</tr>;
     });
