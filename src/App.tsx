@@ -11,20 +11,35 @@ const carsData: ICar[] = [
 ];
 
 const columns = [
-    { title: "Name", dataIndex: "name", key: "name" }, // column
-    { title: "Price", dataIndex: "price", key: "price" }, // column
+    {
+        title: "Name",
+        dataIndex: "name",
+        key: "name",
+        render: (item: any) => (
+            <a href="" className="bg-red-500 text-white">
+                {item?.name}
+            </a>
+        ),
+        header: (title: any) => <h1>{title}</h1>,
+    }, // column
+    {
+        title: "Price",
+        dataIndex: "price",
+        key: "price",
+        render: (item: any) => <span className="font-bold">{item.price * 2}</span>,
+    }, // column
 ];
 
 // =================
 
-const postsData = [
-    { id: 1, title: "Post A", desc: "Mo ta A", author: "Datlt" },
-    { id: 2, title: "Post B", desc: "Mo ta B", author: "Kientt" },
-];
-const columns2 = [
-    { title: "Title", dataIndex: "title", key: "title" }, // column
-    { title: "Author", dataIndex: "author", key: "author" }, // column
-];
+// const postsData = [
+//     { id: 1, title: "Post A", desc: "Mo ta A", author: "Datlt" },
+//     { id: 2, title: "Post B", desc: "Mo ta B", author: "Kientt" },
+// ];
+// const columns2 = [
+//     { title: "Title", dataIndex: "title", key: "title"}, // column
+//     { title: "Author", dataIndex: "author", key: "author" }, // column
+// ];
 function App() {
     //State
     const [cars, setCars] = useState<ICar[]>(carsData);
@@ -45,7 +60,7 @@ function App() {
                 <List dataSource={cars} onRemove={removeCar} />
                 <hr />
                 <Table dataSource={carsData} columns={columns} />
-                <Table dataSource={postsData} columns={columns2} />
+                {/* <Table dataSource={postsData} columns={columns2} /> */}
             </div>
         </>
     );
