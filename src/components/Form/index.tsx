@@ -8,30 +8,37 @@ type FormProps = {
 };
 
 const Form = ({ onAdd }: FormProps) => {
-    const [valueInput, setValueInput] = useState<string>("");
+    const [valueInput, setValueInput] = useState({});
 
     const onHandleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         if (!valueInput) return;
 
         onAdd({
+            ...valueInput,
             id: Math.floor(Math.random() * 1000),
-            name: valueInput,
-        });
+        } as ICar);
         setValueInput("");
 
         const form = e.target as HTMLFormElement;
         form.reset();
     };
     const onHandleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setValueInput(e.target.value);
+        // Lấy giá trị của nhiều Input và set vào state
+        setValueInput({
+            ...valueInput,
+            // Sử dụng cú pháp computed property name của ES6
+            [e.target.name]: e.target.value,
+        });
     };
     return (
         <form
             onSubmit={onHandleSubmit}
             className="flex justify-between items-center p-2 border border-red-300"
         >
-            <Input placeholder="Car Name" onChange={onHandleChange} size="small" />
+            {JSON.stringify(valueInput)}
+            <Input name="name" placeholder="Car Name" onChange={onHandleChange} size="small" />
+            <Input name="price" placeholder="Price" onChange={onHandleChange} size="small" />
             <Button type="primary" shape="default" icon={<AiOutlinePlus className="text-2xl" />} />
         </form>
     );
