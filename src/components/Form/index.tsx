@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Button, Input } from "..";
-import { AiOutlinePlus } from "react-icons/ai";
+import { AiOutlinePlus, AiFillCopy } from "react-icons/ai";
 import { ICar } from "@/interfaces/car";
 
 type FormProps = {
@@ -19,7 +19,9 @@ const Form = ({ onAdd }: FormProps) => {
             name: valueInput,
         });
         setValueInput("");
-        e.target.reset();
+
+        const form = e.target as HTMLFormElement;
+        form.reset();
     };
     const onHandleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setValueInput(e.target.value);
@@ -29,7 +31,7 @@ const Form = ({ onAdd }: FormProps) => {
             onSubmit={onHandleSubmit}
             className="flex justify-between items-center p-2 border border-red-300"
         >
-            <Input onChange={onHandleChange} />
+            <Input placeholder="Car Name" onChange={onHandleChange} size="small" />
             <Button type="primary" shape="default" icon={<AiOutlinePlus className="text-2xl" />} />
         </form>
     );
