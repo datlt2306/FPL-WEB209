@@ -8,11 +8,15 @@ type Props = {
 
 const Table = ({ dataSource, columns }: Props) => {
     const renderHeader = columns.map((column: any) => {
-        return <th key={column.key}>{column.title}</th>;
+        return <th key={column.key}>{column.header ? column.header(column) : column.title}</th>;
     });
     const renderRows = dataSource.map((item: any) => {
         const renderCells = columns.map((column: any) => {
-            return <td key={column.key}>{item[column.dataIndex]}</td>;
+            return (
+                <td key={column.key}>
+                    {column.render ? column.render(item) : item[column.dataIndex]}
+                </td>
+            );
         });
         return <tr key={item.id}>{renderCells}</tr>;
     });
