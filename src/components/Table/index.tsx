@@ -1,14 +1,12 @@
 // type Props = {};
 
-import { ICar } from "@/interfaces/car";
-
 const Table = ({ dataSource, config }: any) => {
     const renderHeaders = config.map((column: any) => {
         return <th>{column.header ? column.header(column) : column.label}</th>;
     });
-    const renderRows = dataSource.map((car: ICar) => {
+    const renderRows = dataSource.map((car: any) => {
         const renderColumns = config.map((column: any) => {
-            return <td>{column.render ? column.render(car) : column.label}</td>;
+            return <td>{column.render ? column.render(car) : car[column.key]}</td>;
         });
         return <tr>{renderColumns}</tr>;
     });

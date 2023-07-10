@@ -4,9 +4,9 @@ import { Form, List } from "./components";
 import { ICar } from "./interfaces/car";
 import Table from "./components/Table";
 const carsData = [
-    { id: 1, name: "Car A", price: 100 },
-    { id: 2, name: "Car B", price: 200 },
-    { id: 3, name: "Car B", price: 300 },
+    { id: 1, name: "Car A", price: 100 }, // car
+    { id: 2, name: "Car B", price: 200 }, // car
+    { id: 3, name: "Car B", price: 300 }, // car
 ];
 const config = [
     {
