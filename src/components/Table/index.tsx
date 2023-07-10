@@ -10,6 +10,7 @@ const Table = ({ dataSource, config }: any) => {
         });
         return <tr>{renderColumns}</tr>;
     });
+
     return (
         <div>
             <table className="w-full">
