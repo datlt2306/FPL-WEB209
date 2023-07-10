@@ -4,14 +4,11 @@ import { ICar } from "@/interfaces/car";
 
 const Table = ({ dataSource, config }: any) => {
     const renderHeaders = config.map((column: any) => {
-        if (column.header) {
-            return <th>{column.header(column)}</th>;
-        }
-        return <th>{column.label}</th>;
+        return <th>{column.header ? column.header(column) : column.label}</th>;
     });
     const renderRows = dataSource.map((car: ICar) => {
         const renderColumns = config.map((column: any) => {
-            return <td>{column.render(car)}</td>;
+            return <td>{column.render ? column.render(car) : column.label}</td>;
         });
         return <tr>{renderColumns}</tr>;
     });
