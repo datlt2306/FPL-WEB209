@@ -21,8 +21,14 @@ const ProductProvider = ({ children }: any) => {
         setProducts([...products, product]);
     };
 
+    const increment = () => {
+        setCount(count + 1);
+    };
+    const decrement = () => {
+        setCount(count - 1);
+    };
     return (
-        <ProductContext.Provider value={{ products, count, addProduct }}>
+        <ProductContext.Provider value={{ increment, decrement, count }}>
             {children}
         </ProductContext.Provider>
     );
