@@ -4,6 +4,7 @@
 // Item
 // ContextAPI - share state các component
 
+import axios from "axios";
 import { createContext, useState } from "react";
 
 // 1. Tạo context
@@ -16,14 +17,7 @@ const ProductProvider = ({ children }: any) => {
     const addProduct = async (product: any) => {
         try {
             // call api
-            const response = await fetch("http://localhost:3000/products", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify(product),
-            });
-            const data = await response.json();
+            const { data } = await axios.post(`http://localhost:3000/products/${product}`);
             // rerender
             setProducts([...products, data]);
         } catch (error: any) {
@@ -33,14 +27,7 @@ const ProductProvider = ({ children }: any) => {
     const editProduct = async (product: any) => {
         try {
             // call api
-            const response = await fetch(`http://localhost:3000/products/${product.id}`, {
-                method: "PUT",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify(product),
-            });
-            const data = await response.json();
+            const { data } = await axios.put(`http://localhost:3000/products/${product.id}`);
             // rerender
             setProducts(products.map((item: any) => (item.id === data.id ? data : item)));
         } catch (error: any) {
@@ -50,9 +37,7 @@ const ProductProvider = ({ children }: any) => {
     const deleteProduct = async (product: any) => {
         try {
             // call api
-            await fetch(`http://localhost:3000/products/${product.id}`, {
-                method: "DELETE",
-            });
+            await axios.delete(`http://localhost:3000/products/${product.id}`);
             // rerender
             setProducts(products.filter((item: any) => item.id !== product.id));
         } catch (error: any) {
@@ -60,9 +45,10 @@ const ProductProvider = ({ children }: any) => {
         }
     };
     const fetchProduct = async () => {
-        const response = await fetch("http://localhost:3000/products");
-        const data = await response.json();
-        setProducts(data);
+        try {
+            const { data } = await axios.get(`http://localhost:3000/products`);
+            setProducts(data);
+        } catch (error) {}
     };
     return (
         <ProductContext.Provider
