@@ -1,13 +1,37 @@
 {
-    "cars": [
-        { "id": 1, "name": "Car A", "price": 100 },
-        { "id": 2, "name": "Car B", "price": 200 },
-        { "id": 3, "name": "Car C", "price": 300 }
-    ],
-    "users": [],
-    "products": [
-        { "id": 1, "name": "Product A", "price": 100 },
-        { "id": 2, "name": "Product B", "price": 200 },
-        { "id": 3, "name": "Product C", "price": 300 }
-    ]
+  "cars": [
+    {
+      "id": 1,
+      "name": "Car A",
+      "price": 100
+    },
+    {
+      "id": 2,
+      "name": "Car B",
+      "price": 200
+    },
+    {
+      "id": 3,
+      "name": "Car C",
+      "price": 300
+    }
+  ],
+  "users": [],
+  "products": [
+    {
+      "id": 1,
+      "name": "Product A",
+      "price": 100
+    },
+    {
+      "id": 2,
+      "name": "Product B",
+      "price": 200
+    },
+    {
+      "id": 3,
+      "name": "Product C",
+      "price": 300
+    }
+  ]
 }
