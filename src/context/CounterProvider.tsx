@@ -10,7 +10,6 @@ const initialState = {
     count: 0,
 };
 const reducer = (state: any, action: any) => {
-    console.log("action", action);
     switch (action.type) {
         case "INCREMENT":
             return {
