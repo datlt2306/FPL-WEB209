@@ -23,7 +23,7 @@ const counterReducer = (state: any, action: any) => {
 };
 const CounterProvider = ({ children }: CounterProviderProps) => {
     // const [count, setCount] = useState(0);
-
+    // const increment = () => setCount(count + 1);
     const [state, dispatch] = useReducer(counterReducer, initialState);
     return (
         <CounterContext.Provider value={{ state, dispatch }}>{children}</CounterContext.Provider>

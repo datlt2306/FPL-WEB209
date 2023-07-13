@@ -1,31 +1,25 @@
 import ProductContext from "@/context/Product.tsx";
+import axios from "axios";
 import { useContext, useEffect } from "react";
 
 const List = () => {
-    const { products, fetchProducts, addProduct, deleteProduct, updateProduct } = useContext(
-        ProductContext
-    ) as any;
+    const { state, dispatch } = useContext(ProductContext) as any;
     useEffect(() => {
+        const fetchProducts = async () => {
+            try {
+                const { data } = await axios.get("http://localhost:3000/products");
+                dispatch({ type: "FETCH_PRODUCTS", payload: data });
+            } catch (error) {
+            } finally {
+            }
+        };
         fetchProducts();
     }, []);
     return (
         <div>
-            {products.map((item: any) => {
-                return (
-                    <div key={item.id}>
-                        {item.name}
-                        <button onClick={() => deleteProduct(item.id!)}>Delete</button>
-                        <button
-                            onClick={() =>
-                                updateProduct({ name: "Product C updated", id: item.id })
-                            }
-                        >
-                            Edit
-                        </button>
-                    </div>
-                );
+            {state?.products.map((item: any) => {
+                return <div key={item.id}>{item.name}</div>;
             })}
-            <button onClick={() => addProduct({ name: "Product C" })}>Add</button>
         </div>
     );
 };
