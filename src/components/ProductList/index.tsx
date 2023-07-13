@@ -1,4 +1,4 @@
-import { ProductContext } from "@/context/Product";
+import { ProductContext } from "@/context/ProductProvider";
 import { IProduct } from "@/interfaces/product";
 import React, { useContext, useEffect } from "react";
 import Skeleton from "react-loading-skeleton";

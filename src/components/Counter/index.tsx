@@ -1,15 +1,21 @@
-import { CounterContext } from "@/context";
+import { CounterContext } from "@/context/CounterProvider";
 import React, { useContext } from "react";
+import { Button } from "..";
 
-type Props = {};
-
-const Counter = (props: Props) => {
-    const { count, increment, decrement } = useContext(CounterContext);
+const Counter = () => {
+    const { state, dispatch } = useContext(CounterContext);
     return (
         <div>
-            Counter: {count}
-            <button onClick={() => increment()}>Increase</button>
-            <button onClick={() => decrement()}>Decrease</button>
+            Counter: {state.count}
+            <Button type="primary" onClick={() => dispatch({ type: "INCREMENT" })}>
+                Increment
+            </Button>
+            <Button type="primary" onClick={() => dispatch({ type: "DECREMENT" })}>
+                Decrement
+            </Button>
+            <Button type="primary" onClick={() => dispatch({ type: "INCREASE", payload: 10 })}>
+                Increase
+            </Button>
         </div>
     );
 };
