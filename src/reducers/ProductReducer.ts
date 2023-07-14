@@ -3,11 +3,18 @@ export const productReducer = (state: any, action: any) => {
         case "FETCH_PRODUCTS":
             state.products = action.payload
             return;
+        case "ADD_PRODUCT":
+            state.products.push(action.payload);
+            return;
+        case "UPDATE_PRODUCT":
+            const product = action.payload
+            state.products = state.products.map((item: any) => item.id === product.id ? product : item)
+            return;
+        case "DELETE_PRODUCT":
+            const id = action.payload;
+            state.products = state.products.filter((item: any) => item.id !== id)
+            return;
         default:
             return state;
     }
 }
-
-// call api => data
-// setProduct(data)
-// dispatch({type: "FETCH_PRODUCTS", payload: data})
