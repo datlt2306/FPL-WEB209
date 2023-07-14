@@ -1,5 +1,5 @@
 import { createContext, useReducer, useState } from "react";
-
+import { produce } from "immer";
 export const CounterContext = createContext({} as any);
 
 type CounterProviderProps = {
@@ -8,29 +8,28 @@ type CounterProviderProps = {
 
 const initialState = {
     count: 0,
+    isLoading: false,
+    error: "",
 };
 const counterReducer = (state: any, action: any) => {
     console.log("action", action);
     switch (action.type) {
         case "INCREMENT":
-            return {
-                count: state.count + 1,
-            };
+            state.count++;
+            return;
         case "DECREMENT":
-            return {
-                count: state.count - 1,
-            };
+            state.count--;
+            return;
         case "INCREASE":
-            return {
-                count: state.count + action.payload,
-            };
+            state.count += action.payload;
+            return;
         default:
             return state;
     }
 };
 
 const CounterProvider = ({ children }: CounterProviderProps) => {
-    const [state, dispatch] = useReducer(counterReducer, initialState);
+    const [state, dispatch] = useReducer(produce(counterReducer), initialState);
     // const [count, setCount] = useState<number>(55);
 
     // const increment = () => setCount(count + 1);

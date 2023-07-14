@@ -5,7 +5,7 @@ import { Button } from "..";
 const Counter = () => {
     // const { count, increment, decrement } = useContext(CounterContext);
     const { state, dispatch } = useContext(CounterContext);
-    console.log("state", state);
+    console.log(state);
     return (
         <div>
             Counter: {state?.count}
