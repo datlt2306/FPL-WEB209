@@ -1,25 +1,36 @@
+import { instance } from "@/axios/config";
 import { ProductContext } from "@/context/ProductContext";
-import React, { useContext, useEffect } from "react";
+import { useContext, useEffect } from "react";
 import Skeleton from "react-loading-skeleton";
-import { Button } from "..";
 
 const ProductList = () => {
-    const { products, fetchProducts, isLoading, error, addProduct, removeProduct, updateProduct } =
-        useContext(ProductContext);
+    // const { products, fetchProducts, isLoading, error, addProduct, removeProduct, updateProduct } =
+    //     useContext(ProductContext);
+    const { state, dispatch } = useContext(ProductContext);
 
     useEffect(() => {
+        const fetchProducts = async () => {
+            try {
+                // call api
+                const data = await instance.get(`/products`);
+                // rerender
+                dispatch({ type: "FETCH_PRODUCTS", payload: data });
+            } catch (error: any) {
+            } finally {
+            }
+        };
         fetchProducts();
     }, []);
 
-    if (isLoading) return <Skeleton count={3} height={35} />;
-    if (error) return <div>{error}</div>;
+    if (state.isLoading) return <Skeleton count={3} height={35} />;
+    if (state.error) return <div>{state.error}</div>;
     return (
         <div>
-            {products.map((item: any) => {
+            {state?.products?.map((item: any) => {
                 return <div key={item.id}>{item.name}</div>;
             })}
 
-            <Button type="primary" onClick={() => addProduct({ name: "Product C" })}>
+            {/* <Button type="primary" onClick={() => addProduct({ name: "Product C" })}>
                 Add Product
             </Button>
             <Button
@@ -30,7 +41,7 @@ const ProductList = () => {
             </Button>
             <Button type="primary" onClick={() => removeProduct({ id: 3 })}>
                 Delete Product
-            </Button>
+            </Button> */}
         </div>
     );
 };
