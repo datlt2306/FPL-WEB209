@@ -1,25 +1,43 @@
-import { createContext, useState } from "react";
+import { createContext, useReducer, useState } from "react";
 
 export const CounterContext = createContext({} as any);
-
-// B1: Tạo context sử dụng createContext()
-// B2: Wrapper App để share giá trị cho các component
-// B3: Sử dụng Context: hooks useContext(context)
 
 type CounterProviderProps = {
     children: React.ReactNode;
 };
 
-const CounterProvider = ({ children }: CounterProviderProps) => {
-    const [count, setCount] = useState<number>(55);
+const initialState = {
+    count: 0,
+};
+const counterReducer = (state: any, action: any) => {
+    console.log("action", action);
+    switch (action.type) {
+        case "INCREMENT":
+            return {
+                count: state.count + 1,
+            };
+        case "DECREMENT":
+            return {
+                count: state.count - 1,
+            };
+        case "INCREASE":
+            return {
+                count: state.count + action.payload,
+            };
+        default:
+            return state;
+    }
+};
 
-    const increment = () => setCount(count + 1);
-    const decrement = () => setCount(count - 1);
+const CounterProvider = ({ children }: CounterProviderProps) => {
+    const [state, dispatch] = useReducer(counterReducer, initialState);
+    // const [count, setCount] = useState<number>(55);
+
+    // const increment = () => setCount(count + 1);
+    // const decrement = () => setCount(count - 1);
 
     return (
-        <CounterContext.Provider value={{ count, increment, decrement }}>
-            {children}
-        </CounterContext.Provider>
+        <CounterContext.Provider value={{ state, dispatch }}>{children}</CounterContext.Provider>
     );
 };
 
