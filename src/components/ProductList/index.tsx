@@ -7,14 +7,14 @@ import axios from "axios";
 
 const ProductList = () => {
     const { state, dispatch } = useContext(ProductContext);
-
+    console.log("state", state);
     useEffect(() => {
         const fetchProducts = async () => {
             try {
                 // call api
                 const { data } = await axios.get(`http://localhost:3000/products`);
                 //rerender
-                dispatch({ type: "FETCH_PRODUCTS", payload: data });
+                dispatch({ type: "product/fetch", payload: data });
             } catch (error: any) {
             } finally {
             }
@@ -28,7 +28,30 @@ const ProductList = () => {
             // call api
             const { data } = await axios.post(`http://localhost:3000/products`, product);
             // rerender
-            dispatch({ type: "ADD_PRODUCT", payload: data });
+            dispatch({ type: "product/add", payload: data });
+        } catch (error: any) {
+        } finally {
+        }
+    };
+    const editProduct = async (product: IProduct) => {
+        try {
+            // call api
+            const { data } = await axios.put(
+                `http://localhost:3000/products/${product.id}`,
+                product
+            );
+            // rerender
+            dispatch({ type: "product/edit", payload: data });
+        } catch (error: any) {
+        } finally {
+        }
+    };
+    const deleteProduct = async (id: number) => {
+        try {
+            // call api
+            await axios.delete(`http://localhost:3000/products/${id}`);
+            // rerender
+            dispatch({ type: "product/delete", payload: id });
         } catch (error: any) {
         } finally {
         }
@@ -49,12 +72,12 @@ const ProductList = () => {
             >
                 Add Product
             </Button>
-            {/* <Button type="primary" onClick={() => editProduct({ name: "Product Updated", id: 3 })}>
+            <Button type="primary" onClick={() => editProduct({ name: "Product Updated", id: 3 })}>
                 Edit Product
             </Button>
-            <Button type="danger" onClick={() => deleteProduct({ id: 3 })}>
+            <Button type="danger" onClick={() => deleteProduct(3)}>
                 Delete Product
-            </Button> */}
+            </Button>
         </div>
     );
 };

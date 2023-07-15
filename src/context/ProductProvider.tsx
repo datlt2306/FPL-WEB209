@@ -1,6 +1,5 @@
-import { IProduct } from "@/interfaces/product";
-import { pause } from "@/utils/pause";
-import { createContext, useReducer, useState } from "react";
+import { createContext, useReducer } from "react";
+import { produce } from "immer";
 
 export const ProductContext = createContext({} as any);
 
@@ -16,22 +15,29 @@ const initialState = {
 
 const reducer = (state: any, action: any) => {
     switch (action.type) {
-        case "FETCH_PRODUCTS":
-            return {
-                ...state,
-                products: action.payload,
-            };
-        case "ADD_PRODUCT":
-            return {
-                ...state,
-                products: [...state.products, action.payload],
-            };
+        case "product/fetch":
+            state.products = action.payload;
+            return;
+        case "product/add":
+            state.products.push(action.payload);
+            return;
+        case "product/edit":
+            // state.products[action.payload.id] = action.payload;
+            const product = action.payload;
+            state.products = state.products.map((item: any) =>
+                item.id === product.id ? product : item
+            );
+            return;
+        case "product/delete":
+            const id = action.payload;
+            state.products = state.products.filter((item: any) => item.id !== id);
+            return;
         default:
             return state;
     }
 };
 const ProductProvider = ({ children }: ProductProviderProps) => {
-    const [state, dispatch] = useReducer(reducer, initialState);
+    const [state, dispatch] = useReducer(produce(reducer), initialState);
     // const [products, setProducts] = useState<IProduct[]>([]);
     // const [isLoading, setIsLoading] = useState<boolean>(false);
     // const [error, setError] = useState<string>("");
