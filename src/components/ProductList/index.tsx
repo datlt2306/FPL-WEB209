@@ -1,13 +1,13 @@
-import { ProductContext } from "@/context/ProductProvider";
 import { IProduct } from "@/interfaces/product";
-import React, { useContext, useEffect } from "react";
-import Skeleton from "react-loading-skeleton";
-import { Button } from "..";
 import axios from "axios";
+import { useEffect } from "react";
+import Skeleton from "react-loading-skeleton";
+import { useDispatch, useSelector } from "react-redux";
+import { Button } from "..";
 
 const ProductList = () => {
-    const { state, dispatch } = useContext(ProductContext);
-    console.log("state", state);
+    const dispatch = useDispatch();
+    const { products, isLoading, error } = useSelector((state: any) => state.product);
     useEffect(() => {
         const fetchProducts = async () => {
             try {
@@ -21,7 +21,7 @@ const ProductList = () => {
         };
         fetchProducts();
     }, []);
-    if (state.error) return <div>Something went wrong</div>;
+    if (error) return <div>Something went wrong</div>;
 
     const addProduct = async (product: IProduct) => {
         try {
@@ -58,10 +58,10 @@ const ProductList = () => {
     };
     return (
         <div>
-            {state.isLoading ? (
+            {isLoading ? (
                 <Skeleton count={4} height={35} />
             ) : (
-                state?.products?.map((item: IProduct) => {
+                products?.map((item: IProduct) => {
                     return <div key={item.id}>{item.name}</div>;
                 })
             )}

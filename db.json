@@ -9,6 +9,11 @@
       "id": 2,
       "name": "Product B",
       "price": 200
+    },
+    {
+      "name": "Product Added",
+      "price": 500,
+      "id": 4
     }
   ]
 }
