@@ -7,7 +7,7 @@ function App() {
             <div className="w-96 mx-auto border border-gray-500 p-2">
                 <Counter />
                 <hr />
-                <ProductList />
+                {/* <ProductList /> */}
             </div>
         </>
     );

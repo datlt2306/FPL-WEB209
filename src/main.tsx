@@ -1,13 +1,11 @@
 import ReactDOM from "react-dom/client";
 import App from "./App.tsx";
-import ProductProvider from "./context/ProductProvider.tsx";
 import "./index.css";
-import CounterProvider from "./context/CounterProvider.tsx";
+import { Provider } from "react-redux";
+import store from "./app/index.ts";
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
-    <ProductProvider>
-        <CounterProvider>
-            <App />
-        </CounterProvider>
-    </ProductProvider>
+    <Provider store={store}>
+        <App />
+    </Provider>
 );
