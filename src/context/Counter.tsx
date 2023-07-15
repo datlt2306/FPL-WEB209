@@ -9,7 +9,6 @@ type CounterProviderProps = {
 const initialState = { count: 0 };
 
 const counterReducer = (state: any, action: any) => {
-    console.log("action", action);
     switch (action.type) {
         case "INCREMENT":
             return { count: state.count + 1 };

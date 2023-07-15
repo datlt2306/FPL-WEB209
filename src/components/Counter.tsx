@@ -3,7 +3,7 @@ import React, { useContext } from "react";
 
 type Props = {};
 
-const Counter = (props: Props) => {
+const Counter = () => {
     const { state, dispatch } = useContext(CounterContext);
     console.log(state); // { count: 0}
     return (
