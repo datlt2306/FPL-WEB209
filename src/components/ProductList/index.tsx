@@ -4,23 +4,45 @@ import { useContext, useEffect } from "react";
 
 const ProductList = () => {
     const { state, dispatch } = useContext(ProductContext);
-
+    console.log("state", state);
     useEffect(() => {
         const fetchProduct = async () => {
             try {
                 const { data } = await axios.get(`http://localhost:3000/products`);
-                dispatch({ type: "FETCH_PRODUCTS", payload: data });
+                dispatch({ type: "product/fetch", payload: data });
             } catch (error) {}
         };
         fetchProduct();
     }, []);
     const addProduct = async (product: any) => {
-        console.log("product", product);
         try {
             // call api
             const { data } = await axios.post(`http://localhost:3000/products/`, product);
             // rerender
-            dispatch({ type: "ADD_PRODUCT", payload: data });
+            dispatch({ type: "product/add", payload: data });
+        } catch (error: any) {
+            console.log(error.message);
+        }
+    };
+    const updateProduct = async (product: any) => {
+        try {
+            // call api
+            const { data } = await axios.put(
+                `http://localhost:3000/products/${product.id}`,
+                product
+            );
+            // rerender
+            dispatch({ type: "product/update", payload: data });
+        } catch (error: any) {
+            console.log(error.message);
+        }
+    };
+    const removeProduct = async (id: any) => {
+        try {
+            // call api
+            await axios.delete(`http://localhost:3000/products/${id}`);
+            // rerender
+            dispatch({ type: "product/delete", payload: id });
         } catch (error: any) {
             console.log(error.message);
         }
@@ -32,6 +54,10 @@ const ProductList = () => {
             ))}
 
             <button onClick={() => addProduct({ name: "Product C" })}>Add Product</button>
+            <button onClick={() => updateProduct({ name: "Product C updated", id: 3 })}>
+                Update Product
+            </button>
+            <button onClick={() => removeProduct(3)}>Delete Product</button>
         </div>
     );
 };

@@ -1,10 +1,5 @@
-//         App -- State
-//     | props
-// List     Add     Edit
-// Item
-// ContextAPI - share state các component
-
 import { createContext, useReducer } from "react";
+import { produce } from "immer";
 
 // 1. Tạo context
 
@@ -19,23 +14,29 @@ const initialState = {
 const productReducer = (state: any, action: any) => {
     // action: { type: "FETCH_PRODUCTS", payload: []}
     switch (action.type) {
-        case "FETCH_PRODUCTS":
-            return {
-                ...state,
-                products: action.payload,
-            };
-        case "ADD_PRODUCT":
-            return {
-                ...state,
-                products: [...state.products, action.payload],
-            };
+        case "product/fetch":
+            state.products = action.payload;
+            return;
+        case "product/add":
+            state.products.push(action.payload);
+            return;
+        case "product/update":
+            const product = action.payload;
+            state.products = state.products.map((item: any) =>
+                item.id === product.id ? product : item
+            );
+            return;
+        case "product/delete":
+            const id = action.payload;
+            state.products = state.products.filter((item: any) => item.id !== id);
+            return;
         default:
             return state;
     }
 };
 
 const ProductProvider = ({ children }: any) => {
-    const [state, dispatch] = useReducer(productReducer, initialState);
+    const [state, dispatch] = useReducer(produce(productReducer), initialState);
 
     // const [products, setProducts] = useState([] as any);
 
