@@ -1,11 +1,12 @@
 import { instance } from "@/axios/config";
-import { ProductContext } from "@/context/Product";
-import { useContext, useEffect } from "react";
+import { useEffect } from "react";
 import Skeleton from "react-loading-skeleton";
+import { useDispatch, useSelector } from "react-redux";
 import { Button } from "..";
 
 const ProductList = () => {
-    const { state, dispatch } = useContext(ProductContext);
+    const dispatch = useDispatch();
+    const { products, isLoading, error } = useSelector((state: any) => state.products);
 
     useEffect(() => {
         const fetchProducts = async () => {
@@ -45,11 +46,11 @@ const ProductList = () => {
         } finally {
         }
     };
-    if (state.isLoading) return <Skeleton count={3} />;
-    if (state.error) return <div>{state.error}</div>;
+    if (isLoading) return <Skeleton count={3} />;
+    if (error) return <div>{error}</div>;
     return (
         <div>
-            {state?.products?.map((product: any) => (
+            {products?.map((product: any) => (
                 <div key={product.id}>{product.name}</div>
             ))}
 

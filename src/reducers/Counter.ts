@@ -5,16 +5,16 @@ const initialState: { count: number } = {
     count: 10
 }
 export const counterReducer = (state = initialState, action: any) => {
-    return produce(state, state => {
+    return produce(state, drafState => {
         switch (action.type) {
             case "INCREMENT":
-                state.count++;
+                drafState.count++;
                 return;
             case "DECREMENT":
-                state.count--;
+                drafState.count--;
                 return;
             case "INCREASE":
-                state.count += action.payload;
+                drafState.count += action.payload;
                 return;
             default:
                 return state;

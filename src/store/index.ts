@@ -1,8 +1,12 @@
 import { counterReducer } from '@/reducers/Counter';
-import { legacy_createStore as createStore } from 'redux'
+import { productReducer } from '@/reducers/Product';
+import { legacy_createStore as createStore, combineReducers } from 'redux'
+const rootReducer = combineReducers({
+    counter: counterReducer,
+    products: productReducer
+})
 
-
-const store = createStore(counterReducer as any);
+const store = createStore(rootReducer);
 
 export default store;
 

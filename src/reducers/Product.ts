@@ -1,25 +1,31 @@
-// call api => data
-// setProducts(data) => dispatch({type: "FETCH_PRODUCTS", payload: data})
+import { produce } from 'immer'
+const initialState = {
+    products: [],
+    isLoading: false,
+    error: ""
+} as { products: any[], isLoading: boolean, error: string };
 
-export const productReducer = (state: any, action: any) => {
-    switch (action.type) {
-        case "product/fetchProducts":
-            state.products = action.payload;
-            break;
-        case "product/addProduct":
-            state.products.push(action.payload);
-            break;
-        case "product/updateProduct":
-            const product = action.payload;
-            console.log('product', product);
-            // state.products[action.payload.id] = action.payload;
-            state.products = state.products.map((item: any) => item.id === product.id ? product : item);
-            break;
-        case "product/deleteProduct":
-            const id = action.payload;
-            state.products = state.products.filter((item: any) => item.id !== id);
-            break;
-        default:
-            return state;
-    }
+export const productReducer = (state = initialState, action: any) => {
+    return produce(state, drafState => {
+        switch (action.type) {
+            case "product/fetchProducts":
+                drafState.products = action.payload;
+                break;
+            case "product/addProduct":
+                drafState.products.push(action.payload);
+                break;
+            case "product/updateProduct":
+                const product = action.payload;
+                // state.products[action.payload.id] = action.payload;
+                drafState.products = state.products.map((item: any) => item.id === product.id ? product : item);
+                break;
+            case "product/deleteProduct":
+                const id = action.payload;
+                drafState.products = state.products.filter((item: any) => item.id !== id);
+                break;
+            default:
+                return state;
+        }
+    })
+
 }
