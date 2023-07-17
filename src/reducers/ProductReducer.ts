@@ -1,20 +1,32 @@
-export const productReducer = (state: any, action: any) => {
-    switch (action.type) {
-        case "FETCH_PRODUCTS":
-            state.products = action.payload
-            return;
-        case "ADD_PRODUCT":
-            state.products.push(action.payload);
-            return;
-        case "UPDATE_PRODUCT":
-            const product = action.payload
-            state.products = state.products.map((item: any) => item.id === product.id ? product : item)
-            return;
-        case "DELETE_PRODUCT":
-            const id = action.payload;
-            state.products = state.products.filter((item: any) => item.id !== id)
-            return;
-        default:
-            return state;
-    }
+import { produce } from "immer";
+
+const initialState: { products: [], isLoading: boolean, error: string } = {
+    products: [],
+    isLoading: false,
+    error: ""
+}
+
+export const productReducer = (state = initialState as any, action: any) => {
+    return produce(state, draftState => {
+        switch (action.type) {
+            case "product/fetchProducts":
+                draftState.products = action.payload
+                break;
+            case "product/addProduct":
+                draftState.products.push(action.payload);
+                break;
+            case "product/updateProduct":
+                const product = action.payload
+                draftState.products = state.products.map((item: any) => item.id === product.id ? product : item)
+                // draftState.products[product.id] = product;
+                break;
+            case "product/deleteProduct":
+                const id = action.payload;
+                draftState.products = state.products.filter((item: any) => item.id !== id)
+                break;
+            default:
+                return state;
+        }
+    })
+
 }

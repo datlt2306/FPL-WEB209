@@ -6,9 +6,10 @@ import { useSelector, useDispatch } from "react-redux";
 const Counter = () => {
     // const { count, increment, decrement } = useContext(CounterContext);
     // const { state, dispatch } = useContext(CounterContext);
-    // state => {count: 0}
+
     const dispatch = useDispatch();
-    const { count } = useSelector((state: any) => state);
+    // const { count } = useSelector((state: any) => {counter: { count: 0 }, products: productReducer });
+    const { count } = useSelector((state: any) => state.counter);
     return (
         <div>
             Counter: {count}

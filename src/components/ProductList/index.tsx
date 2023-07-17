@@ -1,13 +1,15 @@
 import { instance } from "@/axios/config";
-import { ProductContext } from "@/context[draft]/ProductContext";
-import { useContext, useEffect } from "react";
+import { useEffect } from "react";
 import Skeleton from "react-loading-skeleton";
+import { useDispatch, useSelector } from "react-redux";
 import { Button } from "..";
 
 const ProductList = () => {
     // const { products, fetchProducts, isLoading, error, addProduct, removeProduct, updateProduct } =
     //     useContext(ProductContext);
-    const { state, dispatch } = useContext(ProductContext);
+    // const { state, dispatch } = useContext(ProductContext);
+    const dispatch = useDispatch();
+    const { products, isLoading, error } = useSelector((state) => state.products);
 
     useEffect(() => {
         const fetchProducts = async () => {
@@ -15,7 +17,7 @@ const ProductList = () => {
                 // call api
                 const data = await instance.get(`/products`);
                 // rerender
-                dispatch({ type: "FETCH_PRODUCTS", payload: data });
+                dispatch({ type: "product/fetchProducts", payload: data });
             } catch (error: any) {
             } finally {
             }
@@ -25,7 +27,7 @@ const ProductList = () => {
     const addProduct = async (product: any) => {
         try {
             const data = await instance.post(`/products`, product);
-            dispatch({ type: "ADD_PRODUCT", payload: data });
+            dispatch({ type: "product/addProduct", payload: data });
         } catch (error: any) {
         } finally {
         }
@@ -33,7 +35,7 @@ const ProductList = () => {
     const removeProduct = async (product: any) => {
         try {
             await instance.delete(`/products/${product.id}`);
-            dispatch({ type: "DELETE_PRODUCT", payload: product.id });
+            dispatch({ type: "product/deleteProduct", payload: product.id });
         } catch (error: any) {
         } finally {
         }
@@ -41,17 +43,17 @@ const ProductList = () => {
     const updateProduct = async (product: any) => {
         try {
             const data = await instance.put(`/products/${product.id}`, product);
-            dispatch({ type: "UPDATE_PRODUCT", payload: data });
+            dispatch({ type: "product/updateProduct", payload: data });
         } catch (error: any) {
         } finally {
         }
     };
 
-    if (state.isLoading) return <Skeleton count={3} height={35} />;
-    if (state.error) return <div>{state.error}</div>;
+    if (isLoading) return <Skeleton count={3} height={35} />;
+    if (error) return <div>{error}</div>;
     return (
         <div>
-            {state?.products?.map((item: any) => {
+            {products?.map((item: any) => {
                 return <div key={item.id}>{item.name}</div>;
             })}
 
