@@ -1,5 +1,5 @@
 import { instance } from "@/axios/config";
-import { ProductContext } from "@/context/ProductContext";
+import { ProductContext } from "@/context[draft]/ProductContext";
 import { useContext, useEffect } from "react";
 import Skeleton from "react-loading-skeleton";
 import { Button } from "..";
