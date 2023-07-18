@@ -1,14 +1,16 @@
-import { CounterContext } from "@/context/Counter";
-import React, { useContext } from "react";
-
-type Props = {};
-
+import { useSelector, useDispatch } from "react-redux";
+import { useForm } from "react-hook-form";
 const Counter = () => {
-    const { state, dispatch } = useContext(CounterContext);
-    console.log(state); // { count: 0}
+    // const { state, dispatch } = useContext(CounterContext);
+    // console.log(state); // { count: 0}
+
+    // const counter = useSelector((state) => {count: 0});
+    const { count } = useSelector((state: any) => state);
+    const dispatch = useDispatch();
+
     return (
         <div>
-            Counter {state.count}
+            Counter {count}
             <button onClick={() => dispatch({ type: "INCREMENT" })}>INCREMENT</button>
             <button onClick={() => dispatch({ type: "DECREMENT" })}>DECREMENT</button>
             <button onClick={() => dispatch({ type: "INCREASE", payload: 10 })}>DECREMENT</button>

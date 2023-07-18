@@ -1,4 +1,4 @@
-import ProductContext from "@/context/Product.tsx";
+import ProductContext from "@/context[draft]/Product";
 import axios from "axios";
 import { useContext, useEffect } from "react";
 
