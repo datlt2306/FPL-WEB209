@@ -1,14 +1,23 @@
 import { produce } from "immer";
 
-const initialState: { products: [], isLoading: boolean, error: string } = {
-    products: [],
+
+const initialState = {
+    products: [] as any[],
     isLoading: false,
     error: ""
-}
+} as { products: any[], isLoading: boolean, error: string };
 
-export const productReducer = (state = initialState as any, action: any) => {
+/**
+ * Reducer function for the product state.
+ *
+ * @param {any} state - The current state of the product.
+ * @param {any} action - The action to be performed on the state.
+ * @return {any} The updated state after applying the action.
+ */
+export const productReducer = (state = initialState, action: any) => {
     return produce(state, draftState => {
         switch (action.type) {
+            // action: { type: "product/fetchProducts", payload: data 
             case "product/fetchProducts":
                 draftState.products = action.payload
                 break;

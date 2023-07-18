@@ -5,11 +5,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { Button } from "..";
 
 const ProductList = () => {
-    // const { products, fetchProducts, isLoading, error, addProduct, removeProduct, updateProduct } =
-    //     useContext(ProductContext);
-    // const { state, dispatch } = useContext(ProductContext);
     const dispatch = useDispatch();
-    const { products, isLoading, error } = useSelector((state) => state.products);
+    const { products, isLoading, error } = useSelector((state: any) => state.products);
 
     useEffect(() => {
         const fetchProducts = async () => {
