@@ -1,15 +1,14 @@
-import ProductContext from "@/context[draft]/Product";
 import axios from "axios";
-import { useContext, useEffect } from "react";
-
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 const List = () => {
-    const { state, dispatch } = useContext(ProductContext) as any;
-    console.log("state", state);
+    const dispatch = useDispatch();
+    const { products } = useSelector((state: any) => state.products);
     useEffect(() => {
         const fetchProducts = async () => {
             try {
                 const { data } = await axios.get("http://localhost:3000/products");
-                dispatch({ type: "FETCH_PRODUCTS", payload: data });
+                dispatch({ type: "products/fetchProducts", payload: data });
             } catch (error) {
             } finally {
             }
@@ -22,7 +21,7 @@ const List = () => {
             // call api
             const { data } = await axios.post("http://localhost:3000/products", product);
             // rerender
-            dispatch({ type: "ADD_PRODUCT", payload: data });
+            dispatch({ type: "products/addProduct", payload: data });
         } catch (error) {}
     };
     const updateProduct = async (product: any) => {
@@ -32,8 +31,9 @@ const List = () => {
                 "http://localhost:3000/products/" + product.id,
                 product
             );
+            console.log("data", data);
             // rerender
-            dispatch({ type: "UPDATE_PRODUCT", payload: data });
+            dispatch({ type: "products/updateProduct", payload: data });
         } catch (error) {}
     };
     const deleteProduct = async (id: any) => {
@@ -41,12 +41,12 @@ const List = () => {
             // call api
             await axios.delete("http://localhost:3000/products/" + id);
             // rerender
-            dispatch({ type: "REMOVE_PRODUCT", payload: id });
+            dispatch({ type: "products/deleteProduct", payload: id });
         } catch (error) {}
     };
     return (
         <div>
-            {state?.products.map((item: any) => {
+            {products?.map((item: any) => {
                 return <div key={item.id}>{item.name}</div>;
             })}
             <button className="border bg-blue-500 p-2" onClick={() => addProduct({ name: "test" })}>
@@ -54,11 +54,11 @@ const List = () => {
             </button>
             <button
                 className="border bg-blue-500 p-2"
-                onClick={() => updateProduct({ name: "test updated", id: 4 })}
+                onClick={() => updateProduct({ name: "test updated", id: 3 })}
             >
                 Update Product
             </button>
-            <button className="border bg-blue-500 p-2" onClick={() => deleteProduct(4)}>
+            <button className="border bg-blue-500 p-2" onClick={() => deleteProduct(3)}>
                 Delete Product
             </button>
         </div>

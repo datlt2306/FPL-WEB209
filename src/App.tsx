@@ -5,7 +5,7 @@ const App = () => {
     return (
         <div>
             <h2>List Component</h2>
-            {/* <List /> */}
+            <List />
             <Counter />
         </div>
     );
