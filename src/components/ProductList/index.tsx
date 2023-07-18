@@ -1,19 +1,14 @@
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
+import { fetchProducts } from "@/actions/product";
 
 const ProductList = () => {
     const dispatch = useDispatch();
-    const { products } = useSelector((state: any) => state.products);
+    const { products, isLoading, error } = useSelector((state: any) => state.products);
     useEffect(() => {
-        const fetchProduct = async () => {
-            // call api
-            const { data } = await axios.get(`http://localhost:3000/products`);
-            // rerender
-            dispatch({ type: "products/fetchProducts", payload: data });
-        };
-        fetchProduct();
-    }, []);
+        dispatch(fetchProducts() as any);
+    }, [dispatch]);
     const addProduct = async (product: any) => {
         const { data } = await axios.post(`http://localhost:3000/products`, product);
         dispatch({ type: "products/addProduct", payload: data });
@@ -26,6 +21,8 @@ const ProductList = () => {
         await axios.delete(`http://localhost:3000/products/${id}`);
         dispatch({ type: "products/deleteProduct", payload: id });
     };
+    if (isLoading) return <div>Loading...</div>;
+    if (error) return <div>{error}</div>;
     return (
         <div>
             {products?.map((item: any) => (
