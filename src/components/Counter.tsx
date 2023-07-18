@@ -1,5 +1,4 @@
-import { useSelector, useDispatch } from "react-redux";
-import { useForm } from "react-hook-form";
+import { useDispatch, useSelector } from "react-redux";
 const Counter = () => {
     // const { state, dispatch } = useContext(CounterContext);
     // console.log(state); // { count: 0}
