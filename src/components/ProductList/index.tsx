@@ -4,23 +4,14 @@ import { useEffect } from "react";
 import Skeleton from "react-loading-skeleton";
 import { useDispatch, useSelector } from "react-redux";
 import { Button } from "..";
+import { fetchProducts } from "@/actions/product";
 
 const ProductList = () => {
     const dispatch = useDispatch();
     const { products, isLoading, error } = useSelector((state: any) => state.product);
     useEffect(() => {
-        const fetchProducts = async () => {
-            try {
-                // call api
-                const { data } = await axios.get(`http://localhost:3000/products`);
-                //rerender
-                dispatch({ type: "product/fetch", payload: data });
-            } catch (error: any) {
-            } finally {
-            }
-        };
-        fetchProducts();
-    }, []);
+        dispatch(fetchProducts());
+    }, [dispatch]);
     if (error) return <div>Something went wrong</div>;
 
     const addProduct = async (product: IProduct) => {

@@ -1,53 +1,25 @@
-import { combineReducers, legacy_createStore as createStore } from 'redux';
-import { produce } from 'immer';
+import { counterReducer } from '@/reducers/counter';
+import { productReducer } from '@/reducers/product';
+import { applyMiddleware, combineReducers, compose, legacy_createStore as createStore } from 'redux';
+import thunk from 'redux-thunk';
 
-const counterReducer = (state = { count: 0 }, action: any) => {
-    return produce(state, state => {
-        switch (action.type) {
-            case "INCREMENT":
-                state.count++;
-                break;
-            case "DECREMENT":
-                state.count--;
-                break
-            case "INCREASE":
-                state.count += action.payload;
-                break;
-            default:
-                return state;
-        }
-    })
+const composeEnhancers =
+    typeof window === 'object' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
+        ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
+            // Specify extension’s options like name, actionsDenylist, actionsCreators, serialize...
+        })
+        : compose;
 
-};
+const enhancer = composeEnhancers(
+    applyMiddleware(thunk),
+    // other store enhancers if any
+);
 
 
-const productReducer = (state = { products: [], isLoading: false, error: "" }, action: any) => {
-    return produce(state, state => {
-        switch (action.type) {
-            case "product/fetch":
-                state.products = action.payload;
-                break;
-            case "product/add":
-                state.products.push(action.payload);
-                break
-            case "product/edit":
-                const product = action.payload;
-                state.products = state.products.map((item: any) => item.id === product.id ? product : item)
-                break;
-            case "product/delete":
-                const id = action.payload;
-                state.products = state.products.filter((item: any) => item.id !== id)
-                break;
-            default:
-                return state;
-        }
-    })
-
-}
 const rootReducer = combineReducers({
     counter: counterReducer,
     product: productReducer
 })
-const store = createStore(rootReducer);
+const store = createStore(rootReducer, enhancer);
 
 export default store;

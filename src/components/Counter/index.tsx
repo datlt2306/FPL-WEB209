@@ -2,11 +2,11 @@ import { useSelector, useDispatch } from "react-redux";
 import { Button } from "..";
 const Counter = () => {
     const dispatch = useDispatch();
-    const state = useSelector((state: any) => state.counter.count);
-    console.log("state", state);
+    const { count } = useSelector((state: any) => state.counter);
+    // plain object
     return (
         <div>
-            Counter: {state}
+            Counter: {count}
             <Button type="primary" onClick={() => dispatch({ type: "INCREMENT" })}>
                 Increment
             </Button>
