@@ -1,52 +1,18 @@
+import { addProduct, deleteProduct, editProduct, fetchProducts } from "@/actions/product";
 import { IProduct } from "@/interfaces/product";
-import axios from "axios";
+import { useAppDispatch, useAppSelector } from "@/store/hook";
 import { useEffect } from "react";
 import Skeleton from "react-loading-skeleton";
-import { useDispatch, useSelector } from "react-redux";
+import { Dispatch } from "redux";
 import { Button } from "..";
-import { fetchProducts } from "@/actions/product";
 
 const ProductList = () => {
-    const dispatch = useDispatch();
-    const { products, isLoading, error } = useSelector((state: any) => state.product);
+    const dispatch: Dispatch<any> = useAppDispatch();
+    const { products, isLoading, error } = useAppSelector((state: any) => state.product);
     useEffect(() => {
         dispatch(fetchProducts());
     }, [dispatch]);
     if (error) return <div>Something went wrong</div>;
-
-    const addProduct = async (product: IProduct) => {
-        try {
-            // call api
-            const { data } = await axios.post(`http://localhost:3000/products`, product);
-            // rerender
-            dispatch({ type: "product/add", payload: data });
-        } catch (error: any) {
-        } finally {
-        }
-    };
-    const editProduct = async (product: IProduct) => {
-        try {
-            // call api
-            const { data } = await axios.put(
-                `http://localhost:3000/products/${product.id}`,
-                product
-            );
-            // rerender
-            dispatch({ type: "product/edit", payload: data });
-        } catch (error: any) {
-        } finally {
-        }
-    };
-    const deleteProduct = async (id: number) => {
-        try {
-            // call api
-            await axios.delete(`http://localhost:3000/products/${id}`);
-            // rerender
-            dispatch({ type: "product/delete", payload: id });
-        } catch (error: any) {
-        } finally {
-        }
-    };
     return (
         <div>
             {isLoading ? (
@@ -59,14 +25,17 @@ const ProductList = () => {
 
             <Button
                 type="primary"
-                onClick={() => addProduct({ name: "Product Added", price: 500 })}
+                onClick={() => dispatch(addProduct({ name: "Product Added", price: 500 }))}
             >
                 Add Product
             </Button>
-            <Button type="primary" onClick={() => editProduct({ name: "Product Updated", id: 3 })}>
+            <Button
+                type="primary"
+                onClick={() => dispatch(editProduct({ name: "Product Updated", id: 3 }))}
+            >
                 Edit Product
             </Button>
-            <Button type="danger" onClick={() => deleteProduct(3)}>
+            <Button type="danger" onClick={() => dispatch(deleteProduct(3))}>
                 Delete Product
             </Button>
         </div>
