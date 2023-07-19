@@ -5,7 +5,7 @@ const Counter = () => {
     // const { state, dispatch } = useContext(CounterContext);
 
     const dispatch = useDispatch();
-    const count = useSelector((state: any) => state.count);
+    const { count } = useSelector((state: any) => state.counter);
     return (
         <div>
             Counter: {count}

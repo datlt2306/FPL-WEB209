@@ -20,6 +20,7 @@ specifiers:
   react-loading-skeleton: ^3.3.1
   react-redux: ^8.1.1
   redux: ^4.2.1
+  redux-thunk: ^2.4.2
   tailwindcss: ^3.3.2
   typescript: ^5.0.2
   vite: ^4.3.9
@@ -35,6 +36,7 @@ dependencies:
   react-loading-skeleton: 3.3.1_react@18.2.0
   react-redux: 8.1.1_zsbkkk4dw6oncfkaluxlbfhvk4
   redux: 4.2.1
+  redux-thunk: 2.4.2_redux@4.2.1
 
 devDependencies:
   '@types/react': 18.2.14
@@ -1981,6 +1983,14 @@ packages:
     dependencies:
       picomatch: 2.3.1
     dev: true
+
+  /redux-thunk/2.4.2_redux@4.2.1:
+    resolution: {integrity: sha512-+P3TjtnP0k/FEjcBL5FZpoovtvrTNT/UXd4/sluaSyrURlSlhLSzEdfsTBW7WsKB6yPvgd7q/iZPICFjW4o57Q==}
+    peerDependencies:
+      redux: ^4
+    dependencies:
+      redux: 4.2.1
+    dev: false
 
   /redux/4.2.1:
     resolution: {integrity: sha512-LAUYz4lc+Do8/g7aeRa8JkyDErK6ekstQaqWQrNRW//MY1TvCEpMtpTWvlQ+FPbWCx+Xixu/6SHt5N0HR+SB4w==}
