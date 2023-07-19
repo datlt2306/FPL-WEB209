@@ -3,23 +3,15 @@ import { useEffect } from "react";
 import Skeleton from "react-loading-skeleton";
 import { useDispatch, useSelector } from "react-redux";
 import { Button } from "..";
+import { fetchProducts } from "@/actions/product";
+import { Dispatch } from "redux";
 
 const ProductList = () => {
-    const dispatch = useDispatch();
+    const dispatch: Dispatch<any> = useDispatch();
     const { products, isLoading, error } = useSelector((state: any) => state.products);
 
     useEffect(() => {
-        const fetchProducts = async () => {
-            try {
-                // call api
-                const data = await instance.get(`/products`);
-                // rerender
-                dispatch({ type: "product/fetchProducts", payload: data });
-            } catch (error: any) {
-            } finally {
-            }
-        };
-        fetchProducts();
+        dispatch(fetchProducts());
     }, []);
     const addProduct = async (product: any) => {
         try {

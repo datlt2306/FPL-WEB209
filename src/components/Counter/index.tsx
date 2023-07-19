@@ -1,15 +1,10 @@
-import { CounterContext } from "@/context[draft]/CounterContext";
-import { useContext } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Button } from "..";
-import { useSelector, useDispatch } from "react-redux";
 
 const Counter = () => {
-    // const { count, increment, decrement } = useContext(CounterContext);
-    // const { state, dispatch } = useContext(CounterContext);
-
     const dispatch = useDispatch();
-    // const { count } = useSelector((state: any) => {counter: { count: 0 }, products: productReducer });
     const { count } = useSelector((state: any) => state.counter);
+    // plain object
     return (
         <div>
             Counter: {count}

@@ -2,25 +2,28 @@ import { produce } from "immer";
 
 
 const initialState = {
-    products: [] as any[],
+    products: [],
     isLoading: false,
     error: ""
 } as { products: any[], isLoading: boolean, error: string };
-
-/**
- * Reducer function for the product state.
- *
- * @param {any} state - The current state of the product.
- * @param {any} action - The action to be performed on the state.
- * @return {any} The updated state after applying the action.
- */
 export const productReducer = (state = initialState, action: any) => {
     return produce(state, draftState => {
         switch (action.type) {
-            // action: { type: "product/fetchProducts", payload: data 
-            case "product/fetchProducts":
+            // FETCHING
+            case "product/fetching":
+                draftState.isLoading = true
+                break;
+            case "product/fetchingSuccess":
                 draftState.products = action.payload
                 break;
+            case "product/fetchingFailed":
+                draftState.error = action.payload
+                break;
+            case "product/fetchingFinally":
+                draftState.isLoading = false
+                break;
+
+            // ADD
             case "product/addProduct":
                 draftState.products.push(action.payload);
                 break;
@@ -39,3 +42,13 @@ export const productReducer = (state = initialState, action: any) => {
     })
 
 }
+
+
+// Bước 1: Cài đặt redux-thunk: pnpm i redux-thunk
+// Bước 2: Tích hợp - Sử dụng applyMiddleware(thunk)
+// Bước 3: Tạo folder actions -> middleware 
+        // Component: dispatch(action) -> action creator -> dispatch -> reducer
+
+// Cài đặt redux dev tool
+// Bước 1: Cài đặt extension
+// Bước 2: Copy code của thầy vào file store/index.ts
