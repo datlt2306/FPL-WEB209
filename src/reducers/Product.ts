@@ -12,7 +12,7 @@ export const productReducer = (state = initialState, action: any) => {
             case "product/fetching":
                 draftState.isLoading = true;
                 break;
-            case "product/fetchingSucess":
+            case "product/fetchingSuccess":
                 draftState.products = action.payload;
                 draftState.isLoading = false
                 break;
