@@ -1,14 +1,18 @@
 import { instance } from "@/axios/config";
+import { pause } from "@/utils/pause";
 // action creator
 
 export const fetchProducts = () => async (dispatch: any) => {
+    dispatch({ type: "product/fetching" }) // isLoading: true
     try {
+        await pause(2000);
         const data = await instance.get("/products");
-
         // gửi 1 action vào reducer, giá trị là 1 plain object
-        dispatch({ type: "product/fetchProducts", payload: data });
+        dispatch({ type: "product/fetchingSuccess", payload: data });
     } catch (error: any) {
+        dispatch({ type: "product/fetchingFailed", payload: error.message })
     } finally {
+        dispatch({ type: "product/fetchingFinally" })
     }
 };
 export const addProduct = (product: any) => async (dispatch: any) => {

@@ -6,22 +6,34 @@ const initialState = {
 } as { products: any[], isLoading: boolean, error: string };
 
 export const productReducer = (state = initialState, action: any) => {
-    return produce(state, drafState => {
+    return produce(state, draftState => {
         switch (action.type) {
-            case "product/fetchProducts":
-                drafState.products = action.payload;
+            // FETCH
+            case "product/fetching":
+                draftState.isLoading = true;
                 break;
+            case "product/fetchingSucess":
+                draftState.products = action.payload;
+                draftState.isLoading = false
+                break;
+            case "product/fetchingFailed":
+                draftState.error = action.payload;
+                break;
+            case "product/fetchingFinally":
+                draftState.isLoading = false;
+                break;
+            // ADD
             case "product/addProduct":
-                drafState.products.push(action.payload);
+                draftState.products.push(action.payload);
                 break;
             case "product/updateProduct":
                 const product = action.payload;
                 // state.products[action.payload.id] = action.payload;
-                drafState.products = state.products.map((item: any) => item.id === product.id ? product : item);
+                draftState.products = state.products.map((item: any) => item.id === product.id ? product : item);
                 break;
             case "product/deleteProduct":
                 const id = action.payload;
-                drafState.products = state.products.filter((item: any) => item.id !== id);
+                draftState.products = state.products.filter((item: any) => item.id !== id);
                 break;
             default:
                 return state;
