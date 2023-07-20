@@ -1,8 +1,8 @@
 import { useDispatch, useSelector } from "react-redux";
 const Counter = () => {
-    // const { count } = useSelector((state: any) => { counter: { count: 0} });
     const { count } = useSelector((state: any) => state.counter);
     const dispatch = useDispatch();
+    // dispatch nhận giá trị là 1 plain object : { key: value }
     return (
         <div>
             Counter {count}
