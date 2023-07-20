@@ -1,26 +1,18 @@
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
-import { fetchProducts } from "@/actions/product";
+import { addProduct, deleteProduct, fetchProducts, updateProduct } from "@/actions/product";
+import { Dispatch } from "redux";
 
 const ProductList = () => {
-    const dispatch = useDispatch();
+    const dispatch: Dispatch<any> = useDispatch();
     const { products, isLoading, error } = useSelector((state: any) => state.products);
     useEffect(() => {
-        dispatch(fetchProducts() as any);
+        // default dispatch chỉ nhận 1 plain object
+        // dispatch({type: "abc"})
+        dispatch(fetchProducts());
     }, [dispatch]);
-    const addProduct = async (product: any) => {
-        const { data } = await axios.post(`http://localhost:3000/products`, product);
-        dispatch({ type: "products/addProduct", payload: data });
-    };
-    const updateProduct = async (product: any) => {
-        const { data } = await axios.put(`http://localhost:3000/products/${product.id}`, product);
-        dispatch({ type: "products/updateProduct", payload: data });
-    };
-    const deleteProduct = async (id: any) => {
-        await axios.delete(`http://localhost:3000/products/${id}`);
-        dispatch({ type: "products/deleteProduct", payload: id });
-    };
+
     if (isLoading) return <div>Loading...</div>;
     if (error) return <div>{error}</div>;
     return (
@@ -28,13 +20,22 @@ const ProductList = () => {
             {products?.map((item: any) => (
                 <div key={item.id}>{item.name}</div>
             ))}
-            <button onClick={() => addProduct({ name: "Product C" })}>Add</button>
-            <button onClick={() => updateProduct({ name: "Product C updated", id: 3 })}>
+            <button onClick={() => dispatch(addProduct({ name: "Product C" }))}>Add</button>
+            <button onClick={() => dispatch(updateProduct({ name: "Product C updated", id: 3 }))}>
                 Update
             </button>
-            <button onClick={() => deleteProduct(3)}>Delete</button>
+            <button onClick={() => dispatch(deleteProduct(3))}>Delete</button>
         </div>
     );
 };
 
 export default ProductList;
+
+// isloading = true
+try {
+    // success
+} catch (error) {
+    // error.message
+} finally {
+    // isloading = false
+}

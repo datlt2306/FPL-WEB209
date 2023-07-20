@@ -8,17 +8,20 @@ const initialState = {
 export const productReducer = (state = initialState, action: any) => {
     return produce(state, draftState => {
         switch (action.type) {
-            case "products/fetchProductRequest":
+            // Fetching
+            case "products/fetching":
                 draftState.isLoading = true;
                 break
-            case "products/fetchProductsSuccess":
+            case "products/fetchingSuccess":
                 draftState.products = action.payload;
-                draftState.isLoading = false;
                 break
-            case "products/fetchProductsError":
-                draftState.isLoading = false;
+            case "products/fetchingFailed":
                 draftState.error = action.payload;
                 break;
+            case "products/fetchingFinally":
+                draftState.isLoading = false;
+                break;
+            // Add
             case "products/addProduct":
                 draftState.products.push(action.payload);
                 break;

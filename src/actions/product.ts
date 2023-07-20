@@ -1,24 +1,29 @@
 import { pause } from "@/utils/pause";
 import axios from "axios";
 export const fetchProducts = () => async (dispatch: any) => {
-    dispatch({ type: "products/fetchProductRequest" }) // isLoading: true
+    dispatch({ type: "products/fetching" }) // isLoading: true
     try {
         // call api
         await pause(1000)
-        const { data } = await axios.get(`http://localhost:4000/products`);
+        const { data } = await axios.get(`http://localhost:3000/products`);
         // rerender
-        dispatch({ type: "products/fetchProductsSuccess", payload: data });
+        dispatch({ type: "products/fetchingSuccess", payload: data });
     } catch (error: any) {
-        dispatch({ type: "products/fetchProductsError", payload: error.message });
+        dispatch({ type: "products/fetchingFailed", payload: error.message });
+    } finally {
+        dispatch({ type: "products/fetchingFinally" });
     }
 }
-// function sum(a){
-//     return function(b){
-//         return a + b;
-//     }
-// }
-// const result = sum(30);
-// console.log(result(10)); // 40
 
-// // currying
-// // clousure
+export const addProduct = (product: any) => async (dispatch: any) => {
+    const { data } = await axios.post(`http://localhost:3000/products`, product);
+    dispatch({ type: "products/addProduct", payload: data });
+};
+export const updateProduct = (product: any) => async (dispatch: any) => {
+    const { data } = await axios.put(`http://localhost:3000/products/${product.id}`, product);
+    dispatch({ type: "products/updateProduct", payload: data });
+};
+export const deleteProduct = (id: any) => async (dispatch: any) => {
+    await axios.delete(`http://localhost:3000/products/${id}`);
+    dispatch({ type: "products/deleteProduct", payload: id });
+};
