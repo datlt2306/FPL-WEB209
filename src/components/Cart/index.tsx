@@ -33,6 +33,7 @@ const Cart = () => {
                     </div>
                 );
             })}
+            Total = {products?.reduce((total: any, item: any) => total + item.price, 0)}
         </div>
     );
 };

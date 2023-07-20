@@ -18,13 +18,13 @@ export const cartReducer = (state = initialState, action: any) => {
             // Add
             case "cart/add":
                 const newProduct = action.payload;
-                const existProduct = draftState.items.find(item => item.id === newProduct.id);
-                if (!existProduct) {
+                const existProductIndex = draftState.items.findIndex(item => item.id === newProduct.id);
+                console.log(existProductIndex)
+                if (existProductIndex === -1) {
                     draftState.items.push(newProduct);
                 } else {
-                    existProduct.quantity += newProduct.quantity
+                    draftState.items[existProductIndex].quantity += newProduct.quantity;
                 }
-                localStorage.setItem("cartItems", JSON.stringify(draftState.items));
                 break;
             case "cart/increment":
                 draftState.items.find(item => item.id === action.payload).quantity++;
