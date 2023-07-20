@@ -18,7 +18,16 @@ const ProductList = () => {
     return (
         <div>
             {products?.map((item: any) => (
-                <div key={item.id}>{item.name}</div>
+                <div key={item.id}>
+                    {item.name}
+                    <button
+                        onClick={() =>
+                            dispatch({ type: "cart/add", payload: { ...item, quantity: 1 } })
+                        }
+                    >
+                        Add to cart
+                    </button>
+                </div>
             ))}
             <button onClick={() => dispatch(addProduct({ name: "Product C" }))}>Add</button>
             <button onClick={() => dispatch(updateProduct({ name: "Product C updated", id: 3 }))}>
@@ -30,12 +39,3 @@ const ProductList = () => {
 };
 
 export default ProductList;
-
-// isloading = true
-try {
-    // success
-} catch (error) {
-    // error.message
-} finally {
-    // isloading = false
-}
