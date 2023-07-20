@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import Skeleton from "react-loading-skeleton";
 import { Dispatch } from "redux";
 import { Button } from "..";
+import { AiOutlinePlus } from "react-icons/ai";
 
 const ProductList = () => {
     const dispatch: Dispatch<any> = useAppDispatch();
@@ -19,7 +20,21 @@ const ProductList = () => {
                 <Skeleton count={4} height={35} />
             ) : (
                 products?.map((item: IProduct) => {
-                    return <div key={item.id}>{item.name}</div>;
+                    return (
+                        <div key={item.id}>
+                            {item.name}{" "}
+                            <Button
+                                onClick={() =>
+                                    dispatch({
+                                        type: "cart/add",
+                                        payload: { ...item, quantity: 1 },
+                                    })
+                                }
+                                type="primary"
+                                icon={<AiOutlinePlus />}
+                            />
+                        </div>
+                    );
                 })
             )}
 

@@ -1,3 +1,4 @@
+import cartReducer from '@/reducers/cart';
 import { counterReducer } from '@/reducers/counter';
 import { productReducer } from '@/reducers/product';
 import { applyMiddleware, combineReducers, compose, legacy_createStore as createStore } from 'redux';
@@ -18,7 +19,8 @@ const enhancer = composeEnhancers(
 
 const rootReducer = combineReducers({
     counter: counterReducer,
-    product: productReducer
+    product: productReducer,
+    cart: cartReducer
 })
 const store = createStore(rootReducer, enhancer);
 // Infer the `RootState` and `AppDispatch` types from the store itself
