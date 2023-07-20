@@ -26,3 +26,28 @@ export const fetchProducts = () => async (dispatch: any) => {
         dispatch({ type: "product/fetchingFinally" })
     }
 };
+
+export const addProduct = (product: any) => async (dispatch: any) => {
+    try {
+        const data = await instance.post(`/products`, product);
+        dispatch({ type: "product/addProduct", payload: data });
+    } catch (error: any) {
+    } finally {
+    }
+};
+export const removeProduct = (product: any) => async (dispatch: any) => {
+    try {
+        await instance.delete(`/products/${product.id}`);
+        dispatch({ type: "product/deleteProduct", payload: product.id });
+    } catch (error: any) {
+    } finally {
+    }
+};
+export const updateProduct = (product: any) => async (dispatch: any) => {
+    try {
+        const data = await instance.put(`/products/${product.id}`, product);
+        dispatch({ type: "product/updateProduct", payload: data });
+    } catch (error: any) {
+    } finally {
+    }
+};
