@@ -1,5 +1,5 @@
 import axios from "axios";
-
+// action creator
 export const fetchProducts = () => async (dispatch: any) => {
     // loading = true
     try {
