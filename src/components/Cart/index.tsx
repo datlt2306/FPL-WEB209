@@ -22,6 +22,7 @@ const Cart = () => {
                     />
                 </div>
             ))}
+            total: {items?.reduce((total, item) => total + item.price * item.quantity, 0)}
         </div>
     );
 };
