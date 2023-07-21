@@ -19,10 +19,22 @@ const ProductList = () => {
     return (
         <div>
             {products?.map((item: any) => {
-                return <div key={item.id}>{item.name}</div>;
+                return (
+                    <div key={item.id}>
+                        {item.name}
+                        <Button
+                            type="primary"
+                            onClick={() =>
+                                dispatch({ type: "cart/add", payload: { ...item, quantity: 1 } })
+                            }
+                        >
+                            Add to cart
+                        </Button>
+                    </div>
+                );
             })}
 
-            <Button type="primary" onClick={() => addProduct({ name: "Product C" })}>
+            {/* <Button type="primary" onClick={() => addProduct({ name: "Product C" })}>
                 Add Product
             </Button>
 
@@ -34,7 +46,7 @@ const ProductList = () => {
             </Button>
             <Button type="primary" onClick={() => removeProduct({ id: 3 })}>
                 Delete Product
-            </Button>
+            </Button> */}
         </div>
     );
 };

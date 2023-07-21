@@ -1,3 +1,4 @@
+import cartReducer from '@/reducers/CartReducer';
 import { counterReducer } from '@/reducers/CounterReducer';
 import { productReducer } from '@/reducers/ProductReducer';
 import { legacy_createStore as createStore, combineReducers, applyMiddleware, compose } from 'redux'
@@ -16,7 +17,8 @@ const enhancer = composeEnhancers(
 );
 const rootReducer = combineReducers({
     counter: counterReducer,
-    products: productReducer
+    products: productReducer,
+    cart: cartReducer
 })
 
 const store = createStore(rootReducer, enhancer);
