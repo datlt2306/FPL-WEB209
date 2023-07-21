@@ -19,7 +19,17 @@ const ProductList = () => {
     return (
         <div>
             {products?.map((product: any) => (
-                <div key={product.id}>{product.name}</div>
+                <div key={product.id} className="mb-3">
+                    {product.name}{" "}
+                    <Button
+                        type="primary"
+                        onClick={() =>
+                            dispatch({ type: "cart/add", payload: { ...product, quantity: 1 } })
+                        }
+                    >
+                        Add to cart
+                    </Button>
+                </div>
             ))}
 
             <Button onClick={() => dispatch(addProduct({ name: "Product Added 1" }))}>Thêm</Button>
