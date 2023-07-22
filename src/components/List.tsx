@@ -13,9 +13,21 @@ const List = () => {
     return (
         <div>
             {products?.map((item: any) => {
-                return <div key={item.id}>{item.name}</div>;
+                return (
+                    <div key={item.id}>
+                        {item.name}
+                        <button
+                            onClick={() =>
+                                dispatch({ type: "cart/add", payload: { ...item, quantity: 1 } })
+                            }
+                            className="bg-blue-500 text-white p-2"
+                        >
+                            Add to cart
+                        </button>
+                    </div>
+                );
             })}
-            <button
+            {/* <button
                 className="border bg-blue-500 p-2"
                 onClick={() => dispatch(addProduct({ name: "test" }))}
             >
@@ -29,7 +41,7 @@ const List = () => {
             </button>
             <button className="border bg-blue-500 p-2" onClick={() => dispatch(deleteProduct(3))}>
                 Delete Product
-            </button>
+            </button> */}
         </div>
     );
 };
