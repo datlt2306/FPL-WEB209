@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
-import { addProduct, deleteProduct, fetchProducts, updateProduct } from "@/actions/product";
+import { addProduct, deleteProduct, fetchProducts, updateProduct } from "@/actions[draft]/product";
 import { Dispatch } from "redux";
 
 const ProductList = () => {
