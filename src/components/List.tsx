@@ -1,11 +1,9 @@
-import { addProduct, deleteProduct, fetchProducts, updateProduct } from "@/actions/product";
-import axios from "axios";
+import { useAppDispatch, useAppSelector } from "@/app/hooks";
+import { addProduct, deleteProduct, fetchProducts, updateProduct } from "@/slices/Product";
 import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Dispatch } from "redux";
 const List = () => {
-    const dispatch: Dispatch<any> = useDispatch();
-    const { products } = useSelector((state: any) => state.products);
+    const dispatch = useAppDispatch();
+    const { products } = useAppSelector((state: any) => state.products);
     useEffect(() => {
         dispatch(fetchProducts());
     }, []);
@@ -16,32 +14,33 @@ const List = () => {
                 return (
                     <div key={item.id}>
                         {item.name}
-                        <button
+                        {/* <button
                             onClick={() =>
                                 dispatch({ type: "cart/add", payload: { ...item, quantity: 1 } })
                             }
                             className="bg-blue-500 text-white p-2"
                         >
                             Add to cart
-                        </button>
+                        </button> */}
                     </div>
                 );
             })}
-            {/* <button
+            <button
                 className="border bg-blue-500 p-2"
                 onClick={() => dispatch(addProduct({ name: "test" }))}
             >
                 Add Product
             </button>
+
             <button
                 className="border bg-blue-500 p-2"
-                onClick={() => dispatch(updateProduct({ name: "test updated", id: 3 }))}
+                onClick={() => dispatch(updateProduct({ name: "test updated", id: 4 }))}
             >
                 Update Product
             </button>
-            <button className="border bg-blue-500 p-2" onClick={() => dispatch(deleteProduct(3))}>
+            <button className="border bg-blue-500 p-2" onClick={() => dispatch(deleteProduct(4))}>
                 Delete Product
-            </button> */}
+            </button>
         </div>
     );
 };
