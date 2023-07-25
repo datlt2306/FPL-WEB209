@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import { AiOutlinePlus } from "react-icons/ai";
 import Skeleton from "react-loading-skeleton";
 import { Button } from "..";
-import { getProducts } from "@/actions/product";
+import { addProduct, deleteProduct, getProducts, updateProduct } from "@/actions/product";
 
 const ProductList = () => {
     const dispatch = useAppDispatch();
@@ -37,7 +37,7 @@ const ProductList = () => {
                 })
             )}
 
-            {/* <Button
+            <Button
                 type="primary"
                 onClick={() => dispatch(addProduct({ name: "Product Added", price: 500 }))}
             >
@@ -45,13 +45,13 @@ const ProductList = () => {
             </Button>
             <Button
                 type="primary"
-                onClick={() => dispatch(editProduct({ name: "Product Updated", id: 3 }))}
+                onClick={() => dispatch(updateProduct({ name: "Product Updated", id: 3 }))}
             >
                 Edit Product
             </Button>
             <Button type="danger" onClick={() => dispatch(deleteProduct(3))}>
                 Delete Product
-            </Button> */}
+            </Button>
         </div>
     );
 };
