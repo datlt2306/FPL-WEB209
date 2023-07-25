@@ -1,9 +1,8 @@
-import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 type Props = {};
 
-const Cart = (props: Props) => {
+const Cart = () => {
     const dispatch = useDispatch();
     const { items } = useSelector((state: any) => state.cart);
     return (

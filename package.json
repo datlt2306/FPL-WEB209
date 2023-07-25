@@ -10,6 +10,7 @@
         "preview": "vite preview"
     },
     "dependencies": {
+        "@reduxjs/toolkit": "^1.9.5",
         "axios": "^1.4.0",
         "concurrently": "^8.2.0",
         "immer": "^10.0.2",

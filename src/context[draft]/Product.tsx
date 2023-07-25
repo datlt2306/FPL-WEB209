@@ -1,6 +1,6 @@
 import { createContext, useReducer } from "react";
 import { produce } from "immer";
-import { productReducer } from "@/reducers/Product";
+import { productReducer } from "@/reducers[draft]/Product";
 
 const ProductContext = createContext([]);
 
