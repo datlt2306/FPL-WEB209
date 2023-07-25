@@ -8,7 +8,7 @@ import { Button } from "..";
 import { AiOutlinePlus } from "react-icons/ai";
 
 const ProductList = () => {
-    const dispatch: Dispatch<any> = useAppDispatch();
+    const dispatch = useAppDispatch();
     const { products, isLoading, error } = useAppSelector((state: any) => state.product);
     useEffect(() => {
         dispatch(fetchProducts());
