@@ -17,5 +17,6 @@ const counterSlice = createSlice({
     }
 });
 
+// pnpm i @reduxjs/toolkit
 export const { increment, decrement, increase } = counterSlice.actions;
 export const counterReducer = counterSlice.reducer;
