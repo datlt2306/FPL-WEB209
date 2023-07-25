@@ -8,9 +8,10 @@ const App = () => {
         <div>
             <h2>Counter</h2>
             <Counter />
-            {/* <hr className="my-4" />
+            <hr className="my-4" />
             <h2>Products</h2>
             <ProductList />
+            {/* 
             <hr className="my-4" />
             <h2 className="font-bold text-2xl">Cart</h2>
             <Cart /> */}

@@ -26,12 +26,13 @@
 
 // pnpm i @reduxjs/toolkit
 import { counterReducer } from '@/slices/counter';
+import { productReducer } from '@/slices/product';
 import { configureStore } from '@reduxjs/toolkit';
 
 const store = configureStore({
     reducer: {
         counter: counterReducer,
-        //     product: productReducer,
+        product: productReducer,
         //     cart: cartReducer
     }
 })

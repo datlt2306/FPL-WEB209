@@ -1,17 +1,16 @@
-import { addProduct, deleteProduct, editProduct, fetchProducts } from "@/actions/product";
 import { IProduct } from "@/interfaces/product";
 import { useAppDispatch, useAppSelector } from "@/store/hook";
 import { useEffect } from "react";
-import Skeleton from "react-loading-skeleton";
-import { Dispatch } from "redux";
-import { Button } from "..";
 import { AiOutlinePlus } from "react-icons/ai";
+import Skeleton from "react-loading-skeleton";
+import { Button } from "..";
+import { getProducts } from "@/actions/product";
 
 const ProductList = () => {
     const dispatch = useAppDispatch();
     const { products, isLoading, error } = useAppSelector((state: any) => state.product);
     useEffect(() => {
-        dispatch(fetchProducts());
+        dispatch(getProducts());
     }, [dispatch]);
     if (error) return <div>Something went wrong</div>;
     return (
@@ -38,7 +37,7 @@ const ProductList = () => {
                 })
             )}
 
-            <Button
+            {/* <Button
                 type="primary"
                 onClick={() => dispatch(addProduct({ name: "Product Added", price: 500 }))}
             >
@@ -52,7 +51,7 @@ const ProductList = () => {
             </Button>
             <Button type="danger" onClick={() => dispatch(deleteProduct(3))}>
                 Delete Product
-            </Button>
+            </Button> */}
         </div>
     );
 };
