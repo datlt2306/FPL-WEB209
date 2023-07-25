@@ -1,4 +1,4 @@
-import { getProducts } from "@/actions/product";
+import { addProduct, deleteProduct, getProducts, updateProduct } from "@/actions/product";
 import { useAppDispatch, useAppSelector } from "@/app/hook";
 import { useEffect } from "react";
 
@@ -25,11 +25,11 @@ const ProductList = () => {
                     </button>
                 </div>
             ))}
-            {/* <button onClick={() => dispatch(addProduct({ name: "Product C" }))}>Add</button>
+            <button onClick={() => dispatch(addProduct({ name: "Product C" }))}>Add</button>
             <button onClick={() => dispatch(updateProduct({ name: "Product C updated", id: 3 }))}>
                 Update
             </button>
-            <button onClick={() => dispatch(deleteProduct(3))}>Delete</button> */}
+            <button onClick={() => dispatch(deleteProduct(3))}>Delete</button>
         </div>
     );
 };
