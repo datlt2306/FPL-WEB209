@@ -1,7 +1,5 @@
-import { getProducts } from '@/actions/Product';
-import { instance } from '@/axios/config';
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
+import { addProduct, getProducts, removeProduct, updateProduct } from '@/actions/Product';
+import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
     products: [],
@@ -17,7 +15,7 @@ const productSlice = createSlice({
     initialState,
     reducers: {},
     extraReducers: (builder) => {
-        // builder.addCase(actionName, callback);
+        // Fetching
         builder.addCase(getProducts.pending, (state, action) => {
             console.log('pending')
             state.isLoading = true;
@@ -28,6 +26,21 @@ const productSlice = createSlice({
         })
         builder.addCase(getProducts.rejected, (state, action) => {
             state.isLoading = false;
+        })
+        // Adding
+        builder.addCase(addProduct.fulfilled, (state, action) => {
+            state.products.push(action.payload);
+        })
+        // Updating
+        builder.addCase(updateProduct.fulfilled, (state, action) => {
+            const product = action.payload;
+            // state.products[action.payload.id] = action.payload;
+            state.products = state.products.map((item: any) => item.id === product.id ? product : item);
+        })
+        // Deleting
+        builder.addCase(removeProduct.fulfilled, (state, action) => {
+            const id = action.payload;
+            state.products = state.products.filter((item: any) => item.id !== id);
         })
     }
 });

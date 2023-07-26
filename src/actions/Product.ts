@@ -50,3 +50,26 @@ export const getProducts = createAsyncThunk(
         return data;
     }
 )
+export const addProduct = createAsyncThunk(
+    'product/addProduct',
+    async (product) => {
+        const data = await instance.post(`/products`, product);
+        return data;
+    }
+)
+export const updateProduct = createAsyncThunk(
+    'product/updateProduct',
+    async (product) => {
+        const data = await instance.patch(`/products/${product.id}`, product);
+        // trả về data => giống như dispatch payload vào reducers
+        return data;
+    }
+)
+export const removeProduct = createAsyncThunk(
+    'product/removeProduct',
+    async (id) => {
+        await instance.delete(`/products/${id}`);
+        // trả về data => giống như dispatch payload vào reducers
+        return id;
+    }
+)

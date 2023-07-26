@@ -1,5 +1,4 @@
-import { addProduct, removeProduct, updateProduct } from "@/actions/Product";
-import { getProducts } from "@/slices/Product";
+import { addProduct, getProducts, removeProduct, updateProduct } from "@/actions/Product";
 import { useAppDispatch, useAppSelector } from "@/store/hook";
 import { useEffect } from "react";
 import Skeleton from "react-loading-skeleton";
@@ -31,12 +30,12 @@ const ProductList = () => {
                 </div>
             ))}
 
-            {/* <Button onClick={() => dispatch(addProduct({ name: "Product Added 1" }))}>Thêm</Button>
+            <Button onClick={() => dispatch(addProduct({ name: "Product Added 1" }))}>Thêm</Button>
 
-            <Button onClick={() => dispatch(updateProduct({ name: "Product Updated", id: 4 }))}>
+            <Button onClick={() => dispatch(updateProduct({ name: "Product Updated", id: 3 }))}>
                 Updated
             </Button>
-            <Button onClick={() => dispatch(removeProduct(4))}>Delete</Button> */}
+            <Button onClick={() => dispatch(removeProduct(3))}>Delete</Button>
         </div>
     );
 };
