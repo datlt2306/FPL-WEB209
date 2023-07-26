@@ -1,4 +1,4 @@
-import { productReducer } from "@/reducers/Product";
+import { productReducer } from "@/reducers[draft]/Product";
 import { createContext, useReducer } from "react";
 import { produce } from "immer";
 
