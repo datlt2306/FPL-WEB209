@@ -1,17 +1,16 @@
-import { instance } from "@/axios/config";
+// import { fetchProducts } from "@/actions/product";
+import { useAppDispatch, useAppSelector } from "@/store/hook";
 import { useEffect } from "react";
 import Skeleton from "react-loading-skeleton";
-import { useDispatch, useSelector } from "react-redux";
 import { Button } from "..";
-import { fetchProducts } from "@/actions/product";
-import { Dispatch } from "redux";
+import { getProduct } from "@/slices/Product";
 
 const ProductList = () => {
-    const dispatch: Dispatch<any> = useDispatch();
-    const { products, isLoading, error } = useSelector((state: any) => state.products);
+    const dispatch = useAppDispatch();
+    const { products, isLoading, error } = useAppSelector((state: any) => state.products);
 
     useEffect(() => {
-        dispatch(fetchProducts());
+        dispatch(getProduct());
     }, []);
 
     if (isLoading) return <Skeleton count={3} height={35} />;
