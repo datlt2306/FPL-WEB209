@@ -1,6 +1,6 @@
 import { createContext, useReducer, useState } from "react";
 import { produce } from "immer";
-import { counterReducer } from "@/reducers/CounterReducer";
+import { counterReducer } from "@/reducers[draft]/CounterReducer";
 export const CounterContext = createContext({} as any);
 
 type CounterProviderProps = {

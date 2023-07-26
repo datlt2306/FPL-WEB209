@@ -7,7 +7,7 @@ const initialState = {
 export const counterReducer = (state = initialState, action: any) => {
     return produce(state, drafState => {
         switch (action.type) {
-            case "INCREMENT":
+            case "counter/increment":
                 drafState.count++;
                 break;
             case "DECREMENT":

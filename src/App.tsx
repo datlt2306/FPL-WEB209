@@ -7,10 +7,10 @@ function App() {
     return (
         <div>
             <Counter />
-            <ProductList />
+            {/* <ProductList />
             <hr className="my-3" />
             <h2 className="font-bold text-2xl">Cart</h2>
-            <Cart />
+            <Cart /> */}
         </div>
     );
 }
