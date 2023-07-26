@@ -3,7 +3,7 @@ import { useAppDispatch, useAppSelector } from "@/store/hook";
 import { useEffect } from "react";
 import Skeleton from "react-loading-skeleton";
 import { Button } from "..";
-import { getProduct } from "@/slices/Product";
+import { addProduct, getProduct, removeProduct, updateProduct } from "@/actions/product";
 
 const ProductList = () => {
     const dispatch = useAppDispatch();
@@ -33,19 +33,19 @@ const ProductList = () => {
                 );
             })}
 
-            {/* <Button type="primary" onClick={() => addProduct({ name: "Product C" })}>
+            <Button type="primary" onClick={() => dispatch(addProduct({ name: "Product C" }))}>
                 Add Product
             </Button>
 
             <Button
                 type="primary"
-                onClick={() => updateProduct({ name: "Product C updated ", id: 3 })}
+                onClick={() => dispatch(updateProduct({ name: "Product C updated ", id: 3 }))}
             >
                 Update Product
             </Button>
-            <Button type="primary" onClick={() => removeProduct({ id: 3 })}>
+            <Button type="primary" onClick={() => dispatch(removeProduct(3))}>
                 Delete Product
-            </Button> */}
+            </Button>
         </div>
     );
 };

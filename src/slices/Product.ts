@@ -1,3 +1,4 @@
+import { addProduct, getProduct, removeProduct, updateProduct } from '@/actions/product';
 import { instance } from '@/axios/config';
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
@@ -10,18 +11,6 @@ const initialState = {
     isLoading: boolean,
     error: string
 }
-
-export const getProduct = createAsyncThunk(
-    'product/fetchProducts',
-    async () => {
-        try {
-            const data = await instance.get(`/products`);
-            return data;
-        } catch (error) {
-
-        }
-    }
-);
 
 const productSlice = createSlice({
     name: "product",
@@ -41,6 +30,19 @@ const productSlice = createSlice({
             state.isLoading = false;
         })
         // adding - 3 status
+        builder.addCase(addProduct.fulfilled, (state, action) => {
+            state.products.push(action.payload)
+        })
+        // updating
+        builder.addCase(updateProduct.fulfilled, (state, action) => {
+            const product = action.payload
+            state.products = state.products.map((item: any) => item.id === product.id ? product : item)
+        })
+        // deleting
+        builder.addCase(removeProduct.fulfilled, (state, action) => {
+            const id = action.payload;
+            state.products = state.products.filter((item: any) => item.id !== id)
+        })
     }
 })
 
