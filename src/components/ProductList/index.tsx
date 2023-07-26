@@ -1,17 +1,16 @@
-import { instance } from "@/axios/config";
+import { addProduct, removeProduct, updateProduct } from "@/actions/Product";
+import { getProducts } from "@/slices/Product";
+import { useAppDispatch, useAppSelector } from "@/store/hook";
 import { useEffect } from "react";
 import Skeleton from "react-loading-skeleton";
-import { useDispatch, useSelector } from "react-redux";
 import { Button } from "..";
-import { addProduct, fetchProducts, removeProduct, updateProduct } from "@/actions/Product";
-import { Dispatch } from "redux";
 
 const ProductList = () => {
-    const dispatch: Dispatch<any> = useDispatch();
-    const { products, isLoading, error } = useSelector((state: any) => state.products);
+    const dispatch = useAppDispatch();
+    const { products, isLoading, error } = useAppSelector((state: any) => state.products);
 
     useEffect(() => {
-        dispatch(fetchProducts());
+        dispatch(getProducts());
     }, [dispatch]);
 
     if (isLoading) return <Skeleton count={3} />;
@@ -32,12 +31,12 @@ const ProductList = () => {
                 </div>
             ))}
 
-            <Button onClick={() => dispatch(addProduct({ name: "Product Added 1" }))}>Thêm</Button>
+            {/* <Button onClick={() => dispatch(addProduct({ name: "Product Added 1" }))}>Thêm</Button>
 
             <Button onClick={() => dispatch(updateProduct({ name: "Product Updated", id: 4 }))}>
                 Updated
             </Button>
-            <Button onClick={() => dispatch(removeProduct(4))}>Delete</Button>
+            <Button onClick={() => dispatch(removeProduct(4))}>Delete</Button> */}
         </div>
     );
 };
