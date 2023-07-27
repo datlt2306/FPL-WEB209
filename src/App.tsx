@@ -1,14 +1,9 @@
-import Counter from "./components/Counter";
-import List from "./components/List";
-
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import { router } from "./routes";
 const App = () => {
     return (
         <div>
-            <h2 className="font-bold text-2xl">Counte</h2>
-            <Counter />
-            <hr className="my-3" />
-            <h2 className="font-bold text-2xl">Product</h2>
-            <List />
+            <RouterProvider router={router} />
         </div>
     );
 };
