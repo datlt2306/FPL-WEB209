@@ -1,5 +1,5 @@
+import { addProduct, deleteProduct, fetchProducts, updateProduct } from "@/actions/product";
 import { useAppDispatch, useAppSelector } from "@/app/hooks";
-import { addProduct, deleteProduct, fetchProducts, updateProduct } from "@/slices/Product";
 import { useEffect } from "react";
 const List = () => {
     const dispatch = useAppDispatch();
