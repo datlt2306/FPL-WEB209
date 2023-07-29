@@ -1,6 +1,7 @@
 import { useAppDispatch, useAppSelector } from "@/store/hook";
 import { Button } from "..";
 import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
+import { decrease, increase } from "@/slices/cart";
 
 const Cart = () => {
     const dispatch = useAppDispatch();
@@ -9,15 +10,16 @@ const Cart = () => {
         <div>
             {items?.map((item) => (
                 <div key={item.id}>
-                    {item.name}
+                    {item.name} - {item.price} - {item.quantity} - Total:{" "}
+                    {item.price * item.quantity}
                     <Button
                         type="primary"
-                        onClick={() => dispatch({ type: "cart/increment", payload: item.id })}
+                        onClick={() => dispatch(increase(item.id))}
                         icon={<AiOutlinePlus />}
                     />
                     <Button
                         type="danger"
-                        onClick={() => dispatch({ type: "cart/decrement", payload: item.id })}
+                        onClick={() => dispatch(decrease(item.id))}
                         icon={<AiOutlineMinus />}
                     />
                 </div>

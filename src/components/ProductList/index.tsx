@@ -2,9 +2,9 @@ import { IProduct } from "@/interfaces/product";
 import { useAppDispatch, useAppSelector } from "@/store/hook";
 import { useEffect } from "react";
 import { AiOutlinePlus } from "react-icons/ai";
-import Skeleton from "react-loading-skeleton";
 import { Button } from "..";
 import { addProduct, deleteProduct, getProducts, updateProduct } from "@/actions/product";
+import { add } from "@/slices/cart";
 
 const ProductList = () => {
     const dispatch = useAppDispatch();
@@ -16,19 +16,14 @@ const ProductList = () => {
     return (
         <div>
             {isLoading ? (
-                <Skeleton count={4} height={35} />
+                <div>Loading...</div>
             ) : (
                 products?.map((item: IProduct) => {
                     return (
                         <div key={item.id}>
                             {item.name}{" "}
                             <Button
-                                onClick={() =>
-                                    dispatch({
-                                        type: "cart/add",
-                                        payload: { ...item, quantity: 1 },
-                                    })
-                                }
+                                onClick={() => dispatch(add({ ...item, quantity: 1 }))}
                                 type="primary"
                                 icon={<AiOutlinePlus />}
                             />
