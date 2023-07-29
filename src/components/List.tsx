@@ -14,14 +14,14 @@ const List = () => {
                 return (
                     <div key={item.id}>
                         {item.name}
-                        {/* <button
+                        <button
                             onClick={() =>
                                 dispatch({ type: "cart/add", payload: { ...item, quantity: 1 } })
                             }
                             className="bg-blue-500 text-white p-2"
                         >
                             Add to cart
-                        </button> */}
+                        </button>
                     </div>
                 );
             })}

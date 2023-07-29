@@ -1,10 +1,8 @@
-import { useDispatch, useSelector } from "react-redux";
-
-type Props = {};
+import { useAppDispatch, useAppSelector } from "@/app/hooks";
 
 const Cart = () => {
-    const dispatch = useDispatch();
-    const { items } = useSelector((state: any) => state.cart);
+    const dispatch = useAppDispatch();
+    const { items } = useAppSelector((state: any) => state.cart);
     return (
         <div>
             {items?.map((item: any) => (
