@@ -1,8 +1,9 @@
 import { Navigate, Outlet, createBrowserRouter } from "react-router-dom";
 import LayoutWebsite from "./layouts/LayoutWebsite";
 import LayoutAdmin from "./layouts/LayoutAdmin";
+import ProductList from "./components/ProductList";
 
-const routers = createBrowserRouter([
+export const routers = createBrowserRouter([
     // layout webiste
     {
         path: "/",
@@ -10,6 +11,7 @@ const routers = createBrowserRouter([
         children: [
             { index: true, element: <div>Home Page</div> },
             { path: "about", element: <div>About page</div> },
+            { path: "products", element: <ProductList /> },
         ],
     },
     {

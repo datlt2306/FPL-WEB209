@@ -26,9 +26,9 @@
 
 
 
+import productApi, { productReducer } from "@/api/product";
 import { cartReducer } from "@/slices/Cart";
 import { counterReducer } from "@/slices/Counter";
-import { productReducer } from "@/slices/Product";
 import { configureStore, ThunkAction, Action, combineReducers } from "@reduxjs/toolkit";
 import {
     FLUSH,
@@ -47,7 +47,8 @@ const persistConfig = {
     whitelist: ['cart']
 }
 const rootReducer = combineReducers({
-    products: productReducer,
+    // products: productReducer,
+    [productApi.reducerPath]: productReducer,
     counter: counterReducer,
     cart: cartReducer
 })
@@ -60,7 +61,7 @@ export const store = configureStore({
             serializableCheck: {
                 ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
             },
-        })
+        }).concat(productApi.middleware)
 })
 
 export type AppDispatch = typeof store.dispatch
