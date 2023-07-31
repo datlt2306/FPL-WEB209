@@ -1,18 +1,16 @@
-import { addProduct, getProducts, removeProduct, updateProduct } from "@/actions/Product";
-import { useAppDispatch, useAppSelector } from "@/store/hook";
+import { getProducts } from "@/actions/Product";
+import { useAddProductMutation, useFetchProductsQuery, useRemoveMutation } from "@/api/product";
+import { add } from "@/slices/Cart";
+import { useAppDispatch } from "@/store/hook";
 import { useEffect } from "react";
 import Skeleton from "react-loading-skeleton";
 import { Button } from "..";
-import { add } from "@/slices/Cart";
 
 const ProductList = () => {
     const dispatch = useAppDispatch();
-    const { products, isLoading, error } = useAppSelector((state: any) => state.products);
-
-    useEffect(() => {
-        dispatch(getProducts());
-    }, [dispatch]);
-
+    const { data: products, isLoading, error } = useFetchProductsQuery();
+    const [addProduct] = useAddProductMutation();
+    const [removeProduct] = useRemoveMutation();
     if (isLoading) return <Skeleton count={3} />;
     if (error) return <div>{error}</div>;
     return (
@@ -29,9 +27,6 @@ const ProductList = () => {
                 </div>
             ))}
             <Button onClick={() => dispatch(addProduct({ name: "Product Added 1" }))}>Thêm</Button>
-            <Button onClick={() => dispatch(updateProduct({ name: "Product Updated", id: 3 }))}>
-                Updated
-            </Button>
             <Button onClick={() => dispatch(removeProduct(3))}>Delete</Button>
         </div>
     );
