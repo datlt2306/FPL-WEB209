@@ -3,13 +3,9 @@ import "./index.css";
 import { Provider } from "react-redux";
 import store from "./store";
 import App from "./App";
+import { BrowserRouter } from "react-router-dom";
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
-    // <ProductProvider>
-    //     <CounterProvider>
-    //         <App />
-    //     </CounterProvider>
-    // </ProductProvider>
     <Provider store={store}>
         <App />
     </Provider>
