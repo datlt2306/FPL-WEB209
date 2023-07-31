@@ -1,17 +1,11 @@
-import Cart from "./components/Cart";
-import Counter from "./components/Counter";
-import ProductList from "./components/ProductList";
 import "react-loading-skeleton/dist/skeleton.css";
+import { RouterProvider } from "react-router-dom";
+import { routers } from "./routes";
 
 function App() {
     return (
         <div>
-            <Counter />
-            <ProductList />
-            <hr className="my-3" />
-
-            <h2 className="font-bold text-2xl">Cart</h2>
-            <Cart />
+            <RouterProvider router={routers} />
         </div>
     );
 }
