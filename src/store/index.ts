@@ -26,16 +26,41 @@
 
 
 
+import { cartReducer } from "@/slices/Cart";
 import { counterReducer } from "@/slices/Counter";
 import { productReducer } from "@/slices/Product";
-import { configureStore, ThunkAction, Action } from "@reduxjs/toolkit";
+import { configureStore, ThunkAction, Action, combineReducers } from "@reduxjs/toolkit";
+import {
+    FLUSH,
+    PAUSE,
+    PERSIST,
+    PURGE,
+    REGISTER,
+    REHYDRATE,
+    persistReducer,
+    persistStore,
+} from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
+const persistConfig = {
+    key: 'root',
+    storage,
+    whitelist: ['cart']
+}
+const rootReducer = combineReducers({
+    products: productReducer,
+    counter: counterReducer,
+    cart: cartReducer
+})
+const persistedReducer = persistReducer(persistConfig, rootReducer)
 
-const store = configureStore({
-    reducer: {
-        counter: counterReducer,
-        products: productReducer,
-        // cart: cartReducer
-    }
+export const store = configureStore({
+    reducer: persistedReducer,
+    middleware: (getDefaultMiddleware) =>
+        getDefaultMiddleware({
+            serializableCheck: {
+                ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+            },
+        })
 })
 
 export type AppDispatch = typeof store.dispatch
@@ -46,4 +71,4 @@ export type AppThunk<ReturnType = void> = ThunkAction<
     unknown,
     Action<string>
 >
-export default store;
+export default persistStore(store);

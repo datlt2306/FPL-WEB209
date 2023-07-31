@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import Skeleton from "react-loading-skeleton";
 import { Button } from "..";
 import { addProduct, getProduct, removeProduct, updateProduct } from "@/actions/product";
+import { add } from "@/slices/Cart";
 
 const ProductList = () => {
     const dispatch = useAppDispatch();
@@ -23,9 +24,7 @@ const ProductList = () => {
                         {item.name}
                         <Button
                             type="primary"
-                            onClick={() =>
-                                dispatch({ type: "cart/add", payload: { ...item, quantity: 1 } })
-                            }
+                            onClick={() => dispatch(add({ ...item, quantity: 1 }))}
                         >
                             Add to cart
                         </Button>

@@ -1,24 +1,20 @@
-import { useDispatch, useSelector } from "react-redux";
+import { decrease, increase } from "@/slices/Cart";
+import { useAppDispatch, useAppSelector } from "@/store/hook";
 import { Button } from "..";
 
 const Cart = () => {
-    const dispatch = useDispatch();
-    const { items } = useSelector((state: any) => state.cart);
+    const dispatch = useAppDispatch();
+    const { items } = useAppSelector((state: any) => state.cart);
     return (
         <div>
             {items?.map((item: any) => (
                 <div key={item.id}>
-                    {item.name} - {item?.quantity} - {item?.price * item?.quantity}
-                    <Button
-                        type="primary"
-                        onClick={() => dispatch({ type: "cart/increase", payload: item.id })}
-                    >
+                    {item.name} - {item.price} - {item?.quantity} - Total:{" "}
+                    {item?.price * item?.quantity}
+                    <Button type="primary" onClick={() => dispatch(increase(item.id))}>
                         Increase
                     </Button>
-                    <Button
-                        type="primary"
-                        onClick={() => dispatch({ type: "cart/decrease", payload: item.id })}
-                    >
+                    <Button type="primary" onClick={() => dispatch(decrease(item.id))}>
                         Decrease
                     </Button>
                 </div>
