@@ -1,23 +1,26 @@
 import { useDispatch, useSelector } from "react-redux";
 import { Button } from "..";
 import { AiOutlineLine, AiOutlinePlus } from "react-icons/ai";
+import { useAppDispatch, useAppSelector } from "@/store/hook";
+import { decrease, increase } from "@/slices/Cart";
 
 const Cart = () => {
-    const dispatch = useDispatch();
-    const { items } = useSelector((state: any) => state.cart);
+    const dispatch = useAppDispatch();
+    const { items } = useAppSelector((state: any) => state.cart);
     return (
         <div>
             {items?.map((item: any) => (
                 <div key={item.id}>
-                    {item.name}
+                    {item.name} - {item.price} - {item.quantity} - Total:{" "}
+                    {item.price * item.quantity}
                     <Button
                         type="primary"
-                        onClick={() => dispatch({ type: "cart/increase", payload: item.id })}
+                        onClick={() => dispatch(increase(item.id))}
                         icon={<AiOutlinePlus />}
                     />
                     <Button
                         type="primary"
-                        onClick={() => dispatch({ type: "cart/decrease", payload: item.id })}
+                        onClick={() => dispatch(decrease(item.id))}
                         icon={<AiOutlineLine />}
                     />
                 </div>

@@ -3,6 +3,7 @@ import { useAppDispatch, useAppSelector } from "@/store/hook";
 import { useEffect } from "react";
 import Skeleton from "react-loading-skeleton";
 import { Button } from "..";
+import { add } from "@/slices/Cart";
 
 const ProductList = () => {
     const dispatch = useAppDispatch();
@@ -21,17 +22,13 @@ const ProductList = () => {
                     {product.name}{" "}
                     <Button
                         type="primary"
-                        onClick={() =>
-                            dispatch({ type: "cart/add", payload: { ...product, quantity: 1 } })
-                        }
+                        onClick={() => dispatch(add({ ...product, quantity: 1 }))}
                     >
                         Add to cart
                     </Button>
                 </div>
             ))}
-
             <Button onClick={() => dispatch(addProduct({ name: "Product Added 1" }))}>Thêm</Button>
-
             <Button onClick={() => dispatch(updateProduct({ name: "Product Updated", id: 3 }))}>
                 Updated
             </Button>
