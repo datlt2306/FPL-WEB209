@@ -1,4 +1,5 @@
 import { Navigate, createBrowserRouter, Outlet } from "react-router-dom";
+import ProductList from "./components/ProductList";
 
 export const router = createBrowserRouter([
     // Định nghĩa route cho website
@@ -25,7 +26,7 @@ export const router = createBrowserRouter([
         children: [
             { index: true, element: <Navigate to="dashboard" /> },
             { path: "dashboard", element: <div>Dashboard</div> },
-            { path: "product", element: <div>Product Management</div> },
+            { path: "product", element: <ProductList /> },
         ],
     },
     { path: "*", element: "Not Found Page" },

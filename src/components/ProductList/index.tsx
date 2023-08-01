@@ -5,34 +5,34 @@ import { AiOutlinePlus } from "react-icons/ai";
 import { Button } from "..";
 import { addProduct, deleteProduct, getProducts, updateProduct } from "@/actions/product";
 import { add } from "@/slices/cart";
+import { useGetProductsQuery } from "@/api/product";
 
 const ProductList = () => {
     const dispatch = useAppDispatch();
-    const { products, isLoading, error } = useAppSelector((state: any) => state.product);
-    useEffect(() => {
-        dispatch(getProducts());
-    }, [dispatch]);
+    // const { products, isLoading, error } = useAppSelector((state: any) => state.product);
+    // useEffect(() => {
+    //     dispatch(getProducts());
+    // }, [dispatch]);
+
+    const { data: products, error, isLoading } = useGetProductsQuery();
+    if (isLoading) return <div>Loading...</div>;
     if (error) return <div>Something went wrong</div>;
     return (
         <div>
-            {isLoading ? (
-                <div>Loading...</div>
-            ) : (
-                products?.map((item: IProduct) => {
-                    return (
-                        <div key={item.id}>
-                            {item.name}{" "}
-                            <Button
-                                onClick={() => dispatch(add({ ...item, quantity: 1 }))}
-                                type="primary"
-                                icon={<AiOutlinePlus />}
-                            />
-                        </div>
-                    );
-                })
-            )}
+            {products?.map((item: IProduct) => {
+                return (
+                    <div key={item.id}>
+                        {item.name}{" "}
+                        <Button
+                            onClick={() => dispatch(add({ ...item, quantity: 1 }))}
+                            type="primary"
+                            icon={<AiOutlinePlus />}
+                        />
+                    </div>
+                );
+            })}
 
-            <Button
+            {/* <Button
                 type="primary"
                 onClick={() => dispatch(addProduct({ name: "Product Added", price: 500 }))}
             >
@@ -46,7 +46,7 @@ const ProductList = () => {
             </Button>
             <Button type="danger" onClick={() => dispatch(deleteProduct(3))}>
                 Delete Product
-            </Button>
+            </Button> */}
         </div>
     );
 };
