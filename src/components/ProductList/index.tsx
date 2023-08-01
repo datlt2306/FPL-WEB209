@@ -1,21 +1,28 @@
+import {
+    useAddProductMutation,
+    useGetProductsQuery,
+    useRemoveProductMutation,
+    useUpdateProductMutation,
+} from "@/api/product";
 import { IProduct } from "@/interfaces/product";
-import { useAppDispatch, useAppSelector } from "@/store/hook";
-import { useEffect } from "react";
+import { add } from "@/slices/cart";
+import { useAppDispatch } from "@/store/hook";
 import { AiOutlinePlus } from "react-icons/ai";
 import { Button } from "..";
-import { addProduct, deleteProduct, getProducts, updateProduct } from "@/actions/product";
-import { add } from "@/slices/cart";
-import { useGetProductsQuery } from "@/api/product";
 
 const ProductList = () => {
     const dispatch = useAppDispatch();
-    // const { products, isLoading, error } = useAppSelector((state: any) => state.product);
-    // useEffect(() => {
-    //     dispatch(getProducts());
-    // }, [dispatch]);
+    const { data: products, error, isLoading: isLoadingFetching } = useGetProductsQuery();
+    const [addProduct, resultAdd] = useAddProductMutation();
+    const [removeProduct] = useRemoveProductMutation();
+    const [updateProduct] = useUpdateProductMutation();
 
-    const { data: products, error, isLoading } = useGetProductsQuery();
-    if (isLoading) return <div>Loading...</div>;
+    // adding
+    console.log(resultAdd);
+    if (resultAdd.isLoading) return <div>Adding...</div>;
+
+    // fetching
+    if (isLoadingFetching) return <div>Loading...</div>;
     if (error) return <div>Something went wrong</div>;
     return (
         <div>
@@ -32,21 +39,21 @@ const ProductList = () => {
                 );
             })}
 
-            {/* <Button
+            <Button
                 type="primary"
-                onClick={() => dispatch(addProduct({ name: "Product Added", price: 500 }))}
+                onClick={() => addProduct({ name: "Product Added", price: 500 })}
             >
                 Add Product
             </Button>
             <Button
                 type="primary"
-                onClick={() => dispatch(updateProduct({ name: "Product Updated", id: 3 }))}
+                onClick={() => updateProduct({ name: "Product Updated", id: 3 })}
             >
                 Edit Product
             </Button>
-            <Button type="danger" onClick={() => dispatch(deleteProduct(3))}>
+            <Button type="danger" onClick={() => removeProduct(3)}>
                 Delete Product
-            </Button> */}
+            </Button>
         </div>
     );
 };

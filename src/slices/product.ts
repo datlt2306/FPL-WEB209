@@ -27,7 +27,11 @@ const productSlice = createSlice({
             state.isLoading = false;
         })
         //adding
+        builder.addCase(addProduct.pending, (state, action) => {
+            state.isLoading = true;
+        })
         builder.addCase(addProduct.fulfilled, (state, action) => {
+            state.isLoading = false;
             state.products.push(action.payload)
         })
         //updating
