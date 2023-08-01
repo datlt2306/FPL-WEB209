@@ -1,14 +1,12 @@
 import { addProduct, deleteProduct, fetchProducts, updateProduct } from "@/actions/product";
+import { useAddProductMutation, useGetProductsQuery } from "@/api/product";
 import { useAppDispatch, useAppSelector } from "@/app/hooks";
 import { add } from "@/slices/Cart";
 import { useEffect } from "react";
 const List = () => {
     const dispatch = useAppDispatch();
-    const { products } = useAppSelector((state: any) => state.products);
-    useEffect(() => {
-        dispatch(fetchProducts());
-    }, []);
-
+    const { data: products, error, isLoading } = useGetProductsQuery();
+    const [ahihi] = useAddProductMutation();
     return (
         <div>
             {products?.map((item: any) => {
@@ -24,13 +22,10 @@ const List = () => {
                     </div>
                 );
             })}
-            <button
-                className="border bg-blue-500 p-2"
-                onClick={() => dispatch(addProduct({ name: "test" }))}
-            >
+            <button className="border bg-blue-500 p-2" onClick={() => ahihi({ name: "test" })}>
                 Add Product
             </button>
-
+            {/* 
             <button
                 className="border bg-blue-500 p-2"
                 onClick={() => dispatch(updateProduct({ name: "test updated", id: 4 }))}
@@ -39,7 +34,7 @@ const List = () => {
             </button>
             <button className="border bg-blue-500 p-2" onClick={() => dispatch(deleteProduct(4))}>
                 Delete Product
-            </button>
+            </button> */}
         </div>
     );
 };

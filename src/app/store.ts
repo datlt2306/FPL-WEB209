@@ -11,7 +11,8 @@ import {
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import { counterReducer } from '../slices/Counter';
-import { productReducer } from '../slices/Product';
+// import { productReducer } from '../slices/Product';
+import productApi, { productReducer } from '@/api/product';
 import { cartReducer } from '@/slices/Cart';
 
 const persistConfig = {
@@ -21,7 +22,7 @@ const persistConfig = {
 }
 const rootReducer = combineReducers({
     counter: counterReducer,
-    products: productReducer,
+    [productApi.reducerPath]: productReducer,
     cart: cartReducer
 })
 const persistedReducer = persistReducer(persistConfig, rootReducer)
@@ -33,7 +34,7 @@ export const store = configureStore({
             serializableCheck: {
                 ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
             },
-        }),
+        }).concat(productApi.middleware),
 });
 export type AppDispatch = typeof store.dispatch
 export type RootState = ReturnType<typeof store.getState>
