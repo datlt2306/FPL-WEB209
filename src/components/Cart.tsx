@@ -1,4 +1,5 @@
 import { useAppDispatch, useAppSelector } from "@/app/hooks";
+import { decrease, increase } from "@/slices/Cart";
 
 const Cart = () => {
     const dispatch = useAppDispatch();
@@ -10,13 +11,13 @@ const Cart = () => {
                     {item?.name} - {item?.quantity} - {item.price * item.quantity}
                     <button
                         className="bg-blue-500 text-white p-2 mx-3"
-                        onClick={() => dispatch({ type: "cart/increase", payload: item.id })}
+                        onClick={() => dispatch(increase(item.id))}
                     >
                         increase
                     </button>
                     <button
                         className="bg-red-500 text-white p-2 mx-3"
-                        onClick={() => dispatch({ type: "cart/decrease", payload: item.id })}
+                        onClick={() => dispatch(decrease(item.id))}
                     >
                         decrease
                     </button>

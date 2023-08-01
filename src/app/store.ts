@@ -1,18 +1,18 @@
-import { configureStore, ThunkAction, Action, combineReducers } from '@reduxjs/toolkit';
+import { Action, ThunkAction, combineReducers, configureStore } from '@reduxjs/toolkit';
 import {
-    persistStore,
-    persistReducer,
     FLUSH,
-    REHYDRATE,
     PAUSE,
     PERSIST,
     PURGE,
     REGISTER,
+    REHYDRATE,
+    persistReducer,
+    persistStore,
 } from 'redux-persist';
-import { counterReducer } from '../slices/Counter'
-import { productReducer } from '../slices/Product'
-import storage from 'redux-persist/lib/storage'
-import cartReducer from '@/reducers[draft]/Cart';
+import storage from 'redux-persist/lib/storage';
+import { counterReducer } from '../slices/Counter';
+import { productReducer } from '../slices/Product';
+import { cartReducer } from '@/slices/Cart';
 
 const persistConfig = {
     key: 'root',

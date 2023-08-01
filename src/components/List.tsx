@@ -1,5 +1,6 @@
 import { addProduct, deleteProduct, fetchProducts, updateProduct } from "@/actions/product";
 import { useAppDispatch, useAppSelector } from "@/app/hooks";
+import { add } from "@/slices/Cart";
 import { useEffect } from "react";
 const List = () => {
     const dispatch = useAppDispatch();
@@ -15,9 +16,7 @@ const List = () => {
                     <div key={item.id}>
                         {item.name}
                         <button
-                            onClick={() =>
-                                dispatch({ type: "cart/add", payload: { ...item, quantity: 1 } })
-                            }
+                            onClick={() => dispatch(add({ ...item, quantity: 1 }))}
                             className="bg-blue-500 text-white p-2"
                         >
                             Add to cart
