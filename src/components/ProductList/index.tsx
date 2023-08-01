@@ -3,16 +3,21 @@ import { useAppDispatch, useAppSelector } from "@/app/hook";
 import { useEffect } from "react";
 import { Button } from "..";
 import { add } from "@/slices/Cart";
+import { useGetProductsQuery } from "@/api/product";
 
 const ProductList = () => {
     const dispatch = useAppDispatch();
-    const { products, isLoading, error } = useAppSelector((state: any) => state.products);
-    useEffect(() => {
-        dispatch(getProducts());
-    }, [dispatch]);
-
+    const { data: products, error, isLoading } = useGetProductsQuery();
     if (isLoading) return <div>Loading...</div>;
-    if (error) return <div>{error}</div>;
+    if (error) {
+        if ("status" in error && "data" in error) {
+            return (
+                <div>
+                    {error.status} - {JSON.stringify(error.data)}
+                </div>
+            );
+        }
+    }
     return (
         <div>
             {products?.map((item: any) => (
