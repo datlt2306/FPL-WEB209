@@ -3,11 +3,16 @@ import { useAppDispatch, useAppSelector } from "@/app/hook";
 import { useEffect } from "react";
 import { Button } from "..";
 import { add } from "@/slices/Cart";
-import { useGetProductsQuery } from "@/api/product";
+import { useAddProductMutation, useGetProductsQuery } from "@/api/product";
 
 const ProductList = () => {
     const dispatch = useAppDispatch();
     const { data: products, error, isLoading } = useGetProductsQuery();
+    const [addProduct, resultAdd] = useAddProductMutation();
+    const [updateProduct, resultUpdate] = useAddProductMutation();
+    const [removeProduct, resultRemove] = useAddProductMutation();
+
+    console.log("result", result);
     if (isLoading) return <div>Loading...</div>;
     if (error) {
         if ("status" in error && "data" in error) {
@@ -35,16 +40,16 @@ const ProductList = () => {
                 </div>
             ))}
             <div className="my-4 flex space-x-4 justify-center">
-                <Button type="primary" onClick={() => dispatch(addProduct({ name: "Product C" }))}>
+                <Button type="primary" onClick={() => addProduct({ name: "Product C" })}>
                     Add
                 </Button>
                 <Button
                     type="primary"
-                    onClick={() => dispatch(updateProduct({ name: "Product C updated", id: 3 }))}
+                    onClick={() => updateProduct({ name: "Product C updated", id: 3 })}
                 >
                     Update
                 </Button>
-                <Button type="danger" onClick={() => dispatch(deleteProduct(3))}>
+                <Button type="danger" onClick={() => removeProduct(3)}>
                     Delete
                 </Button>
             </div>
