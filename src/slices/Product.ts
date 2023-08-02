@@ -30,8 +30,14 @@ const productSlice = createSlice({
             state.isLoading = false;
         })
         // adding - 3 status
+        builder.addCase(addProduct.pending, (state, action) => {
+            state.products.push(action.payload)
+        })
         builder.addCase(addProduct.fulfilled, (state, action) => {
             state.products.push(action.payload)
+        })
+        builder.addCase(addProduct.rejected, (state, action) => {
+            state.isLoading = false;
         })
         // updating
         builder.addCase(updateProduct.fulfilled, (state, action) => {

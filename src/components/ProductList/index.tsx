@@ -1,29 +1,25 @@
 // import { fetchProducts } from "@/actions/product";
-import { useAppDispatch, useAppSelector } from "@/store/hook";
-import { useEffect } from "react";
+import { addProduct, removeProduct } from "@/actions/product";
+import { useGetProductsQuery } from "@/api/product";
+import { add } from "@/slices/Cart";
+import { useAppDispatch } from "@/store/hook";
 import Skeleton from "react-loading-skeleton";
 import { Button } from "..";
-import { addProduct, getProduct, removeProduct, updateProduct } from "@/actions/product";
-import { add } from "@/slices/Cart";
-import {
-    useAddProductMutation,
-    useFetchProductsQuery,
-    useRemoveProductMutation,
-} from "@/api/product";
 
 const ProductList = () => {
     const dispatch = useAppDispatch();
-    // const { products, isLoading, error } = useAppSelector((state: any) => state.products);
 
-    // useEffect(() => {
-    //     dispatch(getProduct());
-    // }, []);
-
-    const { data: products, isLoading, error } = useFetchProductsQuery();
-    const [addProduct] = useAddProductMutation();
-    const [removeProduct] = useRemoveProductMutation();
+    const { data: products, error, isLoading } = useGetProductsQuery();
     if (isLoading) return <Skeleton count={3} height={35} />;
-    if (error) return <div>{error}</div>;
+    if (error) {
+        if ("data" in error && "status" in error) {
+            return (
+                <div>
+                    {error.status} - {JSON.stringify(error.data)}
+                </div>
+            );
+        }
+    }
     return (
         <div>
             {products?.map((item: any) => {
