@@ -8,7 +8,15 @@ const productApi = createApi({
     reducerPath: "products",
     tagTypes: ['Product'],
     baseQuery: fetchBaseQuery({
-        baseUrl: "http://localhost:3000"
+        baseUrl: "http://localhost:3000",
+        // Set token vào header
+        prepareHeaders: (headers) => {
+            const token = localStorage.getItem('token');
+            if (token) {
+                headers.set('Authorization', 'Bearer xxx')
+            }
+            return headers;
+        }
     }),
     endpoints: (builder) => ({
         getProducts: builder.query<IProduct[], void>({
