@@ -7,6 +7,12 @@ const productApi = createApi({
     tagTypes: ['Product'],
     baseQuery: fetchBaseQuery({
         baseUrl: "http://localhost:3000",
+        prepareHeaders: (headers) => {
+            const token = localStorage.getItem("access_token");
+            headers.set("authorization", `Bearer ${token}`)
+            // modify header theo từng request
+            return headers;
+        },
         fetchFn: async (...args) => {
             await pause(1000);
             return fetch(...args);
