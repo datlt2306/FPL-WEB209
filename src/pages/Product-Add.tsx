@@ -23,8 +23,8 @@ const ProductAdd = () => {
         price: number;
     };
     return (
-        <div className="max-w-4xl mx-auto my-5">
-            <h2 className="font-bold text-2xl">Thêm sản phẩm</h2>
+        <div className="max-w-4xl mx-auto">
+            <h2 className="font-bold text-2xl mb-4">Thêm sản phẩm</h2>
             <Form
                 name="basic"
                 labelCol={{ span: 8 }}
@@ -57,6 +57,14 @@ const ProductAdd = () => {
                         ) : (
                             "Submit"
                         )}
+                    </Button>
+                    <Button
+                        type="primary"
+                        danger
+                        className="ml-2"
+                        onClick={() => navigate("/admin/product")}
+                    >
+                        Back
                     </Button>
                 </Form.Item>
             </Form>

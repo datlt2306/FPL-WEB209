@@ -35,8 +35,8 @@ const ProductEdit = () => {
     };
 
     return (
-        <div className="max-w-4xl mx-auto my-5">
-            <h2 className="font-bold text-2xl">Cập nhật sản phẩm : tên sản phẩm</h2>
+        <div className="max-w-4xl mx-auto">
+            <h2 className="font-bold text-2xl mb-4">Cập nhật sản phẩm : tên sản phẩm</h2>
             {isLoading ? (
                 <Skeleton />
             ) : (
@@ -69,6 +69,14 @@ const ProductEdit = () => {
                     <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
                         <Button type="primary" danger htmlType="submit">
                             Submit
+                        </Button>
+                        <Button
+                            type="primary"
+                            danger
+                            className="ml-2"
+                            onClick={() => navigate("/admin/product")}
+                        >
+                            Back
                         </Button>
                     </Form.Item>
                 </Form>

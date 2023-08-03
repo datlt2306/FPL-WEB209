@@ -1,6 +1,7 @@
 import { useGetProductsQuery, useRemoveProductMutation } from "@/api/product";
-import { Button, Skeleton, Table } from "antd";
+import { Button, Skeleton, Table, Popconfirm } from "antd";
 import { Link } from "react-router-dom";
+import { AiOutlineLoading3Quarters } from "react-icons/ai";
 
 const ProductManagement = () => {
     const { data, error, isLoading } = useGetProductsQuery();
@@ -31,7 +32,21 @@ const ProductManagement = () => {
             render: ({ key: id }: any) => {
                 return (
                     <>
-                        <Button onClick={() => removeProduct(id)}>Delete</Button>
+                        <Popconfirm
+                            placement="topLeft"
+                            title={"Are you fucking sure?"}
+                            onConfirm={() => confirm(id)}
+                            okText="Yes"
+                            cancelText="No"
+                        >
+                            <Button>
+                                {isRemoveLoading ? (
+                                    <AiOutlineLoading3Quarters className="animate-spin" />
+                                ) : (
+                                    "Delete"
+                                )}
+                            </Button>
+                        </Popconfirm>
                         <Button type="primary" danger className="ml-2">
                             <Link to={`/admin/product/${id}/edit`}>Edit</Link>
                         </Button>
@@ -40,10 +55,18 @@ const ProductManagement = () => {
             },
         },
     ];
-
+    const confirm = (id) => {
+        removeProduct(id);
+    };
     return (
         <div className="max-w-4xl mx-auto">
-            <h2 className="mb-3">Quản lý Sản phẩm</h2>
+            <div className="flex justify-between items-center mb-4">
+                <h2 className="font-bold text-2xl">Quản lý Sản phẩm</h2>
+                <Button type="primary" danger>
+                    <Link to="/admin/product/add">Thêm sản phẩm</Link>
+                </Button>
+            </div>
+
             <Table dataSource={dataSource} columns={columns} />
         </div>
     );
