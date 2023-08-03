@@ -1,29 +1,23 @@
-import { configureStore, ThunkAction, Action, combineReducers } from "@reduxjs/toolkit"
-import { counterReducer } from '../slices/Counter';
-import { cartReducer } from "@/slices/Cart";
+import { Action, ThunkAction, combineReducers, configureStore } from "@reduxjs/toolkit";
 import {
-    persistStore,
-    persistReducer,
     FLUSH,
-    REHYDRATE,
     PAUSE,
     PERSIST,
     PURGE,
     REGISTER,
+    REHYDRATE,
+    persistReducer,
+    persistStore,
 } from 'redux-persist';
-import storage from 'redux-persist/lib/storage' // defaults to localStorage for web
-import productApi, { productReducer } from "@/api/product";
+import storage from 'redux-persist/lib/storage'; // defaults to localStorage for web
 
 // Cấu hình persist ( lưu localStorage )
 const persistConfig = {
     key: 'root',
     storage,
-    blacklist: ['products', 'counter']
+    whitelist: ['cart']
 }
 const rootReducer = combineReducers({
-    counter: counterReducer,
-    products: productReducer,
-    cart: cartReducer
 })
 const persistedReducer = persistReducer(persistConfig, rootReducer)
 
