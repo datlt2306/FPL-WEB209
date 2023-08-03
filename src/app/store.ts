@@ -1,3 +1,4 @@
+import productApi, { productReducer } from "@/api/product";
 import { Action, ThunkAction, combineReducers, configureStore } from "@reduxjs/toolkit";
 import {
     FLUSH,
@@ -18,6 +19,7 @@ const persistConfig = {
     whitelist: ['cart']
 }
 const rootReducer = combineReducers({
+    [productApi.reducerPath]: productReducer,
 })
 const persistedReducer = persistReducer(persistConfig, rootReducer)
 
