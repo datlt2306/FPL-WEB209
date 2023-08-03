@@ -5,10 +5,4 @@ import App from "./App.tsx";
 import "./index.css";
 import persistor, { store } from "./store";
 
-ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
-    <Provider store={store}>
-        <PersistGate loading={null} persistor={persistor}>
-            <App />
-        </PersistGate>
-    </Provider>
-);
+ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(<App />);

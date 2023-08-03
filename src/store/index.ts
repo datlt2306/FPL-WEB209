@@ -22,9 +22,6 @@ const persistConfig = {
 }
 
 const rootReducer = combineReducers({
-    counter: counterReducer,
-    products: productReducer,
-    cart: cartReducer
 })
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)
