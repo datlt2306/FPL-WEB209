@@ -1,32 +1,24 @@
-import { Navigate, createBrowserRouter, Outlet } from "react-router-dom";
-import ProductList from "./components/ProductList";
+import { createBrowserRouter, Navigate } from "react-router-dom";
+import LayoutAdmin from "./components/layouts/LayoutAdmin";
+import Dashboard from "./pages/admin/dashboard";
+import AdminProduct from "./pages/admin/product";
+import AdminProductAdd from "./pages/admin/product/add";
+import AdminProductEdit from "./pages/admin/product/edit";
 
 export const router = createBrowserRouter([
-    // Định nghĩa route cho website
     {
         path: "/",
-        element: (
-            <div>
-                Layout Website <Outlet />
-            </div>
-        ),
-        children: [
-            { index: true, element: <div>Home Page</div> },
-            { path: "about", element: <div>About Page</div> },
-        ],
+        element: <div>Layout website</div>,
     },
-    // Định nghĩa route cho admin
     {
         path: "/admin",
-        element: (
-            <div>
-                Sidebar admin <Outlet />
-            </div>
-        ),
+        element: <LayoutAdmin />,
         children: [
             { index: true, element: <Navigate to="dashboard" /> },
-            { path: "dashboard", element: <div>Dashboard</div> },
-            { path: "product", element: <ProductList /> },
+            { path: "dashboard", element: <Dashboard /> },
+            { path: "product", element: <AdminProduct /> },
+            { path: "product/add", element: <AdminProductAdd /> },
+            { path: "product/:idProduct/edit", element: <AdminProductEdit /> },
         ],
     },
     { path: "*", element: "Not Found Page" },
