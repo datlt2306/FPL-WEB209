@@ -10,7 +10,6 @@ import {
     persistStore,
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
-import { counterReducer } from '../slices/Counter';
 // import { productReducer } from '../slices/Product';
 import productApi, { productReducer } from '@/api/product';
 import { cartReducer } from '@/slices/Cart';
@@ -18,10 +17,9 @@ import { cartReducer } from '@/slices/Cart';
 const persistConfig = {
     key: 'root',
     storage,
-    blacklist: ['products', 'counter']
+    whitelist: ['cart']
 }
 const rootReducer = combineReducers({
-    counter: counterReducer,
     [productApi.reducerPath]: productReducer,
     cart: cartReducer
 })

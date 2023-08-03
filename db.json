@@ -6,13 +6,29 @@
       "price": 100
     },
     {
-      "name": "D",
       "id": 2,
+      "name": "Product B",
       "price": 200
     },
     {
-      "name": "test",
+      "name": "Sản phẩm C updated 4",
+      "price": "300",
       "id": 3
+    },
+    {
+      "name": "Sản phẩm D",
+      "price": "123",
+      "id": 4
+    },
+    {
+      "name": "Sản phẩm E",
+      "price": "123",
+      "id": 5
+    },
+    {
+      "name": "Sản phẩm F",
+      "price": "123",
+      "id": 6
     }
   ]
 }
