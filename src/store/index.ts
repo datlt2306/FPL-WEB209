@@ -1,7 +1,5 @@
 import productApi, { productReducer } from "@/api/product";
-import { cartReducer } from "@/slices/Cart";
-import { counterReducer } from "@/slices/Counter";
-import { configureStore, ThunkAction, Action, combineReducers } from "@reduxjs/toolkit";
+import { Action, ThunkAction, combineReducers, configureStore } from "@reduxjs/toolkit";
 import {
     FLUSH,
     PAUSE,
@@ -19,9 +17,7 @@ const persistConfig = {
     whitelist: ['cart']
 }
 const rootReducer = combineReducers({
-    counter: counterReducer,
-    cart: cartReducer,
-    products: productReducer
+    [productApi.reducerPath]: productReducer,
 })
 const persistedReducer = persistReducer(persistConfig, rootReducer)
 

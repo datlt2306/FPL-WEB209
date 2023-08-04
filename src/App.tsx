@@ -1,4 +1,3 @@
-import "react-loading-skeleton/dist/skeleton.css";
 import { RouterProvider } from "react-router-dom";
 import { routers } from "./routes";
 

@@ -1,27 +1,22 @@
-import { Navigate, Outlet, createBrowserRouter } from "react-router-dom";
-import LayoutWebsite from "./layouts/LayoutWebsite";
-import LayoutAdmin from "./layouts/LayoutAdmin";
-import ProductList from "./components/ProductList";
+import { createBrowserRouter } from "react-router-dom";
+import LayoutWebsite from "./components/layouts/LayoutWebsite";
+import LayoutAdmin from "./components/layouts/LayoutAdmin";
+import { Navigate } from "react-router-dom";
+import AdminProduct from "./pages/admin/product";
+import AdminProductAdd from "./pages/admin/product/add";
+import AdminProductEdit from "./pages/admin/product/edit";
 
 export const routers = createBrowserRouter([
-    // layout webiste
+    { path: "/", element: <LayoutWebsite /> },
     {
-        path: "/",
-        element: <LayoutWebsite />,
-        children: [
-            { index: true, element: <div>Home Page</div> },
-            { path: "about", element: <div>About page</div> },
-            { path: "products", element: <ProductList /> },
-        ],
-    },
-    {
-        path: "/admin", // redirect /admin/dashboard
+        path: "/admin",
         element: <LayoutAdmin />,
         children: [
             { index: true, element: <Navigate to="dashboard" /> },
-            { path: "dashboard", element: <div>Dashboard page</div> },
-            { path: "products", element: <div>Product Management page</div> },
+            { path: "dashboard", element: <div>Dashboard</div> },
+            { path: "product", element: <AdminProduct /> },
+            { path: "product/add", element: <AdminProductAdd /> },
+            { path: "product/:idProduct/edit", element: <AdminProductEdit /> },
         ],
     },
-    { path: "*", element: <div>Not Found Page</div> },
 ]);

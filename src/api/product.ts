@@ -1,31 +1,33 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/dist/query/react';
-interface IProduct {
-    id?: number,
-    name: string,
-    price: number;
-}
+import { IProduct } from '@/interfaces/product';
+import { pause } from '@/utils/pause';
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+
 const productApi = createApi({
-    reducerPath: "products",
+    reducerPath: "product",
     tagTypes: ['Product'],
     baseQuery: fetchBaseQuery({
-        baseUrl: "http://localhost:3000",
-        // Set token vào header
-        prepareHeaders: (headers) => {
-            const token = localStorage.getItem('token');
-            if (token) {
-                headers.set('Authorization', 'Bearer xxx')
-            }
-            return headers;
+        baseUrl: import.meta.env.VITE_API_URL,
+        fetchFn: async (...args) => {
+            await pause(1000);
+            return fetch(...args)
         }
     }),
     endpoints: (builder) => ({
+        //actions
         getProducts: builder.query<IProduct[], void>({
             query: () => `/products`,
-            providesTags: ['Product'],
+            providesTags: ['Product']
         }),
-        getProductById: builder.query<IProduct, number>({
+        getProductById: builder.query<IProduct, number | string>({
             query: (id) => `/products/${id}`,
-            providesTags: ['Product'],
+            providesTags: ['Product']
+        }),
+        removeProduct: builder.mutation<void, number | string>({
+            query: (id) => ({
+                url: `/products/${id}`,
+                method: "DELETE"
+            }),
+            invalidatesTags: ['Product']
         }),
         addProduct: builder.mutation<IProduct, IProduct>({
             query: (product) => ({
@@ -33,7 +35,7 @@ const productApi = createApi({
                 method: "POST",
                 body: product
             }),
-            invalidatesTags: ['Product'],
+            invalidatesTags: ['Product']
         }),
         updateProduct: builder.mutation<IProduct, IProduct>({
             query: (product) => ({
@@ -41,24 +43,16 @@ const productApi = createApi({
                 method: "PATCH",
                 body: product
             }),
-            invalidatesTags: ['Product'],
-        }),
-        removeProduct: builder.mutation<IProduct, number>({
-            query: (id) => ({
-                url: `/products/${id}`,
-                method: "DELETE"
-            }),
-            invalidatesTags: ['Product'],
+            invalidatesTags: ['Product']
         })
     })
 });
-
 export const {
     useGetProductsQuery,
-    useGetProductByIdQuery,
     useAddProductMutation,
-    useUpdateProductMutation,
+    useGetProductByIdQuery,
     useRemoveProductMutation,
+    useUpdateProductMutation
 } = productApi;
 export const productReducer = productApi.reducer;
 export default productApi;
