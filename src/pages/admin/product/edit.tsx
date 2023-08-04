@@ -4,6 +4,7 @@ import {
     useUpdateProductMutation,
 } from "@/api/product";
 import { Button, Form, Input, Skeleton, message } from "antd";
+import { useEffect } from "react";
 import { AiOutlineLoading } from "react-icons/ai";
 import { useNavigate, useParams } from "react-router-dom";
 
@@ -23,7 +24,9 @@ const AdminProductEdit = () => {
     const [updateProduct, { isLoading: isUpdateLoading }] = useUpdateProductMutation();
 
     // Đồng bộ sản phẩm từ API vào form
-    form.setFieldsValue(productData);
+    useEffect(() => {
+        form.setFieldsValue(productData);
+    }, [productData]);
     const onFinish = (values: any) => {
         updateProduct({ ...values, id: idProduct })
             .unwrap()
