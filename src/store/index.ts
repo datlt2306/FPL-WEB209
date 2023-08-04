@@ -1,6 +1,4 @@
 import productApi, { productReducer } from '@/api/product';
-import { cartReducer } from '@/slices/Cart';
-import { counterReducer } from '@/slices/Counter';
 import { Action, ThunkAction, combineReducers, configureStore } from '@reduxjs/toolkit';
 import {
     FLUSH,
@@ -22,8 +20,6 @@ const persistConfig = {
 }
 const rootReducer = combineReducers({
     products: productReducer,
-    counter: counterReducer,
-    cart: cartReducer
 })
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)

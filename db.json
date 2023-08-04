@@ -2,18 +2,14 @@
   "users": [],
   "products": [
     {
-      "id": 1,
-      "name": "Product A",
-      "price": 100
+      "name": "Sản phẩm 1",
+      "price": "100",
+      "id": 1
     },
     {
-      "id": 2,
-      "name": "Product B",
-      "price": 200
-    },
-    {
-      "name": "Product Added 1",
-      "id": 3
+      "name": "Sản phẩm 2 updated",
+      "price": "200",
+      "id": 2
     }
   ]
 }
