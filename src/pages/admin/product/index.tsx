@@ -1,11 +1,14 @@
 import { useGetProductsQuery, useRemoveProductMutation } from "@/api/product";
 import { IProduct } from "@/interfaces/product";
 import { Button, Table, Skeleton, Popconfirm, message } from "antd";
+import { useState } from "react";
+import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import { Link } from "react-router-dom";
 type Props = {};
 
 const AdminProduct = (props: Props) => {
     const [messageApi, contextHolder] = message.useMessage();
+    const [removeLoadingMap, setRemoveLoadingMap] = useState<Record<number | string, boolean>>({});
 
     const { data: productsData, isLoading: isProductLoading } = useGetProductsQuery();
     const [removeProduct, { isLoading: isRemoveLoading }] = useRemoveProductMutation();
@@ -16,6 +19,8 @@ const AdminProduct = (props: Props) => {
     }));
 
     const confirm = (id: number | string) => {
+        setRemoveLoadingMap((prevMap) => ({ ...prevMap, [id]: true }));
+
         removeProduct(id)
             .unwrap()
             .then(() => {
@@ -23,6 +28,7 @@ const AdminProduct = (props: Props) => {
                     type: "success",
                     content: "Xóa thành công!",
                 });
+                setRemoveLoadingMap((prevMap) => ({ ...prevMap, [id]: false }));
             });
     };
     const columns = [
@@ -48,7 +54,11 @@ const AdminProduct = (props: Props) => {
                         cancelText="No"
                     >
                         <Button type="primary" danger>
-                            Xóa
+                            {removeLoadingMap[id] && isRemoveLoading ? (
+                                <AiOutlineLoading3Quarters className="animate-spin" />
+                            ) : (
+                                "Xóa"
+                            )}
                         </Button>
                     </Popconfirm>
                     <Button>
