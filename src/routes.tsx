@@ -1,14 +1,24 @@
-import { createBrowserRouter, Navigate } from "react-router-dom";
+import { createBrowserRouter, Navigate, Outlet } from "react-router-dom";
 import LayoutAdmin from "./components/layouts/LayoutAdmin";
 import Dashboard from "./pages/admin/dashboard";
 import AdminProduct from "./pages/admin/product";
 import AdminProductAdd from "./pages/admin/product/add";
 import AdminProductEdit from "./pages/admin/product/edit";
+import Signup from "./pages/auth/signup";
+import Signin from "./pages/auth/signin";
 
 export const router = createBrowserRouter([
     {
         path: "/",
-        element: <div>Layout website</div>,
+        element: (
+            <div>
+                Layout website <Outlet />
+            </div>
+        ),
+        children: [
+            { path: "signup", element: <Signup /> },
+            { path: "signin", element: <Signin /> },
+        ],
     },
     {
         path: "/admin",
