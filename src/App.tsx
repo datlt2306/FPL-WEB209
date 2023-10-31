@@ -1,21 +1,33 @@
+import { useState } from 'react'
 import './App.css'
-type HelloProps = {
+const dataFake = [
+    { id: 1, name: 'Product A', price: 100 },
+    { id: 2, name: 'Product A', price: 100 },
+    { id: 3, name: 'Product A', price: 100 }
+]
+type Product = {
+    id: number
     name: string
-    onHandleClick: (name: string) => void
+    price: number
 }
-function Hello({ name, onHandleClick }: HelloProps) {
+type ProductListProps = {
+    products: Product[]
+}
+const ProductList = ({ products }: ProductListProps) => {
+    if (!products) return <>Không có sản phẩm nào</>
     return (
         <>
-            {name}
-            <button onClick={() => onHandleClick('Kien')}>Click</button>
+            {products.map((item, index) => (
+                <div key={index}>{item.name}</div>
+            ))}
         </>
     )
 }
-
 function App() {
+    const [products] = useState<Product[]>(dataFake)
     return (
         <>
-            <Hello name='Dat' onHandleClick={(name: string) => console.log(name)} />
+            <ProductList products={products} />
         </>
     )
 }
