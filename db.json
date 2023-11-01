@@ -1,8 +1,38 @@
 {
-    "products": [
-        { "id": 1, "name": "product A", "price": 200 },
-        { "id": 2, "name": "product B", "price": 300 },
-        { "id": 3, "name": "product C", "price": 400 }
-    ],
-    "users": []
+  "products": [
+    {
+      "id": 1,
+      "name": "product A",
+      "price": 200
+    },
+    {
+      "id": 2,
+      "name": "product B",
+      "price": 300
+    },
+    {
+      "id": 3,
+      "name": "product C",
+      "price": 400
+    },
+    {
+      "name": "Product D",
+      "price": "200",
+      "id": 4
+    },
+    {
+      "name": "product E",
+      "price": "300",
+      "id": 5
+    }
+  ],
+  "users": [
+    {
+      "email": "admin@gmail.com",
+      "password": "$2a$10$wKFO7MldX5VnvDXN3dJjqeZvWD9/sPVA7wd7EYB7.u5h/QAM5tIkS",
+      "name": "",
+      "price": 0,
+      "id": 1
+    }
+  ]
 }
