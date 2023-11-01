@@ -1,7 +1,33 @@
 {
-    "products": [
-        { "id": 1, "name": "product A" },
-        { "id": 2, "name": "product B" },
-        { "id": 3, "name": "product C" }
-    ]
+  "products": [
+    {
+      "id": 1,
+      "name": "product A"
+    },
+    {
+      "id": 2,
+      "name": "product B"
+    },
+    {
+      "id": 3,
+      "name": "product C"
+    },
+    {
+      "name": "Sản phẩm D",
+      "price": "123",
+      "id": 4
+    }
+  ],
+  "users": [
+    {
+      "email": "admin@gmail.com",
+      "password": "$2a$10$48vdQGSAOIh2txZFKeRDaOW2tVxBwSO/IaTRUk8h.y15KS8ohlUoa",
+      "id": 1
+    },
+    {
+      "email": "member@gmail.com",
+      "password": "$2a$10$k0HwN92zhkLUrS8pZ.L0VOGC0Kz/hlmKhADRZBRJcAUo434sVvwpe",
+      "id": 2
+    }
+  ]
 }
