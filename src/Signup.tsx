@@ -1,11 +1,9 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { IProduct } from './interfaces/Product'
+import { ProductContext } from './context/Product'
 
-type SignupProps = {
-    onSignup: (product: IProduct) => void
-}
-
-const Signup = ({ onSignup }: SignupProps) => {
+const Signup = () => {
+    const { onHanldeSignup } = useContext(ProductContext)
     const [valueInput, setValueInput] = useState<IProduct>({ name: '', price: 0 })
 
     const onHandleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -18,7 +16,7 @@ const Signup = ({ onSignup }: SignupProps) => {
     const onSubmit = (e: any) => {
         e.preventDefault()
         if (valueInput) {
-            onSignup(valueInput)
+            onHanldeSignup(valueInput)
         }
     }
     return (

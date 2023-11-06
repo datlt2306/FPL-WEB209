@@ -1,18 +1,15 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { IProduct } from '../interfaces/Product'
+import { ProductContext } from '../context/Product'
 
-type ListProps = {
-    products: IProduct[]
-    onGetProduct: (id: number) => void
-}
-
-const List = ({ products, onGetProduct }: ListProps) => {
+const List = () => {
+    const { products, onHandleGetProduct } = useContext(ProductContext)
     return (
         <div>
             <h2>Danh sách</h2>
-            {products?.map((product, index) => (
+            {products?.map((product: IProduct, index: number) => (
                 <div key={index}>
-                    {product.name} - <button onClick={() => onGetProduct(product.id!)}>Sửa</button>
+                    {product.name} - <button onClick={() => onHandleGetProduct(product.id!)}>Sửa</button>
                 </div>
             ))}
         </div>

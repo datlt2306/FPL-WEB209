@@ -1,12 +1,9 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { IProduct } from '../interfaces/Product'
+import { ProductContext } from '../context/Product'
 
-type EditProps = {
-    product: IProduct
-    onEdit: (product: IProduct) => void
-}
-
-const Edit = ({ onEdit, product }: EditProps) => {
+const Edit = () => {
+    const { onHandleEdit, product } = useContext(ProductContext)
     const [valueInput, setValueInput] = useState<IProduct | {}>({})
 
     const onHandleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -18,7 +15,7 @@ const Edit = ({ onEdit, product }: EditProps) => {
     }
     const onSubmit = (e: any) => {
         e.preventDefault()
-        onEdit({ ...product, ...valueInput })
+        onHandleEdit({ ...product, ...valueInput })
     }
     return (
         <div>

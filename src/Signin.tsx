@@ -1,11 +1,9 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { IProduct } from './interfaces/Product'
+import { ProductContext } from './context/Product'
 
-type SigninProps = {
-    onSignin: (user: any) => void
-}
-
-const Signin = ({ onSignin }: SigninProps) => {
+const Signin = () => {
+    const { onHandleSignin } = useContext(ProductContext)
     const [valueInput, setValueInput] = useState<IProduct>({ name: '', price: 0 })
 
     const onHandleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -18,7 +16,7 @@ const Signin = ({ onSignin }: SigninProps) => {
     const onSubmit = (e: any) => {
         e.preventDefault()
         if (valueInput) {
-            onSignin(valueInput)
+            onHandleSignin(valueInput)
         }
     }
     return (

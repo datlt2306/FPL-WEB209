@@ -29,6 +29,11 @@
       "name": "Product 6 update",
       "price": 0,
       "id": 6
+    },
+    {
+      "name": "Sản phẩm mới updated",
+      "price": "300",
+      "id": 7
     }
   ],
   "users": [

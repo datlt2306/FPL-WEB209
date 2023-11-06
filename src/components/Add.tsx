@@ -1,13 +1,11 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { IProduct } from '../interfaces/Product'
+import Demo from './Demo'
+import { ProductContext } from '../context/Product'
 
-type AddProps = {
-    onAdd: (product: IProduct) => void
-}
-
-const Add = ({ onAdd }: AddProps) => {
+const Add = () => {
+    const { onHandleAdd } = useContext(ProductContext)
     const [valueInput, setValueInput] = useState<IProduct>({ name: '', price: 0 })
-
     const onHandleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target
         setValueInput({
@@ -18,7 +16,7 @@ const Add = ({ onAdd }: AddProps) => {
     const onSubmit = (e: any) => {
         e.preventDefault()
         if (valueInput) {
-            onAdd(valueInput)
+            onHandleAdd(valueInput)
         }
     }
     return (
@@ -30,6 +28,7 @@ const Add = ({ onAdd }: AddProps) => {
                 <input type='number' name='price' placeholder='Price' onInput={onHandleInput} />
                 <button>Thêm</button>
             </form>
+            <Demo />
         </div>
     )
 }
