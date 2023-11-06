@@ -21,6 +21,7 @@ const Signup = ({ onSignup }: SignupProps) => {
     }
     return (
         <div>
+            <h2>Đăng ký</h2>
             <form onSubmit={onSubmit}>
                 <input type='text' name='email' onChange={onChange} />
                 <input type='number' name='password' onChange={onChange} />

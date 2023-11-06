@@ -5,25 +5,26 @@ type AddProps = {
 }
 
 const Add = ({ onAdd }: AddProps) => {
-    const [value, setValue] = useState({})
+    const [valueInput, setValueInput] = useState({})
     const onChange = (e: any) => {
         const target = e.target
         const name = target.name
 
-        setValue({
-            ...value,
+        setValueInput({
+            ...valueInput,
             [name]: target.value
         })
     }
     const onSubmit = (e: any) => {
         e.preventDefault()
-        onAdd(value)
+        onAdd(valueInput)
     }
     return (
         <div>
+            <h2>Thêm sản phẩm</h2>
             <form onSubmit={onSubmit}>
-                <input type='text' name='name' onChange={onChange} />
-                <input type='number' name='price' onChange={onChange} />
+                <input type='text' name='name' onInput={onChange} />
+                <input type='number' name='price' onInput={onChange} />
                 <button>Submit</button>
             </form>
         </div>

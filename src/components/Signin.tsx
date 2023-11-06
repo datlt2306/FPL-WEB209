@@ -21,6 +21,7 @@ const Signin = ({ onSignin }: SigninProps) => {
     }
     return (
         <div>
+            <h2>Đăng nhập</h2>
             <form onSubmit={onSubmit}>
                 <input type='text' name='email' onChange={onChange} />
                 <input type='number' name='password' onChange={onChange} />

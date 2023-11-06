@@ -13,9 +13,19 @@
       "name": "product C"
     },
     {
-      "name": "Sản phẩm D",
+      "name": "Sản phẩm D update",
       "price": "123",
       "id": 4
+    },
+    {
+      "name": "Sản phẩm E update",
+      "price": "200",
+      "id": 5
+    },
+    {
+      "name": "Sản phẩm F update",
+      "price": "200",
+      "id": 6
     }
   ],
   "users": [
