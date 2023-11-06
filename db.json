@@ -7,23 +7,28 @@
     },
     {
       "id": 2,
-      "name": "product B",
+      "name": "product B update",
       "price": 300
     },
     {
       "id": 3,
-      "name": "product C",
+      "name": "product C update lần 2",
       "price": 400
     },
     {
-      "name": "Product D",
+      "name": "Product D ahihi",
       "price": "200",
       "id": 4
     },
     {
-      "name": "product E",
+      "name": "product E update",
       "price": "300",
       "id": 5
+    },
+    {
+      "name": "Product 6 update",
+      "price": 0,
+      "id": 6
     }
   ],
   "users": [

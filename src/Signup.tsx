@@ -23,6 +23,7 @@ const Signup = ({ onSignup }: SignupProps) => {
     }
     return (
         <div>
+            <h2>Đăng ký</h2>
             {JSON.stringify(valueInput)}
             <form onSubmit={onSubmit}>
                 <input type='email' name='email' placeholder='Email' onInput={onHandleInput} />

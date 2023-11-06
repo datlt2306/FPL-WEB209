@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { IProduct } from './interfaces/Product'
+import { IProduct } from '../interfaces/Product'
 
 type AddProps = {
     onAdd: (product: IProduct) => void
@@ -23,6 +23,7 @@ const Add = ({ onAdd }: AddProps) => {
     }
     return (
         <div>
+            <h2>Thêm sản phẩm</h2>
             {JSON.stringify(valueInput)}
             <form onSubmit={onSubmit}>
                 <input type='text' name='name' placeholder='Name' onInput={onHandleInput} />
