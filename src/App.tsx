@@ -5,10 +5,12 @@ import { IProduct } from './interfaces/Product'
 import Signup from './components/Signup'
 import Signin from './components/Signin'
 import Edit from './components/Edit'
+import { ProductContext } from './context/product'
+import List from './components/List'
 
 function App() {
     const [products, setProducts] = useState<IProduct[]>([])
-    const [product, setProduct] = useState<IProduct>({})
+    const [product, setProduct] = useState<IProduct | null>(null)
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState('')
 
@@ -92,22 +94,17 @@ function App() {
     }
     return (
         <>
-            {products?.map((product: any, index) => (
-                <div key={index}>
-                    {product.name}{' '}
-                    <button onClick={() => getProduct(product.id!)} style={{ marginLeft: 10 }}>
-                        Sửa
-                    </button>
-                </div>
-            ))}
-            <hr />
-            <Add onAdd={onHandleAdd} />
-            <hr />
-            <Edit product={product} onEdit={onHandleEdit} />
-            <hr />
-            <Signup onSignup={onHandleSignup} />
-            <hr />
-            <Signin onSignin={onHandleSignin} />
+            <ProductContext.Provider value={products}>
+                <List />
+                <hr />
+                <Add onAdd={onHandleAdd} />
+                <hr />
+                {/* <Edit onEdit={onHandleEdit} /> */}
+                <hr />
+                <Signup onSignup={onHandleSignup} />
+                <hr />
+                <Signin onSignin={onHandleSignin} />
+            </ProductContext.Provider>
         </>
     )
 }
