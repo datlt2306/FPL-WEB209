@@ -1,10 +1,8 @@
-import React, { useState } from 'react'
+import { useContext, useState } from 'react'
+import { ProductContext } from '../context/product'
 
-type SignupProps = {
-    onSignup: (product: any) => void
-}
-
-const Signup = ({ onSignup }: SignupProps) => {
+const Signup = () => {
+    const { onSignup } = useContext(ProductContext)
     const [value, setValue] = useState({})
     const onChange = (e: any) => {
         const target = e.target

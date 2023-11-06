@@ -1,10 +1,8 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
+import { ProductContext } from '../context/product'
 
-type AddProps = {
-    onAdd: (product: any) => void
-}
-
-const Add = ({ onAdd }: AddProps) => {
+const Add = () => {
+    const { onHandleAdd } = useContext(ProductContext)
     const [valueInput, setValueInput] = useState({})
     const onChange = (e: any) => {
         const target = e.target
@@ -17,7 +15,7 @@ const Add = ({ onAdd }: AddProps) => {
     }
     const onSubmit = (e: any) => {
         e.preventDefault()
-        onAdd(valueInput)
+        onHandleAdd(valueInput)
     }
     return (
         <div>

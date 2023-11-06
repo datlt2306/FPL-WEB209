@@ -1,11 +1,9 @@
-import React, { useState } from 'react'
+import { useContext, useState } from 'react'
+import { ProductContext } from '../context/product'
 
-type SigninProps = {
-    onSignin: (product: any) => void
-}
-
-const Signin = ({ onSignin }: SigninProps) => {
-    const [value, setValue] = useState({})
+const Signin = () => {
+    const { onHandleSignin } = useContext(ProductContext)
+    const [value, setValue] = useState()
     const onChange = (e: any) => {
         const target = e.target
         const name = target.name
@@ -17,7 +15,7 @@ const Signin = ({ onSignin }: SigninProps) => {
     }
     const onSubmit = (e: any) => {
         e.preventDefault()
-        onSignin(value)
+        onHandleSignin(value)
     }
     return (
         <div>

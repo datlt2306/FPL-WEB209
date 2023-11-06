@@ -26,6 +26,11 @@
       "name": "Sản phẩm F update",
       "price": "200",
       "id": 6
+    },
+    {
+      "name": "sanr phaarm tesst",
+      "price": "123131",
+      "id": 7
     }
   ],
   "users": [

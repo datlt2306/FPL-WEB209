@@ -4,7 +4,7 @@ import { ProductContext } from '../context/product'
 type Props = {}
 
 const List = () => {
-    const products = useContext(ProductContext)
+    const { products } = useContext(ProductContext)
     return (
         <div>
             {products?.map((product: any, index) => (
