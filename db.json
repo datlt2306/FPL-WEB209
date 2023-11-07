@@ -16,9 +16,28 @@
       "price": 100
     },
     {
-      "name": "san pham moi 1",
+      "name": "san pham moi 1 update",
       "price": "200",
       "id": 4
+    },
+    {
+      "name": "San pha moi 2 update",
+      "price": "23",
+      "id": 5
+    },
+    {
+      "name": "San pham moi 3 update",
+      "price": "200",
+      "id": 6
+    }
+  ],
+  "users": [
+    {
+      "email": "admin@gmail.com",
+      "password": "$2a$10$9cCP3qcV6YTlxTQAAHNl5.vwZjSi25zrcAMXd6kx7JjbnBq7mrkLG",
+      "name": "",
+      "price": 0,
+      "id": 1
     }
   ]
 }
