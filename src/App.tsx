@@ -1,30 +1,16 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import './App.css'
-const dataFake = [
-    { id: 1, name: 'Product A', price: 100 },
-    { id: 2, name: 'Product A', price: 100 },
-    { id: 3, name: 'Product A', price: 100 }
-]
-type Product = {
-    id: number
-    name: string
-    price: number
-}
-type ProductListProps = {
-    products: Product[]
-}
-const ProductList = ({ products }: ProductListProps) => {
-    if (!products) return <>Không có sản phẩm nào</>
-    return (
-        <>
-            {products.map((item, index) => (
-                <div key={index}>{item.name}</div>
-            ))}
-        </>
-    )
-}
+import ProductList from './components/ProductList'
+import { IProduct } from './interfaces/Product'
+
 function App() {
-    const [products] = useState<Product[]>(dataFake)
+    const [products, setProducts] = useState<IProduct[]>([])
+
+    useEffect(() => {
+        fetch(`http://localhost:3000/products`)
+            .then((response) => response.json())
+            .then((data) => setProducts(data))
+    }, [])
     return (
         <>
             <ProductList products={products} />

@@ -5,6 +5,7 @@
     "type": "module",
     "scripts": {
         "dev": "vite",
+        "server": "json-server-auth --watch db.json",
         "build": "tsc && vite build",
         "preview": "vite preview",
         "lint": "eslint --ext js,jsx,ts,tsx src/",
