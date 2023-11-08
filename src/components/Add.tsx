@@ -4,7 +4,7 @@ import Demo from './Demo'
 import { ProductContext } from '../context/Product'
 
 const Add = () => {
-    const { onHandleAdd } = useContext(ProductContext)
+    const { state, dispatch } = useContext(ProductContext)
     const [valueInput, setValueInput] = useState<IProduct>({ name: '', price: 0 })
     const onHandleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target
@@ -13,11 +13,20 @@ const Add = () => {
             [name]: value
         })
     }
-    const onSubmit = (e: any) => {
+    const onSubmit = async (e: any) => {
         e.preventDefault()
-        if (valueInput) {
-            onHandleAdd(valueInput)
-        }
+        try {
+            const data = await (
+                await fetch(`http://localhost:3000/products`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(valueInput)
+                })
+            ).json()
+            dispatch({ type: 'ADD_PRODUCT', payload: data })
+        } catch (error) {}
     }
     return (
         <div>

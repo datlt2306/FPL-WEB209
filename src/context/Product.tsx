@@ -1,121 +1,57 @@
-import { createContext, useEffect, useState } from 'react'
+import { createContext, useReducer } from 'react'
 import { IProduct } from '../interfaces/Product'
 
 export const ProductContext = createContext([] as any)
-
-const ProductContextProvider = ({ children }: any) => {
-    const [products, setProducts] = useState<IProduct[]>([])
-    const [product, setProduct] = useState<IProduct | {}>({})
-    const [isLoading, setIsLoading] = useState<boolean>(false)
-    const [error, setError] = useState<string>('')
-
-    useEffect(() => {
-        ;(async () => {
-            try {
-                setIsLoading(true)
-                const data = await (await fetch(`http://localhost:3000/products`)).json()
-                setProducts(data)
-            } catch (error) {
-                console.log('[GET_PRODUCTS_ERROR]', error)
-                setError((error as Error).message)
-            } finally {
-                setIsLoading(false)
+const initialState = {
+    products: [],
+    product: {}
+}
+const reducer = (state: any, action: any) => {
+    switch (action.type) {
+        case 'GET_PRODUCTS':
+            return {
+                ...state,
+                products: action.payload
             }
-        })()
-    }, [])
-
-    if (error) return <div>{error}</div>
-    if (isLoading) return <div>Loading...</div>
-
-    const onHandleAdd = (product: IProduct) => {
-        try {
-            ;(async () => {
-                const data = await (
-                    await fetch(`http://localhost:3000/products`, {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify(product)
-                    })
-                ).json()
-                setProducts((prev) => [...prev, data])
-            })()
-        } catch (error) {}
+        case 'ADD_PRODUCT':
+            return {
+                ...state,
+                products: [...state.products, action.payload]
+            }
+        case 'GET_PRODUCT':
+            const id = action.payload
+            return {
+                ...state,
+                product: state.products.find((product: IProduct) => product.id === id)
+            }
+        case 'UPDATE_PRODUCT':
+            const newProduct = action.payload
+            return {
+                ...state,
+                products: state.products.map((product: IProduct) =>
+                    product.id === newProduct.id ? newProduct : product
+                )
+            }
+        case 'DELETE_PRODUCT':
+            const productId = action.payload
+            const confirm = window.confirm('Bạn có chắc muốn xóa sản phẩm này không?')
+            if (!confirm) return state
+            return {
+                ...state,
+                products: state.products.filter((product: IProduct) => product.id !== productId)
+            }
+        default:
+            return state
     }
-    const onHandleEdit = (product: IProduct) => {
-        try {
-            ;(async () => {
-                const newProduct = await (
-                    await fetch(`http://localhost:3000/products/${product.id}`, {
-                        method: 'PATCH',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify(product)
-                    })
-                ).json()
-                // Rerender
-                setProducts(products.map((product) => (product.id === newProduct.id ? newProduct : product)))
-            })()
-        } catch (error) {}
-    }
-    const onHandleSignup = (user: any) => {
-        try {
-            ;(async () => {
-                const data = await (
-                    await fetch(`http://localhost:3000/register`, {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify(user)
-                    })
-                ).json()
-                console.log(data)
-            })()
-        } catch (error) {}
-    }
-    const onHandleSignin = (user: any) => {
-        try {
-            ;(async () => {
-                const data = await (
-                    await fetch(`http://localhost:3000/signin`, {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify(user)
-                    })
-                ).json()
-                console.log(data)
-            })()
-        } catch (error) {}
-    }
-    const onHandleGetProduct = async (id: number) => {
-        try {
-            setIsLoading(true)
-            const data = await (await fetch(`http://localhost:3000/products/${id}`)).json()
-            setProduct(data)
-        } catch (error) {
-            console.log('[GET_PRODUCT_ERROR]', error)
-            setError((error as Error).message)
-        } finally {
-            setIsLoading(false)
-        }
-    }
-
+}
+const ProductContextProvider = ({ children }: any) => {
+    const [state, dispatch] = useReducer(reducer, initialState)
     return (
         <>
             <ProductContext.Provider
                 value={{
-                    products,
-                    product,
-                    onHandleAdd,
-                    onHandleGetProduct,
-                    onHandleEdit,
-                    onHandleSignin,
-                    onHandleSignup
+                    state,
+                    dispatch
                 }}
             >
                 {children}

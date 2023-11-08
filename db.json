@@ -34,6 +34,11 @@
       "name": "Sản phẩm mới updated",
       "price": "300",
       "id": 7
+    },
+    {
+      "name": "Sản phẩm mới 1 update",
+      "price": "200",
+      "id": 8
     }
   ],
   "users": [
