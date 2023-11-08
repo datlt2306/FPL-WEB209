@@ -1,109 +1,46 @@
-import React, { useEffect, useState } from 'react'
-import { IProduct } from '../interfaces/Product'
+import React, { useReducer } from 'react'
 
 export const ProductContext = React.createContext({} as any)
 
-const ProductContextProvider = ({ children }: { children: React.ReactNode }) => {
-    const [products, setProducts] = useState<IProduct[]>([])
-    const [product, setProduct] = useState<IProduct | null>(null)
-    const [loading, setLoading] = useState(true)
-    const [error, setError] = useState('')
-
-    useEffect(() => {
-        ;(async () => {
-            try {
-                setLoading(true)
-                const data = await (await fetch('http://localhost:3000/products')).json()
-                setProducts(data)
-            } catch (error) {
-                setError((error as Error).message)
-            } finally {
-                setLoading(false)
+const reducer = (state: any, action: any) => {
+    switch (action.type) {
+        case 'GET_PRODUCT':
+            const id = action.payload
+            return {
+                ...state,
+                product: state.products.find((product: any) => product.id === id)
             }
-        })()
-    }, [])
-    if (error) return <div>{error}</div>
-    if (loading) return <div>...loading</div>
-    const onHandleAdd = async (product: IProduct) => {
-        try {
-            await (
-                await fetch(`http://localhost:3000/products`, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(product)
-                })
-            ).json()
-            // rerender
-            setProducts([...products, product])
-        } catch (error) {}
+        case 'FETCH_PRODUCTS':
+            return {
+                ...state,
+                products: action.payload
+            }
+        case 'ADD_PRODUCT':
+            return {
+                ...state,
+                products: [...state.products, action.payload]
+            }
+        case 'EDIT_PRODUCT':
+            const newProduct = action.payload
+            return {
+                ...state,
+                products: state.products.map((product: any) => (product.id === newProduct.id ? newProduct : product))
+            }
+        default:
+            return state
     }
-    const onHandleEdit = async (product: IProduct) => {
-        try {
-            const newProduct = await (
-                await fetch(`http://localhost:3000/products/${product.id}`, {
-                    method: 'PATCH',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(product)
-                })
-            ).json()
-            // rerender
-            setProducts(products.map((product) => (product.id === newProduct.id ? newProduct : product)))
-        } catch (error) {}
-    }
-    const onHandleSignup = async (user: any) => {
-        try {
-            const data = await (
-                await fetch(`http://localhost:3000/register`, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(user)
-                })
-            ).json()
-            console.log(data)
-        } catch (error) {}
-    }
-    const onHandleSignin = async (user: any) => {
-        try {
-            const data = await (
-                await fetch(`http://localhost:3000/signin`, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(user)
-                })
-            ).json()
-            console.log(data)
-        } catch (error) {}
-    }
-    const getProduct = async (id: number) => {
-        try {
-            setProduct(await (await fetch(`http://localhost:3000/products/${id}`)).json())
-        } catch (error) {}
-    }
+}
 
+const ProductContextProvider = ({ children }: { children: React.ReactNode }) => {
+    const [state, dispatch] = useReducer(reducer, {
+        products: [],
+        product: {},
+        isLoading: false,
+        error: ''
+    })
     return (
         <>
-            <ProductContext.Provider
-                value={{
-                    products,
-                    setProducts,
-                    product,
-                    getProduct,
-                    onHandleSignin,
-                    onHandleSignup,
-                    onHandleEdit,
-                    onHandleAdd
-                }}
-            >
-                {children}
-            </ProductContext.Provider>
+            <ProductContext.Provider value={{ state, dispatch }}>{children}</ProductContext.Provider>
         </>
     )
 }

@@ -2,7 +2,8 @@ import React, { useContext, useState } from 'react'
 import { ProductContext } from '../context/product'
 
 const Add = () => {
-    const { onHandleAdd } = useContext(ProductContext)
+    const { state, dispatch } = useContext(ProductContext)
+
     const [valueInput, setValueInput] = useState({})
     const onChange = (e: any) => {
         const target = e.target
@@ -13,9 +14,21 @@ const Add = () => {
             [name]: target.value
         })
     }
-    const onSubmit = (e: any) => {
+    const onSubmit = async (e: any) => {
         e.preventDefault()
-        onHandleAdd(valueInput)
+        try {
+            const product = await (
+                await fetch(`http://localhost:3000/products`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(valueInput)
+                })
+            ).json()
+            // rerender
+            dispatch({ type: 'ADD_PRODUCT', payload: product })
+        } catch (error) {}
     }
     return (
         <div>

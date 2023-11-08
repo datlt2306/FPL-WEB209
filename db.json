@@ -31,6 +31,11 @@
       "name": "sanr phaarm tesst",
       "price": "123131",
       "id": 7
+    },
+    {
+      "name": "Sản phẩm update",
+      "price": "123",
+      "id": 8
     }
   ],
   "users": [

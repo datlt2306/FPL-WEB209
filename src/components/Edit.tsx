@@ -1,12 +1,10 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { IProduct } from '../interfaces/Product'
+import { ProductContext } from '../context/product'
 
-type EditProps = {
-    product: IProduct
-    onEdit: (product: any) => void
-}
+const Edit = () => {
+    const { state, dispatch } = useContext(ProductContext)
 
-const Edit = ({ product, onEdit }: EditProps) => {
     const [valueInput, setValueInput] = useState({})
     const onChange = (e: any) => {
         const target = e.target
@@ -18,18 +16,32 @@ const Edit = ({ product, onEdit }: EditProps) => {
 
         // {name: "Product A update"}
     }
-    const onSubmit = (e: any) => {
+    const onSubmit = async (e: any) => {
         e.preventDefault()
-        // console.log({ ...product, ...valueInput })
-        onEdit({ ...product, ...valueInput })
+        try {
+            const newProduct = await (
+                await fetch(`http://localhost:3000/products/${state.product.id}`, {
+                    method: 'PATCH',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ ...state.product, ...valueInput })
+                })
+            ).json()
+            // rerender
+            dispatch({
+                type: 'EDIT_PRODUCT',
+                payload: newProduct
+            })
+        } catch (error) {}
     }
     return (
         <div>
-            {JSON.stringify(valueInput)}
+            {JSON.stringify(state.product)}
             <h2>Sửa sản phẩm</h2>
             <form onSubmit={onSubmit}>
-                <input type='text' name='name' defaultValue={product.name} onChange={onChange} />
-                <input type='number' name='price' defaultValue={product.price} onChange={onChange} />
+                <input type='text' name='name' defaultValue={state.product.name} onChange={onChange} />
+                <input type='number' name='price' defaultValue={state.product.price} onChange={onChange} />
                 <button>Submit</button>
             </form>
         </div>
