@@ -29,6 +29,11 @@
       "name": "San pham moi 3 update",
       "price": "200",
       "id": 6
+    },
+    {
+      "name": "sản phẩm 4",
+      "price": "200",
+      "id": 7
     }
   ],
   "users": [

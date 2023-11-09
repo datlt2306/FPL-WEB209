@@ -72,12 +72,11 @@ function App() {
     // }
     return (
         <>
-            <Counter />
-            {/* <ProductList products={products} onGetProduct={onGetProduct} />
-            <ProductAdd onAdd={onAdd} />
-            <Signup onSignup={onSignup} />
-            <Signin onSignin={onSignin} />
-            <ProductEdit product={product} onEdit={onEdit} /> */}
+            <ProductList />
+            <ProductAdd />
+            {/* <Signup onSignup={onSignup} />
+            <Signin onSignin={onSignin} /> */}
+            {/* <ProductEdit product={product} onEdit={onEdit} /> */}
         </>
     )
 }
