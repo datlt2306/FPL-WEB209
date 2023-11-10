@@ -3,11 +3,10 @@ import App from './App.tsx'
 import ProductContextProvider from './context/Product.tsx'
 import './index.css'
 import CounterContextProvider from './context/Counter.tsx'
-
+import { QueryClient, QueryClientProvider } from 'react-query'
+const queryClient = new QueryClient()
 ReactDOM.createRoot(document.getElementById('root')!).render(
-    <CounterContextProvider>
-        <ProductContextProvider>
-            <App />
-        </ProductContextProvider>
-    </CounterContextProvider>
+    <QueryClientProvider client={queryClient}>
+        <App />
+    </QueryClientProvider>
 )

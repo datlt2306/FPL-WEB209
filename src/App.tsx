@@ -8,12 +8,12 @@ import List from './components/List'
 function App() {
     return (
         <>
-            <Counter />
+            {/* <Counter /> */}
             <List />
             <hr />
-            <Add />
+            {/* <Add /> */}
             <hr />
-            <Edit />
+            {/* <Edit /> */}
             <hr />
             {/*<Signup />
             <hr />
