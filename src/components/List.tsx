@@ -4,20 +4,6 @@ import { IProduct } from '../interfaces/Product'
 import { useQuery } from 'react-query'
 
 const List = () => {
-    // const { state, dispatch } = useContext(ProductContext)
-    // useEffect(() => {
-    //     ;(async () => {
-    //         try {
-    //             const data = await (await fetch(`http://localhost:3000/products`)).json()
-    //             //rerender
-    //             dispatch({ type: 'GET_PRODUCTS', payload: data })
-    //         } catch (error) {
-    //             console.log('[GET_PRODUCTS_ERROR]', error)
-    //         } finally {
-    //         }
-    //     })()
-    // }, [dispatch])
-
     const {
         isLoading,
         isError,

@@ -11,7 +11,7 @@ function App() {
             {/* <Counter /> */}
             <List />
             <hr />
-            {/* <Add /> */}
+            <Add />
             <hr />
             {/* <Edit /> */}
             <hr />
