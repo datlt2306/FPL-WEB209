@@ -1,12 +1,13 @@
 import ReactDOM from 'react-dom/client'
-import './index.css'
+import { QueryClient, QueryClientProvider } from 'react-query'
+import { ReactQueryDevtools } from 'react-query/devtools'
 import App from './App'
-import { createContext, useState } from 'react'
-import CounterContextProvider from './context/counter'
-import ProductContextProvider from './context/product'
+import './index.css'
 
+const queryClient = new QueryClient()
 ReactDOM.createRoot(document.getElementById('root')!).render(
-    <ProductContextProvider>
+    <QueryClientProvider client={queryClient}>
         <App />
-    </ProductContextProvider>
+        <ReactQueryDevtools initialIsOpen={false} />
+    </QueryClientProvider>
 )

@@ -1,22 +1,22 @@
-import React, { useContext, useEffect } from 'react'
-import { ProductContext } from '../context/product'
+import { useQuery } from 'react-query'
 
 const List = () => {
-    const { state, dispatch } = useContext(ProductContext)
-    useEffect(() => {
-        ;(async () => {
-            try {
-                const data = await (await fetch('http://localhost:3000/products')).json()
-                // setProducts(data)
-                dispatch({ type: 'FETCH_PRODUCTS', payload: data })
-            } catch (error) {
-            } finally {
-            }
-        })()
-    }, [dispatch])
+    const {
+        isLoading,
+        isError,
+        data: products
+    } = useQuery('PRODUCT', async () => {
+        try {
+            const data = await (await fetch('http://localhost:3000/products')).json()
+            return data
+        } catch (error) {}
+    })
+    if (isLoading) return <div>Loading...</div>
+    if (isError) return <div>Error...</div>
+
     return (
         <div>
-            {state.products?.map((product: any, index: any) => (
+            {products?.map((product: any, index: any) => (
                 <div key={index}>
                     {product.name}
                     <button
@@ -32,3 +32,5 @@ const List = () => {
 }
 
 export default List
+// npm i react-query
+// npm i @tanstack/react-query-devtools

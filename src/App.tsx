@@ -10,14 +10,6 @@ function App() {
     return (
         <>
             <List />
-            <hr />
-            <Add />
-            <hr />
-            <Edit />
-            <hr />
-            <Signup />
-            <hr />
-            <Signin />
         </>
     )
 }
