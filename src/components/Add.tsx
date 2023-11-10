@@ -3,20 +3,13 @@ import { IProduct } from '../interfaces/Product'
 import Demo from './Demo'
 import { ProductContext } from '../context/Product'
 import { useMutation, useQueryClient } from 'react-query'
+import { add } from '../api/product'
 
 const Add = () => {
     const queryClient = useQueryClient()
     const mutation = useMutation({
-        mutationFn: (product) =>
-            fetch(`http://localhost:3000/products`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(product)
-            }),
+        mutationFn: (product: IProduct) => add(product),
         onSuccess: () => {
-            alert('Thêm thành công')
             queryClient.invalidateQueries('PRODUCTS_KEY')
         }
     })
@@ -31,18 +24,6 @@ const Add = () => {
     const onSubmit = async (e: any) => {
         e.preventDefault()
         mutation.mutate(valueInput as any)
-        // try {
-        //     const data = await (
-        //         await fetch(`http://localhost:3000/products`, {
-        //             method: 'POST',
-        //             headers: {
-        //                 'Content-Type': 'application/json'
-        //             },
-        //             body: JSON.stringify(valueInput)
-        //         })
-        //     ).json()
-        //     dispatch({ type: 'ADD_PRODUCT', payload: data })
-        // } catch (error) {}
     }
     return (
         <div>

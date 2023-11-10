@@ -1,7 +1,6 @@
-import { useContext, useEffect } from 'react'
-import { ProductContext } from '../context/Product'
-import { IProduct } from '../interfaces/Product'
 import { useQuery } from 'react-query'
+import { getAll } from '../api/product'
+import { IProduct } from '../interfaces/Product'
 
 const List = () => {
     const {
@@ -10,8 +9,9 @@ const List = () => {
         data: products
     } = useQuery({
         queryKey: 'PRODUCTS_KEY',
-        queryFn: async () => await (await fetch(`http://localhost:3000/products`)).json()
+        queryFn: () => getAll()
     })
+
     if (isLoading) return <div>Loading...</div>
     if (isError) return <div>Error....</div>
     return (
