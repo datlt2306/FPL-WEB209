@@ -14,6 +14,7 @@
         "prettier:fix": "prettier --write \"src/**/(*.jsx|*.js|*.tsx|*ts|*.css|*.scss)\""
     },
     "dependencies": {
+        "immer": "^10.0.3",
         "react": "^18.2.0",
         "react-dom": "^18.2.0"
     },

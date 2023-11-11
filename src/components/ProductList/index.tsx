@@ -15,7 +15,9 @@ const ProductList = () => {
     return (
         <>
             {state.products.map((item: IProduct, index: number) => (
-                <div key={index}>{item.name}</div>
+                <div key={index}>
+                    {item.name} <button onClick={() => dispatch({ type: 'GET_PRODUCT', payload: item })}>Sửa</button>
+                </div>
             ))}
         </>
     )

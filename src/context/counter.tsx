@@ -1,21 +1,24 @@
 import { createContext, useReducer, useState } from 'react'
+import { produce } from 'immer'
 
 export const CounterContext = createContext({} as any)
 const reducer = (state: any, action: any) => {
-    console.log(action)
     switch (action.type) {
         case 'INCREMENT':
-            return { count: state.count + 1 }
+            state.count++
+            return
         case 'DECREMENT':
-            return { count: state.count - 1 }
+            state.count--
+            return
         case 'INCREASE':
-            return { count: state.count + action.payload }
+            state.count += action.payload
+            return
         default:
             return state
     }
 }
 const CounterContextProvider = ({ children }: { children: React.ReactNode }) => {
-    const [state, dispatch] = useReducer(reducer, { count: 0 })
+    const [state, dispatch] = useReducer(produce(reducer), { count: 0 })
 
     return <CounterContext.Provider value={{ state, dispatch }}>{children}</CounterContext.Provider>
 }
