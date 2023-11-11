@@ -2,7 +2,7 @@
   "products": [
     {
       "id": 1,
-      "name": "Product A",
+      "name": "Product A update 1",
       "price": 100
     },
     {
@@ -49,6 +49,14 @@
       "name": "13213131",
       "price": "3123213",
       "id": 10
+    },
+    {
+      "": "Product A update",
+      "id": 11
+    },
+    {
+      "name": "Product A 321",
+      "id": 12
     }
   ],
   "users": [

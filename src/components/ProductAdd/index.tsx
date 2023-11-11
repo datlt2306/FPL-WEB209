@@ -18,10 +18,7 @@ const ProductAdd = () => {
             }),
         onSuccess: () => queryClient.invalidateQueries('PRODUCT_KEY')
     })
-    const [valueInput, setValueInput] = useState<IProduct>({
-        name: '',
-        price: 0
-    })
+    const [valueInput, setValueInput] = useState<IProduct>({} as IProduct)
 
     const onInput = (e: any) => {
         const { name, value } = e.target
