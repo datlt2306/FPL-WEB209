@@ -2,13 +2,11 @@ import React, { useState } from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.tsx'
 import './index.css'
-import ProductContextProvider from './context/product.tsx'
-import CounterContextProvider from './context/counter.tsx'
+import { QueryClient, QueryClientProvider } from 'react-query'
 
+const queryClient = new QueryClient()
 ReactDOM.createRoot(document.getElementById('root')!).render(
-    <CounterContextProvider>
-        <ProductContextProvider>
-            <App />
-        </ProductContextProvider>
-    </CounterContextProvider>
+    <QueryClientProvider client={queryClient}>
+        <App />
+    </QueryClientProvider>
 )

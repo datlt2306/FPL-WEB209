@@ -11,10 +11,10 @@ import Counter from './components/Counter'
 function App() {
     return (
         <>
-            <Counter />
+            {/* <Counter /> */}
             <ProductList />
-            <ProductAdd />
-            <ProductEdit />
+            {/* <ProductAdd /> */}
+            {/* <ProductEdit /> */}
         </>
     )
 }

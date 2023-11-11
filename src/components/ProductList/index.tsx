@@ -1,25 +1,20 @@
 import { useContext, useEffect } from 'react'
 import { IProduct } from '../../interfaces/Product'
 import { ProductContext } from '../../context/product'
+import { useQuery } from 'react-query'
 
 const ProductList = () => {
-    const { state, dispatch } = useContext(ProductContext)
-    useEffect(() => {
-        fetch(`http://localhost:3000/products`)
-            .then((response) => response.json())
-            .then((data) => {
-                dispatch({ type: 'GET_PRODUCTS', payload: data })
-            })
-    }, [dispatch])
-    if (!state.products) return <>Không có sản phẩm nào</>
-    return (
-        <>
-            {state.products.map((item: IProduct, index: number) => (
-                <div key={index}>
-                    {item.name} <button onClick={() => dispatch({ type: 'GET_PRODUCT', payload: item })}>Sửa</button>
-                </div>
-            ))}
-        </>
-    )
+    const {
+        data: products,
+        isLoading,
+        isError
+    } = useQuery('PRODUCT_KEY', async () => {
+        const response = await fetch(`http://localhost:3000/products`)
+        const data = await response.json()
+        return data
+    })
+    if (isLoading) return <>Loading...</>
+    if (isError) return <div>Error.</div>
+    return <>{products?.map((item: IProduct, index: number) => <div key={index}>{item.name}</div>)}</>
 }
 export default ProductList
