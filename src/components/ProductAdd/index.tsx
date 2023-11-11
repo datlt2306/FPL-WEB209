@@ -1,9 +1,23 @@
 import React, { useContext, useState } from 'react'
 import { IProduct } from '../../interfaces/Product'
 import { ProductContext } from '../../context/product'
+import { useMutation, useQueryClient } from 'react-query'
 
 const ProductAdd = () => {
-    const { state, dispatch } = useContext(ProductContext)
+    const queryClient = useQueryClient()
+    // const { state, dispatch } = useContext(ProductContext)
+
+    const mutation = useMutation({
+        mutationFn: (product) =>
+            fetch(`http://localhost:3000/products`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(product)
+            }),
+        onSuccess: () => queryClient.invalidateQueries('PRODUCT_KEY')
+    })
     const [valueInput, setValueInput] = useState<IProduct>({
         name: '',
         price: 0
@@ -18,18 +32,7 @@ const ProductAdd = () => {
     }
     const onSubmit = async (e: any) => {
         e.preventDefault()
-
-        fetch(`http://localhost:3000/products`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(valueInput)
-        })
-            .then((response) => response.json())
-            .then((data) => {
-                dispatch({ type: 'ADD_PRODUCT', payload: data })
-            })
+        mutation.mutate(valueInput as any)
     }
     return (
         <form onSubmit={onSubmit}>

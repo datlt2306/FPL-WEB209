@@ -13,7 +13,7 @@ function App() {
         <>
             {/* <Counter /> */}
             <ProductList />
-            {/* <ProductAdd /> */}
+            <ProductAdd />
             {/* <ProductEdit /> */}
         </>
     )

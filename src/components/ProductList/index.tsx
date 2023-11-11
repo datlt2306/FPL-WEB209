@@ -8,7 +8,7 @@ const ProductList = () => {
         data: products,
         isLoading,
         isError
-    } = useQuery('PRODUCT_KEY', async () => {
+    } = useQuery(['PRODUCT_KEY'], async () => {
         const response = await fetch(`http://localhost:3000/products`)
         const data = await response.json()
         return data
