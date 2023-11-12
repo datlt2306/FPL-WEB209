@@ -1,19 +1,14 @@
 import React, { useContext, useState } from 'react'
 import { ProductContext } from '../context/product'
 import { useMutation, useQueryClient } from 'react-query'
+import { addProduct } from '../apis/product'
+import { IProduct } from '../interfaces/Product'
 
 const Add = () => {
     const queryClient = useQueryClient()
     const [valueInput, setValueInput] = useState({})
     const mutation = useMutation({
-        mutationFn: (product) =>
-            fetch(`http://localhost:3000/products`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(product)
-            }),
+        mutationFn: (product: IProduct) => addProduct(product),
         onSuccess: () => queryClient.invalidateQueries(['PRODUCT'])
     })
     const onChange = (e: any) => {

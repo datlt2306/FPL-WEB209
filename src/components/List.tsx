@@ -1,9 +1,12 @@
 import { useState } from 'react'
 import { useMutation, useQuery, useQueryClient } from 'react-query'
 import { IProduct } from '../interfaces/Product'
+import { getProducts, updateProduct } from '../apis/product'
 
 const List = () => {
+    // cho phép truy cập tất cả các query
     const queryClient = useQueryClient()
+    // khai báo 2 state: lưu id sp, lưu sản phẩm
     const [productEditId, setProductEditId] = useState(null as number | null)
     const [productEdit, setProductEdit] = useState({} as IProduct)
     const {
@@ -11,22 +14,22 @@ const List = () => {
         isLoading,
         isError
     } = useQuery({
+        // cung cấp 1 query key
         queryKey: ['PRODUCT'],
-        queryFn: async () => await (await fetch('http://localhost:3000/products')).json()
+        // call api
+        queryFn: async () => {
+            const { data } = await getProducts()
+            return data
+        }
     })
 
     const mutation = useMutation({
-        mutationFn: (product: IProduct) =>
-            fetch(`http://localhost:3000/products/${product.id}`, {
-                method: 'PATCH',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(product)
-            }),
+        mutationFn: (product: IProduct) => updateProduct(product),
         onSuccess: () => {
             setProductEditId(null)
-            queryClient.invalidateQueries('PRODUCT')
+            queryClient.invalidateQueries({
+                queryKey: ['PRODUCT']
+            })
         }
     })
     if (isLoading) return <div>Loading...</div>
