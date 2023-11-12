@@ -4,9 +4,6 @@ import { useMutation, useQueryClient } from 'react-query'
 
 const Add = () => {
     const queryClient = useQueryClient()
-
-    // const { state, dispatch } = useContext(ProductContext)
-
     const [valueInput, setValueInput] = useState({})
     const mutation = useMutation({
         mutationFn: (product) =>
@@ -17,7 +14,7 @@ const Add = () => {
                 },
                 body: JSON.stringify(product)
             }),
-        onSuccess: () => queryClient.invalidateQueries('PRODUCT')
+        onSuccess: () => queryClient.invalidateQueries(['PRODUCT'])
     })
     const onChange = (e: any) => {
         const target = e.target
