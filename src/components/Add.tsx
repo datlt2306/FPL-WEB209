@@ -1,37 +1,59 @@
-import React, { useContext, useState } from 'react'
-import { ProductContext } from '../context/product'
-import { useMutation, useQueryClient } from 'react-query'
-import { addProduct } from '../apis/product'
-import { IProduct } from '../interfaces/Product'
+import { joiResolver } from '@hookform/resolvers/joi'
+import joi from 'joi'
+import { useForm } from 'react-hook-form'
+import { Button } from './ui/button'
+import { Form, FormControl, FormField, FormItem, FormLabel } from './ui/form'
+import { Input } from './ui/input'
+
+const formSchema = joi.object({
+    name: joi.string().min(2).max(50),
+    price: joi.number()
+})
 
 const Add = () => {
-    const queryClient = useQueryClient()
-    const [valueInput, setValueInput] = useState({})
-    const mutation = useMutation({
-        mutationFn: (product: IProduct) => addProduct(product),
-        onSuccess: () => queryClient.invalidateQueries(['PRODUCT'])
+    const form = useForm({
+        resolver: joiResolver(formSchema),
+        defaultValues: {
+            name: '',
+            price: 0
+        }
     })
-    const onChange = (e: any) => {
-        const target = e.target
-        const name = target.name
-
-        setValueInput({
-            ...valueInput,
-            [name]: target.value
-        })
-    }
-    const onSubmit = async (e: any) => {
-        e.preventDefault()
-        mutation.mutate(valueInput as any)
+    const onSubmit = (values) => {
+        // console.log(values)
+        // mutation.mutate(values)
     }
     return (
-        <div>
-            <h2>Thêm sản phẩm</h2>
-            <form onSubmit={onSubmit}>
-                <input type='text' name='name' onInput={onChange} />
-                <input type='number' name='price' onInput={onChange} />
-                <button>Submit</button>
-            </form>
+        <div className='border p-6'>
+            <h2 className='text-xl font-bold'>Thêm sản phẩm</h2>
+            <Form {...form}>
+                <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-4'>
+                    <FormField
+                        control={form.control}
+                        name='name'
+                        render={({ field }) => (
+                            <FormItem>
+                                <FormLabel className='font-bold'>Tên sản phẩm</FormLabel>
+                                <FormControl>
+                                    <Input placeholder='Tên sản phẩm' {...field} />
+                                </FormControl>
+                            </FormItem>
+                        )}
+                    ></FormField>
+                    <FormField
+                        control={form.control}
+                        name='price'
+                        render={({ field }) => (
+                            <FormItem>
+                                <FormLabel className='font-bold'>Giá</FormLabel>
+                                <FormControl>
+                                    <Input placeholder='Giá sản phẩm' {...field} />
+                                </FormControl>
+                            </FormItem>
+                        )}
+                    ></FormField>
+                    <Button type='submit'>Thêm</Button>
+                </form>
+            </Form>
         </div>
     )
 }
