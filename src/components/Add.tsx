@@ -1,10 +1,14 @@
 import { joiResolver } from '@hookform/resolvers/joi'
 import joi from 'joi'
-import { useForm } from 'react-hook-form'
+import { useForm, SubmitHandler } from 'react-hook-form'
 import { Button } from './ui/button'
 import { Form, FormControl, FormField, FormItem, FormLabel } from './ui/form'
 import { Input } from './ui/input'
 
+type formData = {
+    name: string
+    price: number
+}
 const formSchema = joi.object({
     name: joi.string().min(2).max(50),
     price: joi.number()
@@ -18,8 +22,8 @@ const Add = () => {
             price: 0
         }
     })
-    const onSubmit = (values) => {
-        // console.log(values)
+    const onSubmit: SubmitHandler<formData> = (values) => {
+        console.log(values)
         // mutation.mutate(values)
     }
     return (
