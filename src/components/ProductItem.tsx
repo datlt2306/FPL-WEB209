@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { IProduct } from '../interfaces/Product'
 import { useMutation, useQueryClient } from 'react-query'
 import { edit } from '../api/product'
+import { Button } from './ui/button'
 
 type ProductItemProps = {
     product: IProduct
@@ -44,11 +45,16 @@ const ProductItem = ({ product }: ProductItemProps) => {
                     <input type='text' name='name' defaultValue={editProduct?.name} onChange={onChange} />
                     <input type='text' name='price' defaultValue={editProduct?.price} onChange={onChange} />
                     <button>Cập nhật</button>
-                    <button onClick={() => setEditProductId(null)}>Thoát</button>
+                    <Button variant='default' onClick={() => setEditProductId(null)}>
+                        Thoát
+                    </Button>
                 </form>
             ) : (
                 <>
-                    {product.name} - {product.price} <button onClick={() => handleClick(product)}>Sửa</button>
+                    {product.name} - {product.price}{' '}
+                    <Button variant='success' size='xl' onClick={() => handleClick(product)}>
+                        Sửa
+                    </Button>
                 </>
             )}
         </div>

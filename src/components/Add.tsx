@@ -1,10 +1,22 @@
-import React, { useContext, useState } from 'react'
-import { IProduct } from '../interfaces/Product'
-import Demo from './Demo'
-import { ProductContext } from '../context/Product'
+import { joiResolver } from '@hookform/resolvers/joi'
+import joi from 'joi'
+import { SubmitHandler, useForm } from 'react-hook-form'
 import { useMutation, useQueryClient } from 'react-query'
 import { add } from '../api/product'
+import { IProduct } from '../interfaces/Product'
+import { Button } from './ui/button'
+import { Form, FormControl, FormField, FormItem, FormLabel } from './ui/form'
+import { Input } from './ui/input'
 
+type formInputType = {
+    name: string
+    price: number
+}
+
+const formAddSchema = joi.object({
+    name: joi.string().required(),
+    price: joi.number()
+})
 const Add = () => {
     const queryClient = useQueryClient()
     const mutation = useMutation({
@@ -13,28 +25,48 @@ const Add = () => {
             queryClient.invalidateQueries('PRODUCTS_KEY')
         }
     })
-    const [valueInput, setValueInput] = useState<IProduct>({ name: '', price: 0 })
-    const onHandleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const { name, value } = e.target
-        setValueInput({
-            ...valueInput,
-            [name]: value
-        })
-    }
-    const onSubmit = async (e: any) => {
-        e.preventDefault()
-        mutation.mutate(valueInput as any)
+    const form = useForm<formInputType>({
+        resolver: joiResolver(formAddSchema),
+        defaultValues: {
+            name: '',
+            price: 0
+        }
+    })
+
+    const onSubmit: SubmitHandler<formInputType> = (values) => {
+        mutation.mutate(values)
     }
     return (
         <div>
-            <h2>Thêm sản phẩm</h2>
-            {JSON.stringify(valueInput)}
-            <form onSubmit={onSubmit}>
-                <input type='text' name='name' placeholder='Name' onInput={onHandleInput} />
-                <input type='number' name='price' placeholder='Price' onInput={onHandleInput} />
-                <button>Thêm</button>
-            </form>
-            <Demo />
+            <Form {...form}>
+                <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-4 p-10'>
+                    <FormField
+                        control={form.control}
+                        name='name'
+                        render={({ field }) => (
+                            <FormItem>
+                                <FormLabel className='font-bold'>Tên sản phẩm</FormLabel>
+                                <FormControl>
+                                    <Input {...field} placeholder='Tên sản phẩm' />
+                                </FormControl>
+                            </FormItem>
+                        )}
+                    ></FormField>
+                    <FormField
+                        control={form.control}
+                        name='price'
+                        render={({ field }) => (
+                            <FormItem>
+                                <FormLabel className='font-bold'>Giá sản phẩm</FormLabel>
+                                <FormControl>
+                                    <Input {...field} placeholder='Giá sản phẩm' />
+                                </FormControl>
+                            </FormItem>
+                        )}
+                    ></FormField>
+                    <Button type='submit'>Thêm</Button>
+                </form>
+            </Form>
         </div>
     )
 }
