@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { IProduct } from '../../interfaces/Product'
 import { useMutation, useQueryClient } from 'react-query'
+import { editProduct } from '../../api/product'
 
 type ProductItemProps = {
     item: IProduct
@@ -11,14 +12,7 @@ const ProductItem = ({ item }: ProductItemProps) => {
     const [productEditId, setProductEditId] = useState<number | null>(null)
     const [productEdit, setProductEdit] = useState({} as IProduct)
     const mutation = useMutation({
-        mutationFn: (product: IProduct) =>
-            fetch(`http://localhost:3000/products/${product.id}`, {
-                method: 'PATCH',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(product)
-            }),
+        mutationFn: (product: IProduct) => editProduct(product),
         onSuccess: () => {
             setProductEditId(null)
             queryClient.invalidateQueries({
