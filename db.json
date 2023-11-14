@@ -3,7 +3,7 @@
     {
       "id": 1,
       "name": "Product A update 1",
-      "price": 100
+      "price": "400"
     },
     {
       "id": 2,
