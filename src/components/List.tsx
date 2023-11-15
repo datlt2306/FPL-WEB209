@@ -63,7 +63,7 @@ const List = () => {
     return (
         <div>
             <h2>Danh sách</h2>
-            <DataTable columns={columns} data={data} />
+            <DataTable columns={columns} data={data || []} />
             {/* {products?.map((product: IProduct, index: number) => <ProductItem product={product} key={index} />)} */}
         </div>
     )
