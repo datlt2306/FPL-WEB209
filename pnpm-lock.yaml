@@ -47,6 +47,9 @@ dependencies:
   react-query:
     specifier: ^3.39.3
     version: 3.39.3(react-dom@18.2.0)(react@18.2.0)
+  resolvers:
+    specifier: link:@hookform/resolvers
+    version: link:@hookform/resolvers
   tailwind-merge:
     specifier: ^2.0.0
     version: 2.0.0

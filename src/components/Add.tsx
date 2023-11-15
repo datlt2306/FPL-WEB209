@@ -5,10 +5,11 @@ import { Button } from './ui/button'
 import { Form, FormControl, FormField, FormItem, FormLabel } from './ui/form'
 import { Input } from './ui/input'
 
-type formData = {
+type formControlDataType = {
     name: string
     price: number
 }
+// Định validate form sử dụng joi
 const formSchema = joi.object({
     name: joi.string().min(2).max(50),
     price: joi.number()
@@ -22,7 +23,7 @@ const Add = () => {
             price: 0
         }
     })
-    const onSubmit: SubmitHandler<formData> = (values) => {
+    const onSubmit: SubmitHandler<formControlDataType> = (values) => {
         console.log(values)
         // mutation.mutate(values)
     }
