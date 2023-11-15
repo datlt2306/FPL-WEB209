@@ -46,7 +46,7 @@ const ProductItem = ({ product }: ProductItemProps) => {
     })
     const onSubmit: SubmitHandler<formControlDataType> = (values) => {
         console.log('values', values)
-        mutation.mutate({ ...values, id: productEditId })
+        mutation.mutate({ ...values, id: productEditId! })
     }
     const handleClick = (product: IProduct) => {
         setProductEditId(product.id!)
