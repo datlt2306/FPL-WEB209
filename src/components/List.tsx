@@ -4,6 +4,7 @@ import { ColumnDef } from '@tanstack/react-table'
 import { IProduct } from '@/interfaces/Product'
 import { DataTable } from './DataTable'
 import { Button } from './ui/button'
+import { formatPrice } from '@/lib/utils'
 
 export const columns: ColumnDef<IProduct>[] = [
     {
@@ -12,7 +13,12 @@ export const columns: ColumnDef<IProduct>[] = [
     },
     {
         accessorKey: 'price',
-        header: 'Giá'
+        header: 'Giá',
+        cell: ({ row }) => {
+            const formattedPrice = formatPrice(row.getValue('price') || 0)
+
+            return <div dangerouslySetInnerHTML={{ __html: formattedPrice }} />
+        }
     },
     {
         accessorKey: '',
