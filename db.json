@@ -2,8 +2,12 @@
   "products": [
     {
       "id": 1,
-      "name": "product A update lan 1",
-      "price": 200
+      "name": "product A update lan 3",
+      "price": 400,
+      "values": {
+        "name": "product A update lan 2",
+        "price": 200
+      }
     },
     {
       "id": 2,
