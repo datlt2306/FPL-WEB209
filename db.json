@@ -57,6 +57,11 @@
     {
       "name": "Product A 321",
       "id": 12
+    },
+    {
+      "name": "Product B",
+      "price": 200,
+      "id": 13
     }
   ],
   "users": [

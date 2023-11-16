@@ -1,36 +1,75 @@
-import { useState } from 'react'
-import { IProduct } from '../../interfaces/Product'
-import { useMutation, useQueryClient } from 'react-query'
-import { addProduct } from '../../api/product'
+import { joiResolver } from '@hookform/resolvers/joi'
+import { AiFillPlusSquare } from 'react-icons/ai'
 
+import joi from 'joi'
+import { SubmitHandler, useForm } from 'react-hook-form'
+import { useMutation, useQueryClient } from 'react-query'
+import { Form, FormControl, FormField, FormItem, FormLabel } from '@/components/ui/form'
+import { Input } from '@/components/ui/input'
+import { Button } from '@/components/ui/button'
+import { addProduct } from '@/api/product'
+import { IProduct } from '@/interfaces/Product'
+type FormControlType = {
+    name: string
+    price: number
+}
+const formSchema = joi.object({
+    name: joi.string().required(),
+    price: joi.number()
+})
 const ProductAdd = () => {
     const queryClient = useQueryClient()
-    const [valueInput, setValueInput] = useState<IProduct>({} as IProduct)
-
+    const form = useForm<FormControlType>({
+        resolver: joiResolver(formSchema),
+        defaultValues: {
+            name: '',
+            price: 0
+        }
+    })
     const mutation = useMutation({
         mutationFn: (product: IProduct) => addProduct(product),
-        onSuccess: () => queryClient.invalidateQueries('PRODUCT_KEY')
+        onSuccess: () => {
+            form.reset()
+            queryClient.invalidateQueries('PRODUCT_KEY')
+        }
     })
 
-    const onInput = (e: any) => {
-        const { name, value } = e.target
-        setValueInput({
-            ...valueInput,
-            [name]: value
-        })
-    }
-    const onSubmit = async (e: any) => {
-        e.preventDefault()
-        mutation.mutate(valueInput)
+    const onSubmit: SubmitHandler<FormControlType> = (data) => {
+        mutation.mutate(data)
     }
     return (
-        <form onSubmit={onSubmit}>
-            {JSON.stringify(valueInput)}
-            <h2>Thêm sản phẩm</h2>
-            <input type='text' name='name' placeholder='Tên' onInput={onInput} />
-            <input type='number' name='price' placeholder='Giá' onInput={onInput} />
-            <button>Thêm</button>
-        </form>
+        <Form {...form}>
+            <form onSubmit={form.handleSubmit(onSubmit)}>
+                <FormField
+                    control={form.control}
+                    name='name'
+                    render={({ field }) => (
+                        <FormItem>
+                            <FormLabel>Tên</FormLabel>
+                            <FormControl>
+                                <Input type='text' placeholder='Tên sản phẩm' {...field} />
+                            </FormControl>
+                        </FormItem>
+                    )}
+                />
+                <FormField
+                    control={form.control}
+                    name='price'
+                    render={({ field }) => (
+                        <FormItem>
+                            <FormLabel>Giá</FormLabel>
+                            <FormControl>
+                                <Input type='number' placeholder='Giá sản phẩm' {...field} />
+                            </FormControl>
+                        </FormItem>
+                    )}
+                />
+                <Button type='submit' variant='destructive'>
+                    <AiFillPlusSquare />
+                    Thêm sản phẩm
+                </Button>
+            </form>
+        </Form>
     )
 }
 
