@@ -62,6 +62,16 @@
       "name": "Product B",
       "price": 200,
       "id": 13
+    },
+    {
+      "name": "Sản Phẩm C",
+      "price": 300,
+      "id": 14
+    },
+    {
+      "name": "Sản phẩm C",
+      "price": 300,
+      "id": 15
     }
   ],
   "users": [

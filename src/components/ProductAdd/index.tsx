@@ -1,14 +1,15 @@
 import { joiResolver } from '@hookform/resolvers/joi'
 import { AiFillPlusSquare } from 'react-icons/ai'
-
+import { addProduct } from '@/api/product'
+import { Button } from '@/components/ui/button'
+import { Form, FormControl, FormField, FormItem, FormLabel } from '@/components/ui/form'
+import { Input } from '@/components/ui/input'
+import { IProduct } from '@/interfaces/Product'
 import joi from 'joi'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { useMutation, useQueryClient } from 'react-query'
-import { Form, FormControl, FormField, FormItem, FormLabel } from '@/components/ui/form'
-import { Input } from '@/components/ui/input'
-import { Button } from '@/components/ui/button'
-import { addProduct } from '@/api/product'
-import { IProduct } from '@/interfaces/Product'
+import { useToast } from '../ui/use-toast'
+
 type FormControlType = {
     name: string
     price: number
@@ -19,6 +20,8 @@ const formSchema = joi.object({
 })
 const ProductAdd = () => {
     const queryClient = useQueryClient()
+    const { toast } = useToast()
+
     const form = useForm<FormControlType>({
         resolver: joiResolver(formSchema),
         defaultValues: {
@@ -29,6 +32,11 @@ const ProductAdd = () => {
     const mutation = useMutation({
         mutationFn: (product: IProduct) => addProduct(product),
         onSuccess: () => {
+            toast({
+                variant: 'success',
+                title: 'Chúc mừng bạn!',
+                description: 'Bạn đã thêm sản phẩm thành công'
+            })
             form.reset()
             queryClient.invalidateQueries('PRODUCT_KEY')
         }
