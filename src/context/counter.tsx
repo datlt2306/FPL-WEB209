@@ -1,4 +1,4 @@
-import { createContext, useReducer, useState } from 'react'
+import { createContext, useReducer } from 'react'
 import { produce } from 'immer'
 
 export const CounterContext = createContext({} as any)

@@ -1,6 +1,5 @@
-import React, { useContext, useState } from 'react'
+import { useState } from 'react'
 import { IProduct } from '../../interfaces/Product'
-import { ProductContext } from '../../context/product'
 import { useMutation, useQueryClient } from 'react-query'
 import { addProduct } from '../../api/product'
 

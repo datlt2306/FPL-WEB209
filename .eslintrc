@@ -1,7 +1,8 @@
 {
     "extends": ["react-app", "prettier"],
-    "plugins": ["react", "prettier"],
+    "plugins": ["react", "prettier", "unused-imports"],
     "rules": {
+        "unused-imports/no-unused-imports": "error",
         "prettier/prettier": [
             "warn",
             {
