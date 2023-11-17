@@ -7,6 +7,7 @@ import { Button } from './ui/button'
 import { formatPrice } from '@/lib/utils'
 import { Link } from 'react-router-dom'
 import { useProductQuery } from '@/hooks/useProductQuery'
+import ProductItem from './ProductItem'
 
 export const columns: ColumnDef<IProduct>[] = [
     {
@@ -41,7 +42,14 @@ const List = () => {
     if (isLoading) return <div>Loading...</div>
     if (isError) return <div>Error...</div>
 
-    return <DataTable columns={columns} data={data} />
+    // return <DataTable columns={columns} data={data} />
+    return (
+        <div>
+            {data.map((item: IProduct) => (
+                <ProductItem key={item.id} product={item} />
+            ))}
+        </div>
+    )
 }
 
 export default List

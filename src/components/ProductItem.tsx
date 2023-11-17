@@ -1,52 +1,24 @@
-import { updateProduct } from '@/apis/product'
+import { useProductMutation } from '@/hooks/useProductMutation'
 import { IProduct } from '@/interfaces/Product'
-import { joiResolver } from '@hookform/resolvers/joi'
-import joi from 'joi'
 import { useState } from 'react'
-import { SubmitHandler, useForm } from 'react-hook-form'
-import { useMutation, useQueryClient } from 'react-query'
 import { Form, FormControl, FormField, FormItem } from './ui/form'
 import { Input } from './ui/input'
 
 type ProductItemProps = {
     product: IProduct
 }
-type formControlDataType = {
-    name: string
-    price: number
-}
-const formSchema = joi.object({
-    name: joi.string().min(2).max(50),
-    price: joi.number()
-})
-
 const ProductItem = ({ product }: ProductItemProps) => {
-    // cho phép truy cập tất cả các query
-    const queryClient = useQueryClient()
-    // khai báo 2 state: lưu id sp, lưu sản phẩm
-
     const [productEditId, setProductEditId] = useState(null as number | null)
-    const [productEdit, setProductEdit] = useState({} as IProduct)
-    const mutation = useMutation({
-        mutationFn: (product: IProduct) => updateProduct(product),
+    const [editProduct, setProductEdit] = useState({} as IProduct)
+    const { form, onSubmit } = useProductMutation({
+        action: 'EDIT',
         onSuccess: () => {
             setProductEditId(null)
-            queryClient.invalidateQueries({
-                queryKey: ['PRODUCT']
-            })
         }
     })
 
-    const form = useForm({
-        resolver: joiResolver(formSchema),
-        defaultValues: {
-            name: productEdit?.name || '',
-            price: productEdit?.price || 0
-        }
-    })
-    const onSubmit: SubmitHandler<formControlDataType> = (values) => {
-        console.log('values', values)
-        mutation.mutate({ ...values, id: productEditId! })
+    const handleOnSubmit = (values: IProduct) => {
+        onSubmit({ ...editProduct, ...values })
     }
     const handleClick = (product: IProduct) => {
         setProductEditId(product.id!)
@@ -60,7 +32,7 @@ const ProductItem = ({ product }: ProductItemProps) => {
         <div>
             {productEditId === product.id ? (
                 <Form {...form}>
-                    <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-4'>
+                    <form onSubmit={form.handleSubmit(handleOnSubmit)} className='space-y-4'>
                         <FormField
                             control={form.control}
                             name='name'
