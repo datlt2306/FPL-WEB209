@@ -2,7 +2,7 @@
   "products": [
     {
       "id": 1,
-      "name": "product A update lan 3",
+      "name": "product A update lan 4 update 3",
       "price": 400,
       "values": {
         "name": "product A update lan 2",
@@ -83,6 +83,11 @@
       "name": "React hook form",
       "price": 123,
       "id": 16
+    },
+    {
+      "name": "Product Test 1",
+      "price": 123,
+      "id": 17
     }
   ],
   "users": [

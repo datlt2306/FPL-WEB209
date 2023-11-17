@@ -1,45 +1,20 @@
-import { joiResolver } from '@hookform/resolvers/joi'
-import joi from 'joi'
-import { SubmitHandler, useForm } from 'react-hook-form'
-import { useMutation, useQueryClient } from 'react-query'
-import { add } from '../api/product'
+import { useProductMutation } from '@/hooks/useProductMutation'
 import { IProduct } from '../interfaces/Product'
 import { Button } from './ui/button'
 import { Form, FormControl, FormField, FormItem, FormLabel } from './ui/form'
 import { Input } from './ui/input'
 
-type formInputType = {
-    name: string
-    price: number
-}
-
-const formAddSchema = joi.object({
-    name: joi.string().required(),
-    price: joi.number()
-})
 const Add = () => {
-    const queryClient = useQueryClient()
-    const mutation = useMutation({
-        mutationFn: (product: IProduct) => add(product),
-        onSuccess: () => {
-            queryClient.invalidateQueries('PRODUCTS_KEY')
-        }
+    const { form, onSubmit, isLoading } = useProductMutation({
+        action: 'ADD'
     })
-    const form = useForm<formInputType>({
-        resolver: joiResolver(formAddSchema),
-        defaultValues: {
-            name: '',
-            price: 0
-        }
-    })
-
-    const onSubmit: SubmitHandler<formInputType> = (values) => {
-        mutation.mutate(values)
+    const handleOnSubmit = (values: IProduct) => {
+        onSubmit(values)
     }
     return (
         <div>
             <Form {...form}>
-                <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-4 p-10'>
+                <form onSubmit={form.handleSubmit(handleOnSubmit)} className='space-y-4 p-10'>
                     <FormField
                         control={form.control}
                         name='name'
@@ -64,7 +39,7 @@ const Add = () => {
                             </FormItem>
                         )}
                     ></FormField>
-                    <Button type='submit'>Thêm</Button>
+                    {isLoading ? 'Loading...' : <Button type='submit'>Thêm</Button>}
                 </form>
             </Form>
         </div>

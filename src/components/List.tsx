@@ -14,6 +14,9 @@ import {
     DropdownMenuSeparator,
     DropdownMenuTrigger
 } from '@/components/ui/dropdown-menu'
+import { Link } from 'react-router-dom'
+import { useProductQuery } from '@/hooks/useProductQuery'
+import ProductItem from './ProductItem'
 
 const columns: ColumnDef<IProduct>[] = [
     {
@@ -41,9 +44,12 @@ const columns: ColumnDef<IProduct>[] = [
                             </Button>
                         </DropdownMenuTrigger>
                         <DropdownMenuContent align='end'>
-                            <Button onClick={() => console.log(original.id)}>
-                                <Pencil /> Xóa
-                            </Button>
+                            <DropdownMenuItem>
+                                {/* <Button onClick={() => console.log(original.id)}>
+                                    <Pencil /> Xóa
+                                </Button> */}
+                                <Link to={`/products/${original.id}/edit`}>Sửa</Link>
+                            </DropdownMenuItem>
                         </DropdownMenuContent>
                     </DropdownMenu>
                 </>
@@ -53,18 +59,15 @@ const columns: ColumnDef<IProduct>[] = [
 ]
 
 const List = () => {
-    const { isLoading, isError, data } = useQuery({
-        queryKey: 'PRODUCTS_KEY',
-        queryFn: () => getAll()
-    })
+    const { isLoading, isError, data } = useProductQuery()
 
     if (isLoading) return <div>Loading...</div>
     if (isError) return <div>Error....</div>
     return (
         <div>
             <h2>Danh sách</h2>
-            <DataTable columns={columns} data={data || []} />
-            {/* {products?.map((product: IProduct, index: number) => <ProductItem product={product} key={index} />)} */}
+            {/* <DataTable columns={columns} data={data} /> */}
+            {data?.map((product: IProduct, index: number) => <ProductItem product={product} key={index} />)}
         </div>
     )
 }

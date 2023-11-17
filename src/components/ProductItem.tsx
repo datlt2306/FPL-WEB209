@@ -1,51 +1,25 @@
+import { useProductMutation } from '@/hooks/useProductMutation'
+import joi from 'joi'
 import { useState } from 'react'
 import { IProduct } from '../interfaces/Product'
-import { useMutation, useQueryClient } from 'react-query'
-import { edit } from '../api/product'
 import { Button } from './ui/button'
-import joi from 'joi'
-import { useForm, SubmitHandler } from 'react-hook-form'
-import { joiResolver } from '@hookform/resolvers/joi'
 import { Form, FormControl, FormField, FormItem } from './ui/form'
 import { Input } from './ui/input'
 
 type ProductItemProps = {
     product: IProduct
 }
-type formInputType = {
-    name: string
-    price: number
-}
-const formAddSchema = joi.object({
-    name: joi.string().required(),
-    price: joi.number()
-})
-
 const ProductItem = ({ product }: ProductItemProps) => {
-    const queryClient = useQueryClient()
     const [editProductId, setEditProductId] = useState<number | null>(null)
     const [editProduct, setEditProduct] = useState({} as IProduct)
-
-    const form = useForm<formInputType>({
-        resolver: joiResolver(formAddSchema),
-        defaultValues: {
-            name: '',
-            price: 0
-        }
-    })
-    const mutation = useMutation({
-        mutationFn: (product: IProduct) => edit(product),
+    const { form, onSubmit } = useProductMutation({
+        action: 'EDIT',
         onSuccess: () => {
             setEditProductId(null)
-            setEditProduct({} as IProduct)
-            queryClient.invalidateQueries({
-                queryKey: ['PRODUCTS_KEY']
-            })
         }
     })
-
-    const onSubmit: SubmitHandler<formInputType> = (values) => {
-        mutation.mutate({ ...values, id: editProduct.id! })
+    const handleOnSubmit = (values: IProduct) => {
+        onSubmit({ ...values, id: editProduct.id! })
     }
     const handleClick = (product: IProduct) => {
         setEditProductId(product.id!)
@@ -59,7 +33,7 @@ const ProductItem = ({ product }: ProductItemProps) => {
         <div>
             {editProductId === product.id ? (
                 <Form {...form}>
-                    <form onSubmit={form.handleSubmit(onSubmit)}>
+                    <form onSubmit={form.handleSubmit(handleOnSubmit)}>
                         <FormField
                             control={form.control}
                             name='name'

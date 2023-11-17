@@ -1,23 +1,30 @@
+import { Routes, Route, Link } from 'react-router-dom'
 import './App.css'
-import Signin from './Signin'
-import Signup from './Signup'
-import Add from './components/Add'
-import Counter from './components/Counter'
-import Edit from './components/Edit'
 import List from './components/List'
+import Add from './components/Add'
+import Edit from './components/Edit'
 function App() {
     return (
         <>
-            {/* <Counter /> */}
-            <List />
-            <hr />
-            <Add />
-            <hr />
-            {/* <Edit /> */}
-            <hr />
-            {/*<Signup />
-            <hr />
-            <Signin /> */}
+            <nav>
+                <ul>
+                    <li>
+                        <Link to='/'>Home page</Link>
+                    </li>
+                    <li>
+                        <Link to='/products'>Product page</Link>
+                    </li>
+                    <li>
+                        <Link to='/products/add'>Product Add page</Link>
+                    </li>
+                </ul>
+            </nav>
+            <Routes>
+                <Route path='/' element={<div>Home page</div>} />
+                <Route path='products' element={<List />} />
+                <Route path='products/add' element={<Add />} />
+                <Route path='products/:id/edit' element={<Edit />} />
+            </Routes>
         </>
     )
 }
