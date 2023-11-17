@@ -4,6 +4,7 @@ import { ReactQueryDevtools } from 'react-query/devtools'
 import App from './App'
 import './index.css'
 import { BrowserRouter } from 'react-router-dom'
+import { Toaster } from './components/ui/toaster'
 
 const queryClient = new QueryClient()
 ReactDOM.createRoot(document.getElementById('root')!).render(
@@ -11,6 +12,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
         <BrowserRouter>
             <App />
         </BrowserRouter>
+        <Toaster />
         <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
 )

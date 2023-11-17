@@ -38,7 +38,6 @@ export const columns: ColumnDef<IProduct>[] = [
 
 const List = () => {
     const { data, isLoading, isError } = useProductQuery()
-
     if (isLoading) return <div>Loading...</div>
     if (isError) return <div>Error...</div>
 
@@ -46,5 +45,3 @@ const List = () => {
 }
 
 export default List
-// npm i react-query
-// npm i @tanstack/react-query-devtools

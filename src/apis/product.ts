@@ -17,9 +17,19 @@ export const getProduct = async (id: number) => {
         console.log(`['FETCH_PRODUCT_ERROR']`, error)
     }
 }
-export const updateProduct = (product: IProduct) => {
-    return instance.patch('/products/' + product.id, product)
+export const updateProduct = async (product: IProduct) => {
+    try {
+        const response = await instance.post(`/products/${product.id}`, product)
+        return response.data
+    } catch (error) {
+        console.log(`['UPDATE_PRODUCT_ERROR']`, error)
+    }
 }
-export const addProduct = (product: IProduct) => {
-    return instance.post('/products/', product)
+export const addProduct = async (product: IProduct) => {
+    try {
+        const response = await instance.post('/products/', product)
+        return response.data
+    } catch (error) {
+        console.log(`['ADD_PRODUCT_ERROR']`, error)
+    }
 }
