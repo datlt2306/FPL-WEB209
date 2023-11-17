@@ -1,14 +1,12 @@
-import { useContext } from 'react'
-import { CounterContext } from '../context/counter'
+import { useCounter } from '@/hooks/useCounter'
 
 const Counter = () => {
-    const { state, dispatch } = useContext(CounterContext)
+    const { count, increment, decrenment } = useCounter(0)
     return (
         <div>
-            {state.count}
-            <button onClick={() => dispatch({ type: 'INCREMENT' })}>INCREMENT</button>
-            <button onClick={() => dispatch({ type: 'DECREMENT' })}>DECREMENT</button>
-            <button onClick={() => dispatch({ type: 'INCREASE', payload: 12 })}>INCREASE</button>
+            {count}
+            <button onClick={increment}>increment</button>
+            <button onClick={decrenment}>decrement</button>
         </div>
     )
 }

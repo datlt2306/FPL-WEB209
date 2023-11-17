@@ -5,6 +5,8 @@ import { IProduct } from '@/interfaces/Product'
 import { DataTable } from './DataTable'
 import { Button } from './ui/button'
 import { formatPrice } from '@/lib/utils'
+import { Link } from 'react-router-dom'
+import { useProductQuery } from '@/hooks/useProductQuery'
 
 export const columns: ColumnDef<IProduct>[] = [
     {
@@ -26,6 +28,7 @@ export const columns: ColumnDef<IProduct>[] = [
         cell: ({ row }) => {
             return (
                 <>
+                    <Link to={`/products/${row?.original.id}`}>Chi tiết</Link>
                     <Button onClick={() => console.log(row?.original.id)}>Xóa</Button>
                 </>
             )
@@ -34,28 +37,12 @@ export const columns: ColumnDef<IProduct>[] = [
 ]
 
 const List = () => {
-    const {
-        data: products,
-        isLoading,
-        isError
-    } = useQuery({
-        // cung cấp 1 query key
-        queryKey: ['PRODUCT'],
-        // call api
-        queryFn: async () => {
-            const { data } = await getProducts()
-            return data
-        }
-    })
+    const { data, isLoading, isError } = useProductQuery()
 
     if (isLoading) return <div>Loading...</div>
     if (isError) return <div>Error...</div>
 
-    // return <div>{products?.map((product: any, index: any) => <ProductItem key={index} product={product} />)}</div>
-
-    // return <div>{products?.map((product: any, index: any) => <div key={index}>{product?.name}</div>)}</div>
-
-    return <DataTable columns={columns} data={products} />
+    return <DataTable columns={columns} data={data} />
 }
 
 export default List
