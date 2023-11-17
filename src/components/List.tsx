@@ -1,22 +1,12 @@
-import { useQuery } from 'react-query'
-import { getAll } from '../api/product'
-import { ColumnDef } from '@tanstack/react-table'
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu'
+import { useProductQuery } from '@/hooks/useProductQuery'
 import { IProduct } from '@/interfaces/Product'
+import { formatPrice } from '@/lib/utils'
+import { ColumnDef } from '@tanstack/react-table'
+import { MoreHorizontal } from 'lucide-react'
+import { Link } from 'react-router-dom'
 import { DataTable } from './DataTable'
 import { Button } from './ui/button'
-import { formatPrice } from '@/lib/utils'
-import { MoreHorizontal, Pencil } from 'lucide-react'
-import {
-    DropdownMenu,
-    DropdownMenuContent,
-    DropdownMenuItem,
-    DropdownMenuLabel,
-    DropdownMenuSeparator,
-    DropdownMenuTrigger
-} from '@/components/ui/dropdown-menu'
-import { Link } from 'react-router-dom'
-import { useProductQuery } from '@/hooks/useProductQuery'
-import ProductItem from './ProductItem'
 
 const columns: ColumnDef<IProduct>[] = [
     {
@@ -66,8 +56,7 @@ const List = () => {
     return (
         <div>
             <h2>Danh sách</h2>
-            {/* <DataTable columns={columns} data={data} /> */}
-            {data?.map((product: IProduct, index: number) => <ProductItem product={product} key={index} />)}
+            <DataTable columns={columns} data={data as IProduct[]} />
         </div>
     )
 }

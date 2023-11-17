@@ -5,7 +5,7 @@ import Joi from 'joi'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { useMutation, useQueryClient } from 'react-query'
 type formInputType = {
-    id?: number,
+    id?: number
     name: string
     price: number
 }
@@ -48,7 +48,6 @@ export const useProductMutation = ({
     })
 
     const onSubmit: SubmitHandler<formInputType> = (values) => {
-        console.log(values)
         mutate(values)
     }
 
