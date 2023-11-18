@@ -7,6 +7,8 @@ import { DataTable } from './DataTable'
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '../ui/tooltip'
 import { BsFillQuestionCircleFill } from 'react-icons/bs'
 import { Button } from '../ui/button'
+import { Link } from 'react-router-dom'
+import { useProductQuery } from '@/hooks/useProductQuery'
 export const columns: ColumnDef<IProduct>[] = [
     {
         accessorKey: 'name',
@@ -36,6 +38,9 @@ export const columns: ColumnDef<IProduct>[] = [
             const id = row?.original?.id
             return (
                 <>
+                    <Link to={`/product/${id}/edit`}>
+                        <Button>Sửa</Button>
+                    </Link>
                     <Button onClick={() => console.log(id)}>Xóa</Button>
                 </>
             )
@@ -44,10 +49,7 @@ export const columns: ColumnDef<IProduct>[] = [
 ]
 
 const ProductList = () => {
-    const { data, isLoading, isError } = useQuery({
-        queryKey: ['PRODUCT_KEY'],
-        queryFn: () => getProducts()
-    })
+    const { data, isLoading, isError } = useProductQuery()
     if (isLoading)
         return (
             <>
@@ -56,10 +58,11 @@ const ProductList = () => {
             </>
         )
     if (isError) return <div>Error.</div>
+
     return (
         <div>
             <h2>Quản lý sản phẩm</h2>
-            <DataTable columns={columns} data={data?.data} />
+            <DataTable columns={columns} data={data as IProduct[]} />
         </div>
     )
 }

@@ -5,7 +5,15 @@ import instance from './config'
 export const getProducts = async () => {
     try {
         const response: AxiosResponse<IProduct[]> = await instance.get('/products')
-        return response.data
+        return response.data || []
+    } catch (error) {
+        console.log('[API_FETCHING_PRODUCTS_ERROR]', error)
+    }
+}
+export const getOneProduct = async (id: number) => {
+    try {
+        const response: AxiosResponse<IProduct> = await instance.get(`/products/${id}`)
+        return response.data || {}
     } catch (error) {
         console.log('[API_FETCHING_PRODUCT_ERROR]', error)
     }
