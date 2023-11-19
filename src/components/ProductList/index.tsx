@@ -1,14 +1,12 @@
 import { Skeleton } from '@/components/ui/skeleton'
-import { ColumnDef } from '@tanstack/react-table'
-import { useQuery } from 'react-query'
-import { getProducts } from '../../api/product'
-import { IProduct } from '../../interfaces/Product'
-import { DataTable } from './DataTable'
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '../ui/tooltip'
-import { BsFillQuestionCircleFill } from 'react-icons/bs'
-import { Button } from '../ui/button'
-import { Link } from 'react-router-dom'
 import { useProductQuery } from '@/hooks/useProductQuery'
+import { ColumnDef } from '@tanstack/react-table'
+import { BsFillQuestionCircleFill } from 'react-icons/bs'
+import { Link } from 'react-router-dom'
+import { IProduct } from '../../interfaces/Product'
+import { Button } from '../ui/button'
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '../ui/tooltip'
+import { DataTable } from './DataTable'
 export const columns: ColumnDef<IProduct>[] = [
     {
         accessorKey: 'name',
