@@ -9,6 +9,7 @@ import { useState } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { useMutation, useQueryClient } from 'react-query'
 import { useToast } from '@/components/ui/use-toast'
+import { Pencil } from 'lucide-react'
 
 type NameFormProps = {
     data: IProduct
@@ -50,12 +51,22 @@ const NameForm = ({ data }: NameFormProps) => {
         mutate(values)
     }
     return (
-        <div className='border border-gray-200 shadow p-5'>
-            <div className='flex flex-row items-center justify-between'>
+        <div className='mt-6 border bg-slate-100 rounded-md p-4'>
+            <div className='font-medium flex items-center justify-between'>
                 <h2 className='font-bold'>Tên sản phẩm</h2>
-                <button onClick={() => setToggle(!toggle)}>Chỉnh sửa</button>
+                <Button variant='ghost' onClick={() => setToggle(!toggle)}>
+                    {toggle ? (
+                        <>Hủy</>
+                    ) : (
+                        <>
+                            <Pencil className='h-4 w-4 mr-2' />
+                            Chỉnh sửa
+                        </>
+                    )}
+                </Button>
             </div>
-            {toggle ? (
+            {!toggle && <p className='my-2'>{data?.name}</p>}
+            {toggle && (
                 <Form {...form}>
                     <form onSubmit={form.handleSubmit(onSubmit)} className=''>
                         <FormField
@@ -74,8 +85,6 @@ const NameForm = ({ data }: NameFormProps) => {
                         </Button>
                     </form>
                 </Form>
-            ) : (
-                <p className='my-2'>{data?.name}</p>
             )}
         </div>
     )
