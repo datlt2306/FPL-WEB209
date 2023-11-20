@@ -8,22 +8,21 @@ import PriceForm from './Product/PriceForm'
 
 type Props = {}
 
-const Detail = (props: Props) => {
+const Edit = (props: Props) => {
     const { id } = useParams()
     const { data } = useProductQuery(id)
-    console.log(data)
     return (
         <div>
             <div className='grid grid-cols-2'>
                 <div>
-                    <NameForm />
+                    <NameForm data={data} />
                 </div>
                 <div>
-                    <PriceForm />
+                    <PriceForm data={data} />
                 </div>
             </div>
         </div>
     )
 }
 
-export default Detail
+export default Edit

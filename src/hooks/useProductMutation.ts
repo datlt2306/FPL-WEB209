@@ -18,13 +18,13 @@ const formSchema = Joi.object({
 type useProductMutationProps = {
     action: 'ADD' | 'UPDATE' | 'DELETE'
     defaultValues?: IProduct
-    callbackFn?: () => void
+    onSuccess?: () => void
 }
 
 export const useProductMutation = ({
     action,
     defaultValues = { name: '', price: 0 },
-    callbackFn
+    onSuccess
 }: useProductMutationProps) => {
     const queryClient = useQueryClient()
 
@@ -44,7 +44,7 @@ export const useProductMutation = ({
             }
         },
         onSuccess: () => {
-            callbackFn && callbackFn()
+            onSuccess && onSuccess()
             queryClient.invalidateQueries({
                 queryKey: ['PRODUCT']
             })

@@ -8,7 +8,7 @@ const Add = () => {
     const { toast } = useToast()
     const { form, onSubmit } = useProductMutation({
         action: 'ADD',
-        callbackFn: () => {
+        onSuccess: () => {
             toast({
                 variant: 'success',
                 title: 'Chúc mừng thanh niên!!',

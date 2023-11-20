@@ -2,7 +2,8 @@ import { Link, Route, Routes } from 'react-router-dom'
 import './App.css'
 import Add from './components/Add'
 import List from './components/List'
-import Detail from './components/Detail'
+import Detail from './components/Edit'
+import Edit from './components/Edit'
 
 function App() {
     return (
@@ -15,7 +16,7 @@ function App() {
                 <Route path='/' element={<div>Home Page</div>} />
                 <Route path='products' element={<List />} />
                 <Route path='products/add' element={<Add />} />
-                <Route path='products/:id' element={<Detail />} />
+                <Route path='products/:id' element={<Edit />} />
             </Routes>
         </>
     )

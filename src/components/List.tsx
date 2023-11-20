@@ -29,7 +29,7 @@ export const columns: ColumnDef<IProduct>[] = [
         cell: ({ row }) => {
             return (
                 <>
-                    <Link to={`/products/${row?.original.id}`}>Chi tiết</Link>
+                    <Link to={`/products/${row?.original.id}`}>Chỉnh sửa</Link>
                     <Button onClick={() => console.log(row?.original.id)}>Xóa</Button>
                 </>
             )
@@ -42,14 +42,7 @@ const List = () => {
     if (isLoading) return <div>Loading...</div>
     if (isError) return <div>Error...</div>
 
-    // return <DataTable columns={columns} data={data} />
-    return (
-        <div>
-            {data.map((item: IProduct) => (
-                <ProductItem key={item.id} product={item} />
-            ))}
-        </div>
-    )
+    return <DataTable columns={columns} data={data} />
 }
 
 export default List
