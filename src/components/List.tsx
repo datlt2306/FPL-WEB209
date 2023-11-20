@@ -35,9 +35,6 @@ const columns: ColumnDef<IProduct>[] = [
                         </DropdownMenuTrigger>
                         <DropdownMenuContent align='end'>
                             <DropdownMenuItem>
-                                {/* <Button onClick={() => console.log(original.id)}>
-                                    <Pencil /> Xóa
-                                </Button> */}
                                 <Link to={`/products/${original.id}/edit`}>Sửa</Link>
                             </DropdownMenuItem>
                         </DropdownMenuContent>

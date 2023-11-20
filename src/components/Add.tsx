@@ -3,18 +3,26 @@ import { IProduct } from '../interfaces/Product'
 import { Button } from './ui/button'
 import { Form, FormControl, FormField, FormItem, FormLabel } from './ui/form'
 import { Input } from './ui/input'
+import { useToast } from './ui/use-toast'
 
 const Add = () => {
+    const { toast } = useToast()
     const { form, onSubmit, isLoading } = useProductMutation({
-        action: 'ADD'
+        action: 'ADD',
+        onSuccess: () => {
+            toast({
+                title: 'Success',
+                description: 'Product has been added',
+                duration: 3000,
+                variant: 'success'
+            })
+            form.reset()
+        }
     })
-    const handleOnSubmit = (values: IProduct) => {
-        onSubmit(values)
-    }
     return (
         <div>
             <Form {...form}>
-                <form onSubmit={form.handleSubmit(handleOnSubmit)} className='space-y-4 p-10'>
+                <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-4 p-10'>
                     <FormField
                         control={form.control}
                         name='name'

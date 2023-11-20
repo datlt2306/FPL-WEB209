@@ -2,12 +2,8 @@
   "products": [
     {
       "id": 1,
-      "name": "product A update lan 4 update 3",
-      "price": 400,
-      "values": {
-        "name": "product A update lan 2",
-        "price": 200
-      }
+      "name": "product A update lan 4 update 11",
+      "price": 500
     },
     {
       "id": 2,
@@ -93,6 +89,31 @@
       "name": "123213213",
       "price": 2132131,
       "id": 18
+    },
+    {
+      "name": "Sản phẩm 100000",
+      "price": 123131,
+      "id": 19
+    },
+    {
+      "name": "Sản phẩm 100000000",
+      "price": 21301230103,
+      "id": 20
+    },
+    {
+      "name": "sản phẩm mới 100000",
+      "price": 200,
+      "id": 21
+    },
+    {
+      "name": "sản phẩm mới 1000001231231",
+      "price": 200,
+      "id": 22
+    },
+    {
+      "name": "sản phẩm mới 100000123123112 31231 ",
+      "price": 200,
+      "id": 23
     }
   ],
   "users": [
