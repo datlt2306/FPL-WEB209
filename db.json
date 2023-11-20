@@ -1,78 +1,10 @@
 {
   "products": [
     {
-      "name": "Sản phẩm update 1321311231312 update lần 3",
-      "price": 1111111231,
-      "id": 5
-    },
-    {
-      "name": "Sản phẩm F update",
-      "price": "200",
-      "id": 6
-    },
-    {
-      "name": "sanr phaarm tesst",
-      "price": "123131",
-      "id": 7
-    },
-    {
-      "name": "Sản phẩm update 123131",
-      "price": "200",
-      "id": 8
-    },
-    {
-      "name": "Aaaaaaa",
-      "id": 9
-    },
-    {
-      "name": "bbbbb",
-      "id": 10
-    },
-    {
-      "name": "dâfjkddasjfhja",
-      "id": 11
-    },
-    {
-      "name": "fàdsfa",
-      "price": "123131",
-      "id": 12
-    },
-    {
-      "name": "AAAAA 1232131 dsadasda",
-      "price": "123213",
-      "id": 13
-    },
-    {
-      "name": "Sản phẩm DEmo",
-      "price": 12312312,
-      "id": 14
-    },
-    {
-      "name": "Sản phẩm Demo 2",
-      "price": 123123,
-      "id": 15
-    },
-    {
-      "name": "dsadas",
-      "price": 21313,
-      "id": 16
-    },
-    {
-      "name": "21313321313131",
-      "price": 321313131,
-      "id": 17
+      "name": "San pham 1 23 update 1",
+      "price": 200,
+      "id": 1
     }
   ],
-  "users": [
-    {
-      "email": "admin@gmail.com",
-      "password": "$2a$10$48vdQGSAOIh2txZFKeRDaOW2tVxBwSO/IaTRUk8h.y15KS8ohlUoa",
-      "id": 1
-    },
-    {
-      "email": "member@gmail.com",
-      "password": "$2a$10$k0HwN92zhkLUrS8pZ.L0VOGC0Kz/hlmKhADRZBRJcAUo434sVvwpe",
-      "id": 2
-    }
-  ]
+  "users": []
 }
