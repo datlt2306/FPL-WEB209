@@ -9,6 +9,8 @@ import joi from 'joi'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { useMutation, useQueryClient } from 'react-query'
 import { useToast } from '../ui/use-toast'
+import { useProductMutation } from '@/hooks/useProductMutation'
+import { useNavigate } from 'react-router-dom'
 
 type FormControlType = {
     name: string
@@ -19,18 +21,37 @@ const formSchema = joi.object({
     price: joi.number()
 })
 const ProductAdd = () => {
-    const queryClient = useQueryClient()
-    const { toast } = useToast()
+    // const queryClient = useQueryClient()
+    // const { toast } = useToast()
 
-    const form = useForm<FormControlType>({
-        resolver: joiResolver(formSchema),
-        defaultValues: {
-            name: '',
-            price: 0
-        }
-    })
-    const mutation = useMutation({
-        mutationFn: (product: IProduct) => addProduct(product),
+    // const form = useForm<FormControlType>({
+    //     resolver: joiResolver(formSchema),
+    //     defaultValues: {
+    //         name: '',
+    //         price: 0
+    //     }
+    // })
+    // const mutation = useMutation({
+    //     mutationFn: (product: IProduct) => addProduct(product),
+    //     onSuccess: () => {
+    //         toast({
+    //             variant: 'success',
+    //             title: 'Chúc mừng bạn!',
+    //             description: 'Bạn đã thêm sản phẩm thành công'
+    //         })
+    //         form.reset()
+    //         queryClient.invalidateQueries('PRODUCT_KEY')
+    //     }
+    // })
+
+    // const onSubmit: SubmitHandler<FormControlType> = (data) => {
+    //     mutation.mutate(data)
+    // }
+
+    const { toast } = useToast()
+    const navigate = useNavigate()
+    const { form, onSubmit } = useProductMutation({
+        action: 'CREATE',
         onSuccess: () => {
             toast({
                 variant: 'success',
@@ -38,13 +59,11 @@ const ProductAdd = () => {
                 description: 'Bạn đã thêm sản phẩm thành công'
             })
             form.reset()
-            queryClient.invalidateQueries('PRODUCT_KEY')
+            setTimeout(() => {
+                navigate('/product')
+            }, 2000)
         }
     })
-
-    const onSubmit: SubmitHandler<FormControlType> = (data) => {
-        mutation.mutate(data)
-    }
     return (
         <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)}>

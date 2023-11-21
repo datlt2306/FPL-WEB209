@@ -1,54 +1,41 @@
-import { editProduct } from '@/api/product'
 import { Button } from '@/components/ui/button'
 import { Form, FormControl, FormField, FormItem } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import { useToast } from '@/components/ui/use-toast'
+import { useProductMutation } from '@/hooks/useProductMutation'
 import { IProduct } from '@/interfaces/Product'
-import { joiResolver } from '@hookform/resolvers/joi'
-import Joi from 'joi'
 import { Pencil } from 'lucide-react'
-import { useState } from 'react'
-import { SubmitHandler, useForm } from 'react-hook-form'
-import { useMutation, useQueryClient } from 'react-query'
+import { useEffect, useState } from 'react'
 
 type PriceFormProps = {
     data: IProduct
 }
-type FormControlType = {
-    price: number
-}
-
-const formSchema = Joi.object({
-    price: Joi.number().required()
-})
 
 const PriceForm = ({ data }: PriceFormProps) => {
-    const { toast } = useToast()
-    const queryClient = useQueryClient()
     const [toggle, setToggle] = useState(false)
-    const form = useForm<FormControlType>({
-        resolver: joiResolver(formSchema),
-        defaultValues: {
-            price: data?.price || 0
-        }
-    })
-    const { mutate } = useMutation({
-        mutationFn: (values: { price: number }) => editProduct({ ...data, ...values }),
+    const { toast } = useToast()
+    const { form, onSubmit } = useProductMutation({
+        action: 'UPDATE',
         onSuccess: () => {
             toast({
-                variant: 'success',
-                title: 'Thành công',
-                description: 'Cập nhật thành công'
+                title: 'Cập nhật thành công',
+                variant: 'success'
             })
-            // thêm | cập nhật thành công
             setToggle(false)
-            queryClient.invalidateQueries({
-                queryKey: ['PRODUCT_KEY']
-            })
         }
     })
-    const onSubmit: SubmitHandler<FormControlType> = (values) => {
-        mutate(values)
+    // side effect là những hành phụ khi mà component được render
+    useEffect(() => {
+        if (data && form) {
+            form.reset({
+                name: data?.name,
+                price: data?.price
+            })
+        }
+    }, [data, form])
+
+    const handleOnSubmit = (values: IProduct) => {
+        onSubmit({ ...data, ...values })
     }
     return (
         <div className='mt-6 border bg-slate-100 rounded-md p-4'>
@@ -68,7 +55,7 @@ const PriceForm = ({ data }: PriceFormProps) => {
             {!toggle && <p className='my-2'>{data?.price}</p>}
             {toggle && (
                 <Form {...form}>
-                    <form onSubmit={form.handleSubmit(onSubmit)} className=''>
+                    <form onSubmit={form.handleSubmit(handleOnSubmit)} className=''>
                         <FormField
                             control={form.control}
                             name='price'

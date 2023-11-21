@@ -18,9 +18,31 @@ export const getOneProduct = async (id: number) => {
         console.log('[API_FETCHING_PRODUCT_ERROR]', error)
     }
 }
-export const addProduct = (product: IProduct) => {
-    return instance.post('/products', product)
+export const addProduct = async (product: IProduct) => {
+    try {
+        const response = await instance.post('/products', product)
+        return response.data
+    } catch (error) {
+        console.log('[API_CREATE_PRODUCT_ERROR]', error)
+    }
 }
-export const editProduct = (product: IProduct) => {
-    return instance.patch('/products/' + product.id, product)
+export const editProduct = async (product: IProduct) => {
+    try {
+        const response = await instance.patch('/products/' + product.id, product)
+        return response.data
+    } catch (error) {
+        console.log('[API_UPDATE_PRODUCT_ERROR]', error)
+    }
+}
+export const deleteProduct = async (id: number) => {
+    try {
+        // Nếu sử dụng json-server thì dùng cách này
+        await instance.delete('/products/' + id)
+        return null
+        // Nếu sử dụng nodejs thì dùng cách này
+        // const response = await instance.delete('/products/' + id)
+        // return response.data
+    } catch (error) {
+        console.log('[API_UPDATE_PRODUCT_ERROR]', error)
+    }
 }

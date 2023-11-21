@@ -2,8 +2,8 @@
   "products": [
     {
       "id": 1,
-      "name": "Product A update 8",
-      "price": 400123
+      "name": "Product A update 10",
+      "price": 400123123456789
     },
     {
       "id": 2,
@@ -72,6 +72,16 @@
       "name": "Sản phẩm C",
       "price": 300,
       "id": 15
+    },
+    {
+      "name": "Sản phẩm 101",
+      "price": 200,
+      "id": 16
+    },
+    {
+      "name": "San phảm 102",
+      "price": 300,
+      "id": 17
     }
   ],
   "users": [
