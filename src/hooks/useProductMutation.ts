@@ -52,9 +52,14 @@ export const useProductMutation = ({
         mutate(values)
     }
 
+    const onRemove = (product: IProduct) => {
+        mutate(product)
+    }
+
     return {
         form,
         onSubmit,
+        onRemove,
         ...rest
     }
 }

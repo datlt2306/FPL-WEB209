@@ -7,8 +7,10 @@ import { MoreHorizontal } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { DataTable } from './DataTable'
 import { Button } from './ui/button'
+import { useProductMutation } from '@/hooks/useProductMutation'
+import { useToast } from './ui/use-toast'
 
-const columns: ColumnDef<IProduct>[] = [
+const getProduct = (onRemove: any): ColumnDef<IProduct>[] => [
     {
         accessorKey: 'name',
         header: () => <span className='text-red-500'>Tên sản phẩm</span>
@@ -24,6 +26,10 @@ const columns: ColumnDef<IProduct>[] = [
     {
         id: 'action',
         cell: ({ row: { original } }) => {
+            const handleRemove = (product: IProduct) => {
+                const confirm = window.confirm('Bạn có chắc chắn muốn xóa sản phẩm này không?')
+                if (confirm) onRemove(product)
+            }
             return (
                 <>
                     <DropdownMenu>
@@ -37,6 +43,11 @@ const columns: ColumnDef<IProduct>[] = [
                             <DropdownMenuItem>
                                 <Link to={`/products/${original.id}/edit`}>Sửa</Link>
                             </DropdownMenuItem>
+                            <DropdownMenuItem>
+                                <Button variant='destructive' onClick={() => handleRemove(original)}>
+                                    Xóa
+                                </Button>
+                            </DropdownMenuItem>
                         </DropdownMenuContent>
                     </DropdownMenu>
                 </>
@@ -46,10 +57,22 @@ const columns: ColumnDef<IProduct>[] = [
 ]
 
 const List = () => {
+    const { toast } = useToast()
     const { isLoading, isError, data } = useProductQuery()
+    const { onRemove } = useProductMutation({
+        action: 'DELETE',
+        onSuccess: () => {
+            toast({
+                title: 'Success',
+                description: 'Xóa sản phẩm thành công',
+                variant: 'success'
+            })
+        }
+    })
 
     if (isLoading) return <div>Loading...</div>
     if (isError) return <div>Error....</div>
+    const columns = getProduct(onRemove)
     return (
         <div>
             <h2>Danh sách</h2>
