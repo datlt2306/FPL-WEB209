@@ -1,4 +1,4 @@
-import { addProduct, updateProduct } from '@/apis/product'
+import { addProduct, deleteProduct, updateProduct } from '@/apis/product'
 import { useToast } from '@/components/ui/use-toast'
 import { IProduct } from '@/interfaces/Product'
 import { joiResolver } from '@hookform/resolvers/joi'
@@ -32,13 +32,11 @@ export const useProductMutation = ({
         mutationFn: async (product: IProduct) => {
             switch (action) {
                 case 'ADD':
-                    await addProduct(product)
-                    return
+                    return await addProduct(product)
                 case 'UPDATE':
-                    await updateProduct(product)
-                    return
+                    return await updateProduct(product)
                 case 'DELETE':
-                // deleteProduct(product)
+                    return await deleteProduct(product)
                 default:
                     return null
             }
@@ -58,9 +56,13 @@ export const useProductMutation = ({
         console.log(values)
         mutate(values)
     }
+    const onRemove = (product: IProduct) => {
+        mutate(product)
+    }
     return {
         form,
         onSubmit,
+        onRemove,
         ...rest
     }
 }

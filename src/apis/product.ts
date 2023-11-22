@@ -35,8 +35,12 @@ export const addProduct = async (product: IProduct) => {
 }
 export const deleteProduct = async (product: IProduct) => {
     try {
-        const response = await instance.delete(`/products/${product.id}`)
-        return response.data
+        // JSON-server {}
+        await instance.delete(`/products/${product.id}`)
+
+        // Nodejs 
+        // const response = await instance.delete(`/products/${product.id}`)
+        // return response.data
     } catch (error) {
         console.log(`['DELETE_PRODUCT_ERROR']`, error)
     }

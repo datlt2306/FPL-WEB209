@@ -1,10 +1,4 @@
 {
-  "products": [
-    {
-      "name": "San pham 1 23 update 5",
-      "price": 300,
-      "id": 1
-    }
-  ],
+  "products": [],
   "users": []
 }

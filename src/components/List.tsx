@@ -1,46 +1,26 @@
-import { useQuery } from 'react-query'
-import { getProducts } from '../apis/product'
-import { ColumnDef } from '@tanstack/react-table'
-import { IProduct } from '@/interfaces/Product'
-import { DataTable } from './DataTable'
-import { Button } from './ui/button'
-import { formatPrice } from '@/lib/utils'
-import { Link } from 'react-router-dom'
+import { useProductMutation } from '@/hooks/useProductMutation'
 import { useProductQuery } from '@/hooks/useProductQuery'
-import ProductItem from './ProductItem'
-
-export const columns: ColumnDef<IProduct>[] = [
-    {
-        accessorKey: 'name',
-        header: () => <span className='font-bold'>Tên sản phẩm</span>
-    },
-    {
-        accessorKey: 'price',
-        header: 'Giá',
-        cell: ({ row }) => {
-            const formattedPrice = formatPrice(row.getValue('price') || 0)
-
-            return <div dangerouslySetInnerHTML={{ __html: formattedPrice }} />
-        }
-    },
-    {
-        accessorKey: '',
-        header: 'Hành động',
-        cell: ({ row }) => {
-            return (
-                <>
-                    <Link to={`/products/${row?.original.id}`}>Chỉnh sửa</Link>
-                    <Button onClick={() => console.log(row?.original.id)}>Xóa</Button>
-                </>
-            )
-        }
-    }
-]
+import { DataTable } from './DataTable'
+import { getColumns } from './Product/Column'
+import { useToast } from './ui/use-toast'
 
 const List = () => {
+    const { toast } = useToast()
     const { data, isLoading, isError } = useProductQuery()
+    const { onRemove } = useProductMutation({
+        action: 'DELETE',
+        onSuccess: () => {
+            toast({
+                variant: 'success',
+                title: 'Chúc mừng thanh niên!!',
+                description: 'Sản phẩm xóa thành công'
+            })
+        }
+    })
     if (isLoading) return <div>Loading...</div>
     if (isError) return <div>Error...</div>
+
+    const columns = getColumns(onRemove)
 
     return <DataTable columns={columns} data={data} />
 }

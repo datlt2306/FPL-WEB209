@@ -7,7 +7,7 @@ import Edit from './components/Edit'
 
 function App() {
     return (
-        <>
+        <div className=' max-w-4xl mx-auto'>
             <div>
                 <Link to='/'>Home</Link>
                 <Link to='/products'>Products</Link>
@@ -18,7 +18,7 @@ function App() {
                 <Route path='products/add' element={<Add />} />
                 <Route path='products/:id' element={<Edit />} />
             </Routes>
-        </>
+        </div>
     )
 }
 
