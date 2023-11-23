@@ -44,7 +44,7 @@ export const useProductMutation = ({
             }
         },
         onSuccess: () => {
-            // thêm | cập nhật thành công
+            // thêm | cập nhật | Xóa thành công
             queryClient.invalidateQueries({
                 queryKey: ['PRODUCT_KEY']
             })

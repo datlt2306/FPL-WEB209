@@ -1,36 +1,6 @@
 {
   "products": [
     {
-      "id": 3,
-      "name": "Product C Update",
-      "price": 400
-    },
-    {
-      "name": "san pham moi 1 update",
-      "price": "200",
-      "id": 4
-    },
-    {
-      "name": "San pha moi 2 update",
-      "price": "23",
-      "id": 5
-    },
-    {
-      "name": "San pham moi 3 update",
-      "price": "200",
-      "id": 6
-    },
-    {
-      "name": "sản phẩm 4 update 1111",
-      "price": "200",
-      "id": 7
-    },
-    {
-      "name": "dat",
-      "price": "123",
-      "id": 8
-    },
-    {
       "name": "kjfdahkfhajskfh",
       "price": "1231",
       "id": 9
