@@ -54,10 +54,13 @@ export const useProductMutation = ({
     const onSubmit: SubmitHandler<FormControlType> = (values) => {
         mutate(values as IProduct)
     }
-
+    const onRemove = (product: IProduct) => {
+        mutate(product)
+    }
     return {
         form,
         onSubmit,
+        onRemove,
         ...rest
     }
 }

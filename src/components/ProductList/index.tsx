@@ -7,6 +7,8 @@ import { IProduct } from '../../interfaces/Product'
 import { Button } from '../ui/button'
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '../ui/tooltip'
 import { DataTable } from './DataTable'
+import { useProductMutation } from '@/hooks/useProductMutation'
+import { toast } from '../ui/use-toast'
 export const columns: ColumnDef<IProduct>[] = [
     {
         accessorKey: 'name',
@@ -33,13 +35,28 @@ export const columns: ColumnDef<IProduct>[] = [
     {
         id: 'action',
         cell: ({ row }) => {
-            const id = row?.original?.id
+            const product = row?.original as IProduct
+            const { onRemove } = useProductMutation({
+                action: 'DELETE',
+                onSuccess: () => {
+                    toast({
+                        variant: 'success',
+                        description: 'Xóa sản phẩm thành công'
+                    })
+                }
+            })
             return (
                 <>
-                    <Link to={`/product/${id}/edit`}>
+                    <Link to={`/product/${product.id}/edit`}>
                         <Button>Sửa</Button>
                     </Link>
-                    <Button onClick={() => console.log(id)}>Xóa</Button>
+                    <Button
+                        onClick={() => {
+                            window.confirm('Bạn có chắc chắn muốn xóa sản phẩm này?') && onRemove(product)
+                        }}
+                    >
+                        Xóa
+                    </Button>
                 </>
             )
         }
