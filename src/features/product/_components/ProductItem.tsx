@@ -1,10 +1,10 @@
 import { useProductMutation } from '@/hooks/useProductMutation'
 import joi from 'joi'
 import { useState } from 'react'
-import { IProduct } from '../interfaces/Product'
-import { Button } from './ui/button'
-import { Form, FormControl, FormField, FormItem } from './ui/form'
-import { Input } from './ui/input'
+import { IProduct } from '../../../common/Type'
+import { Button } from '../../../components/ui/button'
+import { Form, FormControl, FormField, FormItem } from '../../../components/ui/form'
+import { Input } from '../../../components/ui/input'
 
 type ProductItemProps = {
     product: IProduct

@@ -1,4 +1,4 @@
-import { getAll, getOne } from '@/api/product'
+import { getAll, getOne } from '@/services/product'
 import { useQuery } from 'react-query'
 
 export const useProductQuery = (productId?: number) => {

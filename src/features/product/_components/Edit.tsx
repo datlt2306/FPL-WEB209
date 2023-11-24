@@ -1,8 +1,8 @@
 import { useProductQuery } from '@/hooks/useProductQuery'
 import { useParams } from 'react-router-dom'
-import NameForm from './product/_components/NameForm'
-import PriceForm from './product/_components/PriceForm'
-import { IProduct } from '@/interfaces/Product'
+import NameForm from './NameForm'
+import PriceForm from './PriceForm'
+import { IProduct } from '@/common/Type'
 
 type Props = {}
 

@@ -1,6 +1,6 @@
-import { addProduct, deleteProduct, editProduct } from '@/api/product'
+import { addProduct, deleteProduct, editProduct } from '@/services/product'
 import { useToast } from '@/components/ui/use-toast'
-import { IProduct } from '@/interfaces/Product'
+import { IProduct } from '@/common/Type'
 import { joiResolver } from '@hookform/resolvers/joi'
 import Joi from 'joi'
 import { SubmitHandler, useForm } from 'react-hook-form'

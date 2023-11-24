@@ -1,14 +1,14 @@
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu'
 import { useProductQuery } from '@/hooks/useProductQuery'
-import { IProduct } from '@/interfaces/Product'
+import { IProduct } from '@/common/Type'
 import { formatPrice } from '@/lib/utils'
 import { ColumnDef } from '@tanstack/react-table'
 import { MoreHorizontal } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { DataTable } from './DataTable'
-import { Button } from './ui/button'
+import { Button } from '../../../components/ui/button'
 import { useProductMutation } from '@/hooks/useProductMutation'
-import { useToast } from './ui/use-toast'
+import { useToast } from '../../../components/ui/use-toast'
 
 const getProduct = (onRemove: any): ColumnDef<IProduct>[] => [
     {

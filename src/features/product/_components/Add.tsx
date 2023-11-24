@@ -1,9 +1,9 @@
 import { useProductMutation } from '@/hooks/useProductMutation'
-import { IProduct } from '../interfaces/Product'
-import { Button } from './ui/button'
-import { Form, FormControl, FormField, FormItem, FormLabel } from './ui/form'
-import { Input } from './ui/input'
-import { useToast } from './ui/use-toast'
+import { IProduct } from '../../../common/Type'
+import { Button } from '../../../components/ui/button'
+import { Form, FormControl, FormField, FormItem, FormLabel } from '../../../components/ui/form'
+import { Input } from '../../../components/ui/input'
+import { useToast } from '../../../components/ui/use-toast'
 
 const Add = () => {
     const { toast } = useToast()

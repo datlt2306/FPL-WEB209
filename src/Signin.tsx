@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react'
-import { IProduct } from './interfaces/Product'
-import { ProductContext } from './context/Product'
+import { IProduct } from './common/Type'
+import { ProductContext } from './store/Product'
 
 const Signin = () => {
     const { onHandleSignin } = useContext(ProductContext)

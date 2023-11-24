@@ -1,5 +1,5 @@
 import { createContext, useReducer } from 'react'
-import { IProduct } from '../interfaces/Product'
+import { IProduct } from '../common/Type'
 import { produce } from 'immer'
 export const ProductContext = createContext([] as any)
 const initialState = {
