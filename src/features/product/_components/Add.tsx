@@ -14,6 +14,7 @@ const Add = () => {
                 title: 'Chúc mừng thanh niên!!',
                 description: 'Em đã thêm sản phẩm thành công'
             })
+            form.reset()
         }
     })
     return (

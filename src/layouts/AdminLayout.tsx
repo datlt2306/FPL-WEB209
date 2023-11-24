@@ -1,9 +1,14 @@
-import React from 'react'
+import { Outlet } from 'react-router-dom'
 
-type Props = {}
-
-const AdminLayout = (props: Props) => {
-    return <div>AdminLayout</div>
+const AdminLayout = () => {
+    return (
+        <div>
+            <aside>Aside admin</aside>
+            <main>
+                <Outlet />
+            </main>
+        </div>
+    )
 }
 
 export default AdminLayout
