@@ -1,14 +1,10 @@
-import { updateProduct } from '@/apis/product'
-import { IProduct } from '@/interfaces/Product'
-import { joiResolver } from '@hookform/resolvers/joi'
+import { IProduct } from '@/common/type'
+import { useProductMutation } from '@/hooks/useProductMutation'
 import joi from 'joi'
 import { useState } from 'react'
-import { SubmitHandler, useForm } from 'react-hook-form'
-import { useMutation, useQueryClient } from 'react-query'
-import { Form, FormControl, FormField, FormItem } from './ui/form'
-import { Input } from './ui/input'
-import { useProductMutation } from '@/hooks/useProductMutation'
-import { useToast } from './ui/use-toast'
+import { Form, FormControl, FormField, FormItem } from '../../../components/ui/form'
+import { Input } from '../../../components/ui/input'
+import { useToast } from '../../../components/ui/use-toast'
 
 type ProductItemProps = {
     product: IProduct
@@ -28,7 +24,7 @@ const ProductItem = ({ product }: ProductItemProps) => {
     const [productEdit, setProductEdit] = useState({} as IProduct)
     const { form, onSubmit } = useProductMutation({
         action: 'UPDATE',
-        callbackFn: () => {
+        onSuccess: () => {
             setProductEditId(null)
             toast({
                 variant: 'destructive',

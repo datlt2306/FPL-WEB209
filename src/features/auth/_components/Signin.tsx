@@ -1,8 +1,8 @@
 import { useContext, useState } from 'react'
-import { ProductContext } from '../context/product'
+import { ProductContext } from '../../../store/product'
 
-const Signup = () => {
-    const { onSignup } = useContext(ProductContext)
+const Signin = () => {
+    const { onHandleSignin } = useContext(ProductContext)
     const [value, setValue] = useState({})
     const onChange = (e: any) => {
         const target = e.target
@@ -15,11 +15,11 @@ const Signup = () => {
     }
     const onSubmit = (e: any) => {
         e.preventDefault()
-        onSignup(value)
+        onHandleSignin(value)
     }
     return (
         <div>
-            <h2>Đăng ký</h2>
+            <h2>Đăng nhập</h2>
             <form onSubmit={onSubmit}>
                 <input type='text' name='email' onChange={onChange} />
                 <input type='number' name='password' onChange={onChange} />
@@ -29,4 +29,4 @@ const Signup = () => {
     )
 }
 
-export default Signup
+export default Signin

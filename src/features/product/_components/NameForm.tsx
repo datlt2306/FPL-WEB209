@@ -1,12 +1,12 @@
 import { IProduct } from '@/interfaces/Product'
 import React, { useEffect, useState } from 'react'
-import { Button } from '../ui/button'
+import { Button } from '../../../components/ui/button'
 import { Pencil } from 'lucide-react'
 import { SubmitHandler } from 'react-hook-form'
-import { Form, FormControl, FormField, FormItem } from '../ui/form'
-import { Input } from '../ui/input'
+import { Form, FormControl, FormField, FormItem } from '../../../components/ui/form'
+import { Input } from '../../../components/ui/input'
 import { useProductMutation } from '@/hooks/useProductMutation'
-import { useToast } from '../ui/use-toast'
+import { useToast } from '../../../components/ui/use-toast'
 
 type NameFormProps = {
     data: IProduct

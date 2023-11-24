@@ -2,7 +2,7 @@ import { IProduct } from '@/interfaces/Product'
 import { formatPrice } from '@/lib/utils'
 import { ColumnDef } from '@tanstack/react-table'
 import { Link } from 'react-router-dom'
-import { Button } from '../ui/button'
+import { Button } from '../../../components/ui/button'
 
 export const getColumns = (removeProduct: any): ColumnDef<IProduct>[] => [
     {

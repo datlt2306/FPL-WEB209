@@ -1,5 +1,5 @@
-import { IProduct } from '../interfaces/Product'
-import instance from './instance'
+import { IProduct } from '@/common/type'
+import instance from '../core/api'
 
 export const getProducts = async () => {
     try {
