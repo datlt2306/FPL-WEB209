@@ -3,7 +3,7 @@ import { Form, FormControl, FormField, FormItem } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import { useToast } from '@/components/ui/use-toast'
 import { useProductMutation } from '@/hooks/useProductMutation'
-import { IProduct } from '@/interfaces/Product'
+import { IProduct } from '@/common/Type'
 import { Pencil } from 'lucide-react'
 import { useEffect, useState } from 'react'
 

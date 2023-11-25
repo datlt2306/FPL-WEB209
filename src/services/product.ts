@@ -1,6 +1,6 @@
 import { AxiosResponse } from 'axios'
-import { IProduct } from '../interfaces/Product'
-import instance from './config'
+import { IProduct } from '../common/Type'
+import instance from '../core/api'
 
 export const getProducts = async () => {
     try {

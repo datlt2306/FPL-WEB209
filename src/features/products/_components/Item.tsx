@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
-import { IProduct } from '../../interfaces/Product'
+import { IProduct } from '../../common/Type'
 import { useMutation, useQueryClient } from 'react-query'
-import { editProduct } from '../../api/product'
+import { editProduct } from '../../services/product'
 
 type ProductItemProps = {
     item: IProduct

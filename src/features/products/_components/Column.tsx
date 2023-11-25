@@ -1,9 +1,9 @@
-import { IProduct } from '@/interfaces/Product'
+import { IProduct } from '@/common/Type'
 import { ColumnDef } from '@tanstack/react-table'
 import { BsFillQuestionCircleFill } from 'react-icons/bs'
 import { Link } from 'react-router-dom'
-import { Button } from '../ui/button'
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '../ui/tooltip'
+import { Button } from '../../../components/ui/button'
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '../../../components/ui/tooltip'
 
 export const getColumns = (onRemove: (product: IProduct) => void): ColumnDef<IProduct>[] => [
     {

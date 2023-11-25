@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
-import { IProduct } from '../../interfaces/Product'
+import { IProduct } from '../../common/Type'
 
 type Props = {
-    onSignup: (user: IProduct) => void
+    onSignin: (user: IProduct) => void
 }
 
-const Signup = ({ onSignup }: Props) => {
+const Signin = ({ onSignin }: Props) => {
     const [valueInput, setValueInput] = useState<IProduct>({
         name: '',
         price: 0
@@ -20,17 +20,17 @@ const Signup = ({ onSignup }: Props) => {
     }
     const onSubmit = (e: any) => {
         e.preventDefault()
-        onSignup(valueInput)
+        onSignin(valueInput)
     }
     return (
         <form onSubmit={onSubmit}>
             {JSON.stringify(valueInput)}
-            <h2>Đăng ký</h2>
+            <h2>Đăng nhập</h2>
             <input type='email' name='email' placeholder='Email' onInput={onInput} />
             <input type='password' name='password' placeholder='Mật khẩu' onInput={onInput} />
-            <button>Thêm</button>
+            <button>Đăng nhập</button>
         </form>
     )
 }
 
-export default Signup
+export default Signin

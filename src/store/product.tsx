@@ -1,7 +1,7 @@
 import { createContext, useReducer } from 'react'
 import { produce } from 'immer'
-import { IProduct } from '../interfaces/Product'
-
+import { IProduct } from '../common/Type'
+const initialState = { products: [], isLoading: false, product: {} }
 export const ProductContext = createContext({} as any)
 const reducer = (state: any, action: any) => {
     console.log('action', action)
@@ -26,7 +26,7 @@ const reducer = (state: any, action: any) => {
     }
 }
 const ProductContextProvider = ({ children }: { children: React.ReactNode }) => {
-    const [state, dispatch] = useReducer(produce(reducer), { products: [], isLoading: false, product: {} })
+    const [state, dispatch] = useReducer(produce(reducer), initialState)
     return (
         <>
             <ProductContext.Provider value={{ state, dispatch }}>{children}</ProductContext.Provider>
@@ -34,3 +34,13 @@ const ProductContextProvider = ({ children }: { children: React.ReactNode }) => 
     )
 }
 export default ProductContextProvider
+
+// convension commit
+
+// feat: add new feature
+// fix: fix bug
+// docs: add document
+// styles: change styles
+// refactors
+
+// feat(detail product): add new product
