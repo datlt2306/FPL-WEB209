@@ -29,7 +29,6 @@ const ProductList = () => {
     const columns = getColumns(onRemove)
     return (
         <div>
-            <h2>Quản lý sản phẩm</h2>
             <DataTable columns={columns} data={data as IProduct[]} />
         </div>
     )
