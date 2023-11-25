@@ -1,9 +1,14 @@
-import React from 'react'
+import MainNav from './MainNav'
 
-type Props = {}
-
-const Header = (props: Props) => {
-    return <div>Header</div>
+const Header = () => {
+    return (
+        <header>
+            <div className='flex justify-between items-center'>
+                <a href=''>Logo</a>
+                <MainNav />
+            </div>
+        </header>
+    )
 }
 
 export default Header
