@@ -1,8 +1,8 @@
 import { useProductQuery } from '@/hooks/useProductQuery'
 import { IProduct } from '@/common/Type'
 import { useParams } from 'react-router-dom'
-import NameForm from '../../features/products/_components/NameForm'
-import PriceForm from '../../features/products/_components/PriceForm'
+import NameForm from './NameForm'
+import PriceForm from './PriceForm'
 
 const ProductEdit = () => {
     const { id } = useParams()

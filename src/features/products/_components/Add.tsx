@@ -1,10 +1,10 @@
 import { Button } from '@/components/ui/button'
 import { Form, FormControl, FormField, FormItem, FormLabel } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
+import { useToast } from '@/components/ui/use-toast'
 import { useProductMutation } from '@/hooks/useProductMutation'
 import { AiFillPlusSquare } from 'react-icons/ai'
 import { useNavigate } from 'react-router-dom'
-import { useToast } from '../ui/use-toast'
 
 const ProductAdd = () => {
     const { toast } = useToast()

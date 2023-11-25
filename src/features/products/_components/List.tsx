@@ -1,10 +1,10 @@
 import { Skeleton } from '@/components/ui/skeleton'
+import { useToast } from '@/components/ui/use-toast'
 import { useProductMutation } from '@/hooks/useProductMutation'
 import { useProductQuery } from '@/hooks/useProductQuery'
-import { IProduct } from '../../common/Type'
-import { useToast } from '../ui/use-toast'
-import { getColumns } from '../../features/products/_components/Column'
-import { DataTable } from '../../features/products/_components/DataTable'
+import { getColumns } from './Column'
+import { DataTable } from './DataTable'
+import { IProduct } from '@/common/Type'
 
 const ProductList = () => {
     const { toast } = useToast()

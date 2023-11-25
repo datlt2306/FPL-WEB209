@@ -1,9 +1,9 @@
 import { Toaster } from '@/components/ui/toaster'
 import { Link, Route, Routes } from 'react-router-dom'
 import './App.css'
-import ProductAdd from './components/ProductAdd'
-import ProductEdit from './components/ProductEdit'
-import ProductList from './components/ProductList'
+import ProductList from './features/products/_components/List'
+import ProductAdd from './features/products/_components/Add'
+import ProductEdit from './features/products/_components/Edit'
 
 function App() {
     return (
