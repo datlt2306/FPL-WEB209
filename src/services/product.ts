@@ -38,7 +38,7 @@ export const deleteProduct = async (product: IProduct) => {
         // JSON-server {}
         await instance.delete(`/products/${product.id}`)
 
-        // Nodejs 
+        // Nodejs
         // const response = await instance.delete(`/products/${product.id}`)
         // return response.data
     } catch (error) {
