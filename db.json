@@ -109,10 +109,18 @@
   "users": [
     {
       "email": "admin@gmail.com",
-      "password": "$2a$10$wKFO7MldX5VnvDXN3dJjqeZvWD9/sPVA7wd7EYB7.u5h/QAM5tIkS",
-      "name": "",
-      "price": 0,
+      "password": "$2a$10$9ku11q7sM9rXL3Jo8Zz5zOzFrmuThLJ0Mm2VdJbR/kKhqdwpe0t/C",
       "id": 1
+    },
+    {
+      "email": "member2@gmail.com",
+      "password": "$2a$10$op28CimOfw7M.Wp7EyRnj./zFAtFmACMi3JjLenNnSg7QE4IHBbnW",
+      "id": 2
+    },
+    {
+      "email": "member3@gmail.com",
+      "password": "$2a$10$9bb2tuCxOnnwwjEBPMhF0.fVmtpGxEcFLguKYwwzQmRsgrVtO06sS",
+      "id": 3
     }
   ]
 }

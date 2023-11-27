@@ -3,6 +3,7 @@ import BaseLayout from '@/layouts/BaseLayout'
 import AboutPage from '@/pages/AboutPage'
 import HomePage from '@/pages/HomePage'
 import ProductsPage from '@/pages/ProductsPage'
+import Signup from '@/pages/auth/Signup'
 import ManagerDashboardPage from '@/pages/manager/dashboard/ManagerDashboardPage'
 import ManagerProductPage from '@/pages/manager/product/ManagerProductPage'
 import ManagerUserPage from '@/pages/manager/user/ManagerUserPage'
@@ -18,6 +19,7 @@ const Routers = (props: Props) => {
                 <Route index element={<HomePage />} />
                 <Route path='products' element={<ProductsPage />} />
                 <Route path='about' element={<AboutPage />} />
+                <Route path='signup' element={<Signup />} />
             </Route>
             <Route path='/admin' element={<AdminLayout />}>
                 <Route index element={<ManagerDashboardPage />} />
