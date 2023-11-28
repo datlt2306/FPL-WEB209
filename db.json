@@ -47,9 +47,7 @@
   "users": [
     {
       "email": "admin@gmail.com",
-      "password": "$2a$10$9cCP3qcV6YTlxTQAAHNl5.vwZjSi25zrcAMXd6kx7JjbnBq7mrkLG",
-      "name": "",
-      "price": 0,
+      "password": "$2a$10$J3HC1hAu2zDIfOfUpQHn3.sNrmGv7yTKwq35akfpa9mAjTjCEnT2O",
       "id": 1
     }
   ]
