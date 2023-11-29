@@ -18,7 +18,7 @@ import { Route, Routes } from 'react-router-dom'
 
 type Props = {}
 
-const Routers = (props: Props) => {
+const Routers = () => {
     // const [user, setUser] = React.useState({ id: 1, name: 'Dat' })
     const [user, , removeUser] = useLocalStorage('user', {})
     return (
@@ -35,26 +35,13 @@ const Routers = (props: Props) => {
                 <Route
                     path='admin'
                     element={
-                        <PrivateRoute
-                            isAllowed={!!user && Object.keys(user).length > 0 && user?.user?.roles?.includes('admin')}
-                        >
+                        <PrivateRoute user={user}>
                             <AdminLayout />
                         </PrivateRoute>
                     }
                 >
                     <Route index element={<ManagerDashboardPage />} />
-                    <Route
-                        path='users'
-                        element={
-                            <PrivateRoute
-                                isAllowed={
-                                    !!user && Object.keys(user).length > 0 && user?.permission?.includes('users')
-                                }
-                            >
-                                User page
-                            </PrivateRoute>
-                        }
-                    />
+                    <Route path='users' element={<>User Page</>} />
                     <Route path='products' element={<ManagerProductPage />}>
                         <Route index element={<List />} />
                         <Route path='add' element={<Add />} />
