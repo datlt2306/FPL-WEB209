@@ -24,7 +24,7 @@ export const getColumns = (removeProduct: any): ColumnDef<IProduct>[] => [
         cell: ({ row }) => {
             return (
                 <>
-                    <Link to={`/products/${row?.original.id}`}>Chỉnh sửa</Link>
+                    <Link to={`/admin/products/${row?.original.id}/edit`}>Chỉnh sửa</Link>
                     <Button onClick={() => removeProduct(row?.original!)}>Xóa</Button>
                 </>
             )

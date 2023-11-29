@@ -23,7 +23,13 @@ const Routers = () => {
             </Route>
             <Route path='admin' element={<AdminLayout />}>
                 <Route index element={<ManageDashboardPage />} />
-                <Route path='products' element={<ManagerProductPage />} />
+                {/* <Route path='products' element={<ManagerProductPage />} /> */}
+                {/* <Route path='products/add' element={<Add />} /> */}
+                <Route path='products' element={<ManagerProductPage />}>
+                    <Route index element={<List />} />
+                    <Route path='add' element={<Add />} />
+                    <Route path=':id/edit' element={<Edit />} />
+                </Route>
             </Route>
         </Routes>
     )

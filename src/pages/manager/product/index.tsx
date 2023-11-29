@@ -1,10 +1,10 @@
 import List from '@/features/product/_components/List'
+import { Outlet } from 'react-router-dom'
 
 const ManagerProductPage = () => {
     return (
         <div>
-            <h2>Quản lý sản phẩm</h2>
-            <List />
+            <Outlet />
         </div>
     )
 }
