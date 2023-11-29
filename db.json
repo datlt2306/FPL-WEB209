@@ -1,126 +1,135 @@
 {
-  "products": [
-    {
-      "id": 2,
-      "name": "product Cupdate",
-      "price": 300
-    },
-    {
-      "name": "Product D ahihi update",
-      "price": "200",
-      "id": 4
-    },
-    {
-      "name": "product E update",
-      "price": "300",
-      "id": 5
-    },
-    {
-      "name": "Product 6 update",
-      "price": 0,
-      "id": 6
-    },
-    {
-      "name": "Sản phẩm mới updated",
-      "price": "300",
-      "id": 7
-    },
-    {
-      "name": "Sản phẩm mới 1 u3213131231pdate",
-      "price": "200",
-      "id": 8
-    },
-    {
-      "name": "12323",
-      "price": "123131",
-      "id": 9
-    },
-    {
-      "name": "dsadsafadfa",
-      "price": "2312123",
-      "id": 10
-    },
-    {
-      "name": "sản phẩm mới 11111",
-      "price": "200",
-      "id": 11
-    },
-    {
-      "name": "sản phẩm mới 2131313131",
-      "price": "200",
-      "id": 12
-    },
-    {
-      "name": "123131",
-      "price": "21312321",
-      "id": 13
-    },
-    {
-      "name": "312313",
-      "price": "1321312",
-      "id": 14
-    },
-    {
-      "name": "fsaasafsfa",
-      "price": "1231",
-      "id": 15
-    },
-    {
-      "name": "React hook form",
-      "price": 123,
-      "id": 16
-    },
-    {
-      "name": "Product Test 1",
-      "price": 123,
-      "id": 17
-    },
-    {
-      "name": "123213213",
-      "price": 2132131,
-      "id": 18
-    },
-    {
-      "name": "Sản phẩm 100000",
-      "price": 123131,
-      "id": 19
-    },
-    {
-      "name": "Sản phẩm 100000000",
-      "price": 21301230103,
-      "id": 20
-    },
-    {
-      "name": "sản phẩm mới 100000",
-      "price": 200,
-      "id": 21
-    },
-    {
-      "name": "sản phẩm mới 1000001231231",
-      "price": 200,
-      "id": 22
-    },
-    {
-      "name": "sản phẩm mới 100000123123112 31231 ",
-      "price": 200,
-      "id": 23
-    }
-  ],
-  "users": [
-    {
-      "email": "admin@gmail.com",
-      "password": "$2a$10$9ku11q7sM9rXL3Jo8Zz5zOzFrmuThLJ0Mm2VdJbR/kKhqdwpe0t/C",
-      "id": 1
-    },
-    {
-      "email": "member2@gmail.com",
-      "password": "$2a$10$op28CimOfw7M.Wp7EyRnj./zFAtFmACMi3JjLenNnSg7QE4IHBbnW",
-      "id": 2
-    },
-    {
-      "email": "member3@gmail.com",
-      "password": "$2a$10$9bb2tuCxOnnwwjEBPMhF0.fVmtpGxEcFLguKYwwzQmRsgrVtO06sS",
-      "id": 3
-    }
-  ]
+    "products": [
+        {
+            "id": 2,
+            "name": "product Cupdate",
+            "price": 300
+        },
+        {
+            "name": "Product D ahihi update",
+            "price": "200",
+            "id": 4
+        },
+        {
+            "name": "product E update",
+            "price": "300",
+            "id": 5
+        },
+        {
+            "name": "Product 6 update",
+            "price": 0,
+            "id": 6
+        },
+        {
+            "name": "Sản phẩm mới updated",
+            "price": "300",
+            "id": 7
+        },
+        {
+            "name": "Sản phẩm mới 1 u3213131231pdate",
+            "price": "200",
+            "id": 8
+        },
+        {
+            "name": "12323",
+            "price": "123131",
+            "id": 9
+        },
+        {
+            "name": "dsadsafadfa",
+            "price": "2312123",
+            "id": 10
+        },
+        {
+            "name": "sản phẩm mới 11111",
+            "price": "200",
+            "id": 11
+        },
+        {
+            "name": "sản phẩm mới 2131313131",
+            "price": "200",
+            "id": 12
+        },
+        {
+            "name": "123131",
+            "price": "21312321",
+            "id": 13
+        },
+        {
+            "name": "312313",
+            "price": "1321312",
+            "id": 14
+        },
+        {
+            "name": "fsaasafsfa",
+            "price": "1231",
+            "id": 15
+        },
+        {
+            "name": "React hook form",
+            "price": 123,
+            "id": 16
+        },
+        {
+            "name": "Product Test 1",
+            "price": 123,
+            "id": 17
+        },
+        {
+            "name": "123213213",
+            "price": 2132131,
+            "id": 18
+        },
+        {
+            "name": "Sản phẩm 100000",
+            "price": 123131,
+            "id": 19
+        },
+        {
+            "name": "Sản phẩm 100000000",
+            "price": 21301230103,
+            "id": 20
+        },
+        {
+            "name": "sản phẩm mới 100000",
+            "price": 200,
+            "id": 21
+        },
+        {
+            "name": "sản phẩm mới 1000001231231",
+            "price": 200,
+            "id": 22
+        },
+        {
+            "name": "sản phẩm mới 100000123123112 31231 ",
+            "price": 200,
+            "id": 23
+        }
+    ],
+    "users": [
+        {
+            "email": "admin@gmail.com",
+            "password": "$2a$10$9ku11q7sM9rXL3Jo8Zz5zOzFrmuThLJ0Mm2VdJbR/kKhqdwpe0t/C",
+            "permissions": ["products"],
+            "roles": ["admin"],
+            "id": 1
+        },
+        {
+            "email": "member2@gmail.com",
+            "password": "$2a$10$op28CimOfw7M.Wp7EyRnj./zFAtFmACMi3JjLenNnSg7QE4IHBbnW",
+            "permissions": ["users"],
+            "roles": ["member"],
+            "id": 2
+        },
+        {
+            "email": "member3@gmail.com",
+            "password": "$2a$10$9bb2tuCxOnnwwjEBPMhF0.fVmtpGxEcFLguKYwwzQmRsgrVtO06sS",
+            "id": 3
+        },
+        {
+            "email": "member100@gmail.com",
+            "password": "$2a$10$GYfci3iUkKWzURX5koM5SeU4a64k/ZgZi.T4Xi7wLpXSRXm0gOVqW",
+            "id": 4
+        }
+    ]
 }

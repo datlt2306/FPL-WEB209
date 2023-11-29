@@ -1,6 +1,6 @@
 import { formSchema } from '@/common/Schema'
 import { IUser } from '@/common/Type'
-import { signup } from '@/services/auth'
+import { signin, signup } from '@/services/auth'
 import { joiResolver } from '@hookform/resolvers/joi'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { useMutation, useQueryClient } from 'react-query'
@@ -24,8 +24,7 @@ const useAuthMutation = ({ action, defaultValues = { email: '', password: '' }, 
         mutationFn: async (user: IUser) => {
             switch (action) {
                 case 'SIGN_IN':
-                    // call api signin
-                    return
+                    return await signin(user)
                 case 'SIGN_UP':
                     return await signup(user)
                 default:
@@ -33,11 +32,12 @@ const useAuthMutation = ({ action, defaultValues = { email: '', password: '' }, 
             }
         },
         onSuccess: (data) => {
+            setUser(data)
             queryClient.invalidateQueries({
                 queryKey: ['auth']
             })
             onSuccess && onSuccess()
-            setUser(data);
+
             // Luu token vao localstorage
         }
     })
@@ -48,7 +48,7 @@ const useAuthMutation = ({ action, defaultValues = { email: '', password: '' }, 
     })
 
     const onSubmit: SubmitHandler<FormAuthType> = (values) => {
-        console.log({ values })
+        mutate(values)
     }
 
     return {
