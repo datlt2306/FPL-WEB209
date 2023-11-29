@@ -7,7 +7,7 @@ type PrivateRouteProps = {
 }
 
 const PrivateRoute = ({ user, children, redirectPath = '/signin' }: PrivateRouteProps) => {
-    if (!user) {
+    if (!user || Object.keys(user).length === 0) {
         return <Navigate to={redirectPath} replace />
     }
     return children ? children : <Outlet />
