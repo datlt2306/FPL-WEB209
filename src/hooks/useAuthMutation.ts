@@ -16,16 +16,19 @@ type useAuthMutationProps = {
     onSuccess?: () => void
 }
 const formSchema = Joi.object({
-    email: Joi.string().email({ minDomainSegments: 2, tlds: { allow: ['com', 'net'] } }).required().messages({
-        'string.email': 'Email không hợp lệ',
-        'any.required': 'Vui lòng nhập email',
-    }),
+    email: Joi.string()
+        .email({ minDomainSegments: 2, tlds: { allow: ['com', 'net'] } })
+        .required()
+        .messages({
+            'string.email': 'Email không hợp lệ',
+            'any.required': 'Vui lòng nhập email'
+        }),
     password: Joi.string().min(6).max(50).required().messages({
         'string.min': 'Mật khẩu phải có ít nhất 6 ký tự',
         'string.max': 'Mật khẩu tối đa 50 ký tự',
-        'any.required': 'Vui lòng nhập mật khẩu',
-    }),
-});
+        'any.required': 'Vui lòng nhập mật khẩu'
+    })
+})
 export const useAuthMutation = ({
     action,
     defaultValues = { email: '', password: '' },
