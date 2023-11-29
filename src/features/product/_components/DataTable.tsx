@@ -20,13 +20,6 @@ export function DataTable<TData, TValue>({ columns, data }: DataTableProps<TData
 
     return (
         <div className='rounded-md border'>
-            <div className='flex items-center justify-between'>
-                <h2>Quản lý sản phẩm</h2>
-                <Button variant='link'>
-                    <PlusCircle />
-                    Thêm sản phẩm
-                </Button>
-            </div>
             <Table>
                 <TableHeader>
                     {table.getHeaderGroups().map((headerGroup) => (

@@ -1,11 +1,12 @@
 import React from 'react'
+import { Outlet } from 'react-router-dom'
 
 type Props = {}
 
 const ManagerProductPage = (props: Props) => {
     return (
         <div>
-            <h1>Manager Product Page</h1>
+            <Outlet />
         </div>
     )
 }

@@ -1,3 +1,6 @@
+import Add from '@/features/product/_components/Add'
+import Edit from '@/features/product/_components/Edit'
+import List from '@/features/product/_components/List'
 import AdminLayout from '@/layouts/AdminLayout'
 import BaseLayout from '@/layouts/BaseLayout'
 import AboutPage from '@/pages/AboutPage'
@@ -21,9 +24,13 @@ const Routers = (props: Props) => {
                 <Route path='about' element={<AboutPage />} />
                 <Route path='signup' element={<Signup />} />
             </Route>
-            <Route path='/admin' element={<AdminLayout />}>
+            <Route path='admin' element={<AdminLayout />}>
                 <Route index element={<ManagerDashboardPage />} />
-                <Route path='products' element={<ManagerProductPage />} />
+                <Route path='products' element={<ManagerProductPage />}>
+                    <Route index element={<List />} />
+                    <Route path='add' element={<Add />} />
+                    <Route path=':id/edit' element={<Edit />} />
+                </Route>
                 <Route path='users' element={<ManagerUserPage />} />
             </Route>
         </Routes>
