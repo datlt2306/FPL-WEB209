@@ -4,8 +4,8 @@ import instance from '../core/api'
 
 export const getProducts = async () => {
     try {
-        const response: AxiosResponse<IProduct[]> = await instance.get('/products')
-        return response.data || []
+        const response: AxiosResponse<IProduct[]> = await instance.get('/products');
+        return response.data.docs || []
     } catch (error) {
         console.log('[API_FETCHING_PRODUCTS_ERROR]', error)
     }

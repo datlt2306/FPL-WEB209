@@ -13,6 +13,19 @@ const Signup = () => {
             <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)}>
                     <FormField
+                        name='name'
+                        control={form.control}
+                        render={({ field }) => (
+                            <FormItem>
+                                <FormLabel>Tên</FormLabel>
+                                <FormControl>
+                                    <Input type='text' placeholder='Tên của bạn' {...field} />
+                                </FormControl>
+                                <FormMessage />
+                            </FormItem>
+                        )}
+                    />
+                    <FormField
                         name='email'
                         control={form.control}
                         render={({ field }) => (
@@ -27,6 +40,19 @@ const Signup = () => {
                     />
                     <FormField
                         name='password'
+                        control={form.control}
+                        render={({ field }) => (
+                            <FormItem>
+                                <FormLabel>Mật khẩu</FormLabel>
+                                <FormControl>
+                                    <Input type='password' placeholder='*****' {...field} />
+                                </FormControl>
+                                <FormMessage />
+                            </FormItem>
+                        )}
+                    />
+                    <FormField
+                        name='confirmPassword'
                         control={form.control}
                         render={({ field }) => (
                             <FormItem>

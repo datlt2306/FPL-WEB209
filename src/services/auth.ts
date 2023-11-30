@@ -11,7 +11,7 @@ export const signup = async (user: IUser) => {
 }
 export const signin = async (user: IUser) => {
     try {
-        const response = await instance.post(`/signin`, user)
+        const response = await instance.post(`/signin`, user);
         return response.data
     } catch (error) {
         console.log(`SIGNIN_ERROR`, error)

@@ -29,6 +29,10 @@ export const getColumns = (onRemove: (product: IProduct) => void): ColumnDef<IPr
         header: 'Giá sản phẩm'
     },
     {
+        accessorKey: 'categoryId',
+        header: 'Danh mục'
+    },
+    {
         id: 'action',
         cell: ({ row }) => {
             const product = row?.original

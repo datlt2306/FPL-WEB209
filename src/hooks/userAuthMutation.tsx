@@ -1,5 +1,5 @@
 import { IUser } from '@/common/Type'
-import { formSignupSchema } from '@/common/schema'
+import { formSigninSchema, formSignupSchema } from '@/common/schema'
 import { signin, signup } from '@/services/auth'
 import { joiResolver } from '@hookform/resolvers/joi'
 import { useForm } from 'react-hook-form'
@@ -36,7 +36,7 @@ const useAuthMutation = ({ action, defaultValues = { email: '', password: '' }, 
     })
 
     const form = useForm({
-        resolver: joiResolver(formSignupSchema),
+        resolver: joiResolver(action === 'SIGN_UP' ? formSignupSchema : formSigninSchema),
         defaultValues
     })
 
