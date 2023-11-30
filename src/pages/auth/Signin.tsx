@@ -1,12 +1,23 @@
 import { Button } from '@/components/ui/button'
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
+import { useToast } from '@/components/ui/use-toast'
 import useAuthMutation from '@/hooks/userAuthMutation'
+import { useNavigate } from 'react-router-dom'
 
 const Signin = () => {
+    const { toast } = useToast()
+    const navigate = useNavigate()
     const { form, onSubmit } = useAuthMutation({
         action: 'SIGN_IN',
-        onSuccess: () => {}
+        onSuccess: () => {
+            toast({
+                title: 'Đăng nhập thành công',
+                variant: 'success',
+                description: 'Chào mừng bạn đến với website của chúng tôi'
+            })
+            setTimeout(() => navigate('/'))
+        }
     })
     return (
         <div>

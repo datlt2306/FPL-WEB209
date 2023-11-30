@@ -10,17 +10,12 @@ import HomePage from '@/pages/home'
 import DashboardPage from '@/pages/manager/dashboard'
 import ManagerProductPage from '@/pages/manager/product'
 
-import { Route, Routes } from 'react-router-dom'
+import { Navigate, Route, Routes } from 'react-router-dom'
 
 const Routers = () => {
     const [user, , removeUser] = useLocalStorage('user', {})
     return (
         <>
-            {user && (
-                <p>
-                    Hi {user?.user?.name} <button onClick={removeUser}>Logout</button>
-                </p>
-            )}
             <Routes>
                 <Route path='/' element={<BaseLayout />}>
                     <Route index element={<HomePage />} />
@@ -32,8 +27,14 @@ const Routers = () => {
                             </PrivateRouter>
                         }
                     />
-                    <Route path='signup' element={<Signup />} />
-                    <Route path='signin' element={<Signin />} />
+                    <Route
+                        path='signup'
+                        element={!user || Object.keys(user).length === 0 ? <Signup /> : <Navigate to='/' />}
+                    />
+                    <Route
+                        path='signin'
+                        element={!user || Object.keys(user).length === 0 ? <Signin /> : <Navigate to='/' />}
+                    />
                 </Route>
                 <Route
                     path='admin'
