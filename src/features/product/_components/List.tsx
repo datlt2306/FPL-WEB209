@@ -32,7 +32,7 @@ const List = () => {
                     <Button>Thêm sản phẩm</Button>
                 </Link>
             </div>
-            <DataTable columns={columns} data={data} />
+            <DataTable columns={columns} data={data?.docs} />
         </>
     )
 }

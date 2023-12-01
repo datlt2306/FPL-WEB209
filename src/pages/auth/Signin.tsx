@@ -7,31 +7,12 @@ import { useAuthMutation } from '@/hooks/useAuthMutation'
 const SignupPage = () => {
     const { toast } = useToast()
     const { form, onSubmit } = useAuthMutation({
-        action: 'SIGN_UP',
-        onSuccess: () => {
-            toast({
-                description: 'Đăng ký thành công',
-                variant: 'success'
-            })
-            form.reset()
-        }
+        action: 'SIGN_IN'
     })
     return (
         <div>
             <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)}>
-                    <FormField
-                        name='name'
-                        control={form.control}
-                        render={({ field }) => (
-                            <FormItem>
-                                <FormControl>
-                                    <Input type='name' {...field} placeholder='Tên của bạn' />
-                                </FormControl>
-                                <FormMessage />
-                            </FormItem>
-                        )}
-                    ></FormField>
                     <FormField
                         name='email'
                         control={form.control}
@@ -56,20 +37,8 @@ const SignupPage = () => {
                             </FormItem>
                         )}
                     ></FormField>
-                    <FormField
-                        name='confirmPassword'
-                        control={form.control}
-                        render={({ field }) => (
-                            <FormItem>
-                                <FormControl>
-                                    <Input type='password' {...field} placeholder='Nhập lại mật khẩu của bạn' />
-                                </FormControl>
-                                <FormMessage />
-                            </FormItem>
-                        )}
-                    ></FormField>
                     <Button type='submit' variant='destructive'>
-                        Đăng ký
+                        Đăng nhập
                     </Button>
                 </form>
             </Form>

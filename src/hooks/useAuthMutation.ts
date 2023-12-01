@@ -1,13 +1,15 @@
-import { signup } from '@/services/auth'
+import { formSigninSchema, formSignupSchema } from '@/common/schema'
+import { signin, signup } from '@/services/auth'
 import { joiResolver } from '@hookform/resolvers/joi'
-import Joi from 'joi'
-import { useForm } from 'react-hook-form'
+import { SubmitHandler, useForm } from 'react-hook-form'
 import { useMutation, useQueryClient } from 'react-query'
 import { useLocalStorage } from './useStorage'
 
 type formControlType = {
-    email: string
-    password: string
+    name?: string
+    email?: string
+    password?: string
+    confirmPassword?: string
 }
 
 type useAuthMutationProps = {
@@ -15,23 +17,10 @@ type useAuthMutationProps = {
     defaultValues?: formControlType
     onSuccess?: () => void
 }
-const formSchema = Joi.object({
-    email: Joi.string()
-        .email({ minDomainSegments: 2, tlds: { allow: ['com', 'net'] } })
-        .required()
-        .messages({
-            'string.email': 'Email không hợp lệ',
-            'any.required': 'Vui lòng nhập email'
-        }),
-    password: Joi.string().min(6).max(50).required().messages({
-        'string.min': 'Mật khẩu phải có ít nhất 6 ký tự',
-        'string.max': 'Mật khẩu tối đa 50 ký tự',
-        'any.required': 'Vui lòng nhập mật khẩu'
-    })
-})
+
 export const useAuthMutation = ({
     action,
-    defaultValues = { email: '', password: '' },
+    defaultValues = { name: "", email: '', password: '', confirmPassword: "" },
     onSuccess
 }: useAuthMutationProps) => {
     const [, setUser] = useLocalStorage('user', null)
@@ -40,7 +29,7 @@ export const useAuthMutation = ({
         mutationFn: async (user: any) => {
             switch (action) {
                 case 'SIGN_IN':
-                    return
+                    return await signin(user)
                 case 'SIGN_UP':
                     return await signup(user)
                 default:
@@ -48,6 +37,7 @@ export const useAuthMutation = ({
             }
         },
         onSuccess: (data) => {
+            console.log(data);
             setUser(data)
             onSuccess && onSuccess()
             queryClient.invalidateQueries({
@@ -56,11 +46,10 @@ export const useAuthMutation = ({
         }
     })
     const form = useForm({
-        resolver: joiResolver(formSchema),
+        resolver: joiResolver(action === 'SIGN_UP' ? formSignupSchema : formSigninSchema),
         defaultValues
     })
-    const onSubmit = (values: formControlType) => {
-        console.log(values)
+    const onSubmit: SubmitHandler<any> = (values) => {
         mutate(values)
     }
     return {

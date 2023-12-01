@@ -1,5 +1,8 @@
 export interface IProduct {
-    id?: number
+    _id?: number
     name: string
     price: number
+    categoryId: string
+    createdAt: Date
+    updatedAt: Date
 }

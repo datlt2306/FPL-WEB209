@@ -8,3 +8,11 @@ export const signup = async (user: any) => {
         console.log('SIGNUP_ERROR', error)
     }
 }
+export const signin = async (user: any) => {
+    try {
+        const response = await instance.post(`/signin`, user)
+        return response.data
+    } catch (error) {
+        console.log('SIGNIN_ERROR', error)
+    }
+}
