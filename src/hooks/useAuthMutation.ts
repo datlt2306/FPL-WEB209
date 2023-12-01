@@ -20,7 +20,7 @@ type useAuthMutationProps = {
 
 export const useAuthMutation = ({
     action,
-    defaultValues = { name: "", email: '', password: '', confirmPassword: "" },
+    defaultValues = { name: '', email: '', password: '', confirmPassword: '' },
     onSuccess
 }: useAuthMutationProps) => {
     const [, setUser] = useLocalStorage('user', null)
@@ -37,7 +37,7 @@ export const useAuthMutation = ({
             }
         },
         onSuccess: (data) => {
-            console.log(data);
+            console.log(data)
             setUser(data)
             onSuccess && onSuccess()
             queryClient.invalidateQueries({

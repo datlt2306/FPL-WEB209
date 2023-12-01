@@ -1,4 +1,4 @@
-import Joi from "joi"
+import Joi from 'joi'
 
 export const formSignupSchema = Joi.object({
     name: Joi.string().required().messages({
