@@ -1,13 +1,13 @@
 import { Navigate, Outlet } from 'react-router-dom'
 
 type PrivateRouteProps = {
-    user?: boolean
+    isAllowed?: () => boolean
     children?: React.ReactNode
     redirectPath?: string
 }
 
-const PrivateRoute = ({ user, children, redirectPath = '/signin' }: PrivateRouteProps) => {
-    if (!user || Object.keys(user).length === 0) {
+const PrivateRoute = ({ isAllowed, children, redirectPath = '/signin' }: PrivateRouteProps) => {
+    if (isAllowed && !isAllowed()) {
         return <Navigate to={redirectPath} replace />
     }
     return children ? children : <Outlet />
