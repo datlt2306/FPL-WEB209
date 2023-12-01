@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom'
 
 const Signin = () => {
     const { toast } = useToast()
+    const navigate = useNavigate()
     const { form, onSubmit } = useAuthMutation({
         action: 'SIGN_IN',
         onSuccess: () => {
@@ -14,6 +15,7 @@ const Signin = () => {
                 description: 'Đăng nhập thành công',
                 variant: 'success'
             })
+            setTimeout(() => navigate('/'))
         }
     })
     return (

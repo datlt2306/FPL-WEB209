@@ -14,7 +14,7 @@ import ManagerDashboardPage from '@/pages/manager/dashboard/ManagerDashboardPage
 import ManagerProductPage from '@/pages/manager/product/ManagerProductPage'
 import ManagerUserPage from '@/pages/manager/user/ManagerUserPage'
 import React from 'react'
-import { Route, Routes } from 'react-router-dom'
+import { Navigate, Route, Routes } from 'react-router-dom'
 
 type Props = {}
 
@@ -29,8 +29,14 @@ const Routers = () => {
                     <Route index element={<HomePage />} />
                     <Route path='products' element={<ProductsPage />} />
                     <Route path='about' element={<AboutPage />} />
-                    <Route path='signup' element={<Signup />} />
-                    <Route path='signin' element={<Signin />} />
+                    <Route
+                        path='signup'
+                        element={!user || Object.keys(user).length === 0 ? <Signup /> : <Navigate to='/' />}
+                    />
+                    <Route
+                        path='signin'
+                        element={!user || Object.keys(user).length === 0 ? <Signin /> : <Navigate to='/' />}
+                    />
                 </Route>
                 <Route
                     path='admin'

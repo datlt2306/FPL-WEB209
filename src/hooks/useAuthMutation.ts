@@ -32,13 +32,12 @@ const useAuthMutation = ({ action, defaultValues = { email: '', password: '' }, 
             }
         },
         onSuccess: (data) => {
-            setUser(data)
             queryClient.invalidateQueries({
                 queryKey: ['auth']
             })
             onSuccess && onSuccess()
-
             // Luu token vao localstorage
+            setUser(data)
         }
     })
 
