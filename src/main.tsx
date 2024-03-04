@@ -2,6 +2,15 @@ import ReactDOM from 'react-dom/client'
 import './index.css'
 import React from 'react'
 
+
+function showName(): string {
+  return `Hello Dat`;
+}
+
+function ShowName(){
+  return <h1>Hello Dat</h1>
+}
+
 const myName: string = 'Dat';
 const myAge: number = 40;
 const isStatus: boolean = false;
@@ -17,5 +26,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
   <h1>myAge: {myAge}</h1>
   <h2>isStatus: {isStatus ? 'Đã chết': 'Ế'}</h2>
   <h2>myInfo: { myInfo.name} - {myInfo.age}</h2>
+  <h2>Function : {showName()}</h2>
+  <h2>Component:<ShowName /></h2>
 </div>
 )
