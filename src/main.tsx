@@ -1,14 +1,19 @@
-import ReactDOM from 'react-dom/client'
-import './index.css'
-import React from 'react'
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import './index.css';
 
 
-function showName(): string {
-  return `Hello Dat`;
+interface propsType {
+  name: string,
+  age?: number
 }
 
-function ShowName(){
-  return <h1>Hello Dat</h1>
+function showName({ name }: propsType): string {
+  return `Hello Dat ${name}`;
+}
+
+function ShowName({ name }: propsType): JSX.Element {
+  return React.createElement('h1', null, `Hello ${name}`);
 }
 
 const myName: string = 'Dat';
@@ -22,11 +27,12 @@ const myInfo: { name: string, age: number, status: boolean} = {
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <div className="content">
-  <h1>myName: {myName}</h1>
-  <h1>myAge: {myAge}</h1>
-  <h2>isStatus: {isStatus ? 'Đã chết': 'Ế'}</h2>
-  <h2>myInfo: { myInfo.name} - {myInfo.age}</h2>
-  <h2>Function : {showName()}</h2>
-  <h2>Component:<ShowName /></h2>
+  <div>myName: {myName}</div>
+  <div>myAge: {myAge}</div>
+  <div>isStatus: {isStatus ? 'Đã chết': 'Ế'}</div>
+  <div>myInfo: { myInfo.name} - {myInfo.age}</div>
+  <div>Function : {showName({ name: "Dat", age: 20})}</div>
+  <div>Component:<ShowName name="Dat" age={20} /></div>
 </div>
 )
+
