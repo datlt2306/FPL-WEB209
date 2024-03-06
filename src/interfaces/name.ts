@@ -5,5 +5,6 @@ export interface propsType {
 }
 export interface IProduct {
     id: number,
-    name: string
+    name: string,
+    price: number
 }
