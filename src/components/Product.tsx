@@ -1,14 +1,13 @@
 import React from "react";
 
 interface ProductProps {
-    name: string;
-    price: number;
+    item: { name: string; price: number };
 }
 const Product = (props: ProductProps) => {
     return (
         <div>
-            <div>Tên sản phẩm : {props.name}</div>
-            <div>Giá sản phẩm : {props.price}</div>
+            <div>Tên sản phẩm : {props.item.name}</div>
+            <div>Giá sản phẩm : {props.item.price}</div>
         </div>
     );
 };
