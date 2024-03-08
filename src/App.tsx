@@ -1,35 +1,30 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
-import Product from "./components/Product";
 
+interface IProduct {
+    id: number;
+    name: string;
+    price: number;
+}
 function App() {
-    const [products, setProducts] = useState([]);
-    const [count, setCount] = useState(0);
-
-    function handleClick() {
-        console.log();
-    }
+    const [products, setProducts] = useState<IProduct[]>([]);
+    useEffect(() => {
+        (async () => {
+            const response = await fetch("http://localhost:3001/products");
+            const data = await response.json();
+            setProducts(data);
+        })();
+    }, []);
     return (
         <>
-            <button onClick={() => handleClick}>Click</button>
-            {count}
-            <button onClick={() => setCount(count + 1)}>Click</button>
-            <hr />
-            {products.map((item, index) => {
-                return <Product item={item} key={index} />;
-            })}
+            {products.map((item: IProduct, index) => (
+                <div key={index}>
+                    <div>{item.name}</div>
+                    <div>{item.price}</div>
+                </div>
+            ))}
         </>
     );
 }
 
 export default App;
-
-// function show(value){
-//   console.log(value)
-// }
-
-// function sum(a, b, callback){
-//   callback(a + b);
-// }
-
-// sum(10, 20, show)
