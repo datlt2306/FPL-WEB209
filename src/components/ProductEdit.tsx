@@ -1,25 +1,36 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { IProduct } from "../interfaces/Product";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import { getProduct } from "../services/product";
 
-type ProductAddProps = {
-    onAdd: (product: IProduct) => void;
+type ProductEditProps = {
+    onEdit: (product: IProduct) => void;
 };
 type Inputs = {
     name: string;
     price: number;
 };
-const ProductAdd = ({ onAdd }: ProductAddProps) => {
+const ProductEdit = ({ onEdit }: ProductEditProps) => {
+    const { id } = useParams();
     const navigate = useNavigate();
     const {
         register,
         handleSubmit,
         formState: { errors },
+        reset,
     } = useForm<Inputs>();
 
+    useEffect(() => {
+        (async () => {
+            const data = await getProduct(id!);
+            // fill dữ liệu vào form
+            reset(data);
+        })();
+    }, [id]);
+
     const onSubmit: SubmitHandler<Inputs> = (data) => {
-        onAdd(data);
+        onEdit(data);
         navigate("/products");
     };
     return (
@@ -38,4 +49,4 @@ const ProductAdd = ({ onAdd }: ProductAddProps) => {
     );
 };
 
-export default ProductAdd;
+export default ProductEdit;
