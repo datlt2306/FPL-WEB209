@@ -1,34 +1,40 @@
 import { useEffect, useState } from "react";
 import "./App.css";
-interface IProduct {
-    id: number;
-    name: string;
-    price: number;
-}
+import { IProduct } from "./interfaces/Product";
+import ProductList from "./components/ProductList";
+import axios from "axios";
+import { Route, Routes } from "react-router-dom";
+import ProductAdd from "./components/ProductAdd";
+
 function App() {
     const [products, setProducts] = useState<IProduct[]>([]);
 
     useEffect(() => {
         (async () => {
-            const response = await fetch(`api/products`);
-            const data = await response.json(); // [{....}]
-            setProducts(data);
+            try {
+                const { data } = await axios.get(`http://localhost:3000/products`);
+                setProducts(data);
+            } catch (error) {}
         })();
     }, []);
 
-    const removeItem = (id: number) => {
-        const newProducts = products.filter((item) => item.id !== id);
-        setProducts(newProducts);
+    const onHandleRemove = async (id: number) => {
+        try {
+            const { data } = await axios.delete(`http://localhost:3000/products/${id}`);
+            setProducts(products.filter((item) => item.id !== id));
+        } catch (error) {}
     };
+
     return (
         <>
-            {products.map((item: IProduct, index) => (
-                <div key={index}>
-                    <div>{item.name}</div>
-                    <div>{item.price}</div>
-                    <button onClick={() => removeItem(item.id!)}>Remove</button>
-                </div>
-            ))}
+            <Routes>
+                <Route path="/" element="" />
+                <Route
+                    path="/products"
+                    element={<ProductList products={products} removeItem={onHandleRemove} />}
+                />
+                <Route path="/product/add" element={<ProductAdd />} />
+            </Routes>
         </>
     );
 }
