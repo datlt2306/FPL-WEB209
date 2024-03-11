@@ -5,6 +5,7 @@ import ProductList from "./components/ProductList";
 import axios from "axios";
 import { Route, Routes } from "react-router-dom";
 import ProductAdd from "./components/ProductAdd";
+import ProductEdit from "./components/ProductEdit";
 
 function App() {
     const [products, setProducts] = useState<IProduct[]>([]);
@@ -25,6 +26,24 @@ function App() {
         } catch (error) {}
     };
 
+    const onHandleAdd = async (product: IProduct) => {
+        try {
+            const { data } = await axios.post(`http://localhost:3000/products`, product);
+            // rerender
+            setProducts([...products, data]);
+        } catch (error) {}
+    };
+    const onHandleEdit = async (product: IProduct) => {
+        try {
+            const { data } = await axios.put(
+                `http://localhost:3000/products/${product.id}`,
+                product
+            );
+            // rerender
+            setProducts(products.map((item) => (item.id === product.id ? product : item)));
+        } catch (error) {}
+    };
+
     return (
         <>
             <Routes>
@@ -33,7 +52,8 @@ function App() {
                     path="/products"
                     element={<ProductList products={products} removeItem={onHandleRemove} />}
                 />
-                <Route path="/product/add" element={<ProductAdd />} />
+                <Route path="/product/add" element={<ProductAdd onAdd={onHandleAdd} />} />
+                <Route path="/product/:id/edit" element={<ProductEdit onEdit={onHandleEdit} />} />
             </Routes>
         </>
     );

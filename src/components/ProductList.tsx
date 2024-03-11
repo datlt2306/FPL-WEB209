@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { ProductContext } from "../contexts/product";
 import { IProduct } from "../interfaces/Product";
+import { Link } from "react-router-dom";
 
 type ProductListProps = {
     products: IProduct[];
@@ -14,6 +15,7 @@ const ProductList = ({ products, removeItem }: ProductListProps) => {
                     <div>{item.name}</div>
                     <div>{item.price}</div>
                     <button onClick={() => removeItem(item.id!)}>Remove</button>
+                    <Link to={`/product/${item.id}/edit`}>Edit</Link>
                 </div>
             ))}
         </div>

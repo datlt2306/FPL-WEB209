@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import { SubmitHandler, useForm } from "react-hook-form";
 import { IProduct } from "../interfaces/Product";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import axios from "axios";
 type ProductAddProps = {
-    onAdd: (data: IProduct) => void;
+    onEdit: (data: IProduct) => void;
 };
 type FormValue = {
     name: string;
@@ -12,19 +13,29 @@ type FormValue = {
     desc: string;
 };
 
-const ProductAdd = ({ onAdd }: ProductAddProps) => {
+const ProductEdit = ({ onEdit }: ProductAddProps) => {
+    const { id } = useParams();
     const {
         register,
         handleSubmit,
         formState: { errors },
+        reset,
     } = useForm<FormValue>();
 
     const navigate = useNavigate();
 
+    useEffect(() => {
+        (async () => {
+            const { data } = await axios.get(`http://localhost:3000/products/${id}`);
+            reset(data);
+        })();
+    }, [id]);
     const onSubmit: SubmitHandler<FormValue> = (data) => {
-        onAdd(data);
+        // console.log(data);
+        onEdit(data);
         navigate("/products");
     };
+
     return (
         <div>
             <form onSubmit={handleSubmit(onSubmit)}>
@@ -38,4 +49,4 @@ const ProductAdd = ({ onAdd }: ProductAddProps) => {
     );
 };
 
-export default ProductAdd;
+export default ProductEdit;
