@@ -1,17 +1,17 @@
-import React from "react";
+import React, { useContext } from "react";
 import { IProduct } from "../interfaces/Product";
 import { Link } from "react-router-dom";
+import { ProductContext } from "../context/productProvider";
 
-interface ProductProps {
-    products: IProduct[];
-}
-const Products = ({ products }: ProductProps) => {
+const Products = () => {
+    const products = useContext(ProductContext);
     return (
         <div>
             {products.map((product: IProduct, index) => (
                 <div key={index}>
-                    {product.name} <button>Xóa</button>
-                    <Link to={`/product/${product.id}/edit`}>Cập nhật</Link>
+                    {product.name}
+                    {/* <button onClick={() => onRemove(product.id!)}>Xóa</button>
+                    <Link to={`/product/${product.id}/edit`}>Cập nhật</Link> */}
                 </div>
             ))}
         </div>

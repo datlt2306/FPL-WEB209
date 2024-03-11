@@ -2,11 +2,14 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
 import { BrowserRouter } from "react-router-dom";
+import ProductContextProvider, { ProductContext } from "./context/productProvider";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
-    <BrowserRouter>
-        <App />
-    </BrowserRouter>
+    <ProductContextProvider>
+        <BrowserRouter>
+            <App />
+        </BrowserRouter>
+    </ProductContextProvider>
 );
 
 /**

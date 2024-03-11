@@ -32,4 +32,12 @@ export const editProduct = async (product: IProduct) => {
     } catch (error) {
         return (error as Error).response;
     }
+}
+export const removeProduct = async (id: number) => {
+    try {
+        const response = await instance.delete(`/products/${id}`);
+        return response.data;
+    } catch (error) {
+        return (error as Error).response;
+    }
 } 
