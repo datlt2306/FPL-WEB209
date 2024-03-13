@@ -3,13 +3,16 @@ import { BrowserRouter } from "react-router-dom";
 import App from "./App";
 import CounterContextProvider from "./context/CounterContextProvider";
 import "./index.css";
+import ProductContextProvider from "./context/ProductContextProvider";
 const count = 10;
 ReactDOM.createRoot(document.getElementById("root")!).render(
-    <CounterContextProvider>
-        <BrowserRouter>
-            <App />
-        </BrowserRouter>
-    </CounterContextProvider>
+    <ProductContextProvider>
+        <CounterContextProvider>
+            <BrowserRouter>
+                <App />
+            </BrowserRouter>
+        </CounterContextProvider>
+    </ProductContextProvider>
 );
 
 /**

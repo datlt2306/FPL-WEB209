@@ -1,10 +1,10 @@
 import React, { useContext } from "react";
 import { IProduct } from "../interfaces/Product";
 import { Link } from "react-router-dom";
-import { ProductContext } from "../context/productProvider";
+import { ProductContext } from "../context/ProductContextProvider";
 
 const Products = () => {
-    const products = useContext(ProductContext);
+    const { products } = useContext(ProductContext);
     return (
         <div>
             {products.map((product: IProduct, index) => (
