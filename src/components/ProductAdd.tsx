@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 
 import { SubmitHandler, useForm } from "react-hook-form";
 import { IProduct } from "../interfaces/Product";
 import { useNavigate } from "react-router-dom";
+import { ProductContext } from "../contexts/ProductContextProvider";
 
 type FormValue = {
     name: string;
@@ -11,6 +12,7 @@ type FormValue = {
 };
 
 const ProductAdd = () => {
+    const { onHandleAdd } = useContext(ProductContext);
     const {
         register,
         handleSubmit,
@@ -20,7 +22,7 @@ const ProductAdd = () => {
     const navigate = useNavigate();
 
     const onSubmit: SubmitHandler<FormValue> = (data) => {
-        onAdd(data);
+        onHandleAdd(data);
         navigate("/products");
     };
     return (

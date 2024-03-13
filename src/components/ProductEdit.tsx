@@ -1,9 +1,10 @@
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 
 import { SubmitHandler, useForm } from "react-hook-form";
 import { IProduct } from "../interfaces/Product";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
+import { ProductContext } from "../contexts/ProductContextProvider";
 
 type FormValue = {
     name: string;
@@ -12,6 +13,7 @@ type FormValue = {
 };
 
 const ProductEdit = () => {
+    const { onHandleEdit } = useContext(ProductContext);
     const { id } = useParams();
     const {
         register,
@@ -30,7 +32,7 @@ const ProductEdit = () => {
     }, [id]);
     const onSubmit: SubmitHandler<FormValue> = (data) => {
         // console.log(data);
-        onEdit(data);
+        onHandleEdit(data);
         navigate("/products");
     };
 
