@@ -6,6 +6,7 @@ import axios from "axios";
 import { Route, Routes } from "react-router-dom";
 import ProductAdd from "./components/ProductAdd";
 import ProductEdit from "./components/ProductEdit";
+import Count from "./components/Count";
 
 function App() {
     const [products, setProducts] = useState<IProduct[]>([]);
@@ -46,6 +47,7 @@ function App() {
 
     return (
         <>
+            <Count />
             <Routes>
                 <Route path="/" element="" />
                 <Route

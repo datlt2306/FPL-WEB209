@@ -1,12 +1,13 @@
 import ReactDOM from "react-dom/client";
-import "./index.css";
+import { BrowserRouter } from "react-router-dom";
 import App from "./App";
-import { ProductContext } from "./contexts/product";
-import { BrowserRouter, RouterProvider } from "react-router-dom";
+import "./index.css";
+import CounterContextProvider from "./contexts/CounterContextProvider";
 const root = document.getElementById("root")!;
-
 ReactDOM.createRoot(root).render(
-    <BrowserRouter>
-        <App />
-    </BrowserRouter>
+    <CounterContextProvider>
+        <BrowserRouter>
+            <App />
+        </BrowserRouter>
+    </CounterContextProvider>
 );
