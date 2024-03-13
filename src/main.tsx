@@ -1,15 +1,15 @@
 import ReactDOM from "react-dom/client";
-import "./index.css";
-import App from "./App";
 import { BrowserRouter } from "react-router-dom";
-import ProductContextProvider, { ProductContext } from "./context/productProvider";
-
+import App from "./App";
+import CounterContextProvider from "./context/CounterContextProvider";
+import "./index.css";
+const count = 10;
 ReactDOM.createRoot(document.getElementById("root")!).render(
-    <ProductContextProvider>
+    <CounterContextProvider>
         <BrowserRouter>
             <App />
         </BrowserRouter>
-    </ProductContextProvider>
+    </CounterContextProvider>
 );
 
 /**
