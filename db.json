@@ -10,12 +10,6 @@
       "id": 10,
       "name": "Product 10",
       "price": 13.99
-    },
-    {
-      "name": "Sản phẩm 11",
-      "price": "200",
-      "desc": "mô tả",
-      "id": 11
     }
   ]
 }

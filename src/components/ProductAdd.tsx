@@ -3,16 +3,14 @@ import React from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { IProduct } from "../interfaces/Product";
 import { useNavigate } from "react-router-dom";
-type ProductAddProps = {
-    onAdd: (data: IProduct) => void;
-};
+
 type FormValue = {
     name: string;
     price: number;
     desc: string;
 };
 
-const ProductAdd = ({ onAdd }: ProductAddProps) => {
+const ProductAdd = () => {
     const {
         register,
         handleSubmit,

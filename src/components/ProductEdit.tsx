@@ -4,16 +4,14 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { IProduct } from "../interfaces/Product";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
-type ProductAddProps = {
-    onEdit: (data: IProduct) => void;
-};
+
 type FormValue = {
     name: string;
     price: number;
     desc: string;
 };
 
-const ProductEdit = ({ onEdit }: ProductAddProps) => {
+const ProductEdit = () => {
     const { id } = useParams();
     const {
         register,
