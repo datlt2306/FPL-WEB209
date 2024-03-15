@@ -6,9 +6,11 @@ import CounterContextProvider from "./contexts/CounterContextProvider";
 import ProductContextProvider from "./contexts/ProductContextProvider";
 const root = document.getElementById("root")!;
 ReactDOM.createRoot(root).render(
-    <ProductContextProvider>
-        <BrowserRouter>
-            <App />
-        </BrowserRouter>
-    </ProductContextProvider>
+    <CounterContextProvider>
+        <ProductContextProvider>
+            <BrowserRouter>
+                <App />
+            </BrowserRouter>
+        </ProductContextProvider>
+    </CounterContextProvider>
 );
