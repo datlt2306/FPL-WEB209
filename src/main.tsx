@@ -6,11 +6,11 @@ import ProductContextProvider from "./context/ProductContextProvider";
 import { CounterContext } from "./context/CountContext";
 import CounterContextProvider from "./context/CounterContextProvider";
 ReactDOM.createRoot(document.getElementById("root")!).render(
-    <CounterContextProvider>
+    <ProductContextProvider>
         <BrowserRouter>
             <App />
         </BrowserRouter>
-    </CounterContextProvider>
+    </ProductContextProvider>
 );
 
 /**
