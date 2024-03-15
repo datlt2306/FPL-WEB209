@@ -12,9 +12,17 @@ const ProductList = () => {
             try {
                 const { data } = await axios.get(`http://localhost:3000/products`);
                 dispatch({ type: "SET_PRODUCTS", payload: data });
+
+                // setProducts(data)
             } catch (error) {}
         })();
     }, []);
+    const onHandleRemove = async (id: number) => {
+        try {
+            await axios.delete(`http://localhost:3000/products/${id}`);
+            dispatch({ type: "DELETE_PRODUCT", payload: id });
+        } catch (error) {}
+    };
     return (
         <div>
             {products?.value?.map((item: IProduct, index: number) => (

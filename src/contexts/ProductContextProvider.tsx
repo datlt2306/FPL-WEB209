@@ -14,6 +14,10 @@ const reducer = (state: { value: IProduct[] }, action) => {
             return {
                 value: action.payload,
             };
+        case "DELETE_PRODUCT":
+            return {
+                value: state.value.filter((item) => item.id !== action.payload),
+            };
         default:
             return state;
     }
@@ -21,13 +25,6 @@ const reducer = (state: { value: IProduct[] }, action) => {
 
 const ProductContextProvider = ({ children }: { children: React.ReactNode }) => {
     const [products, dispatch] = useReducer(reducer, initialState);
-
-    // const onHandleRemove = async (id: number) => {
-    //     try {
-    //         const { data } = await axios.delete(`http://localhost:3000/products/${id}`);
-    //         setProducts(products.filter((item) => item.id !== id));
-    //     } catch (error) {}
-    // };
 
     // const onHandleAdd = async (product: IProduct) => {
     //     try {

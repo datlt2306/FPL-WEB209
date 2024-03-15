@@ -1,27 +1,3 @@
 {
-  "products": [
-    {
-      "id": 9,
-      "name": "Product 9 update 3",
-      "price": "123131",
-      "desc": "321312"
-    },
-    {
-      "id": 10,
-      "name": "Product 10",
-      "price": 13.99
-    },
-    {
-      "name": "1231",
-      "price": "312321",
-      "desc": "312312",
-      "id": 11
-    },
-    {
-      "name": "1233123",
-      "price": "1231231",
-      "desc": "32131",
-      "id": 12
-    }
-  ]
+  "products": []
 }
