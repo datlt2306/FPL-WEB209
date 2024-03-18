@@ -13,7 +13,7 @@ type FormValue = {
 };
 
 const ProductEdit = () => {
-    const { onHandleEdit } = useContext(ProductContext);
+    const [, dispatch] = useContext(ProductContext);
     const { id } = useParams();
     const {
         register,
@@ -30,10 +30,16 @@ const ProductEdit = () => {
             reset(data);
         })();
     }, [id]);
-    const onSubmit: SubmitHandler<FormValue> = (data) => {
-        // console.log(data);
-        onHandleEdit(data);
-        navigate("/products");
+    const onSubmit: SubmitHandler<FormValue> = async (product) => {
+        try {
+            const { data } = await axios.put(`http://localhost:3000/products/${id}`, product);
+
+            // rerender
+            dispatch({ type: "UPDATE_PRODUCT", payload: data as IProduct });
+            navigate("/products");
+        } catch (error) {
+            console.log(error);
+        }
     };
 
     return (

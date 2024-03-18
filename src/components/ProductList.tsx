@@ -5,13 +5,14 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 
 const ProductList = () => {
-    const { products, dispatch } = useContext(ProductContext);
-    console.log(products);
+    const [products, dispatch] = useContext(ProductContext);
+
     useEffect(() => {
         (async () => {
             try {
                 const { data } = await axios.get(`http://localhost:3000/products`);
                 dispatch({ type: "SET_PRODUCTS", payload: data });
+                dispatch({ type: "UPDATE_PRODUCT", payload: { id: 1, name: "Product Update" } });
 
                 // setProducts(data)
             } catch (error) {}
