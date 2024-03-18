@@ -1,53 +1,57 @@
 import { ReactNode, createContext, useReducer } from "react";
 import { IProduct } from "../interfaces/Product";
+import { produce } from "immer";
 
-const initialState = {
-    value: [] as IProduct[],
+type State = {
+    value: IProduct[];
 };
-export const ProductContext = createContext({} as { products: IProduct[]; dispatch: Function });
+type Action =
+    | { type: "SET_PRODUCTS"; payload: IProduct[] }
+    | { type: "DELETE_PRODUCT"; payload: number }
+    | { type: "ADD_PRODUCT"; payload: IProduct }
+    | { type: "UPDATE_PRODUCT"; payload: IProduct };
+const initialState = {
+    value: [],
+    isLoading: false,
+    error: "",
+} as State;
+
+export const ProductContext = createContext([] as any);
 
 type Props = {
     children: ReactNode;
 };
 
-const reducer = (state: { value: IProduct[] }, action: any) => {
-    // action.type = "SET_PRODUCTS"
-    // action.payload = [{},{}]
-    console.log("action", action);
+const reducer = (state: State, action: Action) => {
     switch (action.type) {
         case "SET_PRODUCTS":
-            return {
-                value: action.payload,
-            };
+            state.value = action.payload;
+            break;
+        case "ADD_PRODUCT":
+            state.value.push(action.payload);
+            break;
+        case "DELETE_PRODUCT":
+            const id = action.payload;
+            state.value = state.value.filter((item) => item.id !== id);
+            break;
+        case "UPDATE_PRODUCT":
+            // { id: 3, name: "A"}
+            const newProduct = action.payload;
+            const productToUpdate = state.value.find((item) => item.id == newProduct.id);
+            if (productToUpdate) {
+                Object.assign(productToUpdate, newProduct);
+            }
+            break;
         default:
             return state;
     }
 };
 
 const ProductContextProvider = ({ children }: Props) => {
-    const [products, dispatch] = useReducer(reducer, initialState);
-
-    // const onHandleAdd = async (product: IProduct) => {
-    //     try {
-    //         const data = await addProduct(product);
-    //         setProducts([...products, data]);
-    //     } catch (error) {}
-    // };
-    // const onHandleEdit = async (product: IProduct) => {
-    //     try {
-    //         const data = await editProduct(product);
-    //         setProducts(products.map((item) => (item.id == data.id ? data : item)));
-    //     } catch (error) {}
-    // };
-    // const onHandleRemove = async (id: number) => {
-    //     try {
-    //         const data = await removeProduct(id);
-    //         setProducts(products.filter((item) => item.id !== id));
-    //     } catch (error) {}
-    // };
+    const [products, dispatch] = useReducer(produce(reducer), initialState);
     return (
         <div>
-            <ProductContext.Provider value={{ products, dispatch }}>
+            <ProductContext.Provider value={[products, dispatch]}>
                 {children}
             </ProductContext.Provider>
         </div>

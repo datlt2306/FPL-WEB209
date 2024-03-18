@@ -1,16 +1,16 @@
-import React from "react";
+import React, { useContext } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { IProduct } from "../interfaces/Product";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import { ProductContext } from "../context/ProductContextProvider";
 
-type ProductAddProps = {
-    onAdd: (product: IProduct) => void;
-};
 type Inputs = {
     name: string;
     price: number;
 };
-const ProductAdd = ({ onAdd }: ProductAddProps) => {
+const ProductAdd = () => {
+    const [, dispatch] = useContext(ProductContext);
     const navigate = useNavigate();
     const {
         register,
@@ -18,9 +18,13 @@ const ProductAdd = ({ onAdd }: ProductAddProps) => {
         formState: { errors },
     } = useForm<Inputs>();
 
-    const onSubmit: SubmitHandler<Inputs> = (data) => {
-        onAdd(data);
-        navigate("/products");
+    const onSubmit: SubmitHandler<Inputs> = async (product) => {
+        try {
+            const { data } = await axios.post(`http://localhost:3000/products`, product);
+            // rerender
+            dispatch({ type: "ADD_PRODUCT", payload: data });
+            navigate("/products");
+        } catch (error) {}
     };
     return (
         <div>

@@ -4,7 +4,7 @@ import { IProduct } from "../interfaces/Product";
 import { getProducts } from "../services/product";
 
 const Products = () => {
-    const { products, dispatch } = useContext(ProductContext); // { value: []}
+    const [products, dispatch] = useContext(ProductContext); // { value: []}
     useEffect(() => {
         (async () => {
             const data = await getProducts();
@@ -16,7 +16,7 @@ const Products = () => {
 
     return (
         <div>
-            {products?.value?.map((product: IProduct, index) => (
+            {products?.value?.map((product: IProduct, index: number) => (
                 <div key={index}>
                     {product.name}
                     {/* <button onClick={() => onRemove(product.id!)}>Xóa</button>
