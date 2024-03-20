@@ -2,17 +2,18 @@
   "products": [
     {
       "id": 1,
-      "name": "Product 1",
+      "name": "Update A",
+      "item": 1,
       "price": 100
     },
     {
       "id": 2,
-      "name": "Product 2",
+      "name": "Update A",
       "price": 200
     },
     {
       "id": 3,
-      "name": "Product 3",
+      "name": "Update A",
       "price": 300
     },
     {
@@ -20,6 +21,18 @@
       "price": "3123123213",
       "desc": "1321231",
       "id": 4
+    },
+    {
+      "name": "AAAAA",
+      "price": 2000,
+      "desc": "Mô tả",
+      "id": 6
+    },
+    {
+      "name": "AAAAA",
+      "price": 2000,
+      "desc": "Mô tả",
+      "id": 7
     }
   ]
 }
