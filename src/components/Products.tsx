@@ -1,22 +1,21 @@
-import { useContext, useEffect } from "react";
-import { ProductContext } from "../context/ProductContextProvider";
+import { useQuery } from "@tanstack/react-query";
 import { IProduct } from "../interfaces/Product";
 import { getProducts } from "../services/product";
 
 const Products = () => {
-    const [products, dispatch] = useContext(ProductContext); // { value: []}
-    useEffect(() => {
-        (async () => {
-            const data = await getProducts();
-            console.log("data", data);
-            // setProducts(data);
-            dispatch({ type: "SET_PRODUCTS", payload: data });
-        })();
-    }, []);
-
+    const {
+        data: products,
+        isLoading,
+        isError,
+    } = useQuery({
+        queryKey: ["PRODUCT_KEY"],
+        queryFn: async () => await getProducts(),
+    });
+    if (isLoading) return <div>Loading...</div>;
+    if (isError) return <div>Lỗi rồi</div>;
     return (
         <div>
-            {products?.value?.map((product: IProduct, index: number) => (
+            {products?.map((product: IProduct, index: number) => (
                 <div key={index}>
                     {product.name}
                     {/* <button onClick={() => onRemove(product.id!)}>Xóa</button>

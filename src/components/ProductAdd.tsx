@@ -1,30 +1,37 @@
-import React, { useContext } from "react";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { IProduct } from "../interfaces/Product";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
-import { ProductContext } from "../context/ProductContextProvider";
+import { addProduct } from "../services/product";
+import { IProduct } from "../interfaces/Product";
 
 type Inputs = {
     name: string;
     price: number;
 };
 const ProductAdd = () => {
-    const [, dispatch] = useContext(ProductContext);
     const navigate = useNavigate();
+    const queryClient = useQueryClient();
     const {
         register,
         handleSubmit,
         formState: { errors },
     } = useForm<Inputs>();
 
+    const { mutate, isPending } = useMutation({
+        mutationFn: async (product: IProduct) => {
+            return await addProduct(product);
+        },
+        onSuccess: () => {
+            queryClient.invalidateQueries({
+                queryKey: ["PRODUCT_KEY"],
+            });
+        },
+        onError: (error) => {
+            console.log(error);
+        },
+    });
     const onSubmit: SubmitHandler<Inputs> = async (product) => {
-        try {
-            const { data } = await axios.post(`http://localhost:3000/products`, product);
-            // rerender
-            dispatch({ type: "ADD_PRODUCT", payload: data });
-            navigate("/products");
-        } catch (error) {}
+        mutate(product);
     };
     return (
         <div>
@@ -36,7 +43,7 @@ const ProductAdd = () => {
                 />
                 {errors.name && <span>Trường name là bắt buộc</span>}
                 <input type="number" placeholder="Giá sản phẩm" {...register("price")} />
-                <button>Thêm</button>
+                <button>{isPending ? "Đang thêm" : "Thêm"}</button>
             </form>
         </div>
     );

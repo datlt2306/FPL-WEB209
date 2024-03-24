@@ -6,7 +6,7 @@ export const getProducts = async () => {
         const response = await instance.get("/products");
         return response.data;
     } catch (error) {
-        return (error as Error).response;
+        return (error as Error);
     }
 };
 export const getProduct = async (id: number | string) => {
@@ -14,7 +14,7 @@ export const getProduct = async (id: number | string) => {
         const response = await instance.get(`/products/${id}`);
         return response.data;
     } catch (error) {
-        return (error as Error).response;
+        return (error as Error);
     }
 };
 export const addProduct = async (product: IProduct) => {
@@ -22,7 +22,7 @@ export const addProduct = async (product: IProduct) => {
         const response = await instance.post('/products', product);
         return response.data;
     } catch (error) {
-        return (error as Error).response;
+        return (error as Error);
     }
 }
 export const editProduct = async (product: IProduct) => {
@@ -30,7 +30,7 @@ export const editProduct = async (product: IProduct) => {
         const response = await instance.put(`/products/${product.id}`, product);
         return response.data;
     } catch (error) {
-        return (error as Error).response;
+        return (error as Error);
     }
 }
 export const removeProduct = async (id: number) => {
@@ -38,6 +38,6 @@ export const removeProduct = async (id: number) => {
         const response = await instance.delete(`/products/${id}`);
         return response.data;
     } catch (error) {
-        return (error as Error).response;
+        return (error as Error);
     }
 } 

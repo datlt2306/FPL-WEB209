@@ -1,17 +1,13 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { IProduct } from "../interfaces/Product";
 import { useNavigate, useParams } from "react-router-dom";
 import { getProduct } from "../services/product";
 
-type ProductEditProps = {
-    onEdit: (product: IProduct) => void;
-};
 type Inputs = {
     name: string;
     price: number;
 };
-const ProductEdit = ({ onEdit }: ProductEditProps) => {
+const ProductEdit = () => {
     const { id } = useParams();
     const navigate = useNavigate();
     const {
@@ -30,7 +26,6 @@ const ProductEdit = ({ onEdit }: ProductEditProps) => {
     }, [id]);
 
     const onSubmit: SubmitHandler<Inputs> = (data) => {
-        onEdit(data);
         navigate("/products");
     };
     return (
