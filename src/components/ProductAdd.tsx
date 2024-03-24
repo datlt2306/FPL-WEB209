@@ -32,6 +32,7 @@ const ProductAdd = () => {
     });
     const onSubmit: SubmitHandler<Inputs> = async (product) => {
         mutate(product);
+        navigate("/");
     };
     return (
         <div>

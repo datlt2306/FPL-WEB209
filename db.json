@@ -1,23 +1,8 @@
 {
   "products": [
     {
-      "id": 5,
-      "name": "Sản phẩm update",
-      "price": 500
-    },
-    {
-      "id": 6,
-      "name": "Product 6",
-      "price": 600
-    },
-    {
-      "id": 7,
-      "name": "Product 7",
-      "price": 700
-    },
-    {
       "id": 8,
-      "name": "Product 8",
+      "name": "Product 8 update",
       "price": 800
     },
     {
@@ -54,6 +39,16 @@
       "name": "Sản phẩm mới",
       "price": 200,
       "id": 15
+    },
+    {
+      "name": "Sản phẩm 100",
+      "price": "123",
+      "id": 16
+    },
+    {
+      "name": "Sản phẩm 200",
+      "price": "234",
+      "id": 17
     }
   ]
 }

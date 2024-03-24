@@ -33,7 +33,7 @@ export const editProduct = async (product: IProduct) => {
         return (error as Error);
     }
 }
-export const removeProduct = async (id: number) => {
+export const removeProduct = async (id: number | string) => {
     try {
         const response = await instance.delete(`/products/${id}`);
         return response.data;

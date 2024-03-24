@@ -1,7 +1,9 @@
 import { useEffect } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useNavigate, useParams } from "react-router-dom";
-import { getProduct } from "../services/product";
+import { editProduct, getProduct } from "../services/product";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { IProduct } from "../interfaces/Product";
 
 type Inputs = {
     name: string;
@@ -10,6 +12,7 @@ type Inputs = {
 const ProductEdit = () => {
     const { id } = useParams();
     const navigate = useNavigate();
+    const queryClient = useQueryClient();
     const {
         register,
         handleSubmit,
@@ -17,17 +20,33 @@ const ProductEdit = () => {
         reset,
     } = useForm<Inputs>();
 
-    useEffect(() => {
-        (async () => {
-            const data = await getProduct(id!);
-            // fill dữ liệu vào form
-            reset(data);
-        })();
-    }, [id]);
+    const { data, isLoading } = useQuery({
+        queryKey: ["PRODUCT_KEY", id],
+        queryFn: async () => await getProduct(id!),
+    });
 
-    const onSubmit: SubmitHandler<Inputs> = (data) => {
-        navigate("/products");
+    const { mutate } = useMutation({
+        mutationFn: async (product: IProduct) => {
+            return await editProduct(product);
+        },
+        onSuccess: () => {
+            // refetching
+            queryClient.invalidateQueries({
+                queryKey: ["PRODUCT_KEY"],
+            });
+        },
+    });
+
+    // fill nội dung vào form
+    useEffect(() => {
+        data && reset(data);
+    }, [id, reset, data]);
+
+    const onSubmit: SubmitHandler<Inputs> = (product) => {
+        mutate(product);
+        navigate("/");
     };
+    if (isLoading) return <div>Loading...</div>;
     return (
         <div>
             <form onSubmit={handleSubmit(onSubmit)}>

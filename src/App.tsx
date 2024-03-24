@@ -9,34 +9,6 @@ import ProductAdd from "./components/ProductAdd";
 import ProductEdit from "./components/ProductEdit";
 
 function App() {
-    // const { mutate: remove } = useMutation({
-    //     mutationFn: async (id: number) => {
-    //         const { data } = await axios.delete(`http://localhost:3000/products/${id}`);
-    //         return data;
-    //     },
-    //     onSuccess: () => {
-    //         // refetching
-    //         queryClient.invalidateQueries({
-    //             queryKey: ["PRODUCT_KEY"],
-    //         });
-    //     },
-    // });
-    // const { mutate: update } = useMutation({
-    //     mutationFn: async (product: IProduct) => {
-    //         const { data } = await axios.put(
-    //             `http://localhost:3000/products/${product.id}`,
-    //             product
-    //         );
-    //         return data;
-    //     },
-    //     onSuccess: () => {
-    //         // refetching
-    //         queryClient.invalidateQueries({
-    //             queryKey: ["PRODUCT_KEY"],
-    //         });
-    //     },
-    // });
-
     // if (isLoading) return <div>Loading...</div>;
     // if (isError) return <div>Lỗi rồi</div>;
     return (
