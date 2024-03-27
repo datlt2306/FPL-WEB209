@@ -1,14 +1,10 @@
 import "./App.css";
-import Count from "./components/Count";
-import ProductList from "./components/ProductList";
+import useProductQuery from "./hooks/useProductQuery";
+import { IProduct } from "./interfaces/Product";
 
 function App() {
-    return (
-        <>
-            <Count />
-            <ProductList />
-        </>
-    );
+    const { data } = useProductQuery();
+    return <>{data && data?.map((product: IProduct) => <div>{product.name}</div>)}</>;
 }
 
 export default App;
