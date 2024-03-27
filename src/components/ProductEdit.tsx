@@ -1,10 +1,8 @@
-import React, { useContext, useEffect } from "react";
+import { useEffect } from "react";
 
-import { SubmitHandler, useForm } from "react-hook-form";
-import { IProduct } from "../interfaces/Product";
-import { useNavigate, useParams } from "react-router-dom";
-import axios from "axios";
-import { ProductContext } from "../contexts/ProductContextProvider";
+import { useParams } from "react-router-dom";
+import { useProductMutation } from "../hooks/useProductMutation";
+import useProductQuery from "../hooks/useProductQuery";
 
 type FormValue = {
     name: string;
@@ -13,42 +11,21 @@ type FormValue = {
 };
 
 const ProductEdit = () => {
-    const [, dispatch] = useContext(ProductContext);
     const { id } = useParams();
-    const {
-        register,
-        handleSubmit,
-        formState: { errors },
-        reset,
-    } = useForm<FormValue>();
-
-    const navigate = useNavigate();
-
+    const { data } = useProductQuery(id);
+    const { form, onSubmit } = useProductMutation({
+        action: "UPDATE",
+    });
     useEffect(() => {
-        (async () => {
-            const { data } = await axios.get(`http://localhost:3000/products/${id}`);
-            reset(data);
-        })();
-    }, [id]);
-    const onSubmit: SubmitHandler<FormValue> = async (product) => {
-        try {
-            const { data } = await axios.put(`http://localhost:3000/products/${id}`, product);
-
-            // rerender
-            dispatch({ type: "UPDATE_PRODUCT", payload: data as IProduct });
-            navigate("/products");
-        } catch (error) {
-            console.log(error);
-        }
-    };
-
+        // fill dữ liệu vào form
+        form.reset(data);
+    }, [id, form.reset, data]);
     return (
         <div>
-            <form onSubmit={handleSubmit(onSubmit)}>
-                <input type="text" {...register("name", { required: true })} />
-                {errors.name && <span>This field is required</span>}
-                <input type="number" {...register("price")} />
-                <input type="desc" {...register("desc", { required: true })} />
+            <form onSubmit={form.handleSubmit(onSubmit)}>
+                <input type="text" {...form.register("name", { required: true })} />
+                <input type="number" {...form.register("price")} />
+                <input type="desc" {...form.register("desc", { required: true })} />
                 <button>Theem</button>
             </form>
         </div>

@@ -1,38 +1,34 @@
 {
   "products": [
     {
-      "id": 1,
-      "name": "Update A",
-      "item": 1,
-      "price": 100
-    },
-    {
-      "id": 2,
-      "name": "Update A",
-      "price": 200
-    },
-    {
-      "id": 3,
-      "name": "Update A",
-      "price": 300
-    },
-    {
-      "name": "31312312321 update",
-      "price": "3123123213",
-      "desc": "1321231",
-      "id": 4
-    },
-    {
-      "name": "AAAAA",
-      "price": 2000,
-      "desc": "Mô tả",
-      "id": 6
-    },
-    {
       "name": "AAAAA",
       "price": 2000,
       "desc": "Mô tả",
       "id": 7
+    },
+    {
+      "name": "AAAAAA",
+      "price": "123",
+      "desc": "12323131",
+      "id": 8
+    },
+    {
+      "name": "XXXXX",
+      "price": "123",
+      "desc": "1233123",
+      "id": 9
+    },
+    {
+      "name": "1231313",
+      "price": "1231321",
+      "desc": "123231",
+      "id": 10
+    },
+    {
+      "name": "1231321313 update12321",
+      "price": "1231313",
+      "desc": "1232312",
+      "id": 11
     }
   ]
 }
