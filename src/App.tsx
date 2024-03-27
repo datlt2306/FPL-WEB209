@@ -7,10 +7,9 @@ import { Route, Routes } from "react-router-dom";
 import Products from "./components/Products";
 import ProductAdd from "./components/ProductAdd";
 import ProductEdit from "./components/ProductEdit";
+import useCounter from "./hooks/useCounter";
 
 function App() {
-    // if (isLoading) return <div>Loading...</div>;
-    // if (isError) return <div>Lỗi rồi</div>;
     return (
         <>
             <Routes>
