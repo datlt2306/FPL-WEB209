@@ -1,18 +1,20 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { ITodo } from "./interfaces/ITodo";
 
 const App = () => {
-    const [todos, setTodos] = useState([
-        { id: 1, title: "Học React", completed: false }, // todo
-        { id: 2, title: "Đọc sách", completed: false }, // todo
-        { id: 3, title: "Chơi game", completed: false }, //todo
-    ]);
+    const [todos, setTodos] = useState<ITodo[]>([]);
+    useEffect(function () {
+        fetch(`http://localhost:3000/todos`)
+            .then((response) => response.json())
+            .then((data) => setTodos(data));
+    }, []);
     return (
         <div>
             <ul>
                 {todos.map((todo, index) => {
                     return (
                         <li key={index}>
-                            {todo.title}{" "}
+                            {todo.title}
                             <button
                                 onClick={() =>
                                     window.confirm("are you sure??") &&
