@@ -1,5 +1,5 @@
 export interface ITodo {
-    id: number | string;
+    id: number;
     title: string;
     completed: boolean
 }
