@@ -15,5 +15,42 @@
       "name": "Product 4",
       "price": 400
     }
+  ],
+  "todos": [
+    {
+      "id": 2,
+      "title": "Todo 2 update 1",
+      "completed": true
+    },
+    {
+      "id": 3,
+      "title": "Todo 3",
+      "completed": false
+    },
+    {
+      "id": 4,
+      "title": "Todo 4",
+      "completed": true
+    },
+    {
+      "id": 5,
+      "title": "Todo 5",
+      "completed": false
+    },
+    {
+      "title": "todo 7",
+      "completed": false,
+      "id": 7
+    },
+    {
+      "title": "Todo 8",
+      "completed": false,
+      "id": 8
+    },
+    {
+      "title": "Todo 9",
+      "completed": false,
+      "id": 9
+    }
   ]
 }
