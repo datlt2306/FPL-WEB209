@@ -54,5 +54,27 @@
       "price": 11.99,
       "description": "This is product 10"
     }
+  ],
+  "todos": [
+    {
+      "id": 3,
+      "title": "Task 3 update",
+      "completed": false
+    },
+    {
+      "id": 4,
+      "title": "Task 4",
+      "completed": true
+    },
+    {
+      "id": 5,
+      "title": "Task 5",
+      "completed": false
+    },
+    {
+      "title": "task 6",
+      "completed": false,
+      "id": 6
+    }
   ]
 }
