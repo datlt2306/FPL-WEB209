@@ -85,6 +85,23 @@ const App = () => {
             console.error(error);
         }
     };
+    const toggleChecked = async (todo: ITodo) => {
+        try {
+            const response = await fetch(`http://localhost:3000/todos/${todo.id}`, {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ ...todo, completed: !todo.completed }),
+            });
+            const result = await response.json();
+            if (response.status !== 200) return alert(`Cập nhật thất bại`);
+            // rerender
+            setTodos(todos.map((todo) => (todo.id === result.id ? result : todo)));
+        } catch (error) {
+            console.error(error);
+        }
+    };
     return (
         <div className="App">
             <h2>Thêm công việc</h2>
@@ -97,6 +114,11 @@ const App = () => {
             <ul>
                 {todos.map((todo: ITodo, index: number) => (
                     <li key={index}>
+                        <input
+                            type="checkbox"
+                            checked={todo.completed}
+                            onChange={() => toggleChecked(todo)}
+                        />
                         {currentTodo.id === todo.id ? (
                             <form onSubmit={handleSubmit(onHandleSave)}>
                                 <input type="text" {...register("title-update")} />
@@ -109,6 +131,9 @@ const App = () => {
                                     onClick={() => {
                                         reset({ "title-update": todo.title });
                                         setCurrentTodo(todo);
+                                    }}
+                                    style={{
+                                        textDecoration: todo.completed ? "line-through" : "none",
                                     }}
                                 >
                                     {todo.title}
