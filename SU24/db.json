@@ -74,7 +74,7 @@
   "todos": [
     {
       "id": 4,
-      "title": "Todo 4 update 2",
+      "title": "Todo 4 update 4",
       "completed": true
     },
     {
@@ -97,6 +97,11 @@
       "title": "Todo 8",
       "completed": false,
       "id": 8
+    },
+    {
+      "title": "Sản phẩm mới 1000",
+      "completed": false,
+      "id": 9
     }
   ]
 }

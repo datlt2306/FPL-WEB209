@@ -1,17 +1,14 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
-import { useForm } from "react-hook-form";
+import TodoAdd from "./components/TodoAdd";
+import TodoList from "./components/TodoList";
+import { ITodo } from "./interfaces/ITodo";
 
-interface ITodo {
-    id: number;
-    title: string;
-    completed: boolean;
-}
 const App = () => {
     const [todos, setTodos] = useState<ITodo[]>([]);
     const [currentTodo, setCurrentTodo] = useState<any>({});
-    const { register, handleSubmit, reset } = useForm();
+
     useEffect(() => {
         (async () => {
             try {
@@ -54,7 +51,7 @@ const App = () => {
             //rerender
             setTodos([...todos, result]);
             // reset form
-            reset();
+            // reset();
         } catch (error) {
             console.error(error);
         }
@@ -84,48 +81,18 @@ const App = () => {
     return (
         <div className="App">
             <h2>Thêm công việc</h2>
-            <form onSubmit={handleSubmit(onHandleSubmit)}>
-                <input type="text" {...register("title")} />
-                <button type="submit">Thêm</button>
-            </form>
+            <TodoAdd onSubmit={onHandleSubmit} />
             <hr />
             <h2>Danh sách công việc</h2>
-            <ul>
-                {todos.map((todo: ITodo, index: number) => (
-                    <li key={index}>
-                        {currentTodo.id == todo.id ? (
-                            <form onSubmit={handleSubmit(onHandleSave)}>
-                                <input type="text" {...register("title2")} />
-                                <button type="submit">Lưu</button>
-                                <button onClick={() => setCurrentTodo({})}>Hủy</button>
-                            </form>
-                        ) : (
-                            <>
-                                <span
-                                    onClick={() => {
-                                        reset({ title2: todo.title });
-                                        setCurrentTodo(todo);
-                                    }}
-                                >
-                                    {todo.title}
-                                </span>
-                                <button onClick={() => onHandleRemove(todo.id!)}>Xóa</button>
-                            </>
-                        )}
-                    </li>
-                ))}
-            </ul>
+            <TodoList
+                currentTodo={currentTodo}
+                setCurrentTodo={setCurrentTodo}
+                todos={todos}
+                onRemove={onHandleRemove}
+                onSave={onHandleSave}
+            />
         </div>
     );
 };
 
 export default App;
-
-// 3
-// [1,2,3,4,5]
-// [1,2,4,5]
-
-// { id: 5, title:"ReactJs"}
-// [{id: 1, title: "Đọc sách"}, {id: 2, title: "Chơi game"}, {id: 3, title:"Đi chơi"}]
-
-// [{id: 1, title: "Đọc sách"}, {id: 2, title: "Chơi game"}, { id: 3, title:"ReactJs"}]
