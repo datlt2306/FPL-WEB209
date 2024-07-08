@@ -1,18 +1,13 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useEffect, useState } from "react";
 import "./App.css";
-import { useForm } from "react-hook-form";
-
-interface ITodo {
-    id: number;
-    title: string;
-    completed: boolean;
-}
+import TodoAdd from "./components/TodoAdd";
+import TodoList from "./components/TodoList";
+import { ITodo } from "./interfaces/todo";
 
 const App = () => {
     const [todos, setTodos] = useState([] as ITodo[]);
     const [currentTodo, setCurrentTodo] = useState({} as ITodo);
-    const { register, handleSubmit, reset } = useForm();
     useEffect(() => {
         // iffe function
         (async () => {
@@ -59,7 +54,7 @@ const App = () => {
             // rerender
             setTodos([...todos, result]);
             // reset form
-            reset();
+            // reset();
         } catch (error) {
             console.error(error);
         }
@@ -105,45 +100,17 @@ const App = () => {
     return (
         <div className="App">
             <h2>Thêm công việc</h2>
-            <form onSubmit={handleSubmit(onHandleSubmit)}>
-                <input type="text" {...register("title")} />
-                <button type="submit">Thêm</button>
-            </form>
+            <TodoAdd onSubmit={onHandleSubmit} />
             <hr />
             <h2>Danh sách công việc</h2>
-            <ul>
-                {todos.map((todo: ITodo, index: number) => (
-                    <li key={index}>
-                        <input
-                            type="checkbox"
-                            checked={todo.completed}
-                            onChange={() => toggleChecked(todo)}
-                        />
-                        {currentTodo.id === todo.id ? (
-                            <form onSubmit={handleSubmit(onHandleSave)}>
-                                <input type="text" {...register("title-update")} />
-                                <button type="submit">Lưu</button>
-                                <button onClick={() => setCurrentTodo({} as ITodo)}>Hủy</button>
-                            </form>
-                        ) : (
-                            <>
-                                <span
-                                    onClick={() => {
-                                        reset({ "title-update": todo.title });
-                                        setCurrentTodo(todo);
-                                    }}
-                                    style={{
-                                        textDecoration: todo.completed ? "line-through" : "none",
-                                    }}
-                                >
-                                    {todo.title}
-                                </span>
-                                <button onClick={() => onHandleRemove(todo.id)}>Xóa</button>
-                            </>
-                        )}
-                    </li>
-                ))}
-            </ul>
+            <TodoList
+                todos={todos}
+                currentTodo={currentTodo}
+                setCurrentTodo={setCurrentTodo}
+                onSave={onHandleSave}
+                onRemove={onHandleRemove}
+                onToggled={toggleChecked}
+            />
         </div>
     );
 };
