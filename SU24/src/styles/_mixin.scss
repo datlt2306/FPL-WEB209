@@ -1,0 +1,38 @@
+@mixin grid($columns, $gap) {
+    display: grid;
+    grid-template-columns: repeat($columns, 1fr);
+    grid-gap: $gap;
+}
+@mixin breakpoint($size) {
+    $breakpoints: (
+        sm: 576px,
+        md: 768px,
+        lg: 992px,
+        xl: 1200px
+    );
+
+    @if map-has-key($breakpoints, $size) {
+        $value: map-get($breakpoints, $size);
+        @media (min-width: $value) {
+            @content;
+        }
+    } @else {
+        @error "No breakpoint found for #{$size}.";
+    }
+}
+@mixin responsive-font($min-size, $max-size, $min-width: null, $max-width: null) {
+    font-size: $min-size;
+    @if $min-width {
+        @media (min-width: $min-width) {
+            font-size: calc(
+                #{$min-size} + (#{$max-size} - #{$min-size}) * ((100vw - #{$min-width}) /
+                            (#{$max-width} - #{$min-width}))
+            );
+        }
+    }
+    @if $max-width {
+        @media (min-width: $max-width) {
+            font-size: $max-size;
+        }
+    }
+}
