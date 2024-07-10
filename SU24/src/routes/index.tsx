@@ -1,5 +1,6 @@
 import DashboardPage from "@/pages/(dashboard)/dashboard/page";
 import LayoutAdmin from "@/pages/(dashboard)/layout";
+import ProductsManagementPage from "@/pages/(dashboard)/products/page";
 import NotFoundPage from "@/pages/(website)/404/page";
 import HomePage from "@/pages/(website)/home/page";
 import LayoutWebsite from "@/pages/(website)/layout";
@@ -14,6 +15,7 @@ const Router = () => {
                 </Route>
                 <Route path="admin" element={<LayoutAdmin />}>
                     <Route index element={<DashboardPage />} />
+                    <Route path="products" element={<ProductsManagementPage />} />
                 </Route>
                 <Route path="*" element={<NotFoundPage />} />
             </Routes>
