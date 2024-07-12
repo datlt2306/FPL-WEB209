@@ -13,8 +13,8 @@ const Router = () => {
                     <Route index element={<HomePage />} />
                 </Route>
                 <Route path="admin" element={<LayoutAdmin />}>
-                    <Route index element={<DashboardPage />} /> 
-                    <Route path="product" element={<ProductManagementPage />} /> 
+                    <Route index element={<DashboardPage />} />
+                    <Route path="products" element={<ProductManagementPage />} />
                 </Route>
             </Routes>
         </>
