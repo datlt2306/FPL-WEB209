@@ -1,6 +1,5 @@
 export interface IProduct {
-    // _id?: number | string
-    id?: number
+    _id?: number | string
     name: string
     category?: string
     price: number
