@@ -19,5 +19,13 @@ export const getAllProducts = async (req, res) => {
         return res.status(400).json({ message: error.message });
     }
 };
+export const deleteProduct = async (req, res) => {
+    try {
+        const product = await Product.findByIdAndDelete(req.params.id);
+        return res.status(StatusCodes.OK).json(product);
+    } catch (error) {
+        return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ error });
+    }
+};
 // iphone 13 product max => /product/iphone-13-product-max
 // GET /product/:slug

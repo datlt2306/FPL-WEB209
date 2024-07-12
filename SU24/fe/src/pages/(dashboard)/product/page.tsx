@@ -21,6 +21,25 @@ const ProductPage = () => {
             }
         })();
     }, []);
+
+    const removeItem = async (id: number | string) => {
+        const confirm = window.confirm("Bạn có chắc chắn muốn xóa không?");
+        if (!confirm) return;
+        try {
+            setIsLoading(true);
+            const response = await fetch(
+                `http://localhost:8080/api/products/${id}`,
+                { method: "DELETE" },
+            );
+            if (response.status !== 200) return alert("Xóa thất bại");
+            setProducts(products.filter((product) => product._id !== id));
+        } catch (error) {
+            setIsError(true);
+        } finally {
+            setIsLoading(false);
+        }
+    };
+
     if (isLoading) return <div>Loading....</div>;
     if (isError) return <div>Error</div>;
     return (
@@ -37,13 +56,17 @@ const ProductPage = () => {
                 </thead>
                 <tbody>
                     {products &&
-                        products.map((item, index) => (
+                        products.map((item: IProduct, index) => (
                             <tr key={index}>
                                 <td>{index + 1}</td>
                                 <td>{item.name}</td>
                                 <td>{item.price}</td>
                                 <td>
-                                    <button>Xem</button>
+                                    <button
+                                        onClick={() => removeItem(item._id!)}
+                                    >
+                                        Xóa
+                                    </button>
                                 </td>
                             </tr>
                         ))}
