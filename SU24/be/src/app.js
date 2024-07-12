@@ -9,7 +9,7 @@ app.use(express.json());
 app.use(cors());
 
 // connect db
-connectDB("mongodb://localhost:27017/WD18329");
+connectDB("mongodb://localhost:27017/wd18329");
 
 // routers
 app.use("/api", productRouter);

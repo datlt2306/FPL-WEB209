@@ -1,3 +1,4 @@
+import { IProduct } from '@/common/types/product'
 import instance from '@/configs/axios'
 import { AxiosResponse } from 'axios'
 // import { IProduct } from '@/common/types/product'
@@ -47,19 +48,20 @@ export const getAllProducts = async (params?: any): Promise<AxiosResponse<any>> 
 //         console.log(error)
 //     }
 // }
-// export const removeProduct = async (product: IProduct) => {
-//     try {
-//         const response = await instance.delete(`/products/${product._id}`, {
-//             headers: {
-//                 'Content-Type': 'application/json',
-//                 "Authorization": "Bearer " + token ? token : ''
-//             },
-//         })
-//         return response.data
-//     } catch (error) {
-//         console.log(error)
-//     }
-// }
+export const removeProduct = async (product: IProduct): Promise<AxiosResponse<any> | undefined> => {
+    try {
+        const response = await instance.delete(`/products/${product._id}`, {
+            // headers: {
+            //     'Content-Type': 'application/json',
+            //     "Authorization": "Bearer " + token ? token : ''
+            // },
+        })
+        return response
+    } catch (error) {
+        console.log(error)
+    }
+    return undefined; // Add a return statement at the end of the function
+}
 // export const editProduct = async (product: IProduct) => {
 //     try {
 //         const response = await instance.put(`/products/${product._id}`, product, {
