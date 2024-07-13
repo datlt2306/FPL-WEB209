@@ -15,10 +15,16 @@ export const getAllProducts = async (): Promise<AxiosResponse<any>> => {
         };
     }
 }
-export const deleteProduct = async (id: number) => {
+export const deleteProduct = async (id: number): Promise<AxiosResponse<any>> => {
     try {
         return await instance.delete(`/products/${id}`);
     } catch (error) {
-        return error;
+        return {
+            data: [],
+            status: 500,
+            statusText: 'Internal Server Error',
+            headers: {},
+            config: {} as any
+        };
     }
 }
