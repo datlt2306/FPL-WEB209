@@ -64,3 +64,5 @@ const ProductPage = () => {
 };
 
 export default ProductPage;
+
+// context + reducer
