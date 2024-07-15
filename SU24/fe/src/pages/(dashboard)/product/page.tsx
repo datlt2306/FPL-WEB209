@@ -1,6 +1,6 @@
 import { IProduct } from "@/common/types/product";
-import { getAllProducts } from "@/services/product";
-import { useQuery } from "@tanstack/react-query";
+import { getAllProducts, removeProduct } from "@/services/product";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 
 const ProductPage = () => {
@@ -75,10 +75,29 @@ const ProductPage = () => {
     //     </>
     // );
 
+    const queryClient = useQueryClient();
     const { data, isLoading, isError } = useQuery({
         queryKey: ["products"],
         queryFn: async () => {
             return await getAllProducts();
+        },
+    });
+
+    const { mutate } = useMutation({
+        // Xóa item trong list
+        mutationFn: async (product: IProduct) => {
+            const confirm = window.confirm("Bạn có chắc chắn muốn xóa không?");
+            if (!confirm) return;
+            try {
+                const response = await removeProduct(product);
+                if (response.status !== 200) return alert("Xóa thất bại");
+                alert(`Xóa thành công`);
+                queryClient.invalidateQueries({
+                    queryKey: ["products"],
+                });
+            } catch (error) {
+                return error;
+            }
         },
     });
     if (isLoading) return <div>Loading...</div>;
@@ -86,7 +105,10 @@ const ProductPage = () => {
     return (
         <div>
             {data?.data.map((item: any) => (
-                <div key={item.id}>{item.name}</div>
+                <div key={item.id}>
+                    {item.name}
+                    <button onClick={() => mutate(item)}>Xóa</button>
+                </div>
             ))}
         </div>
     );

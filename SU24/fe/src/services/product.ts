@@ -49,19 +49,19 @@ export const getAllProducts = async (params?: any): Promise<AxiosResponse<any>> 
 //         console.log(error)
 //     }
 // }
-// export const removeProduct = async (product: IProduct) => {
-//     try {
-//         const response = await instance.delete(`/products/${product._id}`, {
-//             headers: {
-//                 'Content-Type': 'application/json',
-//                 "Authorization": "Bearer " + token ? token : ''
-//             },
-//         })
-//         return response.data
-//     } catch (error) {
-//         console.log(error)
-//     }
-// }
+export const removeProduct = async (product: IProduct): Promise<AxiosResponse<any>> => {
+    try {
+        const response = await instance.delete(`/products/${product.id}sadsadsadsa`, {
+            // headers: {
+            //     'Content-Type': 'application/json',
+            //     "Authorization": "Bearer " + token ? token : ''
+            // },
+        })
+        return response
+    } catch (error: any) {
+        return error
+    }
+}
 // export const editProduct = async (product: IProduct) => {
 //     try {
 //         const response = await instance.put(`/products/${product._id}`, product, {
