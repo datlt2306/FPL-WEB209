@@ -2,7 +2,7 @@ import { IProduct } from "@/common/types/product";
 import { Button } from "@/components/ui/button";
 import instance from "@/configs/axios";
 import { getAllProducts } from "@/services/product";
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { Plus } from "lucide-react";
 import { useEffect, useState } from "react";
 
@@ -35,9 +35,22 @@ const ProductsPage = (props: Props) => {
     // query: lấy danh sách sản phẩm, lấy 1 sản phẩm
     // mutation: thêm, sửa, xóa sản phẩm
 
+    const queryClient = useQueryClient();
     const { data, isLoading, isError, error } = useQuery({
         queryKey: ["products"],
-        queryFn: () => instance.get("/productsss"),
+        queryFn: () => instance.get(`/products/`),
+    });
+
+    const { mutate } = useMutation({
+        mutationFn: async (id) => {
+            const confirm = window.confirm(`Bạn có chắc chắn muốn xóa sản phẩm này không?`);
+            if (!confirm) return;
+            await instance.delete(`/products/${id}`);
+        },
+        onSuccess: () =>
+            queryClient.invalidateQueries({
+                queryKey: ["products"],
+            }),
     });
     if (isLoading) return <div>Loading...</div>;
     if (isError) return <div>Error: {error.message}</div>;
@@ -65,6 +78,9 @@ const ProductsPage = (props: Props) => {
                                 <td>{index + 1}</td>
                                 <td>{item.name}</td>
                                 <td>{item.price}</td>
+                                <td>
+                                    <button onClick={() => mutate(item.id)}>Xóa</button>
+                                </td>
                             </tr>
                         ))}
                 </tbody>
