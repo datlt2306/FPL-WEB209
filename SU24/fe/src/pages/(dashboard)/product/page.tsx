@@ -1,8 +1,11 @@
 import { IProduct } from "@/common/types/product";
+import { CountContext } from "@/context/CounterContext";
 import { getAllProducts } from "@/services/product";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 
 const ProductPage = () => {
+    const data = useContext(CountContext);
+    console.log(data);
     const [products, setProducts] = useState<IProduct[]>([]);
     const [isLoading, setIsLoading] = useState(false);
     const [isError, setIsError] = useState(false);
