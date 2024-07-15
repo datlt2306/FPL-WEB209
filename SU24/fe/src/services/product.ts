@@ -14,18 +14,8 @@ import { AxiosResponse } from 'axios'
 // }
 // // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const getAllProducts = async (params?: any): Promise<AxiosResponse<any>> => {
-    try {
-        const response = await instance.get('/products', { params })
-        return response
-    } catch (error) {
-        return {
-            data: [],
-            status: 500,
-            statusText: 'Internal Server Error',
-            config: {} as any,
-            headers: {}
-        }
-    }
+    return await instance.get('/products', { params })
+
 }
 // export const getProductById = async (id: number | string) => {
 //     try {
