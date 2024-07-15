@@ -1,11 +1,9 @@
-import { IProduct } from "@/common/types/product";
-import instance from "@/configs/axios";
-import { getAllProducts, removeProduct } from "@/services/product";
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import React, { useEffect, useState } from "react";
-import { DataTable } from "./_components/DataTable";
-import { columns } from "./_components/Columns";
 import SkeletonTable from "@/components/SkeletonTable";
+import instance from "@/configs/axios";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { columns } from "./_components/Columns";
+import { DataTable } from "./_components/DataTable";
+import { toast } from "@/components/ui/use-toast";
 
 const ProductPage = () => {
     const queryClient = useQueryClient();
@@ -17,7 +15,11 @@ const ProductPage = () => {
         mutationFn: async (id: number) => {
             const confirm = window.confirm(`Bạn có chắc chắn muốn xóa không?`);
             if (!confirm) return;
+
             await instance.delete(`/products/${id}`);
+            toast({
+                title: "Xóa sản phẩm thành công ",
+            });
         },
         // làm mới lại API
         onSuccess: () => {
@@ -26,11 +28,12 @@ const ProductPage = () => {
             });
         },
     });
+    const handleDelete = (id: number) => mutate(id);
     if (isLoading || isFetching) return <SkeletonTable />;
     if (isError) return <div>{error.message}</div>;
     return (
         <div>
-            <DataTable columns={columns} data={data?.data} />
+            <DataTable columns={columns({ handleDelete })} data={data?.data} />
         </div>
     );
 };

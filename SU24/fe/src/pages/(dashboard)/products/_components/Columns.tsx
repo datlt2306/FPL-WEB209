@@ -7,8 +7,11 @@ import { Trash2 } from "lucide-react";
 
 // This type is used to define the shape of our data.
 // You can use a Zod schema here if you want.
+type columnsProps = {
+    handleDelete: (id: number) => void;
+};
 
-export const columns: ColumnDef<IProduct>[] = [
+export const columns = ({ handleDelete }: columnsProps): ColumnDef<IProduct>[] => [
     {
         accessorKey: "name",
         header: "Tên sản phẩm",
@@ -19,10 +22,11 @@ export const columns: ColumnDef<IProduct>[] = [
     },
     {
         id: "actions",
-        cell: () => {
+        cell: ({ row }) => {
+            const id = row?.original?.id;
             return (
                 <div>
-                    <Button variant="destructive" size="icon">
+                    <Button variant="destructive" size="icon" onClick={() => handleDelete(id)}>
                         <Trash2 className="h-4 w-4" />
                     </Button>
                 </div>
