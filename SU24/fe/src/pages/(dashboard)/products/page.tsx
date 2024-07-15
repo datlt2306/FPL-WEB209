@@ -5,6 +5,10 @@ import { getAllProducts } from "@/services/product";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { Plus } from "lucide-react";
 import { useEffect, useState } from "react";
+import { DataTable } from "./_components/DataTable";
+import { columns } from "./_components/Column";
+import SkeletonTable from "@/components/SkeletonTable";
+import { toast } from "@/components/ui/use-toast";
 
 type Props = {};
 
@@ -42,49 +46,40 @@ const ProductsPage = (props: Props) => {
     });
 
     const { mutate } = useMutation({
-        mutationFn: async (id) => {
+        mutationFn: async (id: number) => {
             const confirm = window.confirm(`Bạn có chắc chắn muốn xóa sản phẩm này không?`);
             if (!confirm) return;
             await instance.delete(`/products/${id}`);
         },
-        onSuccess: () =>
+        onSuccess: () => {
+            toast({
+                variant: "success",
+                title: "Uh oh! Something went wrong.",
+                description: "There was a problem with your request.",
+            });
+
             queryClient.invalidateQueries({
                 queryKey: ["products"],
-            }),
+            });
+        },
     });
-    if (isLoading) return <div>Loading...</div>;
+    const handleDelete = (id: number) => {
+        mutate(id);
+    };
     if (isError) return <div>Error: {error.message}</div>;
     return (
-        <div>
-            <div className="flex items-center justify-between">
+        <div className="container mx-auto">
+            <div className="flex items-center justify-between mb-5">
                 <h1>Quản lý sản phẩm</h1>
                 <Button variant="violet">
                     <Plus /> Thêm
                 </Button>
             </div>
-            <table>
-                <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>Tên</th>
-                        <th>Giá</th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {data?.data &&
-                        data?.data.map((item: any, index: any) => (
-                            <tr key={index}>
-                                <td>{index + 1}</td>
-                                <td>{item.name}</td>
-                                <td>{item.price}</td>
-                                <td>
-                                    <button onClick={() => mutate(item.id)}>Xóa</button>
-                                </td>
-                            </tr>
-                        ))}
-                </tbody>
-            </table>
+            {isLoading ? (
+                <SkeletonTable />
+            ) : (
+                <DataTable columns={columns({ handleDelete })} data={data?.data} />
+            )}
         </div>
     );
 };
