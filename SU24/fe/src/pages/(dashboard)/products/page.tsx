@@ -5,6 +5,7 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import React, { useEffect, useState } from "react";
 import { DataTable } from "./_components/DataTable";
 import { columns } from "./_components/Columns";
+import SkeletonTable from "@/components/SkeletonTable";
 
 const ProductPage = () => {
     const queryClient = useQueryClient();
@@ -25,7 +26,7 @@ const ProductPage = () => {
             });
         },
     });
-    if (isLoading || isFetching) return <div>Loading...</div>;
+    if (isLoading || isFetching) return <SkeletonTable />;
     if (isError) return <div>{error.message}</div>;
     return (
         <div>
