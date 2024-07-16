@@ -1,9 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { IProduct } from "@/common/types/product";
 import instance from "@/configs/axios";
-import { deleteProduct, getAllProducts } from "@/services/product";
-import { useQuery } from "@tanstack/react-query";
-import { useEffect, useState } from "react";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
 const ProductPage = () => {
     // const [products, setProducts] = useState<IProduct[]>([]);
@@ -55,10 +52,20 @@ const ProductPage = () => {
     // query: giống GET - lấy dữ liệu
     // mutation: POST - PUT - DELETE
 
+    const queryClient = useQueryClient();
     const { data, isLoading, isError } = useQuery({
         queryKey: ["products"],
         queryFn: () => instance.get(`/products`),
     });
+
+    const { mutate } = useMutation({
+        mutationFn: (id) => instance.delete(`/products/${id}`),
+        onSuccess: () =>
+            queryClient.invalidateQueries({
+                queryKey: ["products"],
+            }),
+    });
+
     if (isLoading) return <div>Loading...</div>;
     if (isError) return <div>Error</div>;
     return (
@@ -67,7 +74,7 @@ const ProductPage = () => {
                 data?.data.map((item: any, index: number) => (
                     <div key={index}>
                         {item.name} - {item.price}
-                        {/* <button onClick={() => removeItem(item.id!)}>Xóa</button> */}
+                        <button onClick={() => mutate(item.id!)}>Xóa</button>
                     </div>
                 ))}
         </div>
