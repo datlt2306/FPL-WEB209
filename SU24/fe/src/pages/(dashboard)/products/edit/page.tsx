@@ -22,8 +22,10 @@ import { joiResolver } from "@hookform/resolvers/joi";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { Loader2Icon } from "lucide-react";
 import { useForm } from "react-hook-form";
+import { useParams } from "react-router-dom";
 
-const ProductAddPage = () => {
+const ProductEditPage = () => {
+    const { id } = useParams();
     const form = useForm({
         resolver: joiResolver(ProductJoiSchema),
         defaultValues: {
@@ -33,27 +35,41 @@ const ProductAddPage = () => {
         },
     });
 
-    const { data } = useQuery({
+    const { data: categoriesData } = useQuery({
         queryKey: ["categories"],
         queryFn: () => instance.get("/categories"),
     });
 
+    const { isLoading: isProductLoading } = useQuery({
+        queryKey: ["product", id],
+        queryFn: async () => {
+            const response = await instance.get(`/products/${id}`);
+            form.reset({
+                name: response?.data.name,
+                price: response?.data.price,
+                category: response?.data.category,
+            });
+            return response;
+        },
+    });
+
     const { mutate, isPending, isError, error } = useMutation({
-        mutationFn: (formData) => instance.post("/products", formData),
+        mutationFn: (formData) => instance.put(`/products/${id}`, formData),
         onSuccess: () => {
-            form.reset();
             toast({
                 variant: "success",
-                title: "Thêm sản phẩm thành công",
+                title: "Cập nhật sản phẩm thành công",
             });
         },
     });
 
-    const onSubmit = (data: any) => {
-        mutate(data);
+    const onSubmit = (formData: any) => {
+        mutate(formData);
     };
 
+    if (isProductLoading) return <div>Loading...</div>;
     if (isError) return <div>{error.message}</div>;
+
     return (
         <div className="container mx-auto">
             <Form {...form}>
@@ -68,7 +84,7 @@ const ProductAddPage = () => {
                                     <Input
                                         placeholder="Sản phẩm A"
                                         {...field}
-                                        disabled={isPending ? true : false}
+                                        disabled={isPending}
                                     />
                                 </FormControl>
                                 <FormMessage />
@@ -82,7 +98,12 @@ const ProductAddPage = () => {
                             <FormItem>
                                 <FormLabel>Giá sản phẩm</FormLabel>
                                 <FormControl>
-                                    <Input placeholder="Sản phẩm A" {...field} />
+                                    <Input
+                                        placeholder="100000"
+                                        type="number"
+                                        {...field}
+                                        disabled={isPending}
+                                    />
                                 </FormControl>
                                 <FormMessage />
                             </FormItem>
@@ -94,31 +115,38 @@ const ProductAddPage = () => {
                         render={({ field }) => (
                             <FormItem>
                                 <FormLabel>Danh mục</FormLabel>
-                                <Select onValueChange={field.onChange} defaultValue={field.value}>
+                                <Select
+                                    onValueChange={field.onChange}
+                                    defaultValue={field.value}
+                                    disabled={isPending}
+                                >
                                     <FormControl>
                                         <SelectTrigger>
                                             <SelectValue placeholder="Chọn danh mục" />
                                         </SelectTrigger>
                                     </FormControl>
                                     <SelectContent>
-                                        {data &&
-                                            data?.data.map((category: any, index: number) => (
-                                                <SelectItem key={index} value={category._id}>
-                                                    {category.name}
-                                                </SelectItem>
-                                            ))}
+                                        {categoriesData &&
+                                            categoriesData.data.map(
+                                                (category: any, index: number) => (
+                                                    <SelectItem key={index} value={category._id}>
+                                                        {category.name}
+                                                    </SelectItem>
+                                                )
+                                            )}
                                     </SelectContent>
                                 </Select>
                                 <FormMessage />
                             </FormItem>
                         )}
                     />
-
-                    <Button type="submit">{isPending ? <Loader2Icon /> : "Submit"}</Button>
+                    <Button type="submit" disabled={isPending}>
+                        {isPending ? <Loader2Icon className="animate-spin" /> : "Cập nhật"}
+                    </Button>
                 </form>
             </Form>
         </div>
     );
 };
 
-export default ProductAddPage;
+export default ProductEditPage;
