@@ -1,7 +1,5 @@
-import React from "react";
-import { useForm } from "react-hook-form";
-import { joiResolver } from "@hookform/resolvers/joi";
 import { ProductJoiSchema } from "@/common/validations/product";
+import { Button } from "@/components/ui/button";
 import {
     Form,
     FormControl,
@@ -11,11 +9,19 @@ import {
     FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
-import { useMutation } from "@tanstack/react-query";
-import instance from "@/configs/axios";
-import { Loader2Icon } from "lucide-react";
+import {
+    Select,
+    SelectContent,
+    SelectItem,
+    SelectTrigger,
+    SelectValue,
+} from "@/components/ui/select";
 import { toast } from "@/components/ui/use-toast";
+import instance from "@/configs/axios";
+import { joiResolver } from "@hookform/resolvers/joi";
+import { useMutation, useQuery } from "@tanstack/react-query";
+import { Loader2Icon } from "lucide-react";
+import { useForm } from "react-hook-form";
 
 const ProductAddPage = () => {
     const form = useForm({
@@ -23,7 +29,13 @@ const ProductAddPage = () => {
         defaultValues: {
             name: "",
             price: 0,
+            category: "",
         },
+    });
+
+    const { data } = useQuery({
+        queryKey: ["categories"],
+        queryFn: () => instance.get("/categories"),
     });
 
     const { mutate, isPending, isError, error } = useMutation({
@@ -40,9 +52,10 @@ const ProductAddPage = () => {
     const onSubmit = (data: any) => {
         mutate(data);
     };
+
     if (isError) return <div>{error.message}</div>;
     return (
-        <div>
+        <div className="container mx-auto">
             <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
                     <FormField
@@ -75,6 +88,32 @@ const ProductAddPage = () => {
                             </FormItem>
                         )}
                     />
+                    <FormField
+                        control={form.control}
+                        name="category"
+                        render={({ field }) => (
+                            <FormItem>
+                                <FormLabel>Email</FormLabel>
+                                <Select onValueChange={field.onChange} defaultValue={field.value}>
+                                    <FormControl>
+                                        <SelectTrigger>
+                                            <SelectValue placeholder="Chọn danh mục" />
+                                        </SelectTrigger>
+                                    </FormControl>
+                                    <SelectContent>
+                                        {data &&
+                                            data?.data.map((category: any, index: number) => (
+                                                <SelectItem key={index} value={category._id}>
+                                                    {category.name}
+                                                </SelectItem>
+                                            ))}
+                                    </SelectContent>
+                                </Select>
+                                <FormMessage />
+                            </FormItem>
+                        )}
+                    />
+
                     <Button type="submit">{isPending ? <Loader2Icon /> : "Submit"}</Button>
                 </form>
             </Form>
