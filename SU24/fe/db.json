@@ -31,24 +31,22 @@
       "featured": true
     },
     {
-      "id": 9,
-      "name": "Product 9",
+      "name": "Product 9 update",
       "price": 6.99,
-      "image": "https://picsum.photos/id/18/300/300",
       "description": "This is product 9",
-      "discount": 0,
-      "quantity": 120,
-      "featured": false
+      "id": 9
     },
     {
-      "id": 10,
-      "name": "Product 10",
+      "name": "Product 10 update",
       "price": 11.99,
-      "image": "https://picsum.photos/id/19/300/300",
       "description": "This is product 10",
-      "discount": 0.25,
-      "quantity": 90,
-      "featured": true
+      "id": 10
+    },
+    {
+      "name": "Sản phẩm 11 update 3",
+      "price": "1100",
+      "description": "Mô tả sản phẩm 11",
+      "id": 11
     }
   ]
 }

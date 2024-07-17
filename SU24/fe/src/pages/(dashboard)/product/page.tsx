@@ -1,6 +1,8 @@
 import instance from "@/configs/axios";
+import { PlusCircleFilled } from "@ant-design/icons";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { Button, message, Popconfirm, Table } from "antd";
+import { Link } from "react-router-dom";
 
 const ProductPage = () => {
     const [messageApi, contextHolder] = message.useMessage();
@@ -54,18 +56,23 @@ const ProductPage = () => {
         {
             dataIndex: "action",
             render: (_: any, product: any) => (
-                <Popconfirm
-                    title="Xóa sản phẩm"
-                    description="Bạn có chắc muốn xóa sản phẩm này không?"
-                    onConfirm={() => mutation.mutate(product.id)}
-                    // onCancel={cancel}
-                    okText="Yes"
-                    cancelText="No"
-                >
-                    <Button type="primary" danger>
-                        Xóa
+                <div className="flex space-x-3">
+                    <Popconfirm
+                        title="Xóa sản phẩm"
+                        description="Bạn có chắc muốn xóa sản phẩm này không?"
+                        onConfirm={() => mutation.mutate(product.id)}
+                        // onCancel={cancel}
+                        okText="Yes"
+                        cancelText="No"
+                    >
+                        <Button type="primary" danger>
+                            Xóa
+                        </Button>
+                    </Popconfirm>
+                    <Button>
+                        <Link to={`/admin/products/${product.id}/edit`}>Cập nhật</Link>
                     </Button>
-                </Popconfirm>
+                </div>
             ),
         },
     ];
@@ -76,6 +83,14 @@ const ProductPage = () => {
     return (
         <div>
             {contextHolder}
+            <div className="flex items-center justify-between mb-5">
+                <h1 className="font-semibold text-2xl">Quản lý sản phẩm</h1>
+                <Button type="primary">
+                    <Link to="/admin/products/add">
+                        <PlusCircleFilled /> Thêm sản phẩm
+                    </Link>
+                </Button>
+            </div>
             <Table dataSource={dataSource} columns={columns} />;
         </div>
     );
