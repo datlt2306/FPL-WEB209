@@ -1,5 +1,6 @@
 import Dashboard from "@/pages/(dashboard)/dashboard/page";
 import LayoutAdmin from "@/pages/(dashboard)/layout";
+import ProductAddPage from "@/pages/(dashboard)/product/add/page";
 import ProductManagementPage from "@/pages/(dashboard)/product/page";
 import HomePage from "@/pages/(website)/home/page";
 import LayoutWebsite from "@/pages/(website)/layout";
@@ -18,6 +19,7 @@ const Router = () => {
                         path="products"
                         element={<ProductManagementPage />}
                     />
+                    <Route path="products/add" element={<ProductAddPage />} />
                 </Route>
             </Routes>
         </>

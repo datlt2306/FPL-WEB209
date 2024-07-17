@@ -36,22 +36,22 @@ export const getAllProducts = async (params?: any): Promise<AxiosResponse<any>> 
 //         console.log(error)
 //     }
 // }
-// export const addProduct = async (product: IProduct) => {
-//     try {
-//         const response = await instance.post(`/products`, product, {
-//             headers: {
-//                 'Content-Type': 'application/json',
-//                 "Authorization": "Bearer " + token ? token : ''
-//             },
-//         })
-//         return response.data
-//     } catch (error) {
-//         console.log(error)
-//     }
-// }
+export const addProduct = async (product: IProduct) => {
+    try {
+        const response = await instance.post(`/products`, product, {
+            // headers: {
+            //     'Content-Type': 'application/json',
+            //     "Authorization": "Bearer " + token ? token : ''
+            // },
+        })
+        return response.data
+    } catch (error) {
+        throw new Error('Error adding product');
+    }
+}
 export const removeProduct = async (product: IProduct): Promise<AxiosResponse<any>> => {
     try {
-        const response = await instance.delete(`/products/${product.id}sadsadsadsa`, {
+        const response = await instance.delete(`/products/${product.id}/123`, {
             // headers: {
             //     'Content-Type': 'application/json',
             //     "Authorization": "Bearer " + token ? token : ''
@@ -59,7 +59,7 @@ export const removeProduct = async (product: IProduct): Promise<AxiosResponse<an
         })
         return response
     } catch (error: any) {
-        return error
+        throw new Error('Error deleting product');
     }
 }
 // export const editProduct = async (product: IProduct) => {

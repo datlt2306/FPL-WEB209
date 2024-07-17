@@ -1,12 +1,26 @@
-import NavbarRoutes from "@/components/NavbarRoutes";
-import MobileSidebar from "./MobileSidebar";
+import { Menu } from "antd";
 
 const Navbar = () => {
     return (
-        <div className="p-4 border-b h-full flex items-center bg-whiteshadow-sm ">
-            <MobileSidebar />
-            <NavbarRoutes />
-        </div>
+        <Menu
+            theme="dark"
+            mode="inline"
+            defaultSelectedKeys={["1"]}
+            items={[
+                {
+                    key: "1",
+                    label: "nav 1",
+                },
+                {
+                    key: "2",
+                    label: "nav 2",
+                },
+                {
+                    key: "3",
+                    label: "nav 3",
+                },
+            ]}
+        />
     );
 };
 

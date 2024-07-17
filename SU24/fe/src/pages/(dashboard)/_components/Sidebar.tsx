@@ -1,13 +1,14 @@
-import SidebarRoutes from "./SidebarRoute";
+import Sider from "antd/es/layout/Sider";
+import Navbar from "./Navbar";
+import { useState } from "react";
 
 const Sidebar = () => {
+    const [collapsed, setCollapsed] = useState(false);
     return (
-        <div className="h-full border-r flex flex-col overflow-y-auto bg-white shadow-sm">
-            <div className="p-6">Logo</div>
-            <div className="flex flex-col w-full">
-                <SidebarRoutes />
-            </div>
-        </div>
+        <Sider trigger={null} collapsible collapsed={collapsed}>
+            <div className="demo-logo-vertical" />
+            <Navbar />
+        </Sider>
     );
 };
 
