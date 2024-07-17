@@ -1,44 +1,46 @@
 {
   "products": [
     {
-      "id": 7,
-      "name": "Product 7",
-      "price": 12.99,
-      "image": "https://picsum.photos/id/16/300/300",
-      "description": "This is product 7",
-      "discount": 0,
-      "quantity": 50,
-      "featured": true
+      "name": "Sản phẩm 1 update 1",
+      "price": "100",
+      "description": "mô tả sản phẩm",
+      "id": 1
     },
     {
-      "id": 8,
-      "name": "Product 8",
-      "price": 17.99,
-      "image": "https://picsum.photos/id/17/300/300",
-      "description": "This is product 8",
-      "discount": 0.1,
-      "quantity": 80,
-      "featured": true
+      "name": "Sản phẩm 2 update",
+      "price": "13123",
+      "description": "1231",
+      "id": 2
     },
     {
-      "id": 9,
-      "name": "Product 9",
-      "price": 6.99,
-      "image": "https://picsum.photos/id/18/300/300",
-      "description": "This is product 9",
-      "discount": 0,
-      "quantity": 120,
-      "featured": false
+      "name": "1231",
+      "price": "31231",
+      "description": "131",
+      "id": 3
     },
     {
-      "id": 10,
-      "name": "Product 10",
-      "price": 11.99,
-      "image": "https://picsum.photos/id/19/300/300",
-      "description": "This is product 10",
-      "discount": 0.25,
-      "quantity": 90,
-      "featured": true
+      "name": "dsad",
+      "price": "adsad",
+      "description": "adas",
+      "id": 4
+    },
+    {
+      "name": "1231",
+      "price": "321312",
+      "description": "312",
+      "id": 5
+    },
+    {
+      "name": "1231",
+      "price": "321312",
+      "description": "312",
+      "id": 6
+    },
+    {
+      "name": "123",
+      "price": "1312",
+      "description": "3123",
+      "id": 7
     }
   ]
 }
