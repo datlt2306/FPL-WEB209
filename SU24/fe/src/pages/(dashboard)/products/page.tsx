@@ -1,11 +1,13 @@
 import { IProduct } from "@/common/types/product";
+import SkeletonTable from "@/components/SkeletonTable";
 import instance from "@/configs/axios";
 import { PlusCircleFilled } from "@ant-design/icons";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { Button, Popconfirm, Table } from "antd";
+import { Button, message, Popconfirm, Skeleton, Table } from "antd";
 import { Link } from "react-router-dom";
 
 const ProductPage = () => {
+    const [messageApi, contextHolder] = message.useMessage();
     const queryClient = useQueryClient();
 
     const { data, isLoading, isError, error } = useQuery({
@@ -23,16 +25,23 @@ const ProductPage = () => {
             try {
                 return await instance.delete(`/products/${id}`);
             } catch (error) {
-                throw new Error("Call API thất bại");
+                throw new Error("Xóa sản phẩm thất bại");
             }
         },
         onSuccess: () => {
+            messageApi.open({
+                type: "success",
+                content: "Sản phẩm đã được xóa thành công",
+            });
             queryClient.invalidateQueries({
                 queryKey: ["products"],
             });
         },
         onError: (error) => {
-            throw error;
+            messageApi.open({
+                type: "success",
+                content: error.message,
+            });
         },
     });
     const dataSource = data?.data.map((product: IProduct) => ({
@@ -54,7 +63,7 @@ const ProductPage = () => {
             key: "action",
             render: (_: any, product: IProduct) => {
                 return (
-                    <>
+                    <div className="flex space-x-3">
                         <Popconfirm
                             title="Xóa sản phẩm"
                             description="Bạn có chắc chắn muốn xóa không?"
@@ -64,15 +73,18 @@ const ProductPage = () => {
                         >
                             <Button danger>Delete</Button>
                         </Popconfirm>
-                    </>
+                        <Button>
+                            <Link to={`/admin/products/${product.id}/edit`}>Cập nhật</Link>
+                        </Button>
+                    </div>
                 );
             },
         },
     ];
-    if (isLoading) return <div>Loading...</div>;
     if (isError) return <div>{error.message}</div>;
     return (
         <div>
+            {contextHolder}
             <div className="flex items-center justify-between mb-5">
                 <h1 className="text-2xl font-semibold">Quản lý sản phẩm</h1>
                 <Button type="primary">
@@ -81,7 +93,9 @@ const ProductPage = () => {
                     </Link>
                 </Button>
             </div>
-            <Table dataSource={dataSource} columns={columns} />
+            <Skeleton loading={isLoading} active>
+                <Table dataSource={dataSource} columns={columns} />
+            </Skeleton>
         </div>
     );
 };

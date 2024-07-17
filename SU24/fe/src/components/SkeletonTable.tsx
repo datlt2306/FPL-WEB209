@@ -1,4 +1,4 @@
-import { Skeleton } from "@/components/ui/skeleton"; // Đường dẫn tới component Skeleton của bạn
+import { Skeleton } from "antd";
 
 const SkeletonTable = () => {
     return (
@@ -10,7 +10,7 @@ const SkeletonTable = () => {
                             scope="col"
                             className="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                         >
-                            <Skeleton className="h-4 w-[100px]" />
+                            <Skeleton />
                         </th>
                         <th
                             scope="col"

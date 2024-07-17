@@ -1,14 +1,27 @@
 {
   "products": [
     {
-      "id": 10,
-      "name": "Product 10",
-      "price": 11.99,
-      "image": "https://picsum.photos/id/19/300/300",
-      "description": "This is product 10",
-      "discount": 0.25,
-      "quantity": 90,
-      "featured": true
+      "name": "Sản phẩm 1  update",
+      "price": "100",
+      "description": "Mô tả 1",
+      "id": 1
+    },
+    {
+      "name": "Sản phẩm 2 update 1",
+      "price": "200",
+      "description": "Mô tả 2",
+      "id": 2
+    },
+    {
+      "name": "Sản phẩm 3 update",
+      "price": "300",
+      "description": "mô tả 3",
+      "id": 3
+    },
+    {
+      "name": "12313",
+      "price": "123213",
+      "id": 4
     }
   ]
 }
