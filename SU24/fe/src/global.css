@@ -1,3 +1,12 @@
-@tailwind base;
+@layer tailwind-base, antd;
+
+@layer tailwind-base {
+    @tailwind base;
+}
+
+@layer antd {
+    @import "antd/dist/reset.css";
+}
+
 @tailwind components;
 @tailwind utilities;
