@@ -1,16 +1,6 @@
 {
   "products": [
     {
-      "id": 9,
-      "name": "Product 9",
-      "price": 6.99,
-      "image": "https://picsum.photos/id/18/300/300",
-      "description": "This is product 9",
-      "discount": 0,
-      "quantity": 120,
-      "featured": false
-    },
-    {
       "id": 10,
       "name": "Product 10",
       "price": 11.99,
