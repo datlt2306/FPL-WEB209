@@ -18,9 +18,9 @@ const Router = () => {
             </Route>
             <Route path="admin" element={<LayoutAdmin />}>
                 <Route index element={<Dashboard />} />
-                <Route path="product" element={<ProductManagementPage />} />
-                <Route path="product/add" element={<ProductAddPage />} />
-                <Route path="product/:id/edit" element={<ProductEditPage />} />
+                <Route path="products" element={<ProductManagementPage />} />
+                <Route path="products/add" element={<ProductAddPage />} />
+                <Route path="products/:id/edit" element={<ProductEditPage />} />
             </Route>
             <Route path="*" element={<NotFoundPage />} />
         </Routes>
