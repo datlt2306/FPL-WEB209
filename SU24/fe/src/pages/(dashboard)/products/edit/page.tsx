@@ -1,152 +1,111 @@
-import { ProductJoiSchema } from "@/common/validations/product";
-import { Button } from "@/components/ui/button";
-import {
-    Form,
-    FormControl,
-    FormField,
-    FormItem,
-    FormLabel,
-    FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import {
-    Select,
-    SelectContent,
-    SelectItem,
-    SelectTrigger,
-    SelectValue,
-} from "@/components/ui/select";
-import { toast } from "@/components/ui/use-toast";
+import { Button, Checkbox, FormProps, Input, message } from "antd";
+import { AiFillBackward } from "react-icons/ai";
+import { Link, useParams } from "react-router-dom";
+import { Form } from "antd";
+import TextArea from "antd/es/input/TextArea";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import instance from "@/configs/axios";
-import { joiResolver } from "@hookform/resolvers/joi";
-import { useMutation, useQuery } from "@tanstack/react-query";
-import { Loader2Icon } from "lucide-react";
-import { useForm } from "react-hook-form";
-import { useParams } from "react-router-dom";
 
+type FieldType = {
+    name: string;
+    price: number;
+    description: string;
+    featured: boolean;
+    countInStock: number;
+};
 const ProductEditPage = () => {
     const { id } = useParams();
-    const form = useForm({
-        resolver: joiResolver(ProductJoiSchema),
-        defaultValues: {
-            name: "",
-            price: 0,
-            category: "",
-        },
-    });
-
-    const { data: categoriesData } = useQuery({
-        queryKey: ["categories"],
-        queryFn: () => instance.get("/categories"),
-    });
-
-    const { isLoading: isProductLoading } = useQuery({
+    const [messageApi, contextHolder] = message.useMessage();
+    const [form] = Form.useForm();
+    const queryClient = useQueryClient();
+    const { data, isLoading } = useQuery({
         queryKey: ["product", id],
-        queryFn: async () => {
-            const response = await instance.get(`/products/${id}`);
-            form.reset({
-                name: response?.data.name,
-                price: response?.data.price,
-                category: response?.data.category,
-            });
-            return response;
-        },
+        queryFn: () => instance.get(`/products/${id}`),
     });
-
-    const { mutate, isPending, isError, error } = useMutation({
-        mutationFn: (formData) => instance.put(`/products/${id}`, formData),
+    const { mutate } = useMutation({
+        mutationFn: async (formData: FieldType) => {
+            try {
+                return await instance.put(`/products/${id}`, formData);
+            } catch (error) {
+                throw new Error((error as any).message);
+            }
+        },
         onSuccess: () => {
-            toast({
-                variant: "success",
-                title: "Cập nhật sản phẩm thành công",
+            messageApi.open({
+                type: "success",
+                content: "Cập nhật sản phẩm thành công!",
+            });
+            queryClient.invalidateQueries({
+                queryKey: ["product"],
+            });
+        },
+        onError: (error) => {
+            messageApi.open({
+                type: "error",
+                content: error.message,
             });
         },
     });
-
-    const onSubmit = (formData: any) => {
-        mutate(formData);
+    const onFinish: FormProps<FieldType>["onFinish"] = (values) => {
+        mutate(values);
     };
-
-    if (isProductLoading) return <div>Loading...</div>;
-    if (isError) return <div>{error.message}</div>;
-
+    if (isLoading) return <div>Loading...</div>;
     return (
         <div className="container mx-auto">
-            <Form {...form}>
-                <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-                    <FormField
-                        control={form.control}
-                        name="name"
-                        render={({ field }) => (
-                            <FormItem>
-                                <FormLabel>Tên sản phẩm</FormLabel>
-                                <FormControl>
-                                    <Input
-                                        placeholder="Sản phẩm A"
-                                        {...field}
-                                        disabled={isPending}
-                                    />
-                                </FormControl>
-                                <FormMessage />
-                            </FormItem>
-                        )}
-                    />
-                    <FormField
-                        control={form.control}
-                        name="price"
-                        render={({ field }) => (
-                            <FormItem>
-                                <FormLabel>Giá sản phẩm</FormLabel>
-                                <FormControl>
-                                    <Input
-                                        placeholder="100000"
-                                        type="number"
-                                        {...field}
-                                        disabled={isPending}
-                                    />
-                                </FormControl>
-                                <FormMessage />
-                            </FormItem>
-                        )}
-                    />
-                    <FormField
-                        control={form.control}
-                        name="category"
-                        render={({ field }) => (
-                            <FormItem>
-                                <FormLabel>Danh mục</FormLabel>
-                                <Select
-                                    onValueChange={field.onChange}
-                                    defaultValue={field.value}
-                                    disabled={isPending}
-                                >
-                                    <FormControl>
-                                        <SelectTrigger>
-                                            <SelectValue placeholder="Chọn danh mục" />
-                                        </SelectTrigger>
-                                    </FormControl>
-                                    <SelectContent>
-                                        {categoriesData &&
-                                            categoriesData.data.map(
-                                                (category: any, index: number) => (
-                                                    <SelectItem key={index} value={category._id}>
-                                                        {category.name}
-                                                    </SelectItem>
-                                                )
-                                            )}
-                                    </SelectContent>
-                                </Select>
-                                <FormMessage />
-                            </FormItem>
-                        )}
-                    />
-                    <Button type="submit" disabled={isPending}>
-                        {isPending ? <Loader2Icon className="animate-spin" /> : "Cập nhật"}
+            {contextHolder}
+            <div className="flex items-center justify-between mb-5">
+                <h1 className="text-xl">Cập nhật sản phẩm</h1>
+                <Link to="/admin/products">
+                    <Button type="primary">
+                        <AiFillBackward /> Quay lại
                     </Button>
-                </form>
-            </Form>
+                </Link>
+            </div>
+            <div className="grid grid-cols-[auto,300px]">
+                <div>
+                    <Form
+                        form={form}
+                        name="basic"
+                        layout="vertical"
+                        onFinish={onFinish}
+                        initialValues={{ ...data?.data }}
+                    >
+                        <Form.Item<FieldType>
+                            label="Tên sản phẩm"
+                            name="name"
+                            rules={[{ required: true, message: "Tên sản phẩm bắt buộc nhập!" }]}
+                        >
+                            <Input />
+                        </Form.Item>
+                        <Form.Item<FieldType>
+                            label="Giá sản phẩm"
+                            name="price"
+                            rules={[{ required: true, message: "Giá sản phẩm bắt buộc nhập!" }]}
+                        >
+                            <Input />
+                        </Form.Item>
+                        <Form.Item<FieldType> label="Mô tả sản phẩm" name="description">
+                            <TextArea rows={4} />
+                        </Form.Item>
+                        <Form.Item<FieldType> name="featured" valuePropName="checked">
+                            <Checkbox>Sản phẩm nổi bật</Checkbox>
+                        </Form.Item>
+                        <Form.Item<FieldType> label="Sản phẩm trong kho" name="countInStock">
+                            <Input />
+                        </Form.Item>
+                        <Form.Item>
+                            <Button type="primary" htmlType="submit">
+                                Submit
+                            </Button>
+                        </Form.Item>
+                    </Form>
+                </div>
+                <div>sidebar</div>
+            </div>
         </div>
     );
 };
 
 export default ProductEditPage;
+
+// npm uninstall @ant-design/cssinjs

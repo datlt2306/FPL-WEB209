@@ -1,85 +1,99 @@
 import { IProduct } from "@/common/types/product";
-import { Button } from "@/components/ui/button";
 import instance from "@/configs/axios";
-import { getAllProducts } from "@/services/product";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { Plus } from "lucide-react";
-import { useEffect, useState } from "react";
-import { DataTable } from "./_components/DataTable";
-import { columns } from "./_components/Column";
-import SkeletonTable from "@/components/SkeletonTable";
-import { toast } from "@/components/ui/use-toast";
-
+import { Button, message, Popconfirm, Space, Table } from "antd";
+import { AiFillPlusCircle } from "react-icons/ai";
+import { Link } from "react-router-dom";
 type Props = {};
 
 const ProductsPage = (props: Props) => {
-    // const [products, setProducts] = useState<IProduct[]>([]);
-    // const [isLoading, setIsLoading] = useState<boolean>(false);
-    // const [isError, setIsError] = useState<boolean>(false);
-    // useEffect(() => {
-    //     (async () => {
-    //         try {
-    //             setIsLoading(true);
-    //             const response = await getAllProducts();
-    //             if (response.status !== 200) {
-    //                 return setIsError(true);
-    //             }
-    //             setProducts(response.data);
-    //         } catch (error) {
-    //             setIsError(true);
-    //         } finally {
-    //             setIsLoading(false);
-    //         }
-    //     })();
-    // }, []);
-
-    // if (isLoading) return <div>Loading...</div>;
-    // if (isError) return <div>Error</div>;
-
-    // query: lấy danh sách sản phẩm, lấy 1 sản phẩm
-    // mutation: thêm, sửa, xóa sản phẩm
-
+    const [messageApi, contextHolder] = message.useMessage();
     const queryClient = useQueryClient();
     const { data, isLoading, isError, error } = useQuery({
         queryKey: ["products"],
-        queryFn: () => instance.get(`/products/`),
+        queryFn: () => instance.get(`/products`),
     });
 
     const { mutate } = useMutation({
-        mutationFn: async (id: number) => {
-            const confirm = window.confirm(`Bạn có chắc chắn muốn xóa sản phẩm này không?`);
-            if (!confirm) return;
-            await instance.delete(`/products/${id}`);
+        mutationFn: async (id) => {
+            try {
+                return await instance.delete(`/products/${id}`);
+            } catch (error) {
+                throw new Error((error as any).message);
+            }
         },
         onSuccess: () => {
-            toast({
-                variant: "success",
-                title: "Uh oh! Something went wrong.",
-                description: "There was a problem with your request.",
+            messageApi.open({
+                type: "success",
+                content: "Xóa sản phẩm thành công!",
             });
-
             queryClient.invalidateQueries({
                 queryKey: ["products"],
             });
         },
+        onError: (error) => {
+            messageApi.open({
+                type: "error",
+                content: error.message,
+            });
+        },
     });
-    const handleDelete = (id: number) => {
-        mutate(id);
-    };
-    if (isError) return <div>Error: {error.message}</div>;
+
+    if (isLoading) return <div>Loading...</div>;
+    if (isError) return <div>{error.message}</div>;
+
+    // Định nghĩa dữ liệu truyền vào table
+    const dataSource = data?.data?.data.map((product: IProduct) => ({
+        key: product._id,
+        ...product,
+    }));
+    // Định nghĩa các cột truyền vào table
+    const columns = [
+        { key: "name", dataIndex: "name", title: "Tên" },
+        { key: "price", dataIndex: "price", title: "Giá" },
+        { key: "quantity", dataIndex: "quantity", title: "Số lượng" },
+        {
+            key: "featured",
+            dataIndex: "featured",
+            title: "Nổi bật",
+            render: (_: any, product: IProduct) => <span>{product.featured ? "Có" : "không"}</span>,
+        },
+        { key: "countInStock", dataIndex: "countInStock", title: "Tình trạng" },
+        {
+            key: "actions",
+            render: (_: any, product: any) => {
+                const { key } = product;
+                return (
+                    <Space>
+                        <Popconfirm
+                            title="Xóa sản phẩm"
+                            description="Bạn có chắc muốn xóa sản phẩm này?"
+                            onConfirm={() => mutate(key)}
+                            okText="Có"
+                            cancelText="Không"
+                        >
+                            <Button danger>Xóa</Button>
+                        </Popconfirm>
+                        <Button>
+                            <Link to={`/admin/products/${key}/edit`}>Cập nhật</Link>
+                        </Button>
+                    </Space>
+                );
+            },
+        },
+    ];
     return (
-        <div className="container mx-auto">
+        <div>
+            {contextHolder}
             <div className="flex items-center justify-between mb-5">
-                <h1>Quản lý sản phẩm</h1>
-                <Button variant="violet">
-                    <Plus /> Thêm
-                </Button>
+                <h1 className="text-xl">Quản lý sản phẩm</h1>
+                <Link to="/admin/products/add">
+                    <Button type="primary">
+                        <AiFillPlusCircle /> Thêm
+                    </Button>
+                </Link>
             </div>
-            {isLoading ? (
-                <SkeletonTable />
-            ) : (
-                <DataTable columns={columns({ handleDelete })} data={data?.data} />
-            )}
+            <Table dataSource={dataSource} columns={columns} />
         </div>
     );
 };
