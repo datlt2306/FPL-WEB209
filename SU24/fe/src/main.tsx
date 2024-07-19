@@ -4,15 +4,12 @@ import { BrowserRouter } from "react-router-dom";
 import App from "./App.tsx";
 import "./global.css";
 import "./styles/style.scss";
-import { StyleProvider } from "@ant-design/cssinjs";
 
 const queryClient = new QueryClient();
 ReactDOM.createRoot(document.getElementById("root")!).render(
     <QueryClientProvider client={queryClient}>
         <BrowserRouter>
-            <StyleProvider layer>
-                <App />
-            </StyleProvider>
+            <App />
         </BrowserRouter>
     </QueryClientProvider>
 );

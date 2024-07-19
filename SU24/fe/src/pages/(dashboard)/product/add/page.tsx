@@ -1,20 +1,34 @@
-import { IProduct } from "@/common/types/product";
 import instance from "@/configs/axios";
 import { BackwardFilled } from "@ant-design/icons";
-import { useMutation } from "@tanstack/react-query";
-import { Button, Form, FormProps, Input, message } from "antd";
+import { useMutation, useQuery } from "@tanstack/react-query";
+import { Button, Checkbox, Form, FormProps, Input, InputNumber, message, Select } from "antd";
 import TextArea from "antd/es/input/TextArea";
-import React from "react";
 import { Link } from "react-router-dom";
 
 type FieldType = {
-    name?: string;
-    price?: string;
-    description?: string;
+    id: number | string;
+    name: string;
+    categoryId?: string;
+    price: number;
+
+    description: string;
+    discount?: number;
+    featured?: boolean;
+    countInStock?: number;
 };
 
 const ProductAddPage = () => {
     const [messageApi, contextHolder] = message.useMessage();
+    const [form] = Form.useForm();
+    const {
+        data: categories,
+        isLoading,
+        isError,
+        error,
+    } = useQuery({
+        queryKey: ["categories"],
+        queryFn: () => instance.get("/categories"),
+    });
     const { mutate } = useMutation({
         mutationFn: async (product: FieldType) => {
             try {
@@ -28,6 +42,8 @@ const ProductAddPage = () => {
                 type: "success",
                 content: "Thêm sản phẩm thành công",
             });
+
+            form.resetFields();
         },
         onError(error) {
             messageApi.open({
@@ -39,6 +55,8 @@ const ProductAddPage = () => {
     const onFinish: FormProps<FieldType>["onFinish"] = (values) => {
         mutate(values);
     };
+    if (isLoading) return <div>Loading...</div>;
+    if (isError) return <div>{error.message}</div>;
     return (
         <div>
             {contextHolder}
@@ -52,12 +70,13 @@ const ProductAddPage = () => {
             </div>
             <div className="max-w-3xl mx-auto">
                 <Form
+                    form={form}
                     name="basic"
                     labelCol={{ span: 8 }}
                     wrapperCol={{ span: 16 }}
                     style={{ maxWidth: 600 }}
                     onFinish={onFinish}
-                    autoComplete="off"
+                    initialValues={{ featured: false }}
                 >
                     <Form.Item<FieldType>
                         label="Tên sản phẩm"
@@ -67,14 +86,42 @@ const ProductAddPage = () => {
                         <Input />
                     </Form.Item>
                     <Form.Item<FieldType>
+                        label="Danh mục"
+                        name="categoryId"
+                        rules={[{ required: true, message: "Bắt buộc chọn!" }]}
+                    >
+                        <Select
+                            showSearch
+                            placeholder="Chọn danh mục"
+                            optionFilterProp="label"
+                            options={categories?.data.map((category: any) => ({
+                                value: category.id,
+                                label: category.name,
+                            }))}
+                        />
+                    </Form.Item>
+                    <Form.Item<FieldType>
                         label="Giá sản phẩm"
                         name="price"
                         rules={[{ required: true, message: "Giá sản phẩm bắt buộc phải điền" }]}
                     >
                         <Input />
                     </Form.Item>
+                    <Form.Item<FieldType> label="Số lượng sản phẩm" name="countInStock">
+                        <InputNumber defaultValue={0} />
+                    </Form.Item>
+                    <Form.Item<FieldType> label="Khuyến mại" name="discount">
+                        <InputNumber defaultValue={0} />
+                    </Form.Item>
                     <Form.Item<FieldType> label="Mô tả" name="description">
                         <TextArea rows={4} />
+                    </Form.Item>
+                    <Form.Item<FieldType>
+                        label="Sản phẩm nổi bật"
+                        name="featured"
+                        valuePropName="checked"
+                    >
+                        <Checkbox />
                     </Form.Item>
                     <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
                         <Button type="primary" htmlType="submit">

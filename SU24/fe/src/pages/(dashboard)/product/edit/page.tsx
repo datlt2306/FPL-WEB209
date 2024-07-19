@@ -105,10 +105,3 @@ const ProductEditPage = () => {
 };
 
 export default ProductEditPage;
-
-// Lấy id
-// call api từ id lấy được, sử dụng useQuery
-// đồng bộ dữ liệu từ api lấy được ra form
-// submit form, call api update
-// nếu thành công thì hiển thị message success và invalidate cache
-// nếu thất bại thì hiển thị message error

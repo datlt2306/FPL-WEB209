@@ -76,10 +76,6 @@ const ProductPage = () => {
             ),
         },
     ];
-
-    // if (isLoading || isFetching) return <div>Loading...</div>;
-    // if (isError) return <div>Error: {error.message}</div>;
-    // if (mutation?.isError) return <div>Error: {mutation.error.message}</div>;
     return (
         <div>
             {contextHolder}
