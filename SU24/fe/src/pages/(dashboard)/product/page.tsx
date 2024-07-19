@@ -1,3 +1,4 @@
+import { IProduct } from "@/common/types/product";
 import instance from "@/configs/axios";
 import { PlusCircleFilled } from "@ant-design/icons";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
@@ -41,20 +42,33 @@ const ProductPage = () => {
         key: item.id,
         ...item,
     }));
+    const createFilters = (products: IProduct[]) => {
+        return products
+            .map((product: IProduct) => product.name)
+            .filter((value: string, index: number, self: string[]) => self.indexOf(value) === index)
+            .map((name: string) => ({ text: name, value: name }));
+    };
     // tạo cột cho table
     const columns = [
         {
             title: "Tên sản phẩm",
             dataIndex: "name",
             key: "name",
+            filterSearch: true,
+            filters: data ? createFilters(data.data) : [],
+            onFilter: (value: string, product: IProduct) => product.name.includes(value),
+            sorter: (a: IProduct, b: IProduct) => a.name.localeCompare(b.name),
+            sortDirections: ["ascend", "descend"],
         },
         {
             title: "Giá sản phẩm",
             dataIndex: "price",
             key: "price",
+            sorter: (a: IProduct, b: IProduct) => a.price - b.price,
         },
         {
             dataIndex: "action",
+            width: 250,
             render: (_: any, product: any) => (
                 <div className="flex space-x-3">
                     <Popconfirm
@@ -87,7 +101,11 @@ const ProductPage = () => {
                     </Link>
                 </Button>
             </div>
-            <Table dataSource={dataSource} columns={columns} />
+            <Table
+                dataSource={dataSource}
+                columns={columns}
+                showSorterTooltip={{ target: "sorter-icon" }}
+            />
         </div>
     );
 };
