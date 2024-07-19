@@ -44,23 +44,40 @@ const ProductPage = () => {
             });
         },
     });
+    const createFilters = (products: IProduct[]) => {
+        return products
+            .map((product: IProduct) => product.name)
+            .filter((value: string, index: number, self: string[]) => self.indexOf(value) === index)
+            .map((name: string) => ({ text: name, value: name }));
+    };
     const dataSource = data?.data.map((product: IProduct) => ({
         key: product.id,
         ...product,
     }));
     const columns = [
         {
-            key: "name",
             title: "Tên sản phẩm",
             dataIndex: "name",
+            key: "name",
+            filterSearch: true,
+            filters: data ? createFilters(data.data) : [],
+            onFilter: (value: string, product: IProduct) => product.name.includes(value),
+            sorter: (a: IProduct, b: IProduct) => a.name.localeCompare(b.name),
+            sortDirections: ["ascend", "descend"],
         },
         {
-            key: "price",
             title: "Giá sản phẩm",
             dataIndex: "price",
+            key: "price",
+            sorter: (a: IProduct, b: IProduct) => a.price - b.price,
+            render: (price: number) =>
+                new Intl.NumberFormat("vi-VN", { style: "currency", currency: "VND" }).format(
+                    price
+                ),
         },
         {
             key: "action",
+            width: 200,
             render: (_: any, product: IProduct) => {
                 return (
                     <div className="flex space-x-3">
