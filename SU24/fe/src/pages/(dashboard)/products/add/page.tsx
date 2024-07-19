@@ -1,20 +1,31 @@
 import instance from "@/configs/axios";
 import { BackwardFilled, Loading3QuartersOutlined } from "@ant-design/icons";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { Button, Form, FormProps, Input, message } from "antd";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { Button, Checkbox, Form, FormProps, Input, InputNumber, message, Select } from "antd";
 import TextArea from "antd/es/input/TextArea";
-import React from "react";
 import { Link } from "react-router-dom";
 type FieldType = {
-    name?: string;
-    price?: number;
+    name: string;
+    category: string;
+    price: number;
+    image?: string;
+    gallery?: string[];
     description?: string;
+    discount?: number;
+    countInStock?: number;
+    featured?: boolean;
+    tags?: string[];
+    attributes?: string[];
 };
 
 const ProductAddPage = () => {
     const [messageApi, contextHolder] = message.useMessage();
     const [form] = Form.useForm();
     const queryClient = useQueryClient();
+    const { data: categories, isLoading } = useQuery({
+        queryKey: ["categories"],
+        queryFn: () => instance.get(`/categories`),
+    });
     const { mutate, isPending } = useMutation({
         mutationFn: async (product: FieldType) => {
             try {
@@ -59,26 +70,61 @@ const ProductAddPage = () => {
                     labelCol={{ span: 8 }}
                     wrapperCol={{ span: 16 }}
                     style={{ maxWidth: 600 }}
-                    // initialValues={{ remember: true }}
                     onFinish={onFinish}
                     autoComplete="off"
                 >
-                    <Form.Item
+                    <Form.Item<FieldType>
                         label="Tên sản phẩm"
                         name="name"
                         rules={[{ required: true, message: "Tên sản phẩm bắt buộc phải nhập!" }]}
                     >
                         <Input disabled={isPending} />
                     </Form.Item>
-                    <Form.Item
+                    <Form.Item<FieldType> label="Danh mục" name="category">
+                        <Select
+                            options={categories?.data?.map(
+                                (category: { _id: number | string; name: string }) => ({
+                                    value: category._id,
+                                    label: category.name,
+                                })
+                            )}
+                        />
+                    </Form.Item>
+                    <Form.Item<FieldType>
                         label="Giá sản phẩm"
                         name="price"
                         rules={[{ required: true, message: "Tên sản phẩm bắt buộc phải nhập!" }]}
                     >
-                        <Input disabled={isPending} />
+                        <Input />
                     </Form.Item>
-                    <Form.Item label="Mô tả sản phẩm" name="description">
+                    <Form.Item<FieldType> label="Ảnh sản phẩm" name="image">
+                        <Input />
+                    </Form.Item>
+                    <Form.Item<FieldType> label="Gallery ảnh" name="gallery">
+                        <Input />
+                    </Form.Item>
+
+                    <Form.Item<FieldType> label="Mô tả sản phẩm" name="description">
                         <TextArea rows={4} />
+                    </Form.Item>
+                    <Form.Item<FieldType> label="Giá khuyến mại" name="discount">
+                        <InputNumber />
+                    </Form.Item>
+                    <Form.Item<FieldType> label="Số lượng sản phẩm" name="countInStock">
+                        <InputNumber />
+                    </Form.Item>
+                    <Form.Item<FieldType>
+                        label="Sản phẩm nổi bật"
+                        name="featured"
+                        valuePropName="checked"
+                    >
+                        <Checkbox />
+                    </Form.Item>
+                    <Form.Item<FieldType> label="Tags" name="tags">
+                        <Input />
+                    </Form.Item>
+                    <Form.Item<FieldType> label="Thuộc tính" name="attributes">
+                        <Input />
                     </Form.Item>
                     <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
                         <Button type="primary" htmlType="submit">

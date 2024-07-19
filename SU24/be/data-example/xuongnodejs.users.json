@@ -1,0 +1,36 @@
+[{
+  "_id": {
+    "$oid": "65f854680b92d214ddb03aec"
+  },
+  "email": "admin@gmail.com",
+  "password": "$2a$12$6Wsj.kstbkDvsndku/g74u6ZV.TPF2nYF1QPmyEDaF.Dv/awT/3sa",
+  "name": "admin",
+  "role": "admin",
+  "avatar": "https://picsum.photos/200/200"
+},
+{
+  "_id": {
+    "$oid": "65f8548da7fea8e4d2fff211"
+  },
+  "email": "member@gmail.com",
+  "password": "$2a$12$1eUFwnKJwbonZUXXMjZ8LOyhoTttci3DHv3F2prCMktxELBCy8VG.",
+  "name": "member",
+  "role": "user",
+  "avatar": "https://picsum.photos/200/200"
+},
+{
+  "_id": {
+    "$oid": "65f854bca94d17e67c0bef07"
+  },
+  "email": "member2@gmail.com",
+  "password": "$2a$12$p7A6Ixazu3eQ2XIqYm4E7uq.hJUrsicJosJ9emLVK5xcO6g3AyMpW",
+  "name": "member 2",
+  "role": "user",
+  "avatar": "https://picsum.photos/200/200",
+  "createdAt": {
+    "$date": "2024-03-18T14:50:36.597Z"
+  },
+  "updatedAt": {
+    "$date": "2024-03-18T14:50:36.597Z"
+  }
+}]

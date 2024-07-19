@@ -4,7 +4,6 @@ import { PlusCircleFilled } from "@ant-design/icons";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { Button, message, Popconfirm, Skeleton, Table } from "antd";
 import { Loader2Icon } from "lucide-react";
-import React from "react";
 import { Link } from "react-router-dom";
 
 type Props = {};
@@ -22,7 +21,7 @@ const ProductManagementPage = (props: Props) => {
             }
         },
     });
-
+    console.log("data", data?.data?.data);
     const { mutate, isPending } = useMutation({
         mutationFn: async (id: number) => {
             try {
@@ -49,13 +48,27 @@ const ProductManagementPage = (props: Props) => {
     });
 
     if (isError) return <div>{error.message}</div>;
-
-    const dataSource = data?.data.map((product: IProduct) => ({
-        key: product.id,
+    const createFilters = (products: IProduct[]) => {
+        return products
+            .map((product: IProduct) => product.name)
+            .filter((value: string, index: number, self: string[]) => self.indexOf(value) === index)
+            .map((name: string) => ({ text: name, value: name }));
+    };
+    const dataSource = data?.data?.data.map((product: IProduct) => ({
+        key: product._id,
         ...product,
     }));
     const columns = [
-        { key: "name", dataIndex: "name", title: "Tên sản phẩm" },
+        {
+            key: "name",
+            dataIndex: "name",
+            title: "Tên sản phẩm",
+            filterSearch: true,
+            filters: data ? createFilters(data?.data?.data) : [],
+            onFilter: (value: string, product: IProduct) => product.name.includes(value),
+            sorter: (a: IProduct, b: IProduct) => a.name.localeCompare(b.name),
+            sortDirections: ["ascend", "descend"],
+        },
         { key: "price", dataIndex: "price", title: "Giá sản phẩm" },
         {
             key: "action",
@@ -83,7 +96,7 @@ const ProductManagementPage = (props: Props) => {
                             )}
                         </Popconfirm>
                         <Button>
-                            <Link to={`/admin/products/${product.id}/edit`}>Cập nhật</Link>
+                            <Link to={`/admin/products/${product._id}/edit`}>Cập nhật</Link>
                         </Button>
                     </div>
                 );
