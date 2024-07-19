@@ -83,7 +83,11 @@ const ProductAddPage = () => {
                     >
                         <Input />
                     </Form.Item>
-                    <Form.Item<FieldType> label="Danh mục" name="categoryId">
+                    <Form.Item<FieldType>
+                        label="Danh mục"
+                        name="categoryId"
+                        rules={[{ required: true, message: "Bắt buộc chọn danh mục!" }]}
+                    >
                         <Select
                             showSearch
                             placeholder="Chọn danh mục"
@@ -101,7 +105,22 @@ const ProductAddPage = () => {
                     >
                         <InputNumber addonAfter="Vnd" />
                     </Form.Item>
-                    <Form.Item<FieldType> label="Giá khuyến mãi" name="discount">
+                    <Form.Item<FieldType>
+                        label="Giá khuyến mãi"
+                        name="discount"
+                        rules={[
+                            ({ getFieldValue }) => ({
+                                validator(_, value) {
+                                    if (!value || value < getFieldValue("price")) {
+                                        return Promise.resolve();
+                                    }
+                                    return Promise.reject(
+                                        new Error("Giá khuyến mãi phải nhỏ hơn giá sản phẩm!")
+                                    );
+                                },
+                            }),
+                        ]}
+                    >
                         <InputNumber addonAfter="Vnd" />
                     </Form.Item>
                     <Form.Item<FieldType> label="Số lượng" name="countInStock">

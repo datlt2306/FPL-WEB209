@@ -59,6 +59,29 @@
       "description": "21321321",
       "featured": false,
       "id": 8
+    },
+    {
+      "name": "1231",
+      "categoryId": 1,
+      "price": 2,
+      "discount": 1,
+      "id": 9
+    },
+    {
+      "name": "1231",
+      "price": 2,
+      "discount": 1,
+      "id": 10
+    },
+    {
+      "name": "12313",
+      "categoryId": 1,
+      "price": 2,
+      "discount": 1,
+      "countInStock": 123,
+      "description": "1231",
+      "featured": true,
+      "id": 11
     }
   ],
   "categories": [
