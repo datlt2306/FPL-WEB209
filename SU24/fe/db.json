@@ -1,27 +1,74 @@
 {
   "products": [
     {
-      "name": "Sản phẩm 1  update",
+      "name": "Sản phẩm 1  update 1",
+      "categoryId": 2,
       "price": "100",
+      "discount": 30000,
+      "countInStock": 222,
       "description": "Mô tả 1",
+      "featured": true,
       "id": 1
     },
     {
       "name": "Sản phẩm 2 update 1",
       "price": "200",
       "description": "Mô tả 2",
-      "id": 2
+      "id": 2,
+      "categoryId": 1
     },
     {
       "name": "Sản phẩm 3 update",
       "price": "300",
       "description": "mô tả 3",
-      "id": 3
+      "id": 3,
+      "categoryId": 1
     },
     {
       "name": "12313",
       "price": "123213",
-      "id": 4
+      "id": 4,
+      "categoryId": 2
+    },
+    {
+      "name": "321",
+      "price": "1231",
+      "id": 5
+    },
+    {
+      "name": "321",
+      "price": "1231",
+      "id": 6
+    },
+    {
+      "name": "Sản phẩm 50",
+      "categoryId": 2,
+      "price": 5000,
+      "discount": 50000,
+      "countInStock": 3,
+      "description": "21321",
+      "featured": true,
+      "id": 7
+    },
+    {
+      "name": "Sản phẩm 51",
+      "categoryId": 2,
+      "price": 200,
+      "discount": 300,
+      "countInStock": 2,
+      "description": "21321321",
+      "featured": false,
+      "id": 8
+    }
+  ],
+  "categories": [
+    {
+      "id": 1,
+      "name": "Danh mục 1"
+    },
+    {
+      "id": 2,
+      "name": "Danh mục 2"
     }
   ]
 }

@@ -1,19 +1,34 @@
 import instance from "@/configs/axios";
-import { BackwardFilled, Loading3QuartersOutlined } from "@ant-design/icons";
-import { useMutation } from "@tanstack/react-query";
-import { Button, Form, FormProps, Input, message } from "antd";
+import { BackwardFilled, Loading3QuartersOutlined, SettingOutlined } from "@ant-design/icons";
+import { useMutation, useQuery } from "@tanstack/react-query";
+import { Button, Checkbox, Form, FormProps, Input, InputNumber, message, Select } from "antd";
 import TextArea from "antd/es/input/TextArea";
 import { Link } from "react-router-dom";
 
 type FieldType = {
-    name?: string;
-    price?: number;
+    name: string;
+    categoryId?: string;
+    price: number;
+
     description?: string;
+    discount?: number;
+    featured?: boolean;
+    countInStock?: number;
 };
 
 const ProductAddPage = () => {
     const [messageApi, contextHolder] = message.useMessage();
     const [form] = Form.useForm();
+
+    const {
+        data: categories,
+        isLoading,
+        isError,
+    } = useQuery({
+        queryKey: ["categories"],
+        queryFn: () => instance.get("/categories"),
+    });
+
     const { mutate, isPending } = useMutation({
         mutationFn: async (product: FieldType) => {
             try {
@@ -37,9 +52,9 @@ const ProductAddPage = () => {
         },
     });
     const onFinish: FormProps<FieldType>["onFinish"] = (values) => {
-        console.log("Success:", values);
         mutate(values);
     };
+    if (isLoading) return <div>Loading...</div>;
     return (
         <div>
             {contextHolder}
@@ -59,34 +74,54 @@ const ProductAddPage = () => {
                     wrapperCol={{ span: 16 }}
                     style={{ maxWidth: 600 }}
                     onFinish={onFinish}
+                    disabled={isPending}
                 >
                     <Form.Item<FieldType>
                         label="Tên sản phẩm"
                         name="name"
                         rules={[{ required: true, message: "Tên sản phẩm bắt buộc phải có!" }]}
                     >
-                        <Input disabled={isPending} />
+                        <Input />
+                    </Form.Item>
+                    <Form.Item<FieldType> label="Danh mục" name="categoryId">
+                        <Select
+                            showSearch
+                            placeholder="Chọn danh mục"
+                            optionFilterProp="label"
+                            options={categories?.data.map((category: any) => ({
+                                value: category.id,
+                                label: category.name,
+                            }))}
+                        />
                     </Form.Item>
                     <Form.Item<FieldType>
                         label="Giá sản phẩm"
                         name="price"
                         rules={[{ required: true, message: "Giá sản phẩm bắt buộc phải có!" }]}
                     >
-                        <Input disabled={isPending} />
+                        <InputNumber addonAfter="Vnd" />
+                    </Form.Item>
+                    <Form.Item<FieldType> label="Giá khuyến mãi" name="discount">
+                        <InputNumber addonAfter="Vnd" />
+                    </Form.Item>
+                    <Form.Item<FieldType> label="Số lượng" name="countInStock">
+                        <InputNumber />
                     </Form.Item>
                     <Form.Item<FieldType> label="Mô tả sản phẩm" name="description">
-                        <TextArea rows={4} disabled={isPending} />
+                        <TextArea rows={4} />
+                    </Form.Item>
+
+                    <Form.Item<FieldType>
+                        label="Sản phẩm nổi bật"
+                        name="featured"
+                        valuePropName="checked"
+                    >
+                        <Checkbox />
                     </Form.Item>
                     <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-                        <Button type="primary" htmlType="submit" disabled={isPending}>
-                            {isPending ? (
-                                <>
-                                    <Loading3QuartersOutlined className="animate-spin mr-2" />
-                                    Submit
-                                </>
-                            ) : (
-                                "Submit"
-                            )}
+                        <Button type="primary" htmlType="submit">
+                            {isPending && <Loading3QuartersOutlined spin />}
+                            Submit
                         </Button>
                     </Form.Item>
                 </Form>
@@ -96,6 +131,3 @@ const ProductAddPage = () => {
 };
 
 export default ProductAddPage;
-
-// Tạo table hiển thị danh sách sản phẩm : 10 trường => 10 cột
-// Tạo table hiển thị danh sách user : 3 trường => 3 cột
