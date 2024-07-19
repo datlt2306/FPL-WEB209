@@ -107,7 +107,22 @@ const ProductAddPage = () => {
                     <Form.Item<FieldType> label="Mô tả sản phẩm" name="description">
                         <TextArea rows={4} />
                     </Form.Item>
-                    <Form.Item<FieldType> label="Giá khuyến mại" name="discount">
+                    <Form.Item<FieldType>
+                        label="Giá khuyến mại"
+                        name="discount"
+                        rules={[
+                            ({ getFieldValue }) => ({
+                                validator(_, value) {
+                                    if (!value || value < getFieldValue("price")) {
+                                        return Promise.resolve();
+                                    }
+                                    return Promise.reject(
+                                        new Error("Giá khuyến mãi phải nhỏ hơn giá sản phẩm!")
+                                    );
+                                },
+                            }),
+                        ]}
+                    >
                         <InputNumber />
                     </Form.Item>
                     <Form.Item<FieldType> label="Số lượng sản phẩm" name="countInStock">
