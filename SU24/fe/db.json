@@ -1,24 +1,90 @@
 {
   "products": [
     {
-      "name": "sản phẩm 11",
+      "name": "sản phẩm 1 update 1",
+      "categoryId": 1,
+      "price": "200",
       "id": 1
     },
     {
       "name": "sản phẩm 12",
-      "id": 2
+      "id": 2,
+      "categoryId": 1
     },
     {
       "name": "1231",
-      "id": 3
+      "id": 3,
+      "categoryId": 1
     },
     {
       "name": "23131",
-      "id": 4
+      "id": 4,
+      "categoryId": 2
     },
     {
       "name": "23131111",
-      "id": 5
+      "id": 5,
+      "categoryId": 2
+    },
+    {
+      "name": "321",
+      "categoryId": 1,
+      "price": "21321",
+      "description": "8371",
+      "discount": "873618",
+      "countInStock": "8371",
+      "featured": true,
+      "id": 6
+    },
+    {
+      "name": "213",
+      "categoryId": 1,
+      "price": "2131",
+      "description": "123",
+      "discount": "231",
+      "countInStock": "1231",
+      "featured": true,
+      "id": 7
+    },
+    {
+      "name": "2131",
+      "categoryId": 1,
+      "price": "321",
+      "description": "123",
+      "discount": "1231",
+      "countInStock": "1231",
+      "featured": true,
+      "id": 8
+    },
+    {
+      "name": "123 update",
+      "categoryId": 1,
+      "price": "213",
+      "description": "123",
+      "discount": "123",
+      "countInStock": "3123",
+      "featured": true,
+      "id": 9
+    },
+    {
+      "name": "213",
+      "categoryId": 1,
+      "price": "13",
+      "description": "123",
+      "discount": "123",
+      "countInStock": "2312",
+      "featured": true,
+      "id": 10
+    }
+  ],
+  "categories": [
+    {
+      "id": 1,
+      "name": "Danh mục 1"
+    },
+    {
+      "id": 2,
+      "name": "Danh mục 2"
     }
   ]
 }

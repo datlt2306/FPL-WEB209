@@ -11,9 +11,7 @@ const queryClient = new QueryClient();
 ReactDOM.createRoot(document.getElementById("root")!).render(
     <QueryClientProvider client={queryClient}>
         <BrowserRouter>
-            <StyleProvider layer>
-                <App />
-            </StyleProvider>
+            <App />
         </BrowserRouter>
     </QueryClientProvider>,
 );

@@ -1,8 +1,10 @@
 import { IProduct } from "@/common/types/product";
 import { getAllProducts, removeProduct } from "@/services/product";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { Button, message, Popconfirm, Table } from "antd";
+import { Button, message, Popconfirm, Space, Table } from "antd";
+import { PlusIcon } from "lucide-react";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 const ProductPage = () => {
     const [messageApi, contextHolder] = message.useMessage();
@@ -58,17 +60,22 @@ const ProductPage = () => {
             key: "action",
             render: (_: any, product: IProduct) => {
                 return (
-                    <Popconfirm
-                        title="Xóa sản phẩm"
-                        description="Bạn có chắc chắn muốn xóa không?"
-                        onConfirm={() => mutate(product)}
-                        okText="Yes"
-                        cancelText="No"
-                    >
-                        <Button type="primary" danger>
-                            Xóa
-                        </Button>
-                    </Popconfirm>
+                    <Space>
+                        <Popconfirm
+                            title="Xóa sản phẩm"
+                            description="Bạn có chắc chắn muốn xóa không?"
+                            onConfirm={() => mutate(product)}
+                            okText="Yes"
+                            cancelText="No"
+                        >
+                            <Button type="primary" danger>
+                                Xóa
+                            </Button>
+                        </Popconfirm>
+                        <Link to={`/admin/products/${product.id}/edit`}>
+                            <Button type="primary">Sửa</Button>
+                        </Link>
+                    </Space>
                 );
             },
         },
@@ -79,6 +86,14 @@ const ProductPage = () => {
     return (
         <div>
             {contextHolder}
+            <div className="flex items-center justify-between mb-5">
+                <h1 className="text-2xl">Quản lý sản phẩm</h1>
+                <Link to="/admin/products/add">
+                    <Button type="primary">
+                        <PlusIcon /> Thêm mới
+                    </Button>
+                </Link>
+            </div>
             <Table dataSource={dataSource} columns={columns} />
         </div>
     );

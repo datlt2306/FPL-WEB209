@@ -1,11 +1,11 @@
 import { IProduct } from "@/common/types/product";
 import instance from "@/configs/axios";
-import { addProduct } from "@/services/product";
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { addProduct, editProduct } from "@/services/product";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { Button, Checkbox, Form, Input, message, Select } from "antd";
 import TextArea from "antd/es/input/TextArea";
 import { LoaderIcon, StepBackIcon } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 type FieldType = {
     name: string;
@@ -17,21 +17,27 @@ type FieldType = {
     categoryId?: string;
 };
 
-const ProductAddPage = () => {
+const ProductEditPage = () => {
+    const { id } = useParams();
+
     const [messageApi, contextHolder] = message.useMessage();
-    const [form] = Form.useForm();
+    const queryClient = useQueryClient();
     const {
-        data: categories,
+        data: product,
         isLoading,
         isError,
     } = useQuery({
+        queryKey: ["product", id],
+        queryFn: () => instance.get(`/products/${id}`),
+    });
+    const { data: categories } = useQuery({
         queryKey: ["categories"],
         queryFn: () => instance.get(`/categories`),
     });
     const { mutate, isPending } = useMutation({
         mutationFn: async (product: FieldType) => {
             try {
-                const response = await addProduct(product);
+                const response = await editProduct({ ...product, id });
                 return response;
             } catch (error) {
                 throw error;
@@ -40,9 +46,12 @@ const ProductAddPage = () => {
         onSuccess: () => {
             messageApi.open({
                 type: "success",
-                content: "Thêm sản phẩm thành công",
+                content: "Cập nhật sản phẩm thành công!",
             });
-            form.resetFields();
+
+            queryClient.invalidateQueries({
+                queryKey: ["product"],
+            });
         },
         onError: (error) => {
             messageApi.open({
@@ -66,11 +75,11 @@ const ProductAddPage = () => {
                 </Link>
             </div>
             <Form
-                form={form}
                 name="basic"
                 labelCol={{ span: 8 }}
                 wrapperCol={{ span: 16 }}
                 style={{ maxWidth: 600 }}
+                initialValues={{ ...product?.data }}
                 onFinish={(formData) => mutate(formData)}
                 disabled={isPending}
             >
@@ -148,7 +157,7 @@ const ProductAddPage = () => {
                 <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
                     <Button type="primary" htmlType="submit">
                         {isPending && <LoaderIcon className="animate-spin" />}
-                        Thêm sản phẩm
+                        Cập nhật
                     </Button>
                 </Form.Item>
             </Form>
@@ -156,4 +165,4 @@ const ProductAddPage = () => {
     );
 };
 
-export default ProductAddPage;
+export default ProductEditPage;

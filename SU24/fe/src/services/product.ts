@@ -62,17 +62,17 @@ export const removeProduct = async (product: IProduct): Promise<AxiosResponse<an
         throw new Error('Error deleting product');
     }
 }
-// export const editProduct = async (product: IProduct) => {
-//     try {
-//         const response = await instance.put(`/products/${product._id}`, product, {
-//             headers: {
-//                 'Content-Type': 'application/json',
-//                 "Authorization": "Bearer " + token ? token : ''
-//             },
-//         })
-//         return response.data
-//     } catch (error) {
-//         console.log(error)
-//     }
-// }
+export const editProduct = async (product: IProduct) => {
+    try {
+        const response = await instance.put(`/products/${product.id}`, product, {
+            // headers: {
+            //     'Content-Type': 'application/json',
+            //     "Authorization": "Bearer " + token ? token : ''
+            // },
+        })
+        return response
+    } catch (error) {
+        throw new Error('Không kết nối được API. Vui lòng thử lại sau!')
+    }
+}
 
