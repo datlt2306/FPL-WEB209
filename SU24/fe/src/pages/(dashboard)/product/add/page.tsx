@@ -1,5 +1,5 @@
 import instance from "@/configs/axios";
-import { BackwardFilled } from "@ant-design/icons";
+import { BackwardFilled, Loading3QuartersOutlined } from "@ant-design/icons";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { Button, Checkbox, Form, FormProps, Input, InputNumber, message, Select } from "antd";
 import TextArea from "antd/es/input/TextArea";
@@ -29,7 +29,7 @@ const ProductAddPage = () => {
         queryKey: ["categories"],
         queryFn: () => instance.get("/categories"),
     });
-    const { mutate } = useMutation({
+    const { mutate, isPending } = useMutation({
         mutationFn: async (product: FieldType) => {
             try {
                 return await instance.post(`/products`, product);
@@ -77,6 +77,7 @@ const ProductAddPage = () => {
                     style={{ maxWidth: 600 }}
                     onFinish={onFinish}
                     initialValues={{ featured: false }}
+                    disabled={isPending}
                 >
                     <Form.Item<FieldType>
                         label="Tên sản phẩm"
@@ -125,7 +126,7 @@ const ProductAddPage = () => {
                     </Form.Item>
                     <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
                         <Button type="primary" htmlType="submit">
-                            Submit
+                            {isPending && <Loading3QuartersOutlined spin />} Submit
                         </Button>
                     </Form.Item>
                 </Form>

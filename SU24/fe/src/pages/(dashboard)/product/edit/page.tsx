@@ -1,14 +1,20 @@
 import instance from "@/configs/axios";
-import { BackwardFilled } from "@ant-design/icons";
+import { BackwardFilled, Loading3QuartersOutlined } from "@ant-design/icons";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { Button, Form, FormProps, Input, message } from "antd";
+import { Button, Checkbox, Form, FormProps, Input, InputNumber, message, Select } from "antd";
 import TextArea from "antd/es/input/TextArea";
 import { Link, useParams } from "react-router-dom";
 
 type FieldType = {
-    name?: string;
-    price?: string;
-    description?: string;
+    id: number | string;
+    name: string;
+    categoryId?: string;
+    price: number;
+
+    description: string;
+    discount?: number;
+    featured?: boolean;
+    countInStock?: number;
 };
 
 const ProductEditPage = () => {
@@ -16,7 +22,11 @@ const ProductEditPage = () => {
     const [messageApi, contextHolder] = message.useMessage();
     const queryClient = useQueryClient();
 
-    const { data, isError, isLoading } = useQuery({
+    const {
+        data: product,
+        isError,
+        isLoading,
+    } = useQuery({
         queryKey: ["product", id],
         queryFn: async () => {
             try {
@@ -26,7 +36,11 @@ const ProductEditPage = () => {
             }
         },
     });
-    const { mutate } = useMutation({
+    const { data: categories } = useQuery({
+        queryKey: ["categories"],
+        queryFn: () => instance.get("/categories"),
+    });
+    const { mutate, isPending } = useMutation({
         mutationFn: async (product: FieldType) => {
             try {
                 return await instance.put(`/products/${id}`, product);
@@ -59,7 +73,7 @@ const ProductEditPage = () => {
         <div>
             {contextHolder}
             <div className="flex items-center justify-between mb-5">
-                <h1 className="font-semibold text-2xl">Cập nhật: {data?.data?.name}</h1>
+                <h1 className="font-semibold text-2xl">Cập nhật: {product?.data?.name}</h1>
                 <Button type="primary">
                     <Link to="/admin/products">
                         <BackwardFilled /> Quay lại
@@ -73,8 +87,13 @@ const ProductEditPage = () => {
                     wrapperCol={{ span: 16 }}
                     style={{ maxWidth: 600 }}
                     onFinish={onFinish}
-                    initialValues={{ ...data?.data }}
-                    autoComplete="off"
+                    initialValues={{
+                        featured: false,
+                        discount: 0,
+                        countInStock: 0,
+                        ...product?.data,
+                    }}
+                    disabled={isPending}
                 >
                     <Form.Item<FieldType>
                         label="Tên sản phẩm"
@@ -84,18 +103,46 @@ const ProductEditPage = () => {
                         <Input />
                     </Form.Item>
                     <Form.Item<FieldType>
+                        label="Danh mục"
+                        name="categoryId"
+                        rules={[{ required: true, message: "Bắt buộc chọn!" }]}
+                    >
+                        <Select
+                            showSearch
+                            placeholder="Chọn danh mục"
+                            optionFilterProp="label"
+                            options={categories?.data.map((category: any) => ({
+                                value: category.id,
+                                label: category.name,
+                            }))}
+                        />
+                    </Form.Item>
+                    <Form.Item<FieldType>
                         label="Giá sản phẩm"
                         name="price"
                         rules={[{ required: true, message: "Giá sản phẩm bắt buộc phải điền" }]}
                     >
                         <Input />
                     </Form.Item>
+                    <Form.Item<FieldType> label="Số lượng sản phẩm" name="countInStock">
+                        <InputNumber />
+                    </Form.Item>
+                    <Form.Item<FieldType> label="Khuyến mại" name="discount">
+                        <InputNumber />
+                    </Form.Item>
                     <Form.Item<FieldType> label="Mô tả" name="description">
                         <TextArea rows={4} />
                     </Form.Item>
+                    <Form.Item<FieldType>
+                        label="Sản phẩm nổi bật"
+                        name="featured"
+                        valuePropName="checked"
+                    >
+                        <Checkbox />
+                    </Form.Item>
                     <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
                         <Button type="primary" htmlType="submit">
-                            Submit
+                            {isPending && <Loading3QuartersOutlined spin />} Submit
                         </Button>
                     </Form.Item>
                 </Form>
