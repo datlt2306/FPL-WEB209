@@ -7,7 +7,7 @@ import { Link, useParams } from "react-router-dom";
 
 type FieldType = {
     name: string;
-    categoryId?: string;
+    category?: string;
     price: number;
 
     description?: string;
@@ -71,7 +71,7 @@ const ProductEditPage = () => {
     };
     if (isLoading) return <div>Loading...</div>;
     if (isError) return <div>{error.message}</div>;
-
+    console.log(categories);
     return (
         <div>
             {contextHolder}
@@ -100,13 +100,13 @@ const ProductEditPage = () => {
                     >
                         <Input />
                     </Form.Item>
-                    <Form.Item<FieldType> label="Danh mục" name="categoryId">
+                    <Form.Item<FieldType> label="Danh mục" name="category">
                         <Select
                             showSearch
                             placeholder="Chọn danh mục"
                             optionFilterProp="label"
                             options={categories?.data.map((category: any) => ({
-                                value: category.id,
+                                value: category._id,
                                 label: category.name,
                             }))}
                         />

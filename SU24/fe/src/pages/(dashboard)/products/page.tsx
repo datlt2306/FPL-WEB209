@@ -21,7 +21,7 @@ const ProductPage = () => {
         },
     });
     const { mutate } = useMutation({
-        mutationFn: async (id: number) => {
+        mutationFn: async (id: string) => {
             try {
                 return await instance.delete(`/products/${id}`);
             } catch (error) {
@@ -50,8 +50,9 @@ const ProductPage = () => {
             .filter((value: string, index: number, self: string[]) => self.indexOf(value) === index)
             .map((name: string) => ({ text: name, value: name }));
     };
-    const dataSource = data?.data.map((product: IProduct) => ({
-        key: product.id,
+    console.log(data?.data?.data);
+    const dataSource = data?.data?.data.map((product: IProduct) => ({
+        key: product._id,
         ...product,
     }));
     const columns = [
@@ -60,7 +61,7 @@ const ProductPage = () => {
             dataIndex: "name",
             key: "name",
             filterSearch: true,
-            filters: data ? createFilters(data.data) : [],
+            filters: data ? createFilters(data?.data?.data) : [],
             onFilter: (value: string, product: IProduct) => product.name.includes(value),
             sorter: (a: IProduct, b: IProduct) => a.name.localeCompare(b.name),
             sortDirections: ["ascend", "descend"],
@@ -84,14 +85,14 @@ const ProductPage = () => {
                         <Popconfirm
                             title="Xóa sản phẩm"
                             description="Bạn có chắc chắn muốn xóa không?"
-                            onConfirm={() => mutate(product.id!)}
+                            onConfirm={() => mutate(product._id!)}
                             okText="Yes"
                             cancelText="No"
                         >
                             <Button danger>Delete</Button>
                         </Popconfirm>
                         <Button>
-                            <Link to={`/admin/products/${product.id}/edit`}>Cập nhật</Link>
+                            <Link to={`/admin/products/${product._id}/edit`}>Cập nhật</Link>
                         </Button>
                     </div>
                 );

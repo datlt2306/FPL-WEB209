@@ -1,0 +1,484 @@
+[{
+  "_id": {
+    "$oid": "65fef36575398a9a92b694dc"
+  },
+  "name": "sản phẩm 1",
+  "category": {
+    "$oid": "65fef32d75398a9a92b694da"
+  },
+  "price": 100,
+  "image": "https://picsum.photos/302/220",
+  "gallery": [
+    "https://picsum.photos/id/10/302/220",
+    "https://picsum.photos/id/11/302/220",
+    "https://picsum.photos/id/12/302/220"
+  ],
+  "description": "Mô tả 3",
+  "discount": 50,
+  "countInStock": 11,
+  "featured": true,
+  "tags": [
+    "Sofa",
+    "Chair",
+    "Home",
+    "Shop"
+  ],
+  "createdAt": {
+    "$date": "2024-03-23T15:21:09.740Z"
+  },
+  "updatedAt": {
+    "$date": "2024-03-23T15:21:09.740Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65fef37675398a9a92b694de"
+  },
+  "name": "sản phẩm 2",
+  "category": {
+    "$oid": "65fef32d75398a9a92b694da"
+  },
+  "price": 200,
+  "image": "https://picsum.photos/302/220",
+  "gallery": [
+    "https://picsum.photos/id/10/302/220",
+    "https://picsum.photos/id/11/302/220",
+    "https://picsum.photos/id/12/302/220"
+  ],
+  "description": "Mô tả 3",
+  "discount": 50,
+  "countInStock": 11,
+  "featured": true,
+  "tags": [
+    "Sofa",
+    "Chair",
+    "Home",
+    "Shop"
+  ],
+  "createdAt": {
+    "$date": "2024-03-23T15:21:26.356Z"
+  },
+  "updatedAt": {
+    "$date": "2024-03-23T15:21:26.356Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65fef37a75398a9a92b694e0"
+  },
+  "name": "sản phẩm 3",
+  "category": {
+    "$oid": "65fef32d75398a9a92b694da"
+  },
+  "price": 300,
+  "image": "https://picsum.photos/302/220",
+  "gallery": [
+    "https://picsum.photos/id/10/302/220",
+    "https://picsum.photos/id/11/302/220",
+    "https://picsum.photos/id/12/302/220"
+  ],
+  "description": "Mô tả 3",
+  "discount": 50,
+  "countInStock": 11,
+  "featured": true,
+  "tags": [
+    "Sofa",
+    "Chair",
+    "Home",
+    "Shop"
+  ],
+  "createdAt": {
+    "$date": "2024-03-23T15:21:30.544Z"
+  },
+  "updatedAt": {
+    "$date": "2024-03-23T15:21:30.544Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65fef37f75398a9a92b694e2"
+  },
+  "name": "sản phẩm 4",
+  "category": {
+    "$oid": "65fef32d75398a9a92b694da"
+  },
+  "price": 400,
+  "image": "https://picsum.photos/302/220",
+  "gallery": [
+    "https://picsum.photos/id/10/302/220",
+    "https://picsum.photos/id/11/302/220",
+    "https://picsum.photos/id/12/302/220"
+  ],
+  "description": "Mô tả 3",
+  "discount": 50,
+  "countInStock": 11,
+  "featured": true,
+  "tags": [
+    "Sofa",
+    "Chair",
+    "Home",
+    "Shop"
+  ],
+  "createdAt": {
+    "$date": "2024-03-23T15:21:35.490Z"
+  },
+  "updatedAt": {
+    "$date": "2024-03-23T15:21:35.490Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65fef38f75398a9a92b694e6"
+  },
+  "name": "sản phẩm 5",
+  "category": {
+    "$oid": "65fef38875398a9a92b694e4"
+  },
+  "price": 400,
+  "image": "https://picsum.photos/302/220",
+  "gallery": [
+    "https://picsum.photos/id/10/302/220",
+    "https://picsum.photos/id/11/302/220",
+    "https://picsum.photos/id/12/302/220"
+  ],
+  "description": "Mô tả 3",
+  "discount": 50,
+  "countInStock": 11,
+  "featured": true,
+  "tags": [
+    "Sofa",
+    "Chair",
+    "Home",
+    "Shop"
+  ],
+  "createdAt": {
+    "$date": "2024-03-23T15:21:51.497Z"
+  },
+  "updatedAt": {
+    "$date": "2024-03-23T15:21:51.497Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65fef39475398a9a92b694e8"
+  },
+  "name": "sản phẩm 6",
+  "category": {
+    "$oid": "65fef38875398a9a92b694e4"
+  },
+  "price": 600,
+  "image": "https://picsum.photos/302/220",
+  "gallery": [
+    "https://picsum.photos/id/10/302/220",
+    "https://picsum.photos/id/11/302/220",
+    "https://picsum.photos/id/12/302/220"
+  ],
+  "description": "Mô tả 3",
+  "discount": 50,
+  "countInStock": 11,
+  "featured": true,
+  "tags": [
+    "Sofa",
+    "Chair",
+    "Home",
+    "Shop"
+  ],
+  "createdAt": {
+    "$date": "2024-03-23T15:21:56.793Z"
+  },
+  "updatedAt": {
+    "$date": "2024-03-23T15:21:56.793Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "660bc3f3d226e3efeef538e0"
+  },
+  "name": "32321",
+  "category": {
+    "$oid": "65fef32d75398a9a92b694da"
+  },
+  "price": 123123,
+  "image": "21321312",
+  "gallery": [],
+  "description": "12321312",
+  "discount": 23213123,
+  "countInStock": 0,
+  "featured": true,
+  "tags": [],
+  "attributes": [],
+  "createdAt": {
+    "$date": "2024-04-02T08:38:11.926Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-02T08:38:11.926Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "660c2b7e926d84af88975ecb"
+  },
+  "name": "product a",
+  "category": {
+    "$oid": "60d6c47e0b5f5c6d88d53b1a"
+  },
+  "price": 3213120,
+  "image": "21312",
+  "gallery": [],
+  "description": "321312",
+  "discount": 312321,
+  "countInStock": 0,
+  "featured": false,
+  "tags": [],
+  "attributes": [],
+  "createdAt": {
+    "$date": "2024-04-02T15:59:58.762Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-02T15:59:58.762Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "660c2bf6926d84af88975ecd"
+  },
+  "name": "213213",
+  "category": {
+    "$oid": "60d6c47e0b5f5c6d88d53b1a"
+  },
+  "price": 0,
+  "image": "321312",
+  "gallery": [],
+  "description": "213123",
+  "discount": 321312,
+  "countInStock": 0,
+  "featured": false,
+  "tags": [],
+  "attributes": [],
+  "createdAt": {
+    "$date": "2024-04-02T16:01:58.079Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-02T16:01:58.079Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "660c2c24926d84af88975ecf"
+  },
+  "name": "312312",
+  "category": {
+    "$oid": "60d6c47e0b5f5c6d88d53b1a"
+  },
+  "price": 123123,
+  "image": "123123",
+  "gallery": [],
+  "description": "31231",
+  "discount": 0,
+  "countInStock": 0,
+  "featured": true,
+  "tags": [],
+  "attributes": [],
+  "createdAt": {
+    "$date": "2024-04-02T16:02:44.886Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-02T16:02:44.886Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "660e656aabd8ad2ca5c5eb63"
+  },
+  "name": "product a",
+  "category": {
+    "$oid": "60d6c47e0b5f5c6d88d53b1a"
+  },
+  "price": 200,
+  "image": "http://res.cloudinary.com/ecommercer2021/image/upload/v1712219448/reactjs/fz1oox26ed4imrumiail.png",
+  "gallery": [
+    "http://res.cloudinary.com/ecommercer2021/image/upload/v1712219442/reactjs/uuwnxbca79tthalfgrqc.png",
+    "http://res.cloudinary.com/ecommercer2021/image/upload/v1712219442/reactjs/xyjm242a22rzfzviohnj.png",
+    "http://res.cloudinary.com/ecommercer2021/image/upload/v1712219442/reactjs/bclkeeszhm4vm6b4ht5z.png"
+  ],
+  "description": "By Pass Cache Tropico",
+  "discount": 200,
+  "countInStock": 0,
+  "featured": true,
+  "tags": [],
+  "attributes": [],
+  "createdAt": {
+    "$date": "2024-04-04T08:31:38.164Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-04T08:31:38.164Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6610e29646a205162aad78d8"
+  },
+  "name": "123131",
+  "category": {
+    "$oid": "65fef986dbebb6b5cfe6de29"
+  },
+  "price": 12313,
+  "image": "http://res.cloudinary.com/ecommercer2021/image/upload/v1712382612/reactjs/juq8vaiqbwqoiykuomon.png",
+  "gallery": [
+    "http://res.cloudinary.com/ecommercer2021/image/upload/v1712382608/reactjs/sdnotf49qnpyxqzu84qg.png",
+    "http://res.cloudinary.com/ecommercer2021/image/upload/v1712382608/reactjs/peyfrvqgbwjlxwatle6t.png",
+    "http://res.cloudinary.com/ecommercer2021/image/upload/v1712382608/reactjs/arvtsysvirpjj3p6tmgr.png"
+  ],
+  "description": "",
+  "discount": null,
+  "countInStock": 0,
+  "featured": false,
+  "tags": [],
+  "attributes": [],
+  "createdAt": {
+    "$date": "2024-04-06T05:50:14.979Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-06T05:50:14.979Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6610e2b546a205162aad78e5"
+  },
+  "name": "1232131",
+  "category": {
+    "$oid": "65fef38875398a9a92b694e4"
+  },
+  "price": 21312,
+  "image": "http://res.cloudinary.com/ecommercer2021/image/upload/v1712382644/reactjs/ikegrpshqb1utbw5oqtd.png",
+  "gallery": [
+    "http://res.cloudinary.com/ecommercer2021/image/upload/v1712382642/reactjs/gnxuwfbjd87jcmsn3lgw.png",
+    "http://res.cloudinary.com/ecommercer2021/image/upload/v1712382642/reactjs/laq1an3qn6tolbgbiqhl.png",
+    "http://res.cloudinary.com/ecommercer2021/image/upload/v1712382642/reactjs/b2cjfxdhl49ohtacrm9n.png"
+  ],
+  "description": "213131",
+  "discount": 31231231,
+  "countInStock": 0,
+  "featured": false,
+  "tags": [],
+  "attributes": [],
+  "createdAt": {
+    "$date": "2024-04-06T05:50:45.152Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-06T05:50:45.152Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6610ea7346a205162aad7a42"
+  },
+  "name": "sản phẩm mới thêm",
+  "category": {
+    "$oid": "65fef986dbebb6b5cfe6de29"
+  },
+  "price": 1231,
+  "image": "http://res.cloudinary.com/ecommercer2021/image/upload/v1712384621/reactjs/r8aapferozekvkow6fex.png",
+  "gallery": [
+    "http://res.cloudinary.com/ecommercer2021/image/upload/v1712384613/reactjs/n6zxtrbovbm2gc6sccde.png",
+    "http://res.cloudinary.com/ecommercer2021/image/upload/v1712384613/reactjs/r2cs7766ovvnegbwkmyh.png",
+    "http://res.cloudinary.com/ecommercer2021/image/upload/v1712384613/reactjs/jlg61e6jzuwgv8tw3zj9.png"
+  ],
+  "description": "1231231",
+  "discount": 123123,
+  "countInStock": 0,
+  "featured": true,
+  "tags": [],
+  "attributes": [],
+  "createdAt": {
+    "$date": "2024-04-06T06:23:47.841Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-06T06:23:47.841Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6610ea9f46a205162aad7a4f"
+  },
+  "name": "vừa thêm",
+  "category": {
+    "$oid": "65fef9c9a2c3a29b5877539a"
+  },
+  "price": 123,
+  "image": "http://res.cloudinary.com/ecommercer2021/image/upload/v1712384668/reactjs/zz52bldvdd4qfgzhgjl0.png",
+  "gallery": [
+    "http://res.cloudinary.com/ecommercer2021/image/upload/v1712384664/reactjs/kxxbvkyve0g2lpybfyfh.png",
+    "http://res.cloudinary.com/ecommercer2021/image/upload/v1712384664/reactjs/nrwwwjma2qg7urkddyyg.png",
+    "http://res.cloudinary.com/ecommercer2021/image/upload/v1712384664/reactjs/mmkkaqvpmhiv5tsf8cmm.png"
+  ],
+  "description": "Mô tả",
+  "discount": 123,
+  "countInStock": 0,
+  "featured": true,
+  "tags": [],
+  "attributes": [],
+  "createdAt": {
+    "$date": "2024-04-06T06:24:31.147Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-06T06:24:31.147Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6610eb0246a205162aad7a61"
+  },
+  "name": "sản phẩm vừa thêm",
+  "category": {
+    "$oid": "65fef32d75398a9a92b694da"
+  },
+  "price": 123,
+  "image": "http://res.cloudinary.com/ecommercer2021/image/upload/v1712384765/reactjs/koyrf4ncdrd467gkqqce.png",
+  "gallery": [
+    "http://res.cloudinary.com/ecommercer2021/image/upload/v1712384763/reactjs/j5xht3umtcwxmuqorcwk.png",
+    "http://res.cloudinary.com/ecommercer2021/image/upload/v1712384763/reactjs/xol382zuid5ikthfnzd4.png",
+    "http://res.cloudinary.com/ecommercer2021/image/upload/v1712384763/reactjs/hxrswrxhxielli3df0pu.png"
+  ],
+  "description": "1231",
+  "discount": 123,
+  "countInStock": 0,
+  "featured": true,
+  "tags": [],
+  "attributes": [],
+  "createdAt": {
+    "$date": "2024-04-06T06:26:10.777Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-06T06:26:10.777Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6610fab146a205162aad7b5a"
+  },
+  "name": "sản phẩm lớp wd18330",
+  "category": {
+    "$oid": "65fef9a71380839b5916a370"
+  },
+  "price": 200,
+  "image": "http://res.cloudinary.com/ecommercer2021/image/upload/v1712388782/reactjs/v2dkqv8dwffk0ewntwqh.png",
+  "gallery": [
+    "http://res.cloudinary.com/ecommercer2021/image/upload/v1712388776/reactjs/h17xrynnbcrcpg18tnns.png",
+    "http://res.cloudinary.com/ecommercer2021/image/upload/v1712388776/reactjs/rikjvtwjmelqac0rgspa.png",
+    "http://res.cloudinary.com/ecommercer2021/image/upload/v1712388776/reactjs/iwimv4t5cewu3f2gtpdp.png"
+  ],
+  "description": "Mô tả",
+  "discount": 150,
+  "countInStock": 0,
+  "featured": true,
+  "tags": [],
+  "attributes": [],
+  "createdAt": {
+    "$date": "2024-04-06T07:33:05.491Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-06T07:33:05.491Z"
+  }
+}]

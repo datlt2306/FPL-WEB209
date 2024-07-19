@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 
 type FieldType = {
     name: string;
-    categoryId?: string;
+    category?: string;
     price: number;
 
     description?: string;
@@ -20,11 +20,7 @@ const ProductAddPage = () => {
     const [messageApi, contextHolder] = message.useMessage();
     const [form] = Form.useForm();
 
-    const {
-        data: categories,
-        isLoading,
-        isError,
-    } = useQuery({
+    const { data: categories, isLoading } = useQuery({
         queryKey: ["categories"],
         queryFn: () => instance.get("/categories"),
     });
@@ -55,6 +51,8 @@ const ProductAddPage = () => {
         mutate(values);
     };
     if (isLoading) return <div>Loading...</div>;
+
+    console.log(categories);
     return (
         <div>
             {contextHolder}
@@ -74,6 +72,7 @@ const ProductAddPage = () => {
                     wrapperCol={{ span: 16 }}
                     style={{ maxWidth: 600 }}
                     onFinish={onFinish}
+                    onFinishFailed={() => messageApi.error("Vui lòng kiểm tra lại thông tin!")}
                     disabled={isPending}
                 >
                     <Form.Item<FieldType>
@@ -85,7 +84,7 @@ const ProductAddPage = () => {
                     </Form.Item>
                     <Form.Item<FieldType>
                         label="Danh mục"
-                        name="categoryId"
+                        name="category"
                         rules={[{ required: true, message: "Bắt buộc chọn danh mục!" }]}
                     >
                         <Select
@@ -93,7 +92,7 @@ const ProductAddPage = () => {
                             placeholder="Chọn danh mục"
                             optionFilterProp="label"
                             options={categories?.data.map((category: any) => ({
-                                value: category.id,
+                                value: category._id,
                                 label: category.name,
                             }))}
                         />
