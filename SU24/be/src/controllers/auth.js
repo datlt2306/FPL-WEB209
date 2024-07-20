@@ -115,11 +115,35 @@ export const logout = async (req, res) => {
 export const refreshToken = async (req, res) => {
     try {
         const oldToken = req.headers.authorization;
-        // Kiểm tra và xử lý oldToken để tạo refreshToken...
-        // Đảm bảo bạn đã kiểm tra xem oldToken có trong blacklist hay không
+        if (!oldToken) {
+            return res.status(StatusCodes.BAD_REQUEST).json({ error: "No token provided" });
+        }
 
-        const userId = "userId từ oldToken"; // Giả sử bạn đã lấy được userId từ oldToken
-        const newToken = generateRefreshToken(userId); // Sử dụng hàm generateRefreshToken đã có
+        // Kiểm tra token có trong blacklist
+        const isBlacklisted = await isTokenBlacklisted(oldToken);
+        if (isBlacklisted) {
+            return res.status(StatusCodes.UNAUTHORIZED).json({ error: "Token is blacklisted" });
+        }
+
+        // Giải mã oldToken để lấy userId
+        let decoded;
+        try {
+            decoded = jwt.verify(oldToken, "123456"); // Sử dụng cùng secret key như khi tạo token
+        } catch (error) {
+            if (error.name === "TokenExpiredError") {
+                return res.status(StatusCodes.UNAUTHORIZED).json({ error: "Token expired" });
+            } else {
+                return res.status(StatusCodes.UNAUTHORIZED).json({ error: "Invalid token" });
+            }
+        }
+
+        const userId = decoded.userId;
+        if (!userId) {
+            return res.status(StatusCodes.BAD_REQUEST).json({ error: "Invalid token payload" });
+        }
+
+        // Tạo refreshToken mới
+        const newToken = generateRefreshToken(userId);
 
         // Trả về refreshToken mới cho client
         res.status(StatusCodes.OK).json({ newToken });
