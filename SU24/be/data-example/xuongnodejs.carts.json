@@ -1,0 +1,59 @@
+[{
+  "_id": {
+    "$oid": "6602e1ddc71c57bf1c2d3d0f"
+  },
+  "userId": {
+    "$oid": "65f854680b92d214ddb03aec"
+  },
+  "products": [
+    {
+      "productId": {
+        "$oid": "65fef38f75398a9a92b694e6"
+      },
+      "quantity": 48,
+      "_id": {
+        "$oid": "6602e1ddc71c57bf1c2d3d10"
+      }
+    },
+    {
+      "productId": {
+        "$oid": "65fef37675398a9a92b694de"
+      },
+      "quantity": 10,
+      "_id": {
+        "$oid": "6602e2ecc71c57bf1c2d3d1d"
+      }
+    }
+  ],
+  "createdAt": {
+    "$date": "2024-03-26T14:55:25.805Z"
+  },
+  "updatedAt": {
+    "$date": "2024-03-26T14:59:56.361Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6602eb28718b5fd9641a0332"
+  },
+  "userId": {
+    "$oid": "65f8548da7fea8e4d2fff211"
+  },
+  "products": [
+    {
+      "productId": {
+        "$oid": "65fef37a75398a9a92b694e0"
+      },
+      "quantity": 200,
+      "_id": {
+        "$oid": "6602eb28718b5fd9641a0333"
+      }
+    }
+  ],
+  "createdAt": {
+    "$date": "2024-03-26T15:35:04.955Z"
+  },
+  "updatedAt": {
+    "$date": "2024-03-26T15:49:39.760Z"
+  }
+}]

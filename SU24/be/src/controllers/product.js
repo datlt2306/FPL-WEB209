@@ -24,18 +24,10 @@ export const getAllProducts = async (req, res) => {
             { categoryId: null },
             { ...options, populate: populateOptions }
         );
-        if (result.docs.length === 0) throw new Error("No products found");
-        const response = {
-            data: result.docs,
-            pagination: {
-                currentPage: result.page,
-                totalPages: result.totalPages,
-                totalItems: result.totalDocs,
-            },
-        };
-        return res.status(200).json(response);
+        if (result.docs.length === 0) return res.status(StatusCodes.OK).json({ data: [] });
+        return res.status(StatusCodes.OK).json(result);
     } catch (error) {
-        return res.status(400).json({ message: error.message });
+        return res.status(StatusCodes.BAD_REQUEST).json({ message: error.message });
     }
 };
 
@@ -77,6 +69,3 @@ export const related = async (req, res) => {
         return res.status(StatusCodes.OK).json(product);
     } catch (error) {}
 };
-
-// iphone 13 product max => /product/iphone-13-product-max
-// GET /product/:slug

@@ -7,6 +7,7 @@ import {
     related,
     updateProductById,
 } from "../controllers/product";
+import { checkAuth } from "../middleware/checkAuth";
 
 const router = Router();
 router.get("/products", getAllProducts);

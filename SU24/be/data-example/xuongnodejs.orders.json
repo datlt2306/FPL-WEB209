@@ -1,0 +1,84 @@
+[{
+  "_id": {
+    "$oid": "660c24c0926d84af88975e8d"
+  },
+  "userId": {
+    "$oid": "65f854680b92d214ddb03aec"
+  },
+  "items": [
+    {
+      "name": "sản phẩm 5",
+      "price": 400,
+      "quantity": 48,
+      "_id": {
+        "$oid": "660c24c0926d84af88975e8e"
+      }
+    },
+    {
+      "name": "sản phẩm 2",
+      "price": 200,
+      "quantity": 10,
+      "_id": {
+        "$oid": "660c24c0926d84af88975e8f"
+      }
+    }
+  ],
+  "customerInfo": {
+    "name": "Lee Tronjg Dat",
+    "phone": 988191919,
+    "email": "admin@gmail.com",
+    "_id": {
+      "$oid": "660c24c0926d84af88975e90"
+    }
+  },
+  "totalPrice": 21200,
+  "status": "pending",
+  "createdAt": {
+    "$date": "2024-04-02T15:31:12.713Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-02T15:31:12.713Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "660c2704926d84af88975eab"
+  },
+  "userId": {
+    "$oid": "65f854680b92d214ddb03aec"
+  },
+  "items": [
+    {
+      "name": "sản phẩm 5",
+      "price": 400,
+      "quantity": 48,
+      "_id": {
+        "$oid": "660c2704926d84af88975eac"
+      }
+    },
+    {
+      "name": "sản phẩm 2",
+      "price": 200,
+      "quantity": 10,
+      "_id": {
+        "$oid": "660c2704926d84af88975ead"
+      }
+    }
+  ],
+  "customerInfo": {
+    "name": "Lee Tronjg Dat 12",
+    "phone": 988191919,
+    "email": "admin@gmail.com",
+    "_id": {
+      "$oid": "660c2704926d84af88975eae"
+    }
+  },
+  "totalPrice": 21200,
+  "status": "pending",
+  "createdAt": {
+    "$date": "2024-04-02T15:40:53.009Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-02T15:40:53.009Z"
+  }
+}]
