@@ -48,12 +48,11 @@ const ProductAddPage = () => {
     });
     const { mutate, isPending } = useMutation({
         mutationFn: async (product: FieldType) => {
-            console.log(product);
-            // try {
-            //     return await instance.post(`/products`, product);
-            // } catch (error) {
-            //     throw new Error(`Call api thất bại. Vui lòng thử lại sau!`);
-            // }
+            try {
+                return await instance.post(`/products`, product);
+            } catch (error) {
+                throw new Error(`Call api thất bại. Vui lòng thử lại sau!`);
+            }
         },
         onSuccess: () => {
             messageApi.open({
@@ -140,7 +139,21 @@ const ProductAddPage = () => {
                             )}
                         />
                     </Form.Item>
-                    <Form.Item>
+                    <Form.Item<FieldType>
+                        label="Giá sản phẩm"
+                        name="price"
+                        rules={[
+                            { required: true, message: "Tên sản phẩm bắt buộc phải nhập!" },
+                            {
+                                type: "number",
+                                min: 0,
+                                message: "Giá sản phẩm phải lớn hơn 0!",
+                            },
+                        ]}
+                    >
+                        <InputNumber />
+                    </Form.Item>
+                    <Form.Item<FieldType> label="Ảnh sản phẩm" name="image">
                         <Upload
                             action="https://api.cloudinary.com/v1_1/ecommercer2021/image/upload"
                             data={{ upload_preset: "demo-upload" }}
@@ -148,6 +161,7 @@ const ProductAddPage = () => {
                             fileList={fileList}
                             onPreview={handlePreview}
                             onChange={handleChange}
+                            multiple
                         >
                             {fileList.length >= 8 ? null : uploadButton}
                         </Upload>
@@ -162,16 +176,6 @@ const ProductAddPage = () => {
                                 src={previewImage}
                             />
                         )}
-                    </Form.Item>
-                    <Form.Item<FieldType>
-                        label="Giá sản phẩm"
-                        name="price"
-                        rules={[{ required: true, message: "Tên sản phẩm bắt buộc phải nhập!" }]}
-                    >
-                        <Input />
-                    </Form.Item>
-                    <Form.Item<FieldType> label="Ảnh sản phẩm" name="image">
-                        <Input />
                     </Form.Item>
                     <Form.Item<FieldType> label="Gallery ảnh" name="gallery">
                         <Input />

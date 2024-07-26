@@ -78,7 +78,7 @@ const ProductManagementPage = (props: Props) => {
                         <Popconfirm
                             title="Xóa sản phẩm"
                             description="Bạn chắc chắn muốn xóa không?"
-                            onConfirm={() => mutate(product.id)}
+                            onConfirm={() => mutate(product._id)}
                             // onCancel={cancel}
                             okText="Có"
                             cancelText="Không"
