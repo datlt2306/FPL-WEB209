@@ -1,4 +1,4 @@
-import { Button, Checkbox, FormProps, Input, message } from "antd";
+import { Button, Checkbox, FormProps, Input, InputNumber, message } from "antd";
 import { AiFillBackward } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import { Form } from "antd";
@@ -71,9 +71,16 @@ const ProductAddPage = () => {
                         <Form.Item<FieldType>
                             label="Giá sản phẩm"
                             name="price"
-                            rules={[{ required: true, message: "Giá sản phẩm bắt buộc nhập!" }]}
+                            rules={[
+                                { required: true, message: "Giá sản phẩm bắt buộc nhập!" },
+                                {
+                                    type: "number",
+                                    min: 0,
+                                    message: "Giá sản phẩm phải lớn hơn 0",
+                                },
+                            ]}
                         >
-                            <Input />
+                            <InputNumber />
                         </Form.Item>
                         <Form.Item<FieldType> label="Mô tả sản phẩm" name="description">
                             <TextArea rows={4} />
@@ -81,8 +88,18 @@ const ProductAddPage = () => {
                         <Form.Item<FieldType> name="featured" valuePropName="checked">
                             <Checkbox>Sản phẩm nổi bật</Checkbox>
                         </Form.Item>
-                        <Form.Item<FieldType> label="Sản phẩm trong kho" name="countInStock">
-                            <Input />
+                        <Form.Item<FieldType>
+                            label="Sản phẩm trong kho"
+                            name="countInStock"
+                            rules={[
+                                {
+                                    type: "number",
+                                    min: 0,
+                                    message: "Số lượng sản phẩm phải lớn hơn 0",
+                                },
+                            ]}
+                        >
+                            <InputNumber defaultValue={0} />
                         </Form.Item>
                         <Form.Item>
                             <Button type="primary" htmlType="submit">

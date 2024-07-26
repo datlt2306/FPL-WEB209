@@ -34,4 +34,4 @@ const AttributeSchema = new Schema(
     },
     { timestamps: false, versionKey: false }
 );
-export default mongoose.model("Attribute", AttributeSchema);
+export default mongoose.model.Attribute || mongoose.model("Attribute", AttributeSchema);

@@ -40,12 +40,12 @@ const cartSchema = new Schema(
         products: [cartItemSchema],
         totalQuantity: {
             type: Number,
-            required: true,
+            // required: true,
             default: 0,
         },
         totalPrice: {
             type: Number,
-            required: true,
+            // required: true,
             default: 0,
         },
         totalDiscount: {
@@ -54,13 +54,55 @@ const cartSchema = new Schema(
         },
         finalTotalPrice: {
             type: Number,
-            required: true,
+            // required: true,
             default: 0,
         },
     },
     { timestamps: true, versionKey: false }
 );
 
-// Có thể thêm các phương thức hoặc hooks vào schema để tự động cập nhật các trường tổng hợp
+// Thêm phương thức cập nhật các trường tổng hợp
+cartSchema.methods.updateTotals = function () {
+    this.totalQuantity = this.products.reduce((acc, item) => acc + item.quantity, 0);
+    this.totalPrice = this.products.reduce((acc, item) => acc + item.price * item.quantity, 0);
+    this.totalDiscount = this.products.reduce(
+        (acc, item) => acc + item.discount * item.quantity,
+        0
+    );
+    this.finalTotalPrice = this.totalPrice - this.totalDiscount;
+};
 
-export default mongoose.model("Cart", cartSchema);
+// Thêm middleware để tự động cập nhật các trường tổng hợp trước khi lưu
+cartSchema.pre("save", function (next) {
+    this.updateTotals();
+    next();
+});
+
+// Thêm middleware để tự động cập nhật các trường tổng hợp trước khi cập nhật
+cartSchema.pre("findOneAndUpdate", async function (next) {
+    const update = this.getUpdate();
+
+    if (update.products) {
+        const totalQuantity = update.products.reduce((acc, item) => acc + item.quantity, 0);
+        const totalPrice = update.products.reduce(
+            (acc, item) => acc + item.price * item.quantity,
+            0
+        );
+        const totalDiscount = update.products.reduce(
+            (acc, item) => acc + item.discount * item.quantity,
+            0
+        );
+        const finalTotalPrice = totalPrice - totalDiscount;
+
+        this.set({
+            totalQuantity,
+            totalPrice,
+            totalDiscount,
+            finalTotalPrice,
+        });
+    }
+
+    next();
+});
+
+export default mongoose.model.Cart || mongoose.model("Cart", cartSchema);
