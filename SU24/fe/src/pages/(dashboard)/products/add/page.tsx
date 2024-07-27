@@ -12,6 +12,8 @@ type FieldType = {
     description: string;
     featured: boolean;
     countInStock: number;
+    discount: number;
+    category: string[];
 };
 const ProductAddPage = () => {
     const [messageApi, contextHolder] = message.useMessage();
@@ -58,9 +60,9 @@ const ProductAddPage = () => {
                     </Button>
                 </Link>
             </div>
-            <div className="grid grid-cols-[auto,300px]">
-                <div>
-                    <Form form={form} name="basic" layout="vertical" onFinish={onFinish}>
+            <Form form={form} name="basic" layout="vertical" onFinish={onFinish}>
+                <div className="grid grid-cols-[auto,300px] gap-8">
+                    <div>
                         <Form.Item<FieldType>
                             label="Tên sản phẩm"
                             name="name"
@@ -82,6 +84,25 @@ const ProductAddPage = () => {
                         >
                             <InputNumber />
                         </Form.Item>
+                        <Form.Item<FieldType>
+                            label="Giá khuyến mãi"
+                            name="discount"
+                            rules={[
+                                ({ getFieldValue }) => ({
+                                    validator(_, value) {
+                                        if (!value || value < getFieldValue("price")) {
+                                            return Promise.resolve();
+                                        }
+                                        return Promise.reject(
+                                            new Error("Giá khuyến mãi phải nhỏ hơn giá sản phẩm!")
+                                        );
+                                    },
+                                }),
+                            ]}
+                        >
+                            <InputNumber />
+                        </Form.Item>
+
                         <Form.Item<FieldType> label="Mô tả sản phẩm" name="description">
                             <TextArea rows={4} />
                         </Form.Item>
@@ -106,10 +127,20 @@ const ProductAddPage = () => {
                                 Submit
                             </Button>
                         </Form.Item>
-                    </Form>
+                    </div>
+                    <div>
+                        <Form.Item label="Danh mục sản phẩm" name="category">
+                            <Checkbox.Group>
+                                {categories?.data.map((category: any) => (
+                                    <Checkbox key={category._id} value={category._id}>
+                                        {category.name}
+                                    </Checkbox>
+                                ))}
+                            </Checkbox.Group>
+                        </Form.Item>
+                    </div>
                 </div>
-                <div>sidebar</div>
-            </div>
+            </Form>
         </div>
     );
 };

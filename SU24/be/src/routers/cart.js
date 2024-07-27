@@ -1,5 +1,10 @@
 import { Router } from "express";
-import { addOrUpdateToCart, getCartByUserId, removeFromCart } from "../controllers/cart";
+import {
+    updateProductQuantity,
+    addItemToCart,
+    getCartByUserId,
+    removeFromCart,
+} from "../controllers/cart";
 
 const router = Router();
 
@@ -7,7 +12,9 @@ const router = Router();
 router.get("/carts/:userId", getCartByUserId);
 // Thêm sản phẩm vào giỏ hàng
 // Cập nhật số lượng của sản phẩm trong giỏ hàng từ input
-router.put("/carts/update", addOrUpdateToCart);
+router.post("/carts/add-to-cart", addItemToCart);
+// Cập nhật số lượng của sản phẩm trong giỏ hàng từ button
+router.put("/carts/update", updateProductQuantity);
 // Xóa item trong giỏ hàng
 router.post("/carts/remove", removeFromCart);
 

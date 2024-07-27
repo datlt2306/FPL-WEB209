@@ -25,7 +25,15 @@ export const getAllProducts = async (req, res) => {
             { ...options, populate: populateOptions }
         );
         if (result.docs.length === 0) return res.status(StatusCodes.OK).json({ data: [] });
-        return res.status(StatusCodes.OK).json(result);
+        const response = {
+            data: result.docs,
+            pagination: {
+                currentPage: result.page,
+                totalPages: result.totalPages,
+                totalItems: result.totalDocs,
+            },
+        };
+        return res.status(StatusCodes.OK).json(response);
     } catch (error) {
         return res.status(StatusCodes.BAD_REQUEST).json({ message: error.message });
     }

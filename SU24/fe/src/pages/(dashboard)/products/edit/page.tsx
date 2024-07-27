@@ -1,4 +1,4 @@
-import { Button, Checkbox, FormProps, Input, message } from "antd";
+import { Button, Checkbox, FormProps, Input, InputNumber, message } from "antd";
 import { AiFillBackward } from "react-icons/ai";
 import { Link, useParams } from "react-router-dom";
 import { Form } from "antd";
@@ -9,6 +9,7 @@ import instance from "@/configs/axios";
 type FieldType = {
     name: string;
     price: number;
+    discount: number;
     description: string;
     featured: boolean;
     countInStock: number;
@@ -80,9 +81,30 @@ const ProductEditPage = () => {
                         <Form.Item<FieldType>
                             label="Giá sản phẩm"
                             name="price"
-                            rules={[{ required: true, message: "Giá sản phẩm bắt buộc nhập!" }]}
+                            rules={[
+                                { required: true, message: "Giá sản phẩm bắt buộc nhập!" },
+                                { type: "number", min: 0, message: "Giá sản phẩm phải lớn hơn 0" },
+                            ]}
                         >
-                            <Input />
+                            <InputNumber />
+                        </Form.Item>
+                        <Form.Item<FieldType>
+                            label="Giá khuyến mãi"
+                            name="discount"
+                            rules={[
+                                ({ getFieldValue }) => ({
+                                    validator(_, value) {
+                                        if (!value || value < getFieldValue("price")) {
+                                            return Promise.resolve();
+                                        }
+                                        return Promise.reject(
+                                            new Error("Giá khuyến mãi phải nhỏ hơn giá sản phẩm!")
+                                        );
+                                    },
+                                }),
+                            ]}
+                        >
+                            <InputNumber />
                         </Form.Item>
                         <Form.Item<FieldType> label="Mô tả sản phẩm" name="description">
                             <TextArea rows={4} />
