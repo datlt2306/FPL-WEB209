@@ -2,14 +2,30 @@ import { useState } from "react";
 import "./App.css";
 
 function App() {
-    const [color, setColor] = useState("red");
-    const [status, setStatus] = useState(false);
+    const [inputValue, setInputValue] = useState("");
+    const [todos, setTodos] = useState([]);
+
+    const onHandleSubmit = (e) => {
+        // Chặn lại sự kiện reload
+        e.preventDefault();
+        if (inputValue.trim() === "") return;
+        // spread operator
+        setTodos([...todos, { id: Date().now, text: inputValue, done: false }]);
+    };
     return (
         <>
-            <button onClick={() => setStatus(!status)}>Change status</button>
-            <div style={{ display: status ? "none" : "block" }}>
-                <button onClick={() => setColor("blue")}>Change color</button>
-                <div style={{ width: 200, height: 200, backgroundColor: color }}>Content</div>
+            <div>
+                <form onSubmit={onHandleSubmit}>
+                    <input type="text" onChange={(e) => setInputValue(e.target.value)} />
+                    <button>Thêm</button>
+                </form>
+                <ul>
+                    {todos.map((todo) => (
+                        <li key={todo.id}>
+                            <span>{todo.text}</span>
+                        </li>
+                    ))}
+                </ul>
             </div>
         </>
     );
