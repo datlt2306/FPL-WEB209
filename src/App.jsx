@@ -29,14 +29,6 @@ const App = () => {
                 console.error("Lỗi khi gọi API: ", error);
             }
         })();
-
-        // axios
-        //     .get(`http://localhost:3000/products`)
-        //     .then((response) => setProducts(response.data))
-        //     .catch((error) => {
-        //         console.error("Lỗi khi gọi API: ", error);
-        //     });
-        // .then((data) => setProducts(data));
     }, []);
     return (
         <>
