@@ -1,47 +1,51 @@
-import { useState } from "react";
+import axios from "axios";
+import { useEffect, useState } from "react";
 
 const App = () => {
-    const [todos, setTodos] = useState([]);
-    const [inputValue, setInputValue] = useState("");
+    /* 
+    1. Khai báo state : [products]
+    2. Sử dụng jsx để hiển thị dữ liệu
+    3. Sử dụng hook useEffect để gọi api và cập nhật state
+        3.1: Gọi API: fetch/then
+        3.2: Cập nhật state
 
-    const onHandleSubmit = (e) => {
-        // chặn sự kiện reload của form
-        e.preventDefault();
-        if (!inputValue) return;
-        // spread operator
-        setTodos([...todos, { id: Date.now(), text: inputValue, done: false }]);
-        setInputValue("");
-    };
-    const toggleTodo = (id) => {
-        setTodos(todos.map((todo) => (todo.id === id ? { ...todo, done: !todo.done } : todo)));
-    };
-    const onHandleRemove = (id) => {
-        setTodos(todos.filter((todo) => todo.id != id));
-    };
+        ======================
+        useEffect():
+        - trường hợp 1: useEffect(() => {}) - không có deps
+        - trường hợp 2: useEffect(() => {}, []) - deps = []
+        - trường hợp 3: useEffect(() => {}, [state1, state2]) - deps = [state1, state2]
+    */
+    const [products, setProducts] = useState([]);
+    useEffect(() => {
+        (async () => {
+            try {
+                const response = await axios.get(`http://localhost:4000/products`);
+                if (response.status !== 200) {
+                    throw new Error("Lỗi khi gọi API");
+                }
+                const data = await response.data;
+                setProducts(data);
+            } catch (error) {
+                console.error("Lỗi khi gọi API: ", error);
+            }
+        })();
+
+        // axios
+        //     .get(`http://localhost:3000/products`)
+        //     .then((response) => setProducts(response.data))
+        //     .catch((error) => {
+        //         console.error("Lỗi khi gọi API: ", error);
+        //     });
+        // .then((data) => setProducts(data));
+    }, []);
     return (
         <>
-            {JSON.stringify(todos)}
-            <form onSubmit={onHandleSubmit}>
-                <input
-                    type="text"
-                    value={inputValue}
-                    onInput={(e) => setInputValue(e.target.value)}
-                />
-                <button>Thêm</button>
-            </form>
-            <ul>
-                {todos &&
-                    todos.length > 0 &&
-                    todos.map((todo) => (
-                        <li key={todo.id}>
-                            <input type="checkbox" onChange={() => toggleTodo(todo.id)} />
-                            <span style={{ textDecoration: todo.done ? "line-through" : "none" }}>
-                                {todo.text}
-                            </span>
-                            <button onClick={() => onHandleRemove(todo.id)}>Xóa</button>
-                        </li>
-                    ))}
-            </ul>
+            <h1>Danh sách sản phẩm</h1>
+            {products.map((product) => (
+                <div key={product.id}>
+                    {product.name} - {product.price}
+                </div>
+            ))}
         </>
     );
 };
