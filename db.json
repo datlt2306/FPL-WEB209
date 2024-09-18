@@ -1,39 +1,13 @@
 {
   "products": [
     {
-      "id": 7,
-      "name": "Product 7",
-      "price": 79.99,
-      "pictureUrl": "http://example.com/product7.jpg",
-      "description": "Description for product 7",
+      "name": "Sản phẩm 2",
+      "category": "2",
+      "price": "123",
+      "imageUrl": "123",
       "available": true,
-      "createdAt": "2023-10-07T10:00:00Z"
-    },
-    {
-      "id": 8,
-      "name": "Product 8",
-      "price": 89.99,
-      "pictureUrl": "http://example.com/product8.jpg",
-      "description": "Description for product 8",
-      "available": false,
-      "createdAt": "2023-10-08T10:00:00Z"
-    },
-    {
-      "id": 9,
-      "name": "Product 9",
-      "price": 99.99,
-      "pictureUrl": "http://example.com/product9.jpg",
-      "description": "Description for product 9",
-      "available": true,
-      "createdAt": "2023-10-09T10:00:00Z"
-    },
-    {
-      "name": "Sarn pharm 10",
-      "price": "32131312",
-      "imageUrl": "312321",
-      "available": true,
-      "description": "213131",
-      "id": 10
+      "description": "1231",
+      "id": 1
     }
   ],
   "users": []

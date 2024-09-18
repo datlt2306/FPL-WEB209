@@ -1,5 +1,33 @@
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import axios from "axios";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 /* eslint-disable react/prop-types */
-const ProductAdd = ({ onHandleSubmit, onHandleChange }) => {
+const ProductAdd = () => {
+    const [product, setProduct] = useState({});
+    const queryClient = useQueryClient();
+    const navigate = useNavigate();
+
+    const mutation = useMutation({
+        mutationFn: async (product) => {
+            await axios.post(`http://localhost:3000/products`, product);
+        },
+        onSuccess: () => {
+            navigate("/products");
+            queryClient.invalidateQueries({
+                queryKey: ["products"],
+            });
+        },
+    });
+    const onHandleChange = (e) => {
+        const { name, value, type, checked } = e.target;
+        setProduct({ ...product, [name]: type == "checkbox" ? checked : value });
+    };
+    const onHandleSubmit = async (e) => {
+        e.preventDefault();
+        mutation.mutate(product);
+    };
     return (
         <form onSubmit={onHandleSubmit}>
             <div className="form-group">
