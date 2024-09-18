@@ -1,51 +1,6 @@
 {
   "products": [
     {
-      "id": 2,
-      "name": "Product 2",
-      "price": 29.99,
-      "pictureUrl": "http://example.com/product2.jpg",
-      "description": "Description for product 2",
-      "available": true,
-      "createdAt": "2023-10-02T10:00:00Z"
-    },
-    {
-      "id": 3,
-      "name": "Product 3",
-      "price": 39.99,
-      "pictureUrl": "http://example.com/product3.jpg",
-      "description": "Description for product 3",
-      "available": false,
-      "createdAt": "2023-10-03T10:00:00Z"
-    },
-    {
-      "id": 4,
-      "name": "Product 4",
-      "price": 49.99,
-      "pictureUrl": "http://example.com/product4.jpg",
-      "description": "Description for product 4",
-      "available": true,
-      "createdAt": "2023-10-04T10:00:00Z"
-    },
-    {
-      "id": 5,
-      "name": "Product 5",
-      "price": 59.99,
-      "pictureUrl": "http://example.com/product5.jpg",
-      "description": "Description for product 5",
-      "available": false,
-      "createdAt": "2023-10-05T10:00:00Z"
-    },
-    {
-      "id": 6,
-      "name": "Product 6",
-      "price": 69.99,
-      "pictureUrl": "http://example.com/product6.jpg",
-      "description": "Description for product 6",
-      "available": true,
-      "createdAt": "2023-10-06T10:00:00Z"
-    },
-    {
       "id": 7,
       "name": "Product 7",
       "price": 79.99,
@@ -71,34 +26,6 @@
       "description": "Description for product 9",
       "available": true,
       "createdAt": "2023-10-09T10:00:00Z"
-    },
-    {
-      "name": "Sản phẩm 11",
-      "price": "200",
-      "pictureUrl": "Hình ảnh",
-      "category": "2",
-      "description": "Mô tả",
-      "available": true,
-      "id": 11
-    },
-    {
-      "name": "Sản phẩm 11",
-      "price": "200",
-      "pictureUrl": "Hình ảnh",
-      "category": "2",
-      "description": "Mô tả",
-      "available": true,
-      "id": 12
-    },
-    {
-      "name": "Sản phẩm 12",
-      "price": "300",
-      "id": 13
-    },
-    {
-      "name": "Sản phẩm 12",
-      "price": "300",
-      "id": 14
     }
   ],
   "users": []
