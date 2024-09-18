@@ -1,15 +1,6 @@
 {
   "products": [
     {
-      "id": 1,
-      "name": "Product 1",
-      "price": 19.99,
-      "pictureUrl": "http://example.com/product1.jpg",
-      "description": "Description for product 1",
-      "available": true,
-      "createdAt": "2023-10-01T10:00:00Z"
-    },
-    {
       "id": 2,
       "name": "Product 2",
       "price": 29.99,
@@ -82,15 +73,6 @@
       "createdAt": "2023-10-09T10:00:00Z"
     },
     {
-      "id": 10,
-      "name": "Product 10",
-      "price": 109.99,
-      "pictureUrl": "http://example.com/product10.jpg",
-      "description": "Description for product 10",
-      "available": true,
-      "createdAt": "2023-10-10T10:00:00Z"
-    },
-    {
       "name": "Sản phẩm 11",
       "price": "200",
       "pictureUrl": "Hình ảnh",
@@ -117,16 +99,6 @@
       "name": "Sản phẩm 12",
       "price": "300",
       "id": 14
-    },
-    {
-      "name": "Sản phẩm 13",
-      "price": "2131",
-      "id": 15
-    },
-    {
-      "name": "123213",
-      "price": "12312",
-      "id": 16
     }
   ],
   "users": []
