@@ -31,7 +31,10 @@ const ProductEdit = () => {
     const onHandleChange = (e) => {
         const { name, value, type, checked } = e.target;
         // computed property name
-        setProduct({ ...product, [name]: type == "checkbox" ? checked : value });
+        setProduct({
+            ...product,
+            [name]: type === "checkbox" ? checked : value,
+        });
     };
     const onHandleSubmit = (e) => {
         e.preventDefault();
@@ -91,6 +94,7 @@ const ProductEdit = () => {
                         onChange={onHandleChange}
                     />
                 </div>
+
                 <div className="form-group">
                     <label htmlFor="">Mô tả sản phẩm</label>
                     <textarea
@@ -99,6 +103,30 @@ const ProductEdit = () => {
                         id=""
                         onChange={onHandleChange}
                     ></textarea>
+                </div>
+                <div className="form-group">
+                    <div>
+                        <input
+                            type="radio"
+                            name="status"
+                            value="new"
+                            id="new"
+                            checked={product.status === "new"}
+                            onChange={onHandleChange}
+                        />
+                        <label htmlFor="new">Hàng mới</label>
+                    </div>
+                    <div>
+                        <input
+                            type="radio"
+                            name="status"
+                            value="reuse"
+                            id="reuse"
+                            checked={product.status === "reuse"}
+                            onChange={onHandleChange}
+                        />
+                        <label htmlFor="reuse">Hàng cũ</label>
+                    </div>
                 </div>
                 <button>Submit</button>
             </form>

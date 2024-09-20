@@ -1,13 +1,14 @@
 {
   "products": [
     {
-      "name": "2131 update 4",
-      "category": "1",
+      "name": "2131 update 4 5 11111",
+      "category": "2",
       "price": "11111",
       "imageUrl": "11111",
       "description": "1111",
       "available": false,
-      "id": 1
+      "id": 1,
+      "status": "reuse"
     }
   ],
   "users": []
