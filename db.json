@@ -1,12 +1,12 @@
 {
   "products": [
     {
-      "name": "Sản phẩm 2",
+      "name": "2131 update 2",
       "category": "2",
-      "price": "123",
-      "imageUrl": "123",
+      "price": "323",
+      "imageUrl": "12321",
+      "description": "31231",
       "available": true,
-      "description": "1231",
       "id": 1
     }
   ],

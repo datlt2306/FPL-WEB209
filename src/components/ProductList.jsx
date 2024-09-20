@@ -2,6 +2,7 @@
 
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 const ProductList = () => {
     const queryClient = useQueryClient();
@@ -32,6 +33,7 @@ const ProductList = () => {
                 <div key={product.id}>
                     {product.name} - {product.price}
                     <button onClick={() => mutation.mutate(product.id)}>Xóa</button>
+                    <Link to={`/products/${product.id}/edit`}>Cập nhật</Link>
                 </div>
             ))}
         </div>

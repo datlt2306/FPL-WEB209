@@ -1,18 +1,33 @@
-import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 
-const ProductAdd = () => {
+const ProductEdit = () => {
+    const { id } = useParams();
+    const navigate = useNavigate();
     const [product, setProduct] = useState({});
-    const queryClient = useQueryClient();
+    const { data, isLoading, isError, error } = useQuery({
+        queryKey: ["product", id],
+        queryFn: async () => {
+            return await axios.get(`http://localhost:3000/products/${id}`);
+        },
+    });
+    useEffect(() => {
+        if (data) {
+            setProduct(data.data);
+        }
+    }, [data]);
+
     const { mutate } = useMutation({
         mutationFn: async (product) => {
-            return await axios.post(`http://localhost:3000/products`, product);
+            return await axios.put(`http://localhost:3000/products/${id}`, product);
         },
         onSuccess: () => {
-            queryClient.invalidateQueries({
-                queryKey: ["products"],
-            });
+            navigate("/products");
+        },
+        onError: (error) => {
+            console.log(error);
         },
     });
     const onHandleChange = (e) => {
@@ -24,6 +39,9 @@ const ProductAdd = () => {
         e.preventDefault();
         mutate(product);
     };
+
+    if (isLoading) return <p>Loading...</p>;
+    if (isError) return <p>Error: {error.message}</p>;
     return (
         <div>
             <form onSubmit={onHandleSubmit}>
@@ -33,12 +51,18 @@ const ProductAdd = () => {
                         type="text"
                         name="name"
                         placeholder="Tên sản phẩm"
+                        value={product.name || ""}
                         onChange={onHandleChange}
                     />
                 </div>
                 <div className="form-group">
                     <label htmlFor="">Danh mục</label>
-                    <select name="category" id="" onChange={onHandleChange}>
+                    <select
+                        name="category"
+                        id=""
+                        value={product.category || ""}
+                        onChange={onHandleChange}
+                    >
                         <option value="1">Danh mục A</option>
                         <option value="2">Danh mục B</option>
                     </select>
@@ -49,6 +73,7 @@ const ProductAdd = () => {
                         type="number"
                         name="price"
                         placeholder="Giá sản phẩm"
+                        value={product.price || ""}
                         onChange={onHandleChange}
                     />
                 </div>
@@ -58,22 +83,39 @@ const ProductAdd = () => {
                         type="text"
                         name="imageUrl"
                         placeholder="Ảnh sản phẩm"
+                        value={product.imageUrl || ""}
                         onChange={onHandleChange}
                     />
                 </div>
                 <div className="form-group">
                     <label htmlFor="">Trạng thái</label>
-                    <input type="checkbox" name="available" onChange={onHandleChange} />
+                    <input
+                        type="checkbox"
+                        name="available"
+                        value={product.available || ""}
+                        onChange={onHandleChange}
+                    />
                 </div>
                 <div className="form-group">
                     <label htmlFor="">Mô tả sản phẩm</label>
-                    <textarea name="description" id="" onChange={onHandleChange}></textarea>
+                    <textarea
+                        name="description"
+                        id=""
+                        value={product.description || ""}
+                        onChange={onHandleChange}
+                    ></textarea>
                 </div>
                 <button>Submit</button>
             </form>
-            ;
         </div>
     );
 };
 
-export default ProductAdd;
+export default ProductEdit;
+
+/**
+ * 1. Lấy ID trên url
+ * 2. Gọi API lấy thông tin sản phẩm theo ID
+ * 3. Hiển thị thông tin sản phẩm lên input form
+ * 4. Lấy giá trị form sau khi submit
+ */
