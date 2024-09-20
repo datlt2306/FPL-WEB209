@@ -1,12 +1,12 @@
 {
   "products": [
     {
-      "name": "2131 update 2",
-      "category": "2",
-      "price": "323",
-      "imageUrl": "12321",
-      "description": "31231",
-      "available": true,
+      "name": "2131 update 4",
+      "category": "1",
+      "price": "11111",
+      "imageUrl": "11111",
+      "description": "1111",
+      "available": false,
       "id": 1
     }
   ],

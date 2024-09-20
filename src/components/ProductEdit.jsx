@@ -5,29 +5,27 @@ import { useNavigate, useParams } from "react-router-dom";
 
 const ProductEdit = () => {
     const { id } = useParams();
-    const navigate = useNavigate();
     const [product, setProduct] = useState({});
-    const { data, isLoading, isError, error } = useQuery({
+    const navigate = useNavigate();
+
+    const { data } = useQuery({
         queryKey: ["product", id],
         queryFn: async () => {
             return await axios.get(`http://localhost:3000/products/${id}`);
         },
     });
+
     useEffect(() => {
         if (data) {
             setProduct(data.data);
         }
     }, [data]);
-
     const { mutate } = useMutation({
         mutationFn: async (product) => {
             return await axios.put(`http://localhost:3000/products/${id}`, product);
         },
         onSuccess: () => {
             navigate("/products");
-        },
-        onError: (error) => {
-            console.log(error);
         },
     });
     const onHandleChange = (e) => {
@@ -39,9 +37,6 @@ const ProductEdit = () => {
         e.preventDefault();
         mutate(product);
     };
-
-    if (isLoading) return <p>Loading...</p>;
-    if (isError) return <p>Error: {error.message}</p>;
     return (
         <div>
             <form onSubmit={onHandleSubmit}>
@@ -59,8 +54,8 @@ const ProductEdit = () => {
                     <label htmlFor="">Danh mục</label>
                     <select
                         name="category"
-                        id=""
                         value={product.category || ""}
+                        id=""
                         onChange={onHandleChange}
                     >
                         <option value="1">Danh mục A</option>
@@ -92,7 +87,7 @@ const ProductEdit = () => {
                     <input
                         type="checkbox"
                         name="available"
-                        value={product.available || ""}
+                        checked={product.available || ""}
                         onChange={onHandleChange}
                     />
                 </div>
@@ -100,22 +95,26 @@ const ProductEdit = () => {
                     <label htmlFor="">Mô tả sản phẩm</label>
                     <textarea
                         name="description"
-                        id=""
                         value={product.description || ""}
+                        id=""
                         onChange={onHandleChange}
                     ></textarea>
                 </div>
                 <button>Submit</button>
             </form>
+            ;
         </div>
     );
 };
 
 export default ProductEdit;
-
 /**
- * 1. Lấy ID trên url
- * 2. Gọi API lấy thông tin sản phẩm theo ID
- * 3. Hiển thị thông tin sản phẩm lên input form
- * 4. Lấy giá trị form sau khi submit
+ * Bước 1: Lấy ID trên url sử dung useParams
+ * Bước 2: Call API dựa trên ID vừa lấy được để lấy dữ liệu sản phẩm
+ * Bước 3: Hiển thị dữ liệu sản phẩm lên form từ thông sản phẩm vừa lấy được
+ *  3.1: Sau khi lấy dữ liệu từ API thành công thì set vào state product
+ *  3.2: Hiển thị dữ liệu từ state product lên form
+ * Bước 4: Submit form
+ *  4.1 Khi người dùng thay đổi dữ liệu trên form thì cập nhật vào state product
+ *  4.2 Sử dụng mutation để gọi API cập nhật sản phẩm
  */
