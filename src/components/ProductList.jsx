@@ -2,6 +2,7 @@
 
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 // eslint-disable-next-line react/prop-types
 const ProductList = () => {
@@ -34,6 +35,7 @@ const ProductList = () => {
                 <div key={product.id}>
                     {product.name} - {product.price}
                     <button onClick={() => mutate(product.id)}>Xóa</button>
+                    <Link to={`/products/${product.id}`}>Chi tiết</Link>
                 </div>
             ))}
         </div>

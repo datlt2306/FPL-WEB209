@@ -1,24 +1,6 @@
 {
   "products": [
     {
-      "id": 7,
-      "name": "Product 7",
-      "price": 79.99,
-      "pictureUrl": "http://example.com/product7.jpg",
-      "description": "Description for product 7",
-      "available": true,
-      "createdAt": "2023-10-07T10:00:00Z"
-    },
-    {
-      "id": 8,
-      "name": "Product 8",
-      "price": 89.99,
-      "pictureUrl": "http://example.com/product8.jpg",
-      "description": "Description for product 8",
-      "available": false,
-      "createdAt": "2023-10-08T10:00:00Z"
-    },
-    {
       "id": 9,
       "name": "Product 9",
       "price": 99.99,
