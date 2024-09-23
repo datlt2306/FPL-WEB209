@@ -1,29 +1,28 @@
-import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
-import { Route, Routes } from "react-router-dom";
-import "./App.css";
-import ProductList from "./components/ProductList";
-import ProductDetail from "./components/ProductDetail";
-import ProductAdd from "./components/ProductAdd";
 
-function App() {
-    /**
-     * cài đặt:
-     * 1. npm i @tanstack/react-query
-     * 2. import QueryClientProvider client={queryClient} ở main.js
-     * 3.
-     */
+import { Route, Routes } from "react-router-dom";
+import LayoutAdmin from "./layouts/LayoutAdmin";
+import Dashboard from "./pages/admin/Dashboard";
+import ProductsAdminPage from "./pages/admin/Products";
+const App = () => {
     return (
         <>
             <Routes>
-                <Route path="/" element={<h1>Home page</h1>} />
-                <Route path="/products/add" element={<ProductAdd />} />
-                <Route path="/products" element={<ProductList />} />
-                <Route path="/products/:id" element={<ProductDetail />} />
-                <Route path="/products/:id/edit" element={<ProductDetail />} />
+                <Route path="/" element={<h1>Home Page</h1>} />
+                <Route path="/admin" element={<LayoutAdmin />}>
+                    <Route path="dashboard" element={<Dashboard />} />
+                    <Route path="products" element={<ProductsAdminPage />} />
+                </Route>
             </Routes>
         </>
     );
-}
+};
 
 export default App;
+
+// npm i json-server-auth json-server@0.17.4
+// npm run server
+
+/**
+ * Bước 1: Cài đặt thư viện npm i @tanstack/react-query
+ * Bước 2: truy cập file main.js, sử dụng component : QueryClientProvider
+ */

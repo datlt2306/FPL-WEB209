@@ -1,45 +1,77 @@
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
-import React, { useState } from "react";
+import { useState } from "react";
 
 const ProductAdd = () => {
     const [product, setProduct] = useState({});
+    const queryClient = useQueryClient();
     const { mutate } = useMutation({
         mutationFn: async (product) => {
             return await axios.post(`http://localhost:3000/products`, product);
         },
+        onSuccess: () => {
+            queryClient.invalidateQueries({
+                queryKey: ["products"],
+            });
+        },
     });
-    const onChange = (e) => {
+    const onHandleChange = (e) => {
         const { name, value, type, checked } = e.target;
-        setProduct({ ...product, [name]: type === "checkbox" ? checked : value });
+        // computed property name
+        setProduct({ ...product, [name]: type == "checkbox" ? checked : value });
     };
-    const onSubmit = (e) => {
+    const onHandleSubmit = (e) => {
         e.preventDefault();
         mutate(product);
     };
     return (
         <div>
-            <form onSubmit={onSubmit}>
-                <div>
-                    <input type="text" name="name" placeholder="Tên sản phẩm" onChange={onChange} />
+            <form onSubmit={onHandleSubmit}>
+                <div className="form-group">
+                    <label htmlFor="">Tên sản phẩm</label>
+                    <input
+                        type="text"
+                        name="name"
+                        placeholder="Tên sản phẩm"
+                        onChange={onHandleChange}
+                    />
                 </div>
-                <div>
-                    <input type="number" name="price" placeholder="Giá" onChange={onChange} />
-                </div>
-                <div>
-                    <input type="checkbox" name="status" id="status" onChange={onChange} />
-                    <label htmlFor="status">Tình trạng</label>
-                </div>
-                <div>
-                    <select name="category" onChange={onChange}>
-                        <option value="1">Danh sách 1</option>
-                        <option value="2">Danh sách 2</option>
+                <div className="form-group">
+                    <label htmlFor="">Danh mục</label>
+                    <select name="category" id="" onChange={onHandleChange}>
+                        <option value="1">Danh mục A</option>
+                        <option value="2">Danh mục B</option>
                     </select>
                 </div>
-                <div>
-                    <button>Submit</button>
+                <div className="form-group">
+                    <label htmlFor="">Giá sản phẩm</label>
+                    <input
+                        type="number"
+                        name="price"
+                        placeholder="Giá sản phẩm"
+                        onChange={onHandleChange}
+                    />
                 </div>
+                <div className="form-group">
+                    <label htmlFor="">Ảnh sản phẩm</label>
+                    <input
+                        type="text"
+                        name="imageUrl"
+                        placeholder="Ảnh sản phẩm"
+                        onChange={onHandleChange}
+                    />
+                </div>
+                <div className="form-group">
+                    <label htmlFor="">Trạng thái</label>
+                    <input type="checkbox" name="available" onChange={onHandleChange} />
+                </div>
+                <div className="form-group">
+                    <label htmlFor="">Mô tả sản phẩm</label>
+                    <textarea name="description" id="" onChange={onHandleChange}></textarea>
+                </div>
+                <button>Submit</button>
             </form>
+            ;
         </div>
     );
 };
