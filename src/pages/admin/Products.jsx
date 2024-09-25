@@ -1,5 +1,5 @@
 import React from "react";
-import { Image, Skeleton, Space, Table, Tag } from "antd";
+import { Button, Image, Skeleton, Space, Table, Tag } from "antd";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 //  "name": "2131 update 4 5 11111",
@@ -40,14 +40,32 @@ const columns = [
         title: "Tình trạng",
         dataIndex: "available",
         key: "available",
+        render: (_, item) => {
+            return <span>{item.available ? "Còn hàng" : "Hết hàng"}</span>;
+        },
     },
     {
         title: "Loại hàng",
         key: "type",
         dataIndex: "type",
+        render: (_, item) => {
+            return <span>{item.status ? "Đã qua sử dụng" : "Mới"}</span>;
+        },
     },
     {
         key: "action",
+        render: () => (
+            <>
+                <Space width="150">
+                    <Button variant="solid" color="danger">
+                        Xóa
+                    </Button>
+                    <Button variant="solid" color="primary">
+                        Cập nhật
+                    </Button>
+                </Space>
+            </>
+        ),
     },
 ];
 

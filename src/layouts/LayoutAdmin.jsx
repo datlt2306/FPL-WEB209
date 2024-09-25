@@ -7,7 +7,7 @@ import {
     UserOutlined,
 } from "@ant-design/icons";
 import { Breadcrumb, Layout, Menu, theme } from "antd";
-import { Outlet } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 const { Header, Content, Footer, Sider } = Layout;
 function getItem(label, key, icon, children) {
     return {
@@ -18,15 +18,12 @@ function getItem(label, key, icon, children) {
     };
 }
 const items = [
-    getItem("Option 1", "1", <PieChartOutlined />),
-    getItem("Option 2", "2", <DesktopOutlined />),
-    getItem("User", "sub1", <UserOutlined />, [
-        getItem("Tom", "3"),
-        getItem("Bill", "4"),
-        getItem("Alex", "5"),
+    getItem(<Link to="/admin">Thống kê</Link>, "1", <PieChartOutlined />),
+    getItem("Sản phẩm", "2", <UserOutlined />, [
+        getItem(<Link to="/admin/products">Danh sách</Link>, "2.1", <DesktopOutlined />),
+        getItem(<Link to="/admin/products/add">Thêm</Link>, "2.2", <DesktopOutlined />),
+        getItem(<Link to="/admin/products/category">Danh mục</Link>, "2.3", <DesktopOutlined />),
     ]),
-    getItem("Team", "sub2", <TeamOutlined />, [getItem("Team 1", "6"), getItem("Team 2", "8")]),
-    getItem("Files", "9", <FileOutlined />),
 ];
 const LayoutAdmin = () => {
     const [collapsed, setCollapsed] = useState(false);
