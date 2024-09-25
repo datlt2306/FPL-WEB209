@@ -2,6 +2,7 @@ import { Route, Routes } from "react-router-dom";
 import LayoutAdmin from "./layouts/LayoutAdmin";
 import AdminProductsPage from "./pages/admin/Products";
 import Dashboard from "./pages/admin/Dashboard";
+import ProductAdd from "./components/ProductAdd";
 const App = () => {
     return (
         <>
@@ -10,6 +11,7 @@ const App = () => {
                 <Route path="/admin" element={<LayoutAdmin />}>
                     <Route index element={<Dashboard />} />
                     <Route path="products" element={<AdminProductsPage />} />
+                    <Route path="products/add" element={<ProductAdd />} />
                 </Route>
             </Routes>
         </>
