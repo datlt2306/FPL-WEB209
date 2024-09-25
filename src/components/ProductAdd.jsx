@@ -1,9 +1,12 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { Button, Form, Input, InputNumber, message, Radio, Select, Switch } from "antd";
+import { Button, Form, Input, InputNumber, message, Radio, Select, Switch, Upload } from "antd";
 import TextArea from "antd/es/input/TextArea";
 import axios from "axios";
+import { PlusOutlined } from "@ant-design/icons";
+import { useState } from "react";
 
 const ProductAdd = () => {
+    const [imageUrl, setImageUrl] = useState("");
     const [form] = Form.useForm();
     const queryClient = useQueryClient();
     const [messageApi, contextHolder] = message.useMessage();
@@ -23,8 +26,22 @@ const ProductAdd = () => {
             });
         },
     });
+    const normFile = (e) => {
+        if (Array.isArray(e)) {
+            return e;
+        }
+        return e?.fileList;
+    };
+    const onHandleChange = (info) => {
+        console.log("info", info);
+        if (info.file.status === "done") {
+            setImageUrl(info.file.response.secure_url);
+        }
+    };
     const onFinish = (values) => {
-        mutate(values);
+        if (!imageUrl) return;
+        console.log(1);
+        mutate({ ...values, imageUrl });
     };
     return (
         <div>
@@ -73,6 +90,33 @@ const ProductAdd = () => {
                 >
                     <InputNumber />
                 </Form.Item>
+                <Form.Item label="Upload" valuePropName="fileList" getValueFromEvent={normFile}>
+                    <Upload
+                        action="https://api.cloudinary.com/v1_1/ecommercer2021/image/upload"
+                        listType="picture-card"
+                        data={{
+                            upload_preset: "demo-upload",
+                        }}
+                        onChange={onHandleChange}
+                    >
+                        <button
+                            style={{
+                                border: 0,
+                                background: "none",
+                            }}
+                            type="button"
+                        >
+                            <PlusOutlined />
+                            <div
+                                style={{
+                                    marginTop: 8,
+                                }}
+                            >
+                                Upload
+                            </div>
+                        </button>
+                    </Upload>
+                </Form.Item>
                 <Form.Item label="Tình trạng" name="available" valuePropName="checked">
                     <Switch />
                 </Form.Item>
@@ -102,3 +146,21 @@ const ProductAdd = () => {
 };
 
 export default ProductAdd;
+
+/**
+ * B1: Hiển thị giao diện
+ * B2: Lấy giá trị form
+ * B3: Reset form sau khi submit thành công
+ * B4: Hiển thị message sau khi submit thành công
+ */
+
+/**
+ *  Upload ảnh
+ * Bước 1: Đăng ký tài khoản cloudinary
+ * Bước 2: Tạo cloud name
+ * Bước 3: Tạo upload presets đặt status "unsigned"
+ * Bước 4: có API cloudinary
+ * Bước 5: Sử dụng component Upload của antd
+ * Bước 6: Upload ảnh thành công xong thì lưu đường link vào state
+ * Bước 7: Submit form bao gồm thông tin form + ảnh
+ */

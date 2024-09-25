@@ -63,6 +63,16 @@
       "category": "idCategory1",
       "description": "mô tả",
       "id": 7
+    },
+    {
+      "name": "Sản phẩm 3",
+      "price": 300,
+      "available": true,
+      "type": "type1",
+      "category": "idCategory2",
+      "description": "2131",
+      "imageUrl": "https://res.cloudinary.com/ecommercer2021/image/upload/v1727253168/zebgtm17p5yaojptaiqx.jpg",
+      "id": 8
     }
   ],
   "users": []
