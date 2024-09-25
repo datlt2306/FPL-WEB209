@@ -1,8 +1,8 @@
-
 import { Route, Routes } from "react-router-dom";
 import LayoutAdmin from "./layouts/LayoutAdmin";
 import Dashboard from "./pages/admin/Dashboard";
 import ProductsAdminPage from "./pages/admin/Products";
+import ProductAdd from "./components/ProductAdd";
 const App = () => {
     return (
         <>
@@ -11,6 +11,7 @@ const App = () => {
                 <Route path="/admin" element={<LayoutAdmin />}>
                     <Route path="dashboard" element={<Dashboard />} />
                     <Route path="products" element={<ProductsAdminPage />} />
+                    <Route path="products/add" element={<ProductAdd />} />
                 </Route>
             </Routes>
         </>

@@ -1,7 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { Skeleton, Table } from "antd";
 import axios from "axios";
-import React from "react";
 
 const ProductsAdminPage = () => {
     const { data, isLoading } = useQuery({
@@ -44,7 +43,9 @@ const ProductsAdminPage = () => {
     return (
         <div>
             <h1 className="text-3xl mb-5">Quản lý sản phẩm</h1>
-            {isLoading ? <Skeleton active /> : <Table dataSource={data} columns={columns} />}
+            <Skeleton loading={isLoading} active>
+                <Table dataSource={data} columns={columns} />
+            </Skeleton>
         </div>
     );
 };

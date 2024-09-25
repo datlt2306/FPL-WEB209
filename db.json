@@ -1,0 +1,14 @@
+{
+  "products": [
+    {
+      "name": "Sản phẩm 1",
+      "price": 200,
+      "avaiable": true,
+      "type": "type1",
+      "category": "danhmuc1",
+      "description": "mô tả",
+      "id": 1
+    }
+  ],
+  "users": []
+}
