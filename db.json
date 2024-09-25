@@ -8,6 +8,16 @@
       "category": "danhmuc1",
       "description": "mô tả",
       "id": 1
+    },
+    {
+      "name": "Sản phẩm 2",
+      "price": 200,
+      "avaiable": true,
+      "type": "type1",
+      "category": "danhmuc1",
+      "description": "mô tả",
+      "imageUrl": "https://res.cloudinary.com/ecommercer2021/image/upload/v1727245083/pjet24j1zxv1vs1s2s7z.jpg",
+      "id": 2
     }
   ],
   "users": []

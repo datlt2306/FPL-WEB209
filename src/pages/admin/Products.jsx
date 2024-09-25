@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { Skeleton, Table } from "antd";
+import { Skeleton, Table, Image } from "antd";
 import axios from "axios";
 
 const ProductsAdminPage = () => {
@@ -14,6 +14,14 @@ const ProductsAdminPage = () => {
         },
     });
     const columns = [
+        {
+            title: "Ảnh",
+            key: "imageUrl",
+            dataIndex: "imageUrl",
+            render: (_, item) => {
+                return <Image width={50} src={item.imageUrl} />;
+            },
+        },
         {
             title: "Tên",
             dataIndex: "name",
@@ -49,5 +57,8 @@ const ProductsAdminPage = () => {
         </div>
     );
 };
+// {ProductsAdminPage.map((product, index) => {
+//     console.log(product)
+// })}
 
 export default ProductsAdminPage;

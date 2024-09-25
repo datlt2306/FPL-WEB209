@@ -1,8 +1,11 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
-import { Form, Input, Button, InputNumber, Radio, Select, Switch } from "antd";
+import { PlusOutlined } from "@ant-design/icons";
+import { Form, Input, Button, InputNumber, Radio, Select, Switch, Upload } from "antd";
+import { useState } from "react";
 const { TextArea } = Input;
 const ProductAdd = () => {
+    const [imageUrl, setImageUrl] = useState("");
     const queryClient = useQueryClient();
     const { mutate } = useMutation({
         mutationFn: async (product) => {
@@ -14,8 +17,20 @@ const ProductAdd = () => {
             });
         },
     });
+    const normFile = (e) => {
+        if (Array.isArray(e)) {
+            return e;
+        }
+        return e?.fileList;
+    };
+    const handleOnChange = (info) => {
+        console.log("info", info);
+        if (info.file.status === "done") {
+            setImageUrl(info.file.response.secure_url);
+        }
+    };
     const onFinish = (values) => {
-        mutate(values);
+        mutate({ ...values, imageUrl });
     };
     return (
         <div>
@@ -66,6 +81,33 @@ const ProductAdd = () => {
                 </Form.Item>
                 <Form.Item label="Mô tả" name="description">
                     <TextArea rows={4} />
+                </Form.Item>
+                <Form.Item label="Upload" valuePropName="fileList" getValueFromEvent={normFile}>
+                    <Upload
+                        action="https://api.cloudinary.com/v1_1/ecommercer2021/image/upload"
+                        listType="picture-card"
+                        data={{
+                            upload_preset: "demo-upload",
+                        }}
+                        onChange={handleOnChange}
+                    >
+                        <button
+                            style={{
+                                border: 0,
+                                background: "none",
+                            }}
+                            type="button"
+                        >
+                            <PlusOutlined />
+                            <div
+                                style={{
+                                    marginTop: 8,
+                                }}
+                            >
+                                Upload
+                            </div>
+                        </button>
+                    </Upload>
                 </Form.Item>
                 <Form.Item
                     wrapperCol={{
