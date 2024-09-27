@@ -64,7 +64,7 @@ const ProductAdd = () => {
                 >
                     <InputNumber />
                 </Form.Item>
-                <Form.Item label="Tình trạng" name="avaiable" valuePropName="checked">
+                <Form.Item label="Tình trạng" name="available" valuePropName="checked">
                     <Switch />
                 </Form.Item>
                 <Form.Item label="Loại hàng" name="type">
