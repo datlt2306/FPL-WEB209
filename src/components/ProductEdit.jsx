@@ -1,148 +1,166 @@
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { PlusOutlined } from "@ant-design/icons";
+import {
+    Form,
+    Input,
+    Button,
+    InputNumber,
+    Radio,
+    Select,
+    Switch,
+    Upload,
+    message,
+    Skeleton,
+} from "antd";
+import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-
+const { TextArea } = Input;
 const ProductEdit = () => {
     const { id } = useParams();
-    const [product, setProduct] = useState({});
     const navigate = useNavigate();
-
-    const { data } = useQuery({
+    const [messageApi, contextHolder] = message.useMessage();
+    const [imageUrl, setImageUrl] = useState("");
+    const queryClient = useQueryClient();
+    const { data, isLoading } = useQuery({
         queryKey: ["product", id],
         queryFn: async () => {
             return await axios.get(`http://localhost:3000/products/${id}`);
         },
     });
-
-    useEffect(() => {
-        if (data) {
-            setProduct(data.data);
-        }
-    }, [data]);
     const { mutate } = useMutation({
         mutationFn: async (product) => {
             return await axios.put(`http://localhost:3000/products/${id}`, product);
         },
         onSuccess: () => {
-            navigate("/products");
+            messageApi.success("Cập nhật sản phẩm thành công");
+            // reset form
+
+            // chuyeern huong ve trang danh sach san pham
+            navigate("/admin/products");
+            // refeching data
+            queryClient.invalidateQueries({
+                queryKey: ["product", id],
+            });
         },
     });
-    const onHandleChange = (e) => {
-        const { name, value, type, checked } = e.target;
-        // computed property name
-        setProduct({
-            ...product,
-            [name]: type === "checkbox" ? checked : value,
-        });
+    const normFile = (e) => {
+        if (Array.isArray(e)) {
+            return e;
+        }
+        return e?.fileList;
     };
-    const onHandleSubmit = (e) => {
-        e.preventDefault();
-        mutate(product);
+    const handleOnChange = (info) => {
+        console.log("info", info);
+        if (info.file.status === "done") {
+            setImageUrl(info.file.response.secure_url);
+        }
     };
+    const onFinish = (values) => {
+        mutate({ ...values, imageUrl });
+    };
+
     return (
         <div>
-            <form onSubmit={onHandleSubmit}>
-                <div className="form-group">
-                    <label htmlFor="">Tên sản phẩm</label>
-                    <input
-                        type="text"
+            {contextHolder}
+            <Skeleton loading={isLoading}>
+                <Form
+                    name="basic"
+                    labelCol={{
+                        span: 8,
+                    }}
+                    wrapperCol={{
+                        span: 16,
+                    }}
+                    style={{
+                        maxWidth: 600,
+                    }}
+                    onFinish={onFinish}
+                    initialValues={{ ...data?.data }}
+                >
+                    <Form.Item
+                        label="Tên sản phẩm"
                         name="name"
-                        placeholder="Tên sản phẩm"
-                        value={product.name || ""}
-                        onChange={onHandleChange}
-                    />
-                </div>
-                <div className="form-group">
-                    <label htmlFor="">Danh mục</label>
-                    <select
-                        name="category"
-                        value={product.category || ""}
-                        id=""
-                        onChange={onHandleChange}
+                        rules={[{ required: true, message: "Bắt buộc nhập tên sản phẩm" }]}
                     >
-                        <option value="1">Danh mục A</option>
-                        <option value="2">Danh mục B</option>
-                    </select>
-                </div>
-                <div className="form-group">
-                    <label htmlFor="">Giá sản phẩm</label>
-                    <input
-                        type="number"
+                        <Input />
+                    </Form.Item>
+                    <Form.Item
+                        label="Giá sản phẩm"
                         name="price"
-                        placeholder="Giá sản phẩm"
-                        value={product.price || ""}
-                        onChange={onHandleChange}
-                    />
-                </div>
-                <div className="form-group">
-                    <label htmlFor="">Ảnh sản phẩm</label>
-                    <input
-                        type="text"
-                        name="imageUrl"
-                        placeholder="Ảnh sản phẩm"
-                        value={product.imageUrl || ""}
-                        onChange={onHandleChange}
-                    />
-                </div>
-                <div className="form-group">
-                    <label htmlFor="">Trạng thái</label>
-                    <input
-                        type="checkbox"
-                        name="available"
-                        checked={product.available || ""}
-                        onChange={onHandleChange}
-                    />
-                </div>
-
-                <div className="form-group">
-                    <label htmlFor="">Mô tả sản phẩm</label>
-                    <textarea
-                        name="description"
-                        value={product.description || ""}
-                        id=""
-                        onChange={onHandleChange}
-                    ></textarea>
-                </div>
-                <div className="form-group">
-                    <div>
-                        <input
-                            type="radio"
-                            name="status"
-                            value="new"
-                            id="new"
-                            checked={product.status === "new"}
-                            onChange={onHandleChange}
-                        />
-                        <label htmlFor="new">Hàng mới</label>
-                    </div>
-                    <div>
-                        <input
-                            type="radio"
-                            name="status"
-                            value="reuse"
-                            id="reuse"
-                            checked={product.status === "reuse"}
-                            onChange={onHandleChange}
-                        />
-                        <label htmlFor="reuse">Hàng cũ</label>
-                    </div>
-                </div>
-                <button>Submit</button>
-            </form>
-            ;
+                        rules={[
+                            { required: true, message: "Bắt buộc nhập tên sản phẩm" },
+                            { type: "number", min: 0, message: "Giá phải nhập > 0" },
+                        ]}
+                    >
+                        <InputNumber />
+                    </Form.Item>
+                    <Form.Item label="Tình trạng" name="available" valuePropName="checked">
+                        <Switch />
+                    </Form.Item>
+                    <Form.Item label="Loại hàng" name="type">
+                        <Radio.Group>
+                            <Radio value="type1"> Hàng cũ </Radio>
+                            <Radio value="type2"> Hàng mới </Radio>
+                        </Radio.Group>
+                    </Form.Item>
+                    <Form.Item label="Danh mục" name="category">
+                        <Select>
+                            <Select.Option value="danhmuc1">Danh mục 1</Select.Option>
+                            <Select.Option value="danhmuc2">Danh mục 2</Select.Option>
+                        </Select>
+                    </Form.Item>
+                    <Form.Item label="Mô tả" name="description">
+                        <TextArea rows={4} />
+                    </Form.Item>
+                    <Form.Item label="Upload" valuePropName="fileList" getValueFromEvent={normFile}>
+                        <Upload
+                            action="https://api.cloudinary.com/v1_1/ecommercer2021/image/upload"
+                            listType="picture-card"
+                            data={{
+                                upload_preset: "demo-upload",
+                            }}
+                            onChange={handleOnChange}
+                        >
+                            <button
+                                style={{
+                                    border: 0,
+                                    background: "none",
+                                }}
+                                type="button"
+                            >
+                                <PlusOutlined />
+                                <div
+                                    style={{
+                                        marginTop: 8,
+                                    }}
+                                >
+                                    Upload
+                                </div>
+                            </button>
+                        </Upload>
+                    </Form.Item>
+                    <Form.Item
+                        wrapperCol={{
+                            offset: 8,
+                            span: 16,
+                        }}
+                    >
+                        <Button type="primary" htmlType="submit">
+                            Thêm
+                        </Button>
+                    </Form.Item>
+                </Form>
+            </Skeleton>
         </div>
     );
 };
 
 export default ProductEdit;
 /**
- * Bước 1: Lấy ID trên url sử dung useParams
- * Bước 2: Call API dựa trên ID vừa lấy được để lấy dữ liệu sản phẩm
- * Bước 3: Hiển thị dữ liệu sản phẩm lên form từ thông sản phẩm vừa lấy được
- *  3.1: Sau khi lấy dữ liệu từ API thành công thì set vào state product
- *  3.2: Hiển thị dữ liệu từ state product lên form
- * Bước 4: Submit form
- *  4.1 Khi người dùng thay đổi dữ liệu trên form thì cập nhật vào state product
- *  4.2 Sử dụng mutation để gọi API cập nhật sản phẩm
+ * B1: Lấy ID trên url sử dụng useParams
+ * B2: sử dụng useQuery để lấy dữ liệu sản phẩm - truyền id lên
+ * B3: fill nội dung sản phẩm vào form
+ * B4: lấy giá trị form và gửi lên server
+ * B5: Thông báo cập nhật thành công
  */

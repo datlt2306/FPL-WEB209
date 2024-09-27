@@ -1,10 +1,14 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
 import { PlusOutlined } from "@ant-design/icons";
-import { Form, Input, Button, InputNumber, Radio, Select, Switch, Upload } from "antd";
+import { Form, Input, Button, InputNumber, Radio, Select, Switch, Upload, message } from "antd";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 const { TextArea } = Input;
 const ProductAdd = () => {
+    const navigate = useNavigate();
+    const [form] = Form.useForm();
+    const [messageApi, contextHolder] = message.useMessage();
     const [imageUrl, setImageUrl] = useState("");
     const queryClient = useQueryClient();
     const { mutate } = useMutation({
@@ -12,6 +16,12 @@ const ProductAdd = () => {
             return await axios.post(`http://localhost:3000/products`, product);
         },
         onSuccess: () => {
+            messageApi.success("Thêm sản phẩm thành công");
+            // reset form
+            form.resetFields();
+            // chuyeern huong ve trang danh sach san pham
+            navigate("/admin/products");
+            // refeching data
             queryClient.invalidateQueries({
                 queryKey: ["products"],
             });
@@ -34,7 +44,9 @@ const ProductAdd = () => {
     };
     return (
         <div>
+            {contextHolder}
             <Form
+                form={form}
                 name="basic"
                 labelCol={{
                     span: 8,

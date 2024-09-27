@@ -1,4 +1,39 @@
 {
-  "products": [],
+  "products": [
+    {
+      "name": "Sản phẩm 1 update 2",
+      "price": 200,
+      "available": false,
+      "type": "type1",
+      "category": "danhmuc2",
+      "description": "Mô tả update",
+      "imageUrl": "",
+      "id": 1
+    },
+    {
+      "name": "sản phẩm 2",
+      "price": 200,
+      "available": true,
+      "type": "type1",
+      "category": "danhmuc1",
+      "description": "1231",
+      "imageUrl": "",
+      "id": 2
+    },
+    {
+      "name": "Sản phẩm 3",
+      "price": 300,
+      "available": true,
+      "imageUrl": "",
+      "id": 3
+    },
+    {
+      "name": "Sản phẩm 4",
+      "price": 400,
+      "available": true,
+      "imageUrl": "",
+      "id": 4
+    }
+  ],
   "users": []
 }
