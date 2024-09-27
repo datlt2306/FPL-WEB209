@@ -161,6 +161,6 @@ export default ProductEdit;
  * B1: Lấy ID trên url sử dụng useParams
  * B2: sử dụng useQuery để lấy dữ liệu sản phẩm - truyền id lên
  * B3: fill nội dung sản phẩm vào form
- * B4: lấy giá trị form và gửi lên server
- * B5: Thông báo cập nhật thành công
+ * B4: lấyn server
+ * B5: Thông báo cập nhật thành côn giá trị form và gửi lêg
  */
