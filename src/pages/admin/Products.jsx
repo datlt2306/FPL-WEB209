@@ -1,6 +1,7 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { Button, Image, message, Popconfirm, Skeleton, Space, Table } from "antd";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 const AdminProductsPage = () => {
     const queryClient = useQueryClient();
@@ -88,9 +89,11 @@ const AdminProductsPage = () => {
                                 Xóa
                             </Button>
                         </Popconfirm>
-                        <Button variant="solid" color="primary">
-                            Cập nhật
-                        </Button>
+                        <Link to={`/admin/products/${item.id}/edit`}>
+                            <Button variant="solid" color="primary">
+                                Cập nhật
+                            </Button>
+                        </Link>
                     </Space>
                 </div>
             ),

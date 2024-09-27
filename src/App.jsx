@@ -3,6 +3,7 @@ import LayoutAdmin from "./layouts/LayoutAdmin";
 import AdminProductsPage from "./pages/admin/Products";
 import Dashboard from "./pages/admin/Dashboard";
 import ProductAdd from "./components/ProductAdd";
+import ProductEdit from "./components/ProductEdit";
 const App = () => {
     return (
         <>
@@ -12,6 +13,7 @@ const App = () => {
                     <Route index element={<Dashboard />} />
                     <Route path="products" element={<AdminProductsPage />} />
                     <Route path="products/add" element={<ProductAdd />} />
+                    <Route path="products/:id/edit" element={<ProductEdit />} />
                 </Route>
             </Routes>
         </>

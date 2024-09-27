@@ -1,148 +1,214 @@
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import {
+    Button,
+    Form,
+    Input,
+    InputNumber,
+    message,
+    Radio,
+    Select,
+    Skeleton,
+    Switch,
+    Upload,
+} from "antd";
+import TextArea from "antd/es/input/TextArea";
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { PlusOutlined } from "@ant-design/icons";
+import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
 const ProductEdit = () => {
+    // Hooks
     const { id } = useParams();
-    const [product, setProduct] = useState({});
     const navigate = useNavigate();
+    const [imageUrl, setImageUrl] = useState("");
+    const [form] = Form.useForm();
+    const queryClient = useQueryClient();
+    const [messageApi, contextHolder] = message.useMessage();
 
-    const { data } = useQuery({
-        queryKey: ["product", id],
+    // useQuery
+    const { data, isLoading } = useQuery({
+        queryKey: ["products", id],
         queryFn: async () => {
             return await axios.get(`http://localhost:3000/products/${id}`);
         },
     });
-
-    useEffect(() => {
-        if (data) {
-            setProduct(data.data);
-        }
-    }, [data]);
-    const { mutate } = useMutation({
+    const { mutate, isPending } = useMutation({
         mutationFn: async (product) => {
             return await axios.put(`http://localhost:3000/products/${id}`, product);
         },
         onSuccess: () => {
-            navigate("/products");
+            messageApi.open({
+                type: "success",
+                content: "Cập nhật sản phẩm thành công!",
+            });
+            setTimeout(() => {
+                navigate("/admin/products"); // redirect về trang danh sách sản phẩm
+            }, 2000);
+
+            queryClient.invalidateQueries({
+                queryKey: ["products", id],
+            });
+        },
+        onError: (error) => {
+            messageApi.error({
+                type: "error",
+                content: `Thêm sản phẩm thất bại, ${error}`,
+            });
         },
     });
-    const onHandleChange = (e) => {
-        const { name, value, type, checked } = e.target;
-        // computed property name
-        setProduct({
-            ...product,
-            [name]: type === "checkbox" ? checked : value,
-        });
+    const normFile = (e) => {
+        if (Array.isArray(e)) {
+            return e;
+        }
+        return e?.fileList;
     };
-    const onHandleSubmit = (e) => {
-        e.preventDefault();
-        mutate(product);
+    const onHandleChange = (info) => {
+        if (info.file.status === "done") {
+            setImageUrl(info.file.response.secure_url);
+        }
+    };
+    const onFinish = (values) => {
+        // if (!imageUrl) return;
+        mutate({ ...values });
     };
     return (
         <div>
-            <form onSubmit={onHandleSubmit}>
-                <div className="form-group">
-                    <label htmlFor="">Tên sản phẩm</label>
-                    <input
-                        type="text"
+            {contextHolder}
+            <Skeleton loading={isLoading} active>
+                <Form
+                    name="basic"
+                    form={form}
+                    labelCol={{
+                        span: 8,
+                    }}
+                    wrapperCol={{
+                        span: 16,
+                    }}
+                    style={{
+                        maxWidth: 600,
+                    }}
+                    onFinish={onFinish}
+                    initialValues={data?.data}
+                    disabled={isPending}
+                >
+                    <Form.Item
+                        label="Tên sản phẩm"
                         name="name"
-                        placeholder="Tên sản phẩm"
-                        value={product.name || ""}
-                        onChange={onHandleChange}
-                    />
-                </div>
-                <div className="form-group">
-                    <label htmlFor="">Danh mục</label>
-                    <select
-                        name="category"
-                        value={product.category || ""}
-                        id=""
-                        onChange={onHandleChange}
+                        rules={[
+                            {
+                                required: true,
+                                message: "Bắt buộc nhập",
+                            },
+                        ]}
                     >
-                        <option value="1">Danh mục A</option>
-                        <option value="2">Danh mục B</option>
-                    </select>
-                </div>
-                <div className="form-group">
-                    <label htmlFor="">Giá sản phẩm</label>
-                    <input
-                        type="number"
+                        <Input />
+                    </Form.Item>
+                    <Form.Item
+                        label="Giá sản phẩm"
                         name="price"
-                        placeholder="Giá sản phẩm"
-                        value={product.price || ""}
-                        onChange={onHandleChange}
-                    />
-                </div>
-                <div className="form-group">
-                    <label htmlFor="">Ảnh sản phẩm</label>
-                    <input
-                        type="text"
-                        name="imageUrl"
-                        placeholder="Ảnh sản phẩm"
-                        value={product.imageUrl || ""}
-                        onChange={onHandleChange}
-                    />
-                </div>
-                <div className="form-group">
-                    <label htmlFor="">Trạng thái</label>
-                    <input
-                        type="checkbox"
-                        name="available"
-                        checked={product.available || ""}
-                        onChange={onHandleChange}
-                    />
-                </div>
-
-                <div className="form-group">
-                    <label htmlFor="">Mô tả sản phẩm</label>
-                    <textarea
-                        name="description"
-                        value={product.description || ""}
-                        id=""
-                        onChange={onHandleChange}
-                    ></textarea>
-                </div>
-                <div className="form-group">
-                    <div>
-                        <input
-                            type="radio"
-                            name="status"
-                            value="new"
-                            id="new"
-                            checked={product.status === "new"}
+                        rules={[
+                            {
+                                required: true,
+                                message: "Bắt buộc nhập",
+                            },
+                            {
+                                type: "number",
+                                min: 0,
+                                message: "Không được để số âm",
+                            },
+                        ]}
+                    >
+                        <InputNumber />
+                    </Form.Item>
+                    <Form.Item label="Upload" valuePropName="fileList" getValueFromEvent={normFile}>
+                        <Upload
+                            action="https://api.cloudinary.com/v1_1/ecommercer2021/image/upload"
+                            listType="picture-card"
+                            data={{
+                                upload_preset: "demo-upload",
+                            }}
                             onChange={onHandleChange}
-                        />
-                        <label htmlFor="new">Hàng mới</label>
-                    </div>
-                    <div>
-                        <input
-                            type="radio"
-                            name="status"
-                            value="reuse"
-                            id="reuse"
-                            checked={product.status === "reuse"}
-                            onChange={onHandleChange}
-                        />
-                        <label htmlFor="reuse">Hàng cũ</label>
-                    </div>
-                </div>
-                <button>Submit</button>
-            </form>
-            ;
+                        >
+                            <button
+                                style={{
+                                    border: 0,
+                                    background: "none",
+                                }}
+                                type="button"
+                            >
+                                <PlusOutlined />
+                                <div
+                                    style={{
+                                        marginTop: 8,
+                                    }}
+                                >
+                                    Upload
+                                </div>
+                            </button>
+                        </Upload>
+                    </Form.Item>
+                    <Form.Item label="Tình trạng" name="available" valuePropName="checked">
+                        <Switch />
+                    </Form.Item>
+                    <Form.Item label="Loại hàng" name="type">
+                        <Radio.Group>
+                            <Radio value="type1">Hàng cũ</Radio>
+                            <Radio value="type2">Hàng mới</Radio>
+                        </Radio.Group>
+                    </Form.Item>
+                    <Form.Item label="Danh mục" name="category">
+                        <Select>
+                            <Select.Option value="idCategory1">Danh mục 1</Select.Option>
+                            <Select.Option value="idCategory2">Danh mục 2</Select.Option>
+                        </Select>
+                    </Form.Item>
+                    <Form.Item label="Mô tả sản phẩm" name="description">
+                        <TextArea rows={4} />
+                    </Form.Item>
+                    <Form.Item>
+                        <Button type="primary" htmlType="submit">
+                            Thêm
+                        </Button>
+                    </Form.Item>
+                </Form>
+            </Skeleton>
         </div>
     );
 };
 
 export default ProductEdit;
+
 /**
- * Bước 1: Lấy ID trên url sử dung useParams
- * Bước 2: Call API dựa trên ID vừa lấy được để lấy dữ liệu sản phẩm
- * Bước 3: Hiển thị dữ liệu sản phẩm lên form từ thông sản phẩm vừa lấy được
- *  3.1: Sau khi lấy dữ liệu từ API thành công thì set vào state product
- *  3.2: Hiển thị dữ liệu từ state product lên form
- * Bước 4: Submit form
- *  4.1 Khi người dùng thay đổi dữ liệu trên form thì cập nhật vào state product
- *  4.2 Sử dụng mutation để gọi API cập nhật sản phẩm
+ * B1: Hiển thị giao diện
+ * B2: Lấy giá trị form
+ * B3: Reset form sau khi submit thành công
+ * B4: Hiển thị message sau khi submit thành công
+ */
+
+/**
+ *  Upload ảnh
+ * Bước 1: Đăng ký tài khoản cloudinary
+ * Bước 2: Tạo cloud name
+ * Bước 3: Tạo upload presets đặt status "unsigned"
+ * Bước 4: có API cloudinary
+ * Bước 5: Sử dụng component Upload của antd
+ * Bước 6: Upload ảnh thành công xong thì lưu đường link vào state
+ * Bước 7: Submit form bao gồm thông tin form + ảnh
+ */
+
+/**
+ * Edit sản phẩm:
+ * Bước 1: Tạo router link đến page edit sản phẩm
+ * Bước 2: Truy cập component list, thêm router link cho button
+ * Bước 3: Truy cập component edit, lấy id từ url sử dụng useParams()
+ * Bước 4: Dùng id để call API lay data sản phẩm
+ * Bước 5: Hiển thị data sản phẩm lên form:
+ *  - sử dụng thuộc tính initialValues của Form.
+ *  - Lưu ý phải có loading trước khi sử dụng initialValues
+ * Bước 6: Submit form, call API update sản phẩm
+ * Bước 7: Nếu thành công thì :
+ *      1. Thông báo thành công | thất bại
+ *      2. redirect về trang sản phẩm
+ *      3. refetching data lại danh sách sản phẩm, chi tiết sản phẩm
  */
