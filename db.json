@@ -1,25 +1,6 @@
 {
   "products": [
     {
-      "name": "2131 update 4 5 11111",
-      "category": "2",
-      "price": "11111",
-      "imageUrl": "https://picsum.photos/id/1/500/500",
-      "description": "1111",
-      "available": false,
-      "id": 1,
-      "status": "reuse"
-    },
-    {
-      "name": "Sản phẩm 1111",
-      "price": 200,
-      "available": true,
-      "type": "type1",
-      "category": "idCategory2",
-      "description": "mô tả sản phẩm",
-      "id": 2
-    },
-    {
       "name": "Sản phẩm 2",
       "price": 300,
       "available": true,
@@ -45,34 +26,6 @@
       "category": "idCategory2",
       "description": "123131",
       "id": 5
-    },
-    {
-      "name": "sản phẩm 3333",
-      "price": 3000,
-      "available": true,
-      "type": "type1",
-      "category": "idCategory1",
-      "description": "mô tả",
-      "id": 6
-    },
-    {
-      "name": "sản phẩm 44444",
-      "price": 3000,
-      "available": true,
-      "type": "type1",
-      "category": "idCategory1",
-      "description": "mô tả",
-      "id": 7
-    },
-    {
-      "name": "Sản phẩm 3",
-      "price": 300,
-      "available": true,
-      "type": "type1",
-      "category": "idCategory2",
-      "description": "2131",
-      "imageUrl": "https://res.cloudinary.com/ecommercer2021/image/upload/v1727253168/zebgtm17p5yaojptaiqx.jpg",
-      "id": 8
     }
   ],
   "users": []
