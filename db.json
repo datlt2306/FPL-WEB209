@@ -1,45 +1,18 @@
 {
-  "products": [
-    {
-      "name": "Sản phẩm 2 update 6 111",
-      "price": 300,
-      "available": true,
-      "type": "type1",
-      "category": "idCategory2",
-      "description": "123131",
-      "id": 3
-    },
-    {
-      "name": "Sản phẩm 3",
-      "price": 300,
-      "available": true,
-      "type": "type1",
-      "category": "idCategory2",
-      "description": "123131",
-      "id": 4
-    },
-    {
-      "name": "Sản phẩm 4",
-      "price": 300,
-      "available": true,
-      "type": "type1",
-      "category": "idCategory2",
-      "description": "123131",
-      "id": 5
-    },
-    {
-      "name": "Sản phẩm 5",
-      "price": 200,
-      "available": true,
-      "type": "type1",
-      "category": "idCategory1",
-      "description": "mô tả",
-      "imageUrls": [
-        "https://res.cloudinary.com/ecommercer2021/image/upload/v1727685415/inacgd21tc7cz6yucdxr.jpg",
-        "https://res.cloudinary.com/ecommercer2021/image/upload/v1727685415/xilkjlao4ig2ydhitfap.png"
-      ],
-      "id": 6
-    }
-  ],
-  "users": []
+    "products": [
+        {
+            "name": "Sản phẩm 5",
+            "price": 200,
+            "available": true,
+            "type": "type1",
+            "category": "idCategory1",
+            "description": "mô tả",
+            "imageUrls": [
+                "https://res.cloudinary.com/ecommercer2021/image/upload/v1727685415/inacgd21tc7cz6yucdxr.jpg",
+                "https://res.cloudinary.com/ecommercer2021/image/upload/v1727685415/xilkjlao4ig2ydhitfap.png"
+            ],
+            "id": 6
+        }
+    ],
+    "users": []
 }

@@ -39,7 +39,13 @@ const AdminProductsPage = () => {
             dataIndex: "imageUrl",
             key: "imageUrl",
             render: (_, item) => {
-                return <Image width={50} src={item.imageUrl} />;
+                return (
+                    <Space>
+                        {item?.imageUrls.map((url) => (
+                            <Image key={url} src={url} width={70} className="rounded border" />
+                        ))}
+                    </Space>
+                );
             },
         },
         {
