@@ -106,7 +106,7 @@ const ProductEdit = () => {
                     maxWidth: 600,
                 }}
                 onFinish={onFinish}
-                initialValues={data?.data}
+                initialValues={data}
                 disabled={isPending}
             >
                 <Form.Item
