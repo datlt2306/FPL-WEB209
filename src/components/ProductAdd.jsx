@@ -5,43 +5,45 @@ import { Form, Input, Button, InputNumber, Radio, Select, Switch, Upload, messag
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 const { TextArea } = Input;
+
 const ProductAdd = () => {
     const navigate = useNavigate();
     const [form] = Form.useForm();
     const [messageApi, contextHolder] = message.useMessage();
-    const [imageUrl, setImageUrl] = useState("");
+    const [imageUrls, setImageUrls] = useState([]); // State for multiple image URLs
     const queryClient = useQueryClient();
+
     const { mutate } = useMutation({
         mutationFn: async (product) => {
             return await axios.post(`http://localhost:3000/products`, product);
         },
         onSuccess: () => {
             messageApi.success("Thêm sản phẩm thành công");
-            // reset form
             form.resetFields();
-            // chuyeern huong ve trang danh sach san pham
             navigate("/admin/products");
-            // refeching data
             queryClient.invalidateQueries({
                 queryKey: ["products"],
             });
         },
     });
+
     const normFile = (e) => {
         if (Array.isArray(e)) {
             return e;
         }
         return e?.fileList;
     };
+
     const handleOnChange = (info) => {
-        console.log("info", info);
         if (info.file.status === "done") {
-            setImageUrl(info.file.response.secure_url);
+            setImageUrls((prev) => [...prev, info.file.response.secure_url]);
         }
     };
+
     const onFinish = (values) => {
-        mutate({ ...values, imageUrl });
+        mutate({ ...values, imageUrls });
     };
+
     return (
         <div>
             {contextHolder}
@@ -96,6 +98,7 @@ const ProductAdd = () => {
                 </Form.Item>
                 <Form.Item label="Upload" valuePropName="fileList" getValueFromEvent={normFile}>
                     <Upload
+                        multiple={true}
                         action="https://api.cloudinary.com/v1_1/ecommercer2021/image/upload"
                         listType="picture-card"
                         data={{
@@ -103,22 +106,10 @@ const ProductAdd = () => {
                         }}
                         onChange={handleOnChange}
                     >
-                        <button
-                            style={{
-                                border: 0,
-                                background: "none",
-                            }}
-                            type="button"
-                        >
+                        <div>
                             <PlusOutlined />
-                            <div
-                                style={{
-                                    marginTop: 8,
-                                }}
-                            >
-                                Upload
-                            </div>
-                        </button>
+                            <div style={{ marginTop: 8 }}>Upload</div>
+                        </div>
                     </Upload>
                 </Form.Item>
                 <Form.Item
