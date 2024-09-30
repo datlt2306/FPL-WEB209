@@ -1,3 +1,4 @@
+import { PlusOutlined } from "@ant-design/icons";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import {
     Button,
@@ -13,26 +14,41 @@ import {
 } from "antd";
 import TextArea from "antd/es/input/TextArea";
 import axios from "axios";
-import { PlusOutlined } from "@ant-design/icons";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
 const ProductEdit = () => {
     // Hooks
     const { id } = useParams();
     const navigate = useNavigate();
-    const [imageUrl, setImageUrl] = useState("");
+    const [imageUrls, setImageUrls] = useState("");
     const [form] = Form.useForm();
     const queryClient = useQueryClient();
+    const [defaultFileList, setDefaultFileList] = useState([]);
+
     const [messageApi, contextHolder] = message.useMessage();
 
     // useQuery
     const { data, isLoading } = useQuery({
         queryKey: ["products", id],
         queryFn: async () => {
-            return await axios.get(`http://localhost:3000/products/${id}`);
+            const response = await axios.get(`http://localhost:3000/products/${id}`);
+            return response.data;
         },
     });
+    useEffect(() => {
+        if (data?.imageUrls) {
+            setImageUrls(data.imageUrls);
+            setDefaultFileList(
+                data.imageUrls.map((url, index) => ({
+                    uid: index,
+                    name: `image-${index}`,
+                    status: "done",
+                    url: url,
+                }))
+            );
+        }
+    }, [data]);
     const { mutate, isPending } = useMutation({
         mutationFn: async (product) => {
             return await axios.put(`http://localhost:3000/products/${id}`, product);
@@ -65,114 +81,115 @@ const ProductEdit = () => {
     };
     const onHandleChange = (info) => {
         if (info.file.status === "done") {
-            setImageUrl(info.file.response.secure_url);
+            setImageUrls((prev) => [...prev, info.file.response.secure_url]);
         }
     };
     const onFinish = (values) => {
-        // if (!imageUrl) return;
-        mutate({ ...values });
+        if (!imageUrls) return;
+        mutate({ ...values, imageUrls });
     };
+    if (isLoading) return <Skeleton active />;
     return (
         <div>
             {contextHolder}
-            <Skeleton loading={isLoading} active>
-                <Form
-                    name="basic"
-                    form={form}
-                    labelCol={{
-                        span: 8,
-                    }}
-                    wrapperCol={{
-                        span: 16,
-                    }}
-                    style={{
-                        maxWidth: 600,
-                    }}
-                    onFinish={onFinish}
-                    initialValues={data?.data}
-                    disabled={isPending}
+
+            <Form
+                name="basic"
+                form={form}
+                labelCol={{
+                    span: 8,
+                }}
+                wrapperCol={{
+                    span: 16,
+                }}
+                style={{
+                    maxWidth: 600,
+                }}
+                onFinish={onFinish}
+                initialValues={data?.data}
+                disabled={isPending}
+            >
+                <Form.Item
+                    label="Tên sản phẩm"
+                    name="name"
+                    rules={[
+                        {
+                            required: true,
+                            message: "Bắt buộc nhập",
+                        },
+                    ]}
                 >
-                    <Form.Item
-                        label="Tên sản phẩm"
-                        name="name"
-                        rules={[
-                            {
-                                required: true,
-                                message: "Bắt buộc nhập",
-                            },
-                        ]}
+                    <Input />
+                </Form.Item>
+                <Form.Item
+                    label="Giá sản phẩm"
+                    name="price"
+                    rules={[
+                        {
+                            required: true,
+                            message: "Bắt buộc nhập",
+                        },
+                        {
+                            type: "number",
+                            min: 0,
+                            message: "Không được để số âm",
+                        },
+                    ]}
+                >
+                    <InputNumber />
+                </Form.Item>
+                <Form.Item label="Upload" valuePropName="fileList" getValueFromEvent={normFile}>
+                    <Upload
+                        key={defaultFileList.length}
+                        multiple={true}
+                        action="https://api.cloudinary.com/v1_1/ecommercer2021/image/upload"
+                        listType="picture-card"
+                        data={{ upload_preset: "demo-upload" }}
+                        onChange={onHandleChange}
+                        defaultFileList={defaultFileList}
                     >
-                        <Input />
-                    </Form.Item>
-                    <Form.Item
-                        label="Giá sản phẩm"
-                        name="price"
-                        rules={[
-                            {
-                                required: true,
-                                message: "Bắt buộc nhập",
-                            },
-                            {
-                                type: "number",
-                                min: 0,
-                                message: "Không được để số âm",
-                            },
-                        ]}
-                    >
-                        <InputNumber />
-                    </Form.Item>
-                    <Form.Item label="Upload" valuePropName="fileList" getValueFromEvent={normFile}>
-                        <Upload
-                            action="https://api.cloudinary.com/v1_1/ecommercer2021/image/upload"
-                            listType="picture-card"
-                            data={{
-                                upload_preset: "demo-upload",
+                        <button
+                            style={{
+                                border: 0,
+                                background: "none",
                             }}
-                            onChange={onHandleChange}
+                            type="button"
                         >
-                            <button
+                            <PlusOutlined />
+                            <div
                                 style={{
-                                    border: 0,
-                                    background: "none",
+                                    marginTop: 8,
                                 }}
-                                type="button"
                             >
-                                <PlusOutlined />
-                                <div
-                                    style={{
-                                        marginTop: 8,
-                                    }}
-                                >
-                                    Upload
-                                </div>
-                            </button>
-                        </Upload>
-                    </Form.Item>
-                    <Form.Item label="Tình trạng" name="available" valuePropName="checked">
-                        <Switch />
-                    </Form.Item>
-                    <Form.Item label="Loại hàng" name="type">
-                        <Radio.Group>
-                            <Radio value="type1">Hàng cũ</Radio>
-                            <Radio value="type2">Hàng mới</Radio>
-                        </Radio.Group>
-                    </Form.Item>
-                    <Form.Item label="Danh mục" name="category">
-                        <Select>
-                            <Select.Option value="idCategory1">Danh mục 1</Select.Option>
-                            <Select.Option value="idCategory2">Danh mục 2</Select.Option>
-                        </Select>
-                    </Form.Item>
-                    <Form.Item label="Mô tả sản phẩm" name="description">
-                        <TextArea rows={4} />
-                    </Form.Item>
-                    <Form.Item>
-                        <Button type="primary" htmlType="submit">
-                            Thêm
-                        </Button>
-                    </Form.Item>
-                </Form>
-            </Skeleton>
+                                Upload
+                            </div>
+                        </button>
+                    </Upload>
+                </Form.Item>
+                <Form.Item label="Tình trạng" name="available" valuePropName="checked">
+                    <Switch />
+                </Form.Item>
+                <Form.Item label="Loại hàng" name="type">
+                    <Radio.Group>
+                        <Radio value="type1">Hàng cũ</Radio>
+                        <Radio value="type2">Hàng mới</Radio>
+                    </Radio.Group>
+                </Form.Item>
+                <Form.Item label="Danh mục" name="category">
+                    <Select>
+                        <Select.Option value="idCategory1">Danh mục 1</Select.Option>
+                        <Select.Option value="idCategory2">Danh mục 2</Select.Option>
+                    </Select>
+                </Form.Item>
+                <Form.Item label="Mô tả sản phẩm" name="description">
+                    <TextArea rows={4} />
+                </Form.Item>
+                <Form.Item>
+                    <Button type="primary" htmlType="submit">
+                        Thêm
+                    </Button>
+                </Form.Item>
+            </Form>
         </div>
     );
 };

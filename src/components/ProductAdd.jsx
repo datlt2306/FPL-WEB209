@@ -6,7 +6,7 @@ import { PlusOutlined } from "@ant-design/icons";
 import { useState } from "react";
 
 const ProductAdd = () => {
-    const [imageUrl, setImageUrl] = useState("");
+    const [imageUrls, setImageUrls] = useState("");
     const [form] = Form.useForm();
     const queryClient = useQueryClient();
     const [messageApi, contextHolder] = message.useMessage();
@@ -35,13 +35,13 @@ const ProductAdd = () => {
     const onHandleChange = (info) => {
         console.log("info", info);
         if (info.file.status === "done") {
-            setImageUrl(info.file.response.secure_url);
+            setImageUrls((prev) => [...prev, info.file.response.secure_url]);
         }
     };
     const onFinish = (values) => {
-        if (!imageUrl) return;
+        if (!imageUrls) return;
         console.log(1);
-        mutate({ ...values, imageUrl });
+        mutate({ ...values, imageUrls });
     };
     return (
         <div>
@@ -92,6 +92,7 @@ const ProductAdd = () => {
                 </Form.Item>
                 <Form.Item label="Upload" valuePropName="fileList" getValueFromEvent={normFile}>
                     <Upload
+                        multiple={true}
                         action="https://api.cloudinary.com/v1_1/ecommercer2021/image/upload"
                         listType="picture-card"
                         data={{
