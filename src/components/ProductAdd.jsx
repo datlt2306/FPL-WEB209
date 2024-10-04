@@ -93,10 +93,12 @@ const ProductAdd = () => {
                 <Form.Item label="Upload" valuePropName="fileList" getValueFromEvent={normFile}>
                     <Upload
                         multiple={true}
-                        action="https://api.cloudinary.com/v1_1/ecommercer2021/image/upload"
+                        action={`https://api.cloudinary.com/v1_1/${
+                            import.meta.env.VITE_CLOUD_NAME
+                        }/image/upload`}
                         listType="picture-card"
                         data={{
-                            upload_preset: "demo-upload",
+                            upload_preset: import.meta.env.VITE_CLOUD_PRESETS,
                         }}
                         onChange={onHandleChange}
                     >

@@ -4,11 +4,18 @@ import AdminProductsPage from "./pages/admin/Products";
 import Dashboard from "./pages/admin/Dashboard";
 import ProductAdd from "./components/ProductAdd";
 import ProductEdit from "./components/ProductEdit";
+import LayoutWebsite from "./layouts/LayoutWebsite";
+import Signup from "./pages/Signup";
+import Signin from "./pages/Signin";
 const App = () => {
     return (
         <>
             <Routes>
-                <Route path="/" element={<h1>Home Page</h1>} />
+                <Route path="/" element={<LayoutWebsite />}>
+                    <Route index element={<h1>Home page</h1>} />
+                    <Route path="signup" element={<Signup />} />
+                    <Route path="signin" element={<Signin />} />
+                </Route>
                 <Route path="/admin" element={<LayoutAdmin />}>
                     <Route index element={<Dashboard />} />
                     <Route path="products" element={<AdminProductsPage />} />
