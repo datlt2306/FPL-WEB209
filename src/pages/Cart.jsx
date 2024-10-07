@@ -2,11 +2,13 @@ import React, { useContext } from "react";
 import { CartContext } from "../context/cartContext";
 
 const CartPage = () => {
-    const { count, dispatch } = useContext(CartContext);
+    const { state, dispatch } = useContext(CartContext);
+    console.log(state.carts);
     return (
         <div>
-            {count.count}
-            <button onClick={() => dispatch({ type: "increment" })}>Click</button>
+            <button onClick={() => dispatch({ type: "addToCart", payload: { id: 1, name: "A" } })}>
+                Add to cart
+            </button>
         </div>
     );
 };
