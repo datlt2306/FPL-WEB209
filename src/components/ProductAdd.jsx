@@ -2,10 +2,11 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { Button, Form, Input, InputNumber, message, Radio, Select, Switch, Upload } from "antd";
 import TextArea from "antd/es/input/TextArea";
 import axios from "axios";
+import { PlusOutlined } from "@ant-design/icons";
 import { useState } from "react";
 
 const ProductAdd = () => {
-    const [fileList, setFileList] = useState([]);
+    const [imageUrls, setImageUrls] = useState("");
     const [form] = Form.useForm();
     const queryClient = useQueryClient();
     const [messageApi, contextHolder] = message.useMessage();
@@ -31,30 +32,17 @@ const ProductAdd = () => {
         }
         return e?.fileList;
     };
-    const onFinish = async (values) => {
-        if (!fileList) return;
-        const uploadedFiles = await Promise.all(
-            fileList.map(async (file) => {
-                const formData = new FormData();
-                formData.append("file", file.originFileObj);
-                formData.append("upload_preset", import.meta.env.VITE_UPLOAD_PRESET);
-
-                const response = await axios.post(
-                    `https://api.cloudinary.com/v1_1/${
-                        import.meta.env.VITE_CLOUD_NAME
-                    }/image/upload`,
-                    formData
-                );
-
-                return response.data;
-            })
-        );
-
-        // Add uploaded file URLs to form values
-        const imageUrls = uploadedFiles.map((file) => file.secure_url);
+    const onHandleChange = (info) => {
+        console.log("info", info);
+        if (info.file.status === "done") {
+            setImageUrls((prev) => [...prev, info.file.response.secure_url]);
+        }
+    };
+    const onFinish = (values) => {
+        if (!imageUrls) return;
+        console.log(1);
         mutate({ ...values, imageUrls });
     };
-
     return (
         <div>
             {contextHolder}
@@ -105,11 +93,31 @@ const ProductAdd = () => {
                 <Form.Item label="Upload" valuePropName="fileList" getValueFromEvent={normFile}>
                     <Upload
                         multiple={true}
+                        action={`https://api.cloudinary.com/v1_1/${
+                            import.meta.env.VITE_CLOUD_NAME
+                        }/image/upload`}
                         listType="picture-card"
-                        beforeUpload={() => false} // Prevent automatic upload
-                        onChange={({ fileList }) => setFileList(fileList)}
+                        data={{
+                            upload_preset: import.meta.env.VITE_CLOUD_PRESETS,
+                        }}
+                        onChange={onHandleChange}
                     >
-                        <Button>Chọn file</Button>
+                        <button
+                            style={{
+                                border: 0,
+                                background: "none",
+                            }}
+                            type="button"
+                        >
+                            <PlusOutlined />
+                            <div
+                                style={{
+                                    marginTop: 8,
+                                }}
+                            >
+                                Upload
+                            </div>
+                        </button>
                     </Upload>
                 </Form.Item>
                 <Form.Item label="Tình trạng" name="available" valuePropName="checked">
