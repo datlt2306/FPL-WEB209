@@ -49,11 +49,7 @@
       "products": [
         {
           "productId": 1,
-          "quantity": 11
-        },
-        {
-          "productId": 2,
-          "quantity": 1
+          "quantity": 24
         }
       ]
     }

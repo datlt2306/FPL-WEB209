@@ -63,6 +63,31 @@ server.post("/carts/:userId", (req, res) => {
     db.get("carts").find({ userId }).assign(cart).write();
     res.status(200).json(cart);
 });
+// Update item quantity in cart
+server.put("/carts/:userId/:productId", (req, res) => {
+    const db = router.db;
+    const { userId, productId } = req.params;
+    const { quantity } = req.body;
+
+    const cart = db.get("carts").find({ userId: +userId }).value();
+    if (!cart) {
+        return res.status(404).json({ message: "Cart not found" });
+    }
+
+    const productInCart = cart.products.find((p) => p.productId === +productId);
+
+    if (productInCart) {
+        productInCart.quantity = quantity;
+    } else {
+        return res.status(404).json({ message: "Product not found in cart" });
+    }
+
+    db.get("carts")
+        .find({ userId: parseInt(userId) })
+        .assign(cart)
+        .write();
+    res.status(200).json(cart);
+});
 
 // Remove item from cart
 server.delete("/carts/:userId/:productId", (req, res) => {
@@ -78,33 +103,6 @@ server.delete("/carts/:userId/:productId", (req, res) => {
     cart.products = cart.products.filter((p) => p.productId !== productId);
 
     db.get("carts").find({ userId }).assign(cart).write();
-    res.status(200).json(cart);
-});
-
-// Update item quantity in cart
-server.put("/carts/:userId/:productId", (req, res) => {
-    const db = router.db;
-    const { userId, productId } = req.params;
-    const { quantity } = req.body;
-
-    console.log({ userId, productId, quantity });
-    const cart = db.get("carts").find({ userId: +userId }).value();
-    if (!cart) {
-        return res.status(404).json({ message: "Cart not found" });
-    }
-
-    const productInCart = cart.products.find((p) => p.productId === parseInt(productId));
-
-    if (productInCart) {
-        productInCart.quantity = quantity;
-    } else {
-        return res.status(404).json({ message: "Product not found in cart" });
-    }
-
-    db.get("carts")
-        .find({ userId: parseInt(userId) })
-        .assign(cart)
-        .write();
     res.status(200).json(cart);
 });
 

@@ -5,7 +5,7 @@ import axios from "axios";
 const Products = () => {
     const [messageApi, contextHolder] = message.useMessage();
     const queryClient = useQueryClient();
-    const userId = JSON.parse(localStorage.getItem("userId") || "{}");
+    const userId = JSON.parse(localStorage.getItem("userId") || null);
     const { data, isLoading } = useQuery({
         queryKey: ["products"],
         queryFn: async () => {
@@ -64,7 +64,15 @@ const Products = () => {
             key: "action",
             render: (_, item) => (
                 <div className="w-20 flex space-x-4">
-                    <Button onClick={() => mutate({ productId: item.id, quantity: 1 })}>
+                    <Button
+                        onClick={() => {
+                            if (!userId) {
+                                message.info("Vui lòng đăng nhập");
+                                return;
+                            }
+                            mutate({ productId: item.id, quantity: 1 });
+                        }}
+                    >
                         Add to cart
                     </Button>
                 </div>
