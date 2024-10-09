@@ -1,7 +1,6 @@
 import { useMutation } from "@tanstack/react-query";
 import { Button, Form, Input, message } from "antd";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
 const { TextArea } = Input;
 
 const Signin = () => {
@@ -10,10 +9,12 @@ const Signin = () => {
     const [messageApi, contextHolder] = message.useMessage();
     const { mutate } = useMutation({
         mutationFn: async (formData) => {
-            return await axios.post(`http://localhost:3000/api/login`, formData);
+            return await axios.post(`http://localhost:3000/signin`, formData);
         },
-        onSuccess: () => {
+        onSuccess: ({ data }) => {
             messageApi.success("Đăng nhập thành công");
+
+            localStorage.setItem("userId", JSON.stringify(data.user.id));
             // navigate("/");
         },
     });

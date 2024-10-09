@@ -9,6 +9,7 @@ import Signup from "./pages/Signup";
 import Signin from "./pages/Signin";
 import { useState } from "react";
 import CartPage from "./pages/Cart";
+import Products from "./pages/Products";
 const App = () => {
     return (
         <>
@@ -17,6 +18,7 @@ const App = () => {
                     <Route index element={<h1>Home Page</h1>} />
                     <Route path="/signup" element={<Signup />} />
                     <Route path="/signin" element={<Signin />} />
+                    <Route path="/products" element={<Products />} />
                     <Route path="/cart" element={<CartPage />} />
                 </Route>
                 <Route path="/admin" element={<LayoutAdmin />}>

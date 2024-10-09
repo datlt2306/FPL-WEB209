@@ -1,54 +1,61 @@
 {
-    "products": [
+  "products": [
+    {
+      "name": "Sản phẩm 1",
+      "price": 200,
+      "available": true,
+      "type": "type1",
+      "category": "danhmuc1",
+      "description": "Mô tả",
+      "imageUrl": "https://res.cloudinary.com/ecommercer2021/image/upload/v1727682994/jf21jroxqsb1zlxanwa3.png",
+      "id": 1
+    },
+    {
+      "name": "Sản phẩm demo 2",
+      "price": 200,
+      "available": true,
+      "type": "type1",
+      "category": "danhmuc1",
+      "description": "mô tả",
+      "imageUrl": "https://res.cloudinary.com/ecommercer2021/image/upload/v1727683479/ts8xnnsgshi66g8h1ahg.png",
+      "id": 2
+    },
+    {
+      "name": "Sản phẩm 3",
+      "price": 200,
+      "available": true,
+      "type": "type1",
+      "category": "danhmuc1",
+      "description": "31231",
+      "imageUrls": [
+        "https://res.cloudinary.com/ecommercer2021/image/upload/v1727683556/cemn8emhcn77lz6reshe.jpg",
+        "https://res.cloudinary.com/ecommercer2021/image/upload/v1727683556/ifhkbvsmpe4u5o9puy0y.png",
+        "https://res.cloudinary.com/ecommercer2021/image/upload/v1727685003/o7zqfjgoz7pszgdqcvev.jpg"
+      ],
+      "id": 3
+    }
+  ],
+  "users": [
+    {
+      "email": "admin@gmail.com",
+      "password": "$2a$10$B58f1KLcBWBfdWPFIC4in.rQsrzj7GkS/NKsfrvsJ2kRy3AAglZP.",
+      "username": "admin@gmail.com",
+      "id": 1
+    }
+  ],
+  "carts": [
+    {
+      "userId": 1,
+      "products": [
         {
-            "name": "Sản phẩm 1",
-            "price": 200,
-            "available": true,
-            "type": "type1",
-            "category": "danhmuc1",
-            "description": "Mô tả",
-            "imageUrl": "https://res.cloudinary.com/ecommercer2021/image/upload/v1727682994/jf21jroxqsb1zlxanwa3.png",
-            "id": 1
+          "productId": 1,
+          "quantity": 4
         },
         {
-            "name": "Sản phẩm demo 2",
-            "price": 200,
-            "available": true,
-            "type": "type1",
-            "category": "danhmuc1",
-            "description": "mô tả",
-            "imageUrl": "https://res.cloudinary.com/ecommercer2021/image/upload/v1727683479/ts8xnnsgshi66g8h1ahg.png",
-            "id": 2
-        },
-        {
-            "name": "Sản phẩm 3",
-            "price": 200,
-            "available": true,
-            "type": "type1",
-            "category": "danhmuc1",
-            "description": "31231",
-            "imageUrls": [
-                "https://res.cloudinary.com/ecommercer2021/image/upload/v1727683556/cemn8emhcn77lz6reshe.jpg",
-                "https://res.cloudinary.com/ecommercer2021/image/upload/v1727683556/ifhkbvsmpe4u5o9puy0y.png",
-                "https://res.cloudinary.com/ecommercer2021/image/upload/v1727685003/o7zqfjgoz7pszgdqcvev.jpg"
-            ],
-            "id": 3
+          "productId": 2,
+          "quantity": 1
         }
-    ],
-    "users": [],
-    "carts": [
-        {
-            "userId": 1,
-            "products": [
-                {
-                    "productId": 1,
-                    "quantity": 1
-                },
-                {
-                    "productId": 2,
-                    "quantity": 1
-                }
-            ]
-        }
-    ]
+      ]
+    }
+  ]
 }

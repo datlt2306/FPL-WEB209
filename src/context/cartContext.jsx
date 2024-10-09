@@ -4,23 +4,27 @@ const initialState = {
     carts: [],
 };
 
-const counterReducer = (state, action) => {
-    console.log(state.carts);
-    console.log("action.payload", action.payload);
+const cartReducer = (state, action) => {
     switch (action.type) {
         case "addToCart":
             return { carts: [...state.carts, action.payload] };
-        case "decrement":
-            return { count: state.count - 1 };
-        case "increase": {
-            return { count: state.count + action.payload };
-        }
+        case "removeFromCart":
+            return { carts: state.carts.filter((item) => item.id !== action.payload.id) };
+        case "updateQuantity":
+            return {
+                carts: state.carts.map((item) =>
+                    item.id === action.payload.id
+                        ? { ...item, quantity: action.payload.quantity }
+                        : item
+                ),
+            };
         default:
             return state;
     }
 };
+
 const CartContextProvider = ({ children }) => {
-    const [state, dispatch] = useReducer(counterReducer, initialState);
+    const [state, dispatch] = useReducer(cartReducer, initialState);
     return <CartContext.Provider value={{ state, dispatch }}>{children}</CartContext.Provider>;
 };
 

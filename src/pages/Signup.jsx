@@ -10,7 +10,7 @@ const Signup = () => {
     const [messageApi, contextHolder] = message.useMessage();
     const { mutate } = useMutation({
         mutationFn: async (formData) => {
-            return await axios.post(`http://localhost:3000/api/register`, formData);
+            return await axios.post(`http://localhost:3000/signup`, formData);
         },
         onSuccess: () => {
             messageApi.success("Đăng ký thành");
