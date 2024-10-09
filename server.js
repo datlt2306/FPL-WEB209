@@ -84,23 +84,27 @@ server.delete("/carts/:userId/:productId", (req, res) => {
 // Update item quantity in cart
 server.put("/carts/:userId/:productId", (req, res) => {
     const db = router.db;
-    const userId = req.params.userId;
-    const productId = parseInt(req.params.productId);
+    const { userId, productId } = req.params;
     const { quantity } = req.body;
 
-    const cart = db.get("carts").find({ userId }).value();
+    console.log({ userId, productId, quantity });
+    const cart = db.get("carts").find({ userId: +userId }).value();
     if (!cart) {
         return res.status(404).json({ message: "Cart not found" });
     }
 
-    const productInCart = cart.products.find((p) => p.productId === productId);
+    const productInCart = cart.products.find((p) => p.productId === parseInt(productId));
+
     if (productInCart) {
         productInCart.quantity = quantity;
     } else {
         return res.status(404).json({ message: "Product not found in cart" });
     }
 
-    db.get("carts").find({ userId }).assign(cart).write();
+    db.get("carts")
+        .find({ userId: parseInt(userId) })
+        .assign(cart)
+        .write();
     res.status(200).json(cart);
 });
 
