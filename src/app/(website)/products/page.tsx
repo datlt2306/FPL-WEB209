@@ -1,7 +1,13 @@
 import React from "react";
-
-const ProductPage = () => {
-    return <div>ProductPage</div>;
+import { getProducts } from "@/app/lib/product";
+const ProductPage = async () => {
+    const data = await getProducts();
+    return (
+        <div>
+            {data.map((product: any) => (
+                <li>{product.name}</li>
+            ))}
+        </div>
+    );
 };
-
 export default ProductPage;
