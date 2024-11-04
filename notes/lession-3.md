@@ -33,7 +33,7 @@ npm run dev
 
 ### Bước 1: Cài đặt react-router-dom
 
--   Sử dụng câu lệnh sau để cài đặt react-router-dom
+-   Sử dụng câu lệnh sau để cài đặt `react-router-dom`
 
 ```bash
 npm i react-router-dom
@@ -41,7 +41,7 @@ npm i react-router-dom
 
 ### Bước 2: Sử dụng react-router-dom
 
--   Bước 1: Tạo file routers.tsx ở thư mục src với nội dung như sau file :
+-   Bước 1: Tạo file `routers.tsx` ở thư mục src với nội dung như sau file :
 
 ```tsx
 import { createBrowserRouter, Navigate } from "react-router-dom";
@@ -75,7 +75,7 @@ export const router = createBrowserRouter([
 
 > Lưu ý: Tạo các folder page trước khi gọi ra
 
--   Bước 2: Truy cập file main.tsx chỉnh sửa code như sau:
+-   Bước 2: Truy cập file `main.tsx` chỉnh sửa code như sau:
 
 ````tsx
 import { createRoot } from "react-dom/client";
