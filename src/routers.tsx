@@ -1,4 +1,4 @@
-import { createBrowserRouter } from "react-router-dom";
+import { createBrowserRouter, Navigate } from "react-router-dom";
 import LayoutWebsite from "./pages/(website)/layout";
 import HomePage from "./pages/(website)/home/page";
 import AboutPage from "./pages/(website)/about/page";
@@ -19,6 +19,7 @@ export const router = createBrowserRouter([
         path: "/admin",
         element: <LayoutAdmin />,
         children: [
+            { index: true, element: <Navigate to="/admin/dashboard" /> },
             { path: "dashboard", element: <DashboardPage /> },
             { path: "products", element: <AdminProductsPage /> },
         ],
