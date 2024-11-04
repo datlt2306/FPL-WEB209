@@ -77,21 +77,13 @@ export const router = createBrowserRouter([
 
 -   Bước 2: Truy cập file `main.tsx` chỉnh sửa code như sau:
 
-````tsx
+```tsx
 import { createRoot } from "react-dom/client";
 import { RouterProvider } from "react-router-dom";
 import "./index.css";
 import { router } from "./routers";
 
 createRoot(document.getElementById("root")!).render(<RouterProvider router={router} />);
-
-## Cài đặt và sử dụng antd
-
-### Bước 1: Cài đặt antd
-
-```bash
-npm i antd --save
-````
 
 ### Bước 2: Sử dụng component Layout
 
@@ -100,3 +92,4 @@ npm i antd --save
 -   Dán vào file `/(admin)/layout.tsx`
 -   Sửa lại tên component thành `LayoutAdmin`
 -   Sử dụng `<Outlet />` cho vị trí hiển thị nội dung
+```
