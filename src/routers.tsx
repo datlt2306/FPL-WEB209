@@ -5,6 +5,8 @@ import AboutPage from "./pages/(website)/about/page";
 import LayoutAdmin from "./pages/(admin)/layout";
 import DashboardPage from "./pages/(admin)/dashboard/page";
 import AdminProductsPage from "./pages/(admin)/products/page";
+import UseEffectDemo from "./useEffectDemo";
+import ReactQueryDemo from "./ReactQueryDemo";
 
 export const router = createBrowserRouter([
     {
@@ -13,6 +15,8 @@ export const router = createBrowserRouter([
         children: [
             { index: true, element: <HomePage /> },
             { path: "about", element: <AboutPage /> },
+            { path: "use-effect", element: <UseEffectDemo /> },
+            { path: "react-query", element: <ReactQueryDemo /> },
         ],
     },
     {
