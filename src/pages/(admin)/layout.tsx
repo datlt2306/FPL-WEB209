@@ -8,29 +8,31 @@ const { Content, Footer } = Layout;
 
 const LayoutAdmin: React.FC = () => {
     return (
-        <Layout style={{ minHeight: "100vh" }}>
-            <Layout>
+        <>
+            <Layout style={{ minHeight: "100vh" }}>
                 <Sidebar />
-                <HeaderAdmin />
-                <Content style={{ margin: "0 16px" }}>
-                    <Breadcrumb style={{ margin: "16px 0" }}>
-                        <Breadcrumb.Item>User</Breadcrumb.Item>
-                        <Breadcrumb.Item>Bill</Breadcrumb.Item>
-                    </Breadcrumb>
-                    <div
-                        style={{
-                            padding: 24,
-                            minHeight: 360,
-                        }}
-                    >
-                        <Outlet />
-                    </div>
-                </Content>
-                <Footer style={{ textAlign: "center" }}>
-                    Ant Design ©{new Date().getFullYear()} Created by Ant UED
-                </Footer>
+                <Layout>
+                    <HeaderAdmin />
+                    <Content style={{ margin: "0 16px" }}>
+                        <Breadcrumb style={{ margin: "16px 0" }}>
+                            <Breadcrumb.Item>User</Breadcrumb.Item>
+                            <Breadcrumb.Item>Bill</Breadcrumb.Item>
+                        </Breadcrumb>
+                        <div
+                            style={{
+                                padding: 24,
+                                minHeight: 360,
+                            }}
+                        >
+                            <Outlet />
+                        </div>
+                    </Content>
+                    <Footer style={{ textAlign: "center" }}>
+                        Ant Design ©{new Date().getFullYear()} Created by Ant UED
+                    </Footer>
+                </Layout>
             </Layout>
-        </Layout>
+        </>
     );
 };
 
