@@ -1,10 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { Button, Space, Table } from "antd";
 import React from "react";
 import { Link } from "react-router-dom";
 
 const AdminProductsPage = () => {
+    const queryClient = useQueryClient();
     const { data, isLoading } = useQuery({
         queryKey: ["PRODUCTS_KEY"],
         queryFn: async () => {
@@ -17,6 +18,19 @@ const AdminProductsPage = () => {
             }));
         },
     });
+    const { mutate } = useMutation({
+        mutationFn: async (id: number) => {
+            await fetch(`http://localhost:3000/products/${id}`, { method: "DELETE" });
+        },
+        onSuccess: () => {
+            alert("Xóa thành công");
+            // rerender - call lại API
+            queryClient.invalidateQueries({
+                queryKey: ["PRODUCTS_KEY"],
+            });
+        },
+    });
+
     const columns = [
         {
             title: "Tên sản phẩm",
@@ -33,7 +47,7 @@ const AdminProductsPage = () => {
             render: (_: any, item: any) => {
                 return (
                     <Space>
-                        <Button type="primary" danger>
+                        <Button type="primary" danger onClick={() => mutate(item.id)}>
                             Xóa
                         </Button>
                         <Link to={`/admin/${item.id}/edit`}>
@@ -53,3 +67,8 @@ const AdminProductsPage = () => {
 };
 
 export default AdminProductsPage;
+/**
+ * 1. client state và server state là gì? khi nào sử dụng?
+ * 2. useQuery ( queryKey, queryFn) là gì?
+ * 3. Code lại bài hôm nay
+ */
