@@ -233,6 +233,24 @@
       "description": "Description for product 30",
       "inStock": true,
       "category": "Category 30"
+    },
+    {
+      "name": "Product 31",
+      "price": 3100,
+      "imageUrl": "anh",
+      "description": "mota",
+      "inStock": true,
+      "category": "Category 3",
+      "id": 31
+    },
+    {
+      "name": "Product 32",
+      "price": 3200,
+      "imageUrl": "anh",
+      "description": "mo ta",
+      "inStock": true,
+      "category": "Category 3",
+      "id": 32
     }
   ]
 }

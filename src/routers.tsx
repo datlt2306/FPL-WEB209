@@ -7,6 +7,7 @@ import DashboardPage from "./pages/(admin)/dashboard/page";
 import AdminProductsPage from "./pages/(admin)/products/page";
 import UseEffectDemo from "./useEffectDemo";
 import ReactQueryDemo from "./ReactQueryDemo";
+import AdminProductsAddPage from "./pages/(admin)/products-add/page";
 
 export const router = createBrowserRouter([
     {
@@ -26,6 +27,7 @@ export const router = createBrowserRouter([
             { index: true, element: <Navigate to="/admin/dashboard" /> },
             { path: "dashboard", element: <DashboardPage /> },
             { path: "products", element: <AdminProductsPage /> },
+            { path: "products/add", element: <AdminProductsAddPage /> },
         ],
     },
 ]);

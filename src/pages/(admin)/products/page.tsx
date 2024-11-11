@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { Badge, Button, Image, message, Popconfirm, Skeleton, Space, Table, Tag } from "antd";
-import React from "react";
+import { Button, Image, message, Popconfirm, Skeleton, Space, Table, Tag } from "antd";
 import { Link } from "react-router-dom";
 
 const AdminProductsPage = () => {
