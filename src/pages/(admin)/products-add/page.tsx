@@ -1,5 +1,6 @@
+import { PlusOutlined } from "@ant-design/icons";
 import { useMutation } from "@tanstack/react-query";
-import { Button, Form, Input, InputNumber, message, Radio, Select } from "antd";
+import { Button, Form, Input, InputNumber, message, Radio, Select, Upload } from "antd";
 import TextArea from "antd/es/input/TextArea";
 import React from "react";
 
@@ -23,6 +24,12 @@ const AdminProductsAddPage = () => {
             console.log(error.message);
         },
     });
+    const normFile = (e: any) => {
+        if (Array.isArray(e)) {
+            return e;
+        }
+        return e?.fileList;
+    };
     return (
         <div>
             {contextHolder}
@@ -33,19 +40,42 @@ const AdminProductsAddPage = () => {
                 style={{ maxWidth: 600 }}
                 onFinish={(values) => mutate(values)}
             >
-                <Form.Item label="Tên sản phẩm" name="name">
+                <Form.Item
+                    label="Tên sản phẩm"
+                    name="name"
+                    rules={[
+                        { required: true, message: "Vui lòng nhập tên sản phẩm" },
+                        { min: 3, message: "Sản phẩm ít nhất 3 ký tự" },
+                    ]}
+                >
                     <Input />
                 </Form.Item>
-                <Form.Item label="Giá sản phẩm" name="price">
+                <Form.Item
+                    label="Giá sản phẩm"
+                    name="price"
+                    rules={[
+                        { required: true, message: "Vui lòng nhập giá sản phẩm" },
+                        { type: "number", min: 0, message: "Giá không âm" },
+                    ]}
+                >
                     <InputNumber />
                 </Form.Item>
-                <Form.Item label="Ảnh sản phẩm" name="imageUrl">
-                    <Input />
+                <Form.Item label="Upload" valuePropName="fileList" getValueFromEvent={normFile}>
+                    <Upload action="/upload.do" listType="picture-card" multiple>
+                        <button style={{ border: 0, background: "none" }} type="button">
+                            <PlusOutlined />
+                            <div style={{ marginTop: 8 }}>Upload</div>
+                        </button>
+                    </Upload>
                 </Form.Item>
                 <Form.Item label="Mô tả sản phẩm" name="description">
                     <TextArea />
                 </Form.Item>
-                <Form.Item label="Tình trạng sản phẩm" name="inStock">
+                <Form.Item
+                    label="Tình trạng sản phẩm"
+                    name="inStock"
+                    rules={[{ required: true, message: "Vui lòng chọn tình trạng sản phẩm" }]}
+                >
                     <Radio.Group>
                         <Radio value={true}>Còn hàng</Radio>
                         <Radio value={false}>Hết hàng</Radio>
