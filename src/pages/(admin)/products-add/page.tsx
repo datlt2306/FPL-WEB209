@@ -1,10 +1,12 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { PlusOutlined } from "@ant-design/icons";
 import { useMutation } from "@tanstack/react-query";
 import { Button, Form, Input, InputNumber, message, Radio, Select, Upload } from "antd";
 import TextArea from "antd/es/input/TextArea";
-import React from "react";
+import React, { useState } from "react";
 
 const AdminProductsAddPage = () => {
+    const [imageUrls, setImageUrls] = useState<string[]>([]);
     const [messageApi, contextHolder] = message.useMessage();
     const { mutate } = useMutation({
         mutationFn: async (formData) => {
@@ -28,17 +30,29 @@ const AdminProductsAddPage = () => {
         if (Array.isArray(e)) {
             return e;
         }
+
+        console.log(e);
         return e?.fileList;
+    };
+
+    const onHandleChange = (info: any) => {
+        if (info.file.status === "done") {
+            setImageUrls([...imageUrls, info.file.response.secure_url]);
+        }
+    };
+    const onFinish = (values: any) => {
+        mutate({ ...values, imageUrls });
     };
     return (
         <div>
             {contextHolder}
+            {JSON.stringify(imageUrls)}
             <Form
                 name="basic"
                 labelCol={{ span: 8 }}
                 wrapperCol={{ span: 16 }}
                 style={{ maxWidth: 600 }}
-                onFinish={(values) => mutate(values)}
+                onFinish={onFinish}
             >
                 <Form.Item
                     label="Tên sản phẩm"
@@ -61,7 +75,15 @@ const AdminProductsAddPage = () => {
                     <InputNumber />
                 </Form.Item>
                 <Form.Item label="Upload" valuePropName="fileList" getValueFromEvent={normFile}>
-                    <Upload action="/upload.do" listType="picture-card" multiple>
+                    <Upload
+                        action="https://api.cloudinary.com/v1_1/ecommercer2021/image/upload"
+                        listType="picture-card"
+                        multiple
+                        data={{
+                            upload_preset: "demo-wd19201",
+                        }}
+                        onChange={onHandleChange}
+                    >
                         <button style={{ border: 0, background: "none" }} type="button">
                             <PlusOutlined />
                             <div style={{ marginTop: 8 }}>Upload</div>
@@ -100,3 +122,6 @@ const AdminProductsAddPage = () => {
 };
 
 export default AdminProductsAddPage;
+
+// FE -> upload ảnh -> cloudinary -> trả về link ảnh -> lấy link ảnh -> lưu vào db
+// FE -> upload ảnh -> lấy link ảnh -> lưu vào db
