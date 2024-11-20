@@ -9,18 +9,20 @@ const AdminProductsPage = () => {
     const { data, isLoading } = useQuery({
         queryKey: ["PRODUCTS_KEY"],
         queryFn: async () => {
-            const response = await fetch(`http://localhost:3000/products`);
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/products`);
             const data = await response.json();
-
-            return data.map((item: any) => ({
-                key: item.id,
+            console.log(data.data);
+            return data.data.map((item: any) => ({
+                key: item._id,
                 ...item,
             }));
         },
     });
+
+    console.log("data", data);
     const { mutate } = useMutation({
         mutationFn: async (id: number) => {
-            await fetch(`http://localhost:3000/products/${id}`, { method: "DELETE" });
+            await fetch(`${import.meta.env.VITE_API_URL}/${id}`, { method: "DELETE" });
         },
         onSuccess: () => {
             messageApi.success("Xóa sản phẩm thành công");
