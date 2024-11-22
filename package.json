@@ -5,7 +5,7 @@
     "type": "module",
     "scripts": {
         "dev": "vite",
-        "server": "json-server-auth db.json",
+        "server": "nodemon server.js",
         "build": "tsc -b && vite build",
         "lint": "eslint .",
         "preview": "vite preview"
@@ -27,6 +27,8 @@
         "eslint-plugin-react-hooks": "^5.0.0",
         "eslint-plugin-react-refresh": "^0.4.14",
         "globals": "^15.11.0",
+        "json-server": "^0.17.4",
+        "json-server-auth": "^2.1.0",
         "typescript": "~5.6.2",
         "typescript-eslint": "^8.11.0",
         "vite": "^5.4.10"
