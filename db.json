@@ -1,0 +1,1510 @@
+{
+    "products": [
+        {
+            "id": 1,
+            "name": "Cotopaxi Allpa 35L Travel Pack",
+            "description": "Durable and stylish backpack made from recycled materials. Versatile design, organization compartments.",
+            "price": 179,
+            "material": "Recycled nylon, polyester",
+            "category": {
+                "id": 11
+            }
+        },
+        {
+            "id": 2,
+            "name": "Hydro Flask Wide Mouth Water Bottle",
+            "description": "Stay hydrated throughout your day with this durable and stylish water bottle. Keeps drinks cold for hours and hot for even longer, perfect for workouts, hikes, or everyday use.",
+            "price": 34.99,
+            "material": "Stainless steel",
+            "category": {
+                "id": 9
+            }
+        },
+        {
+            "id": 3,
+            "name": "Kärcher K5 Premium Pressure Washer",
+            "description": "Blast away dirt, grime, and mildew with this powerful pressure washer. Featuring a 1,800 PSI motor, multiple spray nozzles, and a detergent injector, it's perfect for cleaning cars, decks, patios, and more.",
+            "price": 299.99,
+            "material": "Plastic, metal",
+            "category": {
+                "id": 15
+            }
+        },
+        {
+            "id": 4,
+            "name": "Rode NT-USB Mini Condenser Microphone",
+            "description": "Capture studio-quality audio for podcasts, streaming, and music creation. Sleek and compact design with easy USB connectivity makes it perfect for any setup.",
+            "price": 99.99,
+            "material": "Metal, plastic",
+            "category": {
+                "id": 3
+            }
+        },
+        {
+            "id": 5,
+            "name": "Monocle magazine",
+            "description": "Explore global cities, discover emerging trends, and embrace a refined lifestyle with Monocle. This beautifully designed magazine delves into design, architecture, travel, and business, offering a curated perspective on the world's most innovative places and ideas.",
+            "price": 18,
+            "material": "Magazine",
+            "category": {
+                "id": 7
+            }
+        },
+        {
+            "id": 6,
+            "name": "LG C2 OLED Evo TV (55\")",
+            "description": "Witness stunning picture quality with self-lit OLED technology, perfect blacks, and vibrant colors. Smart TV capabilities offer endless entertainment options. Slim design with a sleek metal frame looks modern and elegant.",
+            "price": 1.999,
+            "material": "Glass, metal",
+            "category": {
+                "id": 3
+            }
+        },
+        {
+            "id": 7,
+            "name": "iPad mini (2022)",
+            "description": "The ultimate on-the-go companion, the iPad mini packs iPadOS power into a compact and portable design. Stay connected, get creative, and conquer your day with the A15 Bionic chip and vibrant Liquid Retina display. Premium recycled aluminum construction feels both lightweight and eco-friendly.",
+            "price": 799,
+            "material": "Recycled aluminum",
+            "category": {
+                "id": 2
+            }
+        },
+        {
+            "id": 8,
+            "name": "Sephora Collection Clean Air Correcting Cream SPF 30",
+            "description": "This tinted moisturizer provides lightweight coverage, broad-spectrum sun protection, and antioxidant defense against pollution and blue light.",
+            "price": 24,
+            "material": "Water, octinoxate, dibenzoylmethane, zinc oxide, avobenzone, titanium dioxide, niacinamide, squalane, vitamin E",
+            "category": {
+                "id": 13
+            }
+        },
+        {
+            "id": 9,
+            "name": "Shure SM58 Vocal Microphone",
+            "description": "Be heard loud and clear with this legendary dynamic microphone. Industry-standard performance and rugged construction make it ideal for live performances and recording.",
+            "price": 99.99,
+            "material": "Metal, plastic",
+            "category": {
+                "id": 8
+            }
+        },
+        {
+            "id": 10,
+            "name": "Wooden Dollhouse with Furniture",
+            "description": "Spark imaginary play with this charming wooden dollhouse complete with furniture. Let your child's creativity flourish as they create stories and adventures for their dolls.",
+            "price": 79.99,
+            "material": "Wood",
+            "category": {
+                "id": 12
+            }
+        },
+        {
+            "id": 11,
+            "name": "Fire HD 10 Plus",
+            "description": "Get lost in your favorite books, movies, and games on the 10.1-inch HD display. Enjoy long-lasting battery life and access to millions of apps on the Amazon Appstore. Lightweight plastic build for everyday portability.",
+            "price": 149.99,
+            "material": "Plastic",
+            "category": {
+                "id": 2
+            }
+        },
+        {
+            "id": 12,
+            "name": "Furby Boom",
+            "description": "The iconic Furby is back with a modern twist! This interactive plush toy responds to touch and voice, develops its personality over time, and offers hours of fun with its expressive animations, quirky sounds, and virtual features through the Furby Boom app. A blast from the past for adults and a captivating companion for kids, the Furby Boom is a popular and trending toy.",
+            "price": 49.99,
+            "material": "Plush, plastic, electronics",
+            "category": {
+                "id": 12
+            }
+        },
+        {
+            "id": 13,
+            "name": "Headspace Meditation App",
+            "description": "Find inner peace and reduce stress with this guided meditation app. Choose from thousands of sessions for anxiety, sleep, focus, and more.",
+            "price": 12.99,
+            "material": "Digital subscription",
+            "category": {
+                "id": 9
+            }
+        },
+        {
+            "id": 14,
+            "name": "Dewalt DWX4331 Dust Extractor",
+            "description": "Keep your workspace clean and healthy with this powerful dust extractor. Featuring a high-efficiency HEPA filter, automatic suction activation, and multiple attachments, it's ideal for woodworking, sanding, and other dust-generating projects.",
+            "price": 179.99,
+            "material": "Plastic, metal",
+            "category": {
+                "id": 15
+            }
+        },
+        {
+            "id": 15,
+            "name": "Galaxy Z Fold 4",
+            "description": "Unfold a world of possibilities with the cutting-edge foldable display, powered by the Snapdragon 8 Gen 1 Plus chip. Multitask like a pro, experience immersive entertainment, and boost your productivity on the go. Durable glass and metal construction withstands daily use.",
+            "price": 1799.99,
+            "material": "Glass, metal",
+            "category": {
+                "id": 2
+            }
+        },
+        {
+            "id": 16,
+            "name": "Michelin Pilot Sport 4 All-Season Tires",
+            "description": "Conquer any road with these high-performance tires. Boasting exceptional grip in wet and dry conditions, responsive handling, and extended tread life, they're the perfect upgrade for your sedan or sports car.",
+            "price": 259.99,
+            "material": "Synthetic rubber, nylon, steel",
+            "category": {
+                "id": 15
+            }
+        },
+        {
+            "id": 17,
+            "name": "ZenFone 9 Mini",
+            "description": "Experience exceptional photography in a compact and pocketable design. The dual-camera system packs a punch, while the AMOLED display delivers vibrant visuals. Durable polycarbonate construction keeps things lightweight and secure.",
+            "price": 499.99,
+            "material": "Polycarbonate",
+            "category": {
+                "id": 2
+            }
+        },
+        {
+            "id": 18,
+            "name": "Moleskine Classic Notebook",
+            "description": "Capture your thoughts in style with this iconic notebook featuring premium paper, a lay-flat binding, and a sleek hardcover. Choose from a variety of colors and sizes to express your individuality.",
+            "price": 19.99,
+            "material": "Paper, cloth cover",
+            "category": {
+                "id": 6
+            }
+        },
+        {
+            "id": 19,
+            "name": "Olaplex No. 3 Hair Perfector",
+            "description": "This weekly at-home treatment repairs and strengthens damaged hair bonds, leaving it visibly smoother, shinier, and healthier. Suitable for all hair types.",
+            "price": 28,
+            "material": "Dietyl phthalate, bis-aminopropyl diglycol dimaleate, phytonutrients, hydrolyzed proteins",
+            "category": {
+                "id": 13
+            }
+        },
+        {
+            "id": 20,
+            "name": "Adidas Adizero Prime X Running Shoes",
+            "description": "Experience explosive speed and lightweight comfort with these high-performance running shoes. Boasting Boost technology for responsive cushioning and a PrimeKnit upper for a sock-like fit, they'll help you conquer every mile.",
+            "price": 229.99,
+            "material": "Mesh, TPU, rubber",
+            "category": {
+                "id": 14
+            }
+        },
+        {
+            "id": 21,
+            "name": "Le Creuset Dutch Oven",
+            "description": "This iconic cast iron Dutch oven is perfect for slow-cooking stews, braises, and soups. It features a durable enamel coating for easy cleaning and comes in a variety of vibrant colors.",
+            "price": 349.99,
+            "material": "Cast iron, enamel",
+            "category": {
+                "id": 5
+            }
+        },
+        {
+            "id": 22,
+            "name": "Bose QuietComfort 35 II Wireless Headphones",
+            "description": "Focus on your work without distractions with these noise-cancelling headphones. Enjoy immersive sound and long-lasting battery life for optimal productivity.",
+            "price": 299,
+            "material": "Plastic, leatherette",
+            "category": {
+                "id": 6
+            }
+        },
+        {
+            "id": 23,
+            "name": "SteelSeries Apex Pro Mechanical Gaming Keyboard",
+            "description": "Take your gameplay to the next level with the Apex Pro's customizable per-key actuation, OLED Smart Display, and durable aluminum construction.",
+            "price": 249.99,
+            "material": "Aluminum, plastic",
+            "category": {
+                "id": 4
+            }
+        },
+        {
+            "id": 24,
+            "name": "Marine Layer Silk Touch Long Sleeve Tee",
+            "description": "Luxuriously soft long-sleeved tee with silk-blend fabric, breathable, wrinkle-resistant, odor-resistant",
+            "price": 98,
+            "material": "Silk, merino wool",
+            "category": {
+                "id": 10
+            }
+        },
+        {
+            "id": 25,
+            "name": "Elgato Stream Deck Mini",
+            "description": "Simplify your streaming setup with the Stream Deck Mini's 6 LCD keys, customizable actions, and tactile feedback. Launch software, control settings, and interact with your audience with ease.",
+            "price": 79.99,
+            "material": "Plastic",
+            "category": {
+                "id": 4
+            }
+        },
+        {
+            "id": 26,
+            "name": "Fitbit Versa 3 Fitness Tracker",
+            "description": "Track your steps, heart rate, sleep, and more with this stylish and affordable fitness tracker. Includes fitness modes, notifications, and water resistance for all-day wear.",
+            "price": 149.99,
+            "material": "Plastic, metal",
+            "category": {
+                "id": 9
+            }
+        },
+        {
+            "id": 27,
+            "name": "National Geographic Traveler magazine",
+            "description": "Discover breathtaking destinations, immerse yourself in diverse cultures, and plan your next adventure with National Geographic Traveler. Each issue features stunning photography, insightful articles, and expert travel tips for the curious explorer.",
+            "price": 7.99,
+            "material": "Magazine",
+            "category": {
+                "id": 7
+            }
+        },
+        {
+            "id": 28,
+            "name": "HP Chromebook x360",
+            "description": "Chromebook with a versatile 360-degree hinge, long battery life, and access to millions of Chrome apps, perfect for students and casual users.",
+            "price": 399.99,
+            "material": "Plastic",
+            "category": {
+                "id": 1
+            }
+        },
+        {
+            "id": 29,
+            "name": "Fellowes Paper Shredder",
+            "description": "Protect your privacy and ensure security with this powerful shredder. Handles multiple sheets at once and shreds documents, credit cards, and CDs into tiny particles.",
+            "price": 99.99,
+            "material": "Plastic, metal",
+            "category": {
+                "id": 6
+            }
+        },
+        {
+            "id": 30,
+            "name": "Bath & Body Works Aromatherapy Stress Relief Eucalyptus Spearmint Body Lotion",
+            "description": "This hydrating lotion infuses your skin with a calming blend of eucalyptus and spearmint essential oils, leaving you feeling relaxed and refreshed.",
+            "price": 16.5,
+            "material": "Water, shea butter, aloe vera, coconut oil, fragrance, vitamin E, essential oils",
+            "category": {
+                "id": 13
+            }
+        },
+        {
+            "id": 31,
+            "name": "Bosch Laser Distance Measurer",
+            "description": "Get accurate measurements quickly and easily with this digital laser distance measurer. Featuring a long measuring range, multiple functions, and a compact design, it's perfect for construction, DIY projects, and home improvement tasks.",
+            "price": 79.99,
+            "material": "Plastic, metal",
+            "category": {
+                "id": 15
+            }
+        },
+        {
+            "id": 32,
+            "name": "Girlfriend Collective Compressive Legging",
+            "description": "High-waisted leggings made from recycled plastic bottles, supportive fabric, flattering fit",
+            "price": 78,
+            "material": "Recycled plastic, nylon",
+            "category": {
+                "id": 10
+            }
+        },
+        {
+            "id": 33,
+            "name": "Milk Street Cooking magazine",
+            "description": "Elevate your cooking skills with Christopher Kimball's innovative recipes and techniques. Each issue of Milk Street Cooking explores global flavors, offers budget-friendly dishes, and provides practical tips for home cooks of all levels.",
+            "price": 6.99,
+            "material": "Magazine",
+            "category": {
+                "id": 7
+            }
+        },
+        {
+            "id": 34,
+            "name": "Lululemon Align™ High-Rise Pant",
+            "description": "Elevate your workouts with these buttery-soft and ultra-comfortable yoga pants. Featuring a flattering high-rise waist and breathable fabric, they move with you every step of the way.",
+            "price": 98,
+            "material": "Nylon, elastane",
+            "category": {
+                "id": 9
+            }
+        },
+        {
+            "id": 35,
+            "name": "ASUS ROG Strix G15 Advantage Edition",
+            "description": "Unleash your inner esports champion with this powerful gaming laptop featuring the latest AMD Ryzen 6000 Series processors, Nvidia GeForce RTX 3070 graphics card, and a blazing-fast 144Hz refresh rate display.",
+            "price": 1.799,
+            "material": "Aluminum and plastic",
+            "category": {
+                "id": 4
+            }
+        },
+        {
+            "id": 36,
+            "name": "Everlane The ReNew Trench Coat",
+            "description": "Timeless trench coat from recycled materials, water-resistant",
+            "price": 198,
+            "material": "Recycled polyester",
+            "category": {
+                "id": 10
+            }
+        },
+        {
+            "id": 37,
+            "name": "Remote Control Robot Dog",
+            "description": "Control your own robotic companion with this interactive remote control dog! It walks, barks, and performs tricks, providing hours of fun for kids and adults alike.",
+            "price": 59.99,
+            "material": "Plastic, Metal",
+            "category": {
+                "id": 12
+            }
+        },
+        {
+            "id": 38,
+            "name": "Levenger Circa Notebook System",
+            "description": "Organize your notes and projects with this flexible and adaptable system. Create custom sections, add folders, and rearrange pages as needed to stay on top of your tasks.",
+            "price": 49.99,
+            "material": "Recycled paper, polypropylene",
+            "category": {
+                "id": 6
+            }
+        },
+        {
+            "id": 39,
+            "name": "Samsung Odyssey G7 Curved Gaming Monitor",
+            "description": "Enjoy an immersive, panoramic view with the Odyssey G7's 1000R curvature, 240Hz refresh rate, and Quantum Dot technology for vibrant colors.",
+            "price": 799.99,
+            "material": "Plastic, metal",
+            "category": {
+                "id": 4
+            }
+        },
+        {
+            "id": 40,
+            "name": "Yamaha YAS-260 Alto Saxophone",
+            "description": "Embrace the warm sound of the saxophone with this intermediate-level instrument from Yamaha. Features a durable keywork, ergonomic design, and rich tone. Ideal for both students and aspiring musicians.",
+            "price": 1.299,
+            "material": "Brass, plastic",
+            "category": {
+                "id": 8
+            }
+        },
+        {
+            "id": 41,
+            "name": "3M N100 Respirator Mask",
+            "description": "Protect yourself from dust, fumes, and aerosols with this comfortable and effective respirator mask. Featuring a non-woven fiber filter and dual adjustable straps, it offers reliable protection for various industrial and DIY tasks.",
+            "price": 19.99,
+            "material": "Non-woven fiber, plastic, metal",
+            "category": {
+                "id": 15
+            }
+        },
+        {
+            "id": 42,
+            "name": "Gaiam Balance Ball",
+            "description": "Improve your core strength, balance, and flexibility with this versatile fitness tool. Use it for yoga poses, pilates exercises, or general at-home workouts.",
+            "price": 19.99,
+            "material": "PVC",
+            "category": {
+                "id": 9
+            }
+        },
+        {
+            "id": 43,
+            "name": "Blue Yeti Nano USB Microphone",
+            "description": "Elevate your audio quality for calls, meetings, and recordings with this compact and versatile microphone. Features multiple recording patterns and crystal-clear sound.",
+            "price": 99,
+            "material": "Metal, plastic",
+            "category": {
+                "id": 6
+            }
+        },
+        {
+            "id": 44,
+            "name": "Spalding NBA Street Basketball",
+            "description": "Take your game to the streets with this official NBA basketball. Made with a durable composite cover and deep channels for enhanced grip, it's perfect for outdoor courts and pickup games.",
+            "price": 29.99,
+            "material": "Composite rubber",
+            "category": {
+                "id": 14
+            }
+        },
+        {
+            "id": 45,
+            "name": "Craftsman V Series 100-Piece Mechanics Tool Set",
+            "description": "Tackle any repair job with this comprehensive tool set. Featuring durable chrome-plated tools in a variety of sizes and functions, it's perfect for DIY enthusiasts and professional mechanics alike.",
+            "price": 199.99,
+            "material": "Chrome-plated steel, plastic",
+            "category": {
+                "id": 15
+            }
+        },
+        {
+            "id": 46,
+            "name": "Audio-Technica AT-LP120XBT-USB Vinyl Turntable",
+            "description": "Rediscover the magic of vinyl with this Bluetooth-enabled turntable. Enjoy rich, warm sound and easy connectivity to modern speakers. Sleek design with a walnut finish adds a touch of vintage charm.",
+            "price": 349.99,
+            "material": "Wood, plastic",
+            "category": {
+                "id": 8
+            }
+        },
+        {
+            "id": 47,
+            "name": "DeWalt 20V XR Brushless Cordless Drill/Driver Kit",
+            "description": "Power through your projects with this versatile drill/driver kit. Featuring a brushless motor for efficient performance, variable speed control, and LED lighting, it's ideal for drilling, driving screws, and mixing.",
+            "price": 149.99,
+            "material": "Plastic, lithium-ion battery, metal",
+            "category": {
+                "id": 15
+            }
+        },
+        {
+            "id": 48,
+            "name": "Rocksmith+ Subscription",
+            "description": "Learn guitar or bass the fun way with Rocksmith+. Interactive lessons, customizable difficulty levels, and a vast library of songs make learning an instrument engaging and rewarding.",
+            "price": 9.99,
+            "material": "Digital subscription",
+            "category": {
+                "id": 8
+            }
+        },
+        {
+            "id": 49,
+            "name": "Factfulness by Hans Rosling",
+            "description": "Challenge your preconceived notions and discover a more hopeful perspective on the world with Factfulness. Hans Rosling, a renowned physician and statistician, debunks misconceptions about poverty, health, and progress, leaving you with a renewed sense of optimism for the future.",
+            "price": 19.99,
+            "material": "Hardcover book",
+            "category": {
+                "id": 7
+            }
+        },
+        {
+            "id": 50,
+            "name": "Marshall Stanmore II Bluetooth Speaker",
+            "description": "Fill your room with iconic Marshall sound. Rugged design with classic leather details and powerful audio makes it perfect for any party or gathering.",
+            "price": 279,
+            "material": "Leather, plastic",
+            "category": {
+                "id": 3
+            }
+        },
+        {
+            "id": 51,
+            "name": "Giant Jenga Classic",
+            "description": "Take classic Jenga to a whole new level with this supersized edition! Carefully remove and stack the wooden blocks without tumbling the tower, perfect for family game nights.",
+            "price": 34.99,
+            "material": "Wood",
+            "category": {
+                "id": 12
+            }
+        },
+        {
+            "id": 52,
+            "name": "TRX Suspension Trainer",
+            "description": "Get a full-body workout anywhere with this portable suspension trainer. Use it for strength training, cardio exercises, and stretching, all with your own body weight as resistance.",
+            "price": 199.99,
+            "material": "Nylon, steel",
+            "category": {
+                "id": 9
+            }
+        },
+        {
+            "id": 53,
+            "name": "Lush Ocean Salt Shampoo",
+            "description": "This invigorating shampoo cleanses and volumizes hair with sea salt and seaweed extract. Suitable for all hair types, especially fine or oily strands.",
+            "price": 15,
+            "material": "Aqua (Water), Sodium Laureth Sulfate, Cocamidopropyl Betaine, Sea Salt, Lauryl Betaine, Irish Moss Extract, Seaweed Extract, Fragrance",
+            "category": {
+                "id": 13
+            }
+        },
+        {
+            "id": 54,
+            "name": "Milk Makeup Sunshine Skin Tint",
+            "description": "This lightweight, sheer-to-medium coverage tinted moisturizer leaves your skin with a dewy, radiant finish. Infused with hyaluronic acid and coconut oil for hydration and nourishment.",
+            "price": 36,
+            "material": "Water, dimethicone, glycerin, titanium dioxide, mica, iron oxides, hyaluronic acid, coconut oil",
+            "category": {
+                "id": 13
+            }
+        },
+        {
+            "id": 55,
+            "name": "Dell XPS 13 (2023)",
+            "description": "Thin and light laptop with a stunning OLED display, powerful 12th Gen Xntel Core i7 processor, and long battery life.",
+            "price": 1299.99,
+            "material": "Aluminum",
+            "category": {
+                "id": 1
+            }
+        },
+        {
+            "id": 56,
+            "name": "Merrell Moab Hiking Boots",
+            "description": "Comfortable and supportive hiking boots. Vibram soles, waterproof construction.",
+            "price": 149,
+            "material": "Leather, mesh",
+            "category": {
+                "id": 11
+            }
+        },
+        {
+            "id": 57,
+            "name": "Yootech Adjustable Laptop Stand",
+            "description": "Improve your posture and reduce neck strain with this ergonomic laptop stand. Features adjustable height and angles for viewing comfort and optimal desk organization.",
+            "price": 29.99,
+            "material": "Aluminum, plastic",
+            "category": {
+                "id": 6
+            }
+        },
+        {
+            "id": 58,
+            "name": "Microsoft Surface Laptop Studio",
+            "description": "Creative laptop with a unique hinge that transforms into a studio mode for drawing and sketching, powerful Xntel Core i7 processor, and stunning PixelSense touchscreen.",
+            "price": 1599.99,
+            "material": "Aluminum and magnesium alloy",
+            "category": {
+                "id": 1
+            }
+        },
+        {
+            "id": 59,
+            "name": "Korg MicroKEY2 Air 37-Key MIDI Keyboard",
+            "description": "Take your music creation on the go with this compact and portable MIDI keyboard. Bluetooth connectivity and battery power make it perfect for playing anywhere.",
+            "price": 149.99,
+            "material": "Plastic",
+            "category": {
+                "id": 8
+            }
+        },
+        {
+            "id": 60,
+            "name": "Veja Esplar",
+            "description": "Eco-conscious sneakers with minimalist design, made from recycled and organic materials",
+            "price": 135,
+            "material": "Recycled materials, organic cotton",
+            "category": {
+                "id": 10
+            }
+        },
+        {
+            "id": 61,
+            "name": "Packable Rain Jacket",
+            "description": "Lightweight and packable rain jacket. Folds into its own pocket.",
+            "price": 49.99,
+            "material": "Nylon, polyurethane",
+            "category": {
+                "id": 11
+            }
+        },
+        {
+            "id": 62,
+            "name": "Lamy Safari Fountain Pen",
+            "description": "Experience the smooth writing of this stylish fountain pen with a comfortable grip and interchangeable nibs. Available in a range of vibrant colors to fit your personality.",
+            "price": 39.99,
+            "material": "Plastic, stainless steel",
+            "category": {
+                "id": 6
+            }
+        },
+        {
+            "id": 63,
+            "name": "Lodge Cast Iron Skillet",
+            "description": "This pre-seasoned cast iron skillet is perfect for searing steaks, cooking eggs, and baking cornbread. It's durable, versatile, and will last a lifetime with proper care.",
+            "price": 39.99,
+            "material": "Cast iron",
+            "category": {
+                "id": 5
+            }
+        },
+        {
+            "id": 64,
+            "name": "Peloton Bike+",
+            "description": "Experience the revolution in home fitness with the Peloton Bike+. Stream live and on-demand cycling classes, compete with friends, and track your progress with personalized metrics.",
+            "price": 2.495,
+            "material": "Metal, plastic",
+            "category": {
+                "id": 9
+            }
+        },
+        {
+            "id": 65,
+            "name": "Board Game: Azul",
+            "description": "Travel to Portugal and become a master tile-laying artist in this beautiful and strategic board game. Collect colorful tiles to decorate the Royal Palace, score points, and outsmart your opponents.",
+            "price": 39.99,
+            "material": "Cardboard",
+            "category": {
+                "id": 12
+            }
+        },
+        {
+            "id": 66,
+            "name": "Bellroy All-Conditions Backpack",
+            "description": "Durable, weatherproof backpack made from recycled materials, functional design",
+            "price": 199,
+            "material": "Recycled nylon, polyurethane",
+            "category": {
+                "id": 10
+            }
+        },
+        {
+            "id": 67,
+            "name": "KitchenAid Stand Mixer",
+            "description": "This versatile stand mixer is a kitchen must-have for baking enthusiasts. It features a powerful motor and multiple attachments for mixing, whipping, and kneading dough.",
+            "price": 379.99,
+            "material": "Aluminum, plastic",
+            "category": {
+                "id": 5
+            }
+        },
+        {
+            "id": 68,
+            "name": "HyperX Cloud Alpha Wireless Gaming Headset",
+            "description": "Immerse yourself in stunning audio with the Cloud Alpha Wireless, boasting virtual 7.1 surround sound, comfortable leatherette ear cups, and long-lasting battery life.",
+            "price": 199.99,
+            "material": "Plastic, leatherette",
+            "category": {
+                "id": 4
+            }
+        },
+        {
+            "id": 69,
+            "name": "Sony WH-1000XM5 Noise-Cancelling Headphones",
+            "description": "Experience pure bliss with industry-leading noise cancellation, hi-res audio, and long-lasting battery life. Crafted with premium leather and memory foam for ultimate comfort.",
+            "price": 399.99,
+            "material": "Leather, plastic",
+            "category": {
+                "id": 3
+            }
+        },
+        {
+            "id": 70,
+            "name": "Sennheiser Momentum True Wireless 3 Earbuds",
+            "description": "Experience premium sound, active noise cancellation, and crystal-clear calls with these stylish earbuds. Long-lasting battery and comfortable fit make them perfect for everyday use.",
+            "price": 249.99,
+            "material": "Plastic",
+            "category": {
+                "id": 8
+            }
+        },
+        {
+            "id": 71,
+            "name": "Sezane Maëlle Dress",
+            "description": "Parisian charm floral dress with flattering silhouette and delicate print",
+            "price": 180,
+            "material": "Cotton, viscose",
+            "category": {
+                "id": 10
+            }
+        },
+        {
+            "id": 72,
+            "name": "Nike Free RN Flyknit Running Shoes",
+            "description": "Conquer your miles with these lightweight and responsive running shoes. Features a breathable flyknit upper, cushioned midsole, and durable outsole for optimal comfort and performance.",
+            "price": 120,
+            "material": "Textile, rubber",
+            "category": {
+                "id": 9
+            }
+        },
+        {
+            "id": 73,
+            "name": "Parachute Cloud Duvet Cover",
+            "description": "This luxuriously soft and lightweight duvet cover is made from 100% organic cotton percale. It's available in a variety of colors and sizes to fit any bed.",
+            "price": 249,
+            "material": "Organic cotton",
+            "category": {
+                "id": 5
+            }
+        },
+        {
+            "id": 74,
+            "name": "AKG K712 Pro Closed-Back Studio Headphones",
+            "description": "Immerse yourself in your music with these professional-grade headphones. Superior sound isolation, balanced audio, and comfortable design make them perfect for long listening sessions.",
+            "price": 199.99,
+            "material": "Plastic, leather",
+            "category": {
+                "id": 8
+            }
+        },
+        {
+            "id": 75,
+            "name": "Galaxy Tab S8 Ultra",
+            "description": "Expand your productivity and creativity with the expansive 14.6-inch AMOLED display, versatile S Pen support, and powerful Snapdragon 8 Gen 1 chip. Crafted from premium aluminum for a sophisticated look and feel.",
+            "price": 1.199,
+            "material": "Aluminum",
+            "category": {
+                "id": 2
+            }
+        },
+        {
+            "id": 76,
+            "name": "Titleist Tour Soft Golf Balls",
+            "description": "Play your best round with these premium golf balls. Featuring a soft cover for increased spin and feel, and a high-energy core for explosive distance, they'll help you shave strokes off your score.",
+            "price": 49.99,
+            "material": "Polyurethane, ionomer, rubber",
+            "category": {
+                "id": 14
+            }
+        },
+        {
+            "id": 77,
+            "name": "Outdoor Research Echo Light Hoodie",
+            "description": "Lightweight fleece hoody with moisture-wicking and breathable warmth, relaxed fit",
+            "price": 79,
+            "material": "Polyester, elastane",
+            "category": {
+                "id": 10
+            }
+        },
+        {
+            "id": 78,
+            "name": "Plus-Plus - Open Play 600 Piece Set",
+            "description": "Build anything from animals and robots to buildings and landscapes with these colorful, flexible construction pieces. The possibilities are endless with Plus-Plus!",
+            "price": 24.99,
+            "material": "Polyethylene",
+            "category": {
+                "id": 12
+            }
+        },
+        {
+            "id": 79,
+            "name": "Sea to Summit Aeros UL Travel Pillow",
+            "description": "Ultralight and compressible travel pillow. Soft and supportive filling.",
+            "price": 39.99,
+            "material": "Polyester, synthetic fiber",
+            "category": {
+                "id": 11
+            }
+        },
+        {
+            "id": 80,
+            "name": "Brain Pickings by Maria Popova",
+            "description": "Uncover hidden connections, ignite your curiosity, and find inspiration in Brain Pickings. Maria Popova's curated collection of articles, essays, and quotes offer a delightful feast for the mind, exploring art, science, literature, and everything in between.",
+            "price": 15,
+            "material": "Hardcover book",
+            "category": {
+                "id": 7
+            }
+        },
+        {
+            "id": 81,
+            "name": "Apple iMac 24-inch",
+            "description": "All-in-one desktop with a stunning 24-inch Retina display, Apple M1 chip for incredible performance, and a sleek and stylish design.",
+            "price": 1299,
+            "material": "Aluminum",
+            "category": {
+                "id": 1
+            }
+        },
+        {
+            "id": 82,
+            "name": "The Midnight Library by Matt Haig",
+            "description": "Nora Seed finds herself in a limbo between life and death, surrounded by an infinite library of potential lives she could have led. Explore regret, second chances, and the power of self-acceptance in this poignant and heartwarming novel.",
+            "price": 13.99,
+            "material": "Paperback",
+            "category": {
+                "id": 7
+            }
+        },
+        {
+            "id": 83,
+            "name": "Quince Merino Wool Sweater",
+            "description": "Soft and cozy merino wool sweater in classic crewneck design, various colors",
+            "price": 55,
+            "material": "Merino wool",
+            "category": {
+                "id": 10
+            }
+        },
+        {
+            "id": 84,
+            "name": "Fender Stratocaster Electric Guitar",
+            "description": "Unleash your inner rockstar with this iconic electric guitar, featuring a comfortable maple neck, versatile tone options, and classic design. Perfect for blues, rock, and beyond.",
+            "price": 799.99,
+            "material": "Wood, metal",
+            "category": {
+                "id": 8
+            }
+        },
+        {
+            "id": 85,
+            "name": "Sonos Beam (Gen 2) Smart Soundbar",
+            "description": "Elevate your home theater with crisp, immersive sound, voice control, and easy streaming. Sleek design with a premium matte finish blends seamlessly into any living space.",
+            "price": 449,
+            "material": "Plastic, fabric",
+            "category": {
+                "id": 3
+            }
+        },
+        {
+            "id": 86,
+            "name": "Instant Pot Duo Crisp 8-Quart Pressure Cooker",
+            "description": "This multi-functional appliance combines the pressure cooker, slow cooker, air fryer, and yogurt maker in one. It's perfect for busy families who want to cook healthy and delicious meals quickly and easily.",
+            "price": 149.99,
+            "material": "Stainless steel, plastic",
+            "category": {
+                "id": 5
+            }
+        },
+        {
+            "id": 87,
+            "name": "Lenovo Legion 5 Pro",
+            "description": "Powerful gaming laptop with an AMD Ryzen 7 6800H processor, NVIDIA GeForce RTX 3060 graphics card, and a fast 165Hz refresh-rate display.",
+            "price": 1499.99,
+            "material": "Plastic",
+            "category": {
+                "id": 1
+            }
+        },
+        {
+            "id": 88,
+            "name": "Logitech MX Master 3 Wireless Mouse",
+            "description": "Boost your productivity with this ergonomic mouse featuring hyper-fast scrolling, customizable buttons, and a long-lasting battery. Navigate your workflow with ease and precision.",
+            "price": 99.99,
+            "material": "Plastic, rubber",
+            "category": {
+                "id": 6
+            }
+        },
+        {
+            "id": 89,
+            "name": "Dr. Martens Wonder Balsam Leather Conditioner",
+            "description": "This nourishing balm protects and rejuvenates your leather boots, shoes, and bags, extending their lifespan and maintaining their natural beauty.",
+            "price": 18,
+            "material": "Beeswax, lanolin, carnauba wax, coconut oil, fragrance",
+            "category": {
+                "id": 13
+            }
+        },
+        {
+            "id": 90,
+            "name": "Yamaha YAS-109 Sound Bar with Alexa",
+            "description": "Enhance your TV sound with this compact and powerful soundbar. Voice control with Alexa lets you easily manage your entertainment needs. Sleek design with a fabric grille blends seamlessly into any living space.",
+            "price": 179.99,
+            "material": "Fabric, plastic",
+            "category": {
+                "id": 3
+            }
+        },
+        {
+            "id": 91,
+            "name": "Sennheiser Momentum True Wireless 3 Earbuds",
+            "description": "Enjoy premium sound, active noise cancellation, and crystal-clear calls with these stylish earbuds. Long-lasting battery and comfortable fit make them perfect for everyday use.",
+            "price": 249.99,
+            "material": "Plastic",
+            "category": {
+                "id": 3
+            }
+        },
+        {
+            "id": 92,
+            "name": "Project Hail Mary by Andy Weir",
+            "description": "Astronaut Ryland Grace wakes up millions of miles from Earth with no memory of who he is or why he's there. One thing's clear: he's been tasked to save humanity. This gripping sci-fi thriller with its innovative plot and relatable protagonist will keep you glued to the page.",
+            "price": 16.99,
+            "material": "Paperback",
+            "category": {
+                "id": 7
+            }
+        },
+        {
+            "id": 93,
+            "name": "Billie Razor Starter Kit",
+            "description": "This subscription-based razor kit includes a stylish handle, four razor blades, and shave cream. The blades are designed for a close, comfortable shave with minimal irritation.",
+            "price": 9,
+            "material": "Polypropylene, stainless steel, aloe vera, glycerin, shea butter",
+            "category": {
+                "id": 13
+            }
+        },
+        {
+            "id": 94,
+            "name": "Franklin T20 Cricket Set",
+            "description": "Get the whole family playing with this complete cricket set. Including a wooden bat, leather ball, stumps, and bails, it's perfect for backyard matches and introducing kids to the exciting sport of cricket.",
+            "price": 59.99,
+            "material": "Wood, leather, rubber",
+            "category": {
+                "id": 14
+            }
+        },
+        {
+            "id": 95,
+            "name": "Surface Duo 2",
+            "description": "Work smarter with the innovative dual-screen design, powered by the Snapdragon 888 processor. Seamless multitasking, note-taking, and creativity – all in one foldable form. Premium glass and magnesium alloy construction feels solid and sophisticated.",
+            "price": 1.599,
+            "material": "Glass, magnesium alloy",
+            "category": {
+                "id": 2
+            }
+        },
+        {
+            "id": 96,
+            "name": "Microsoft Surface Studio 2+",
+            "description": "All-in-one desktop with a large 28-inch touchscreen, powerful Xntel Core i7 processor, and a versatile kickstand for different working positions.",
+            "price": 2499.99,
+            "material": "Aluminum and magnesium alloy",
+            "category": {
+                "id": 1
+            }
+        },
+        {
+            "id": 97,
+            "name": "Plush Stuffed Animal Unicorn",
+            "description": "Cuddle up with this adorable and soft plush unicorn toy. Made with high-quality materials and featuring realistic details, it's the perfect companion for little ones.",
+            "price": 29.99,
+            "material": "Polyester",
+            "category": {
+                "id": 12
+            }
+        },
+        {
+            "id": 98,
+            "name": "Magnetic Drawing Board",
+            "description": "Let your child's imagination run wild with this erasable magnetic drawing board. Create colorful designs with the magnetic pen and then wipe them clean with a simple swipe.",
+            "price": 19.99,
+            "material": "Metal, Plastic",
+            "category": {
+                "id": 12
+            }
+        },
+        {
+            "id": 99,
+            "name": "Milwaukee Tools M18 Fuel Impact Wrench",
+            "description": "Tighten and loosen heavy-duty fasteners with ease with this cordless impact wrench. Featuring a powerful brushless motor, multiple impact settings, and an ergonomic design, it's a must-have for mechanics and construction workers.",
+            "price": 249.99,
+            "material": "Plastic, lithium-ion battery, metal",
+            "category": {
+                "id": 15
+            }
+        },
+        {
+            "id": 100,
+            "name": "Fitbit Sense Smartwatch",
+            "description": "Track your health and fitness goals with this advanced smartwatch. Features heart rate monitoring, sleep tracking, stress management tools, and built-in GPS.",
+            "price": 299.99,
+            "material": "Plastic, metal",
+            "category": {
+                "id": 9
+            }
+        },
+        {
+            "id": 101,
+            "name": "Levi's Wedgie Straight Jeans",
+            "description": "High-waisted, straight-leg jeans with flattering fit",
+            "price": 98,
+            "material": "Cotton, elastane",
+            "category": {
+                "id": 10
+            }
+        },
+        {
+            "id": 102,
+            "name": "Bamboo Cutting Board Set",
+            "description": "This eco-friendly cutting board set includes three different sizes for chopping vegetables, slicing meat, and serving cheese. Bamboo is naturally antibacterial and gentle on knives.",
+            "price": 29.99,
+            "material": "Bamboo",
+            "category": {
+                "id": 5
+            }
+        },
+        {
+            "id": 103,
+            "name": "Marucci CAT9 Composite Baseball Bat",
+            "description": "Swing for the fences with this top-of-the-line bat. Designed for power hitters, it features a CAT9 composite barrel for maximum bat speed and distance, and a comfortable swing weight for optimal control.",
+            "price": 249.99,
+            "material": "Composite material",
+            "category": {
+                "id": 14
+            }
+        },
+        {
+            "id": 104,
+            "name": "Lululemon Align™ High-Rise Pant",
+            "description": "Find your flow in these ultra-soft and flexible yoga pants. Made with sweat-wicking fabric and a flattering high-rise waist, they offer comfort and support for any workout.",
+            "price": 98,
+            "material": "Nylon, Luon® blend",
+            "category": {
+                "id": 14
+            }
+        },
+        {
+            "id": 105,
+            "name": "Audio-Technica AT-LP120XBT-USB Vinyl Turntable",
+            "description": "Rediscover the magic of vinyl with this Bluetooth-enabled turntable. Enjoy rich, warm sound and easy connectivity to modern speakers. Sleek design with a walnut finish adds a touch of vintage charm.",
+            "price": 349.99,
+            "material": "Wood, plastic",
+            "category": {
+                "id": 3
+            }
+        },
+        {
+            "id": 106,
+            "name": "Educational Coding Robot Kit",
+            "description": "Learn the basics of coding and robotics with this fun and interactive kit. Build your own robot and program it to move, light up, and perform tasks, ideal for STEM learning.",
+            "price": 69.99,
+            "material": "Plastic, Electronics",
+            "category": {
+                "id": 12
+            }
+        },
+        {
+            "id": 107,
+            "name": "Garmin Forerunner 945 GPS Running Watch",
+            "description": "Track your every run with this advanced GPS watch. Featuring built-in pace and distance tracking, heart rate monitoring, and advanced training metrics, it's your ultimate running companion.",
+            "price": 399.99,
+            "material": "Polymer, stainless steel, sapphire crystal",
+            "category": {
+                "id": 14
+            }
+        },
+        {
+            "id": 108,
+            "name": "The Ordinary Niacinamide 10% + Zinc 1%",
+            "description": "This high-strength serum helps minimize pore appearance, regulate sebum production, and improve uneven skin tone. Suitable for oily, acne-prone skin.",
+            "price": 5.9,
+            "material": "Aqua (Water), Niacinamide, Zinc PCA, Butylene Glycol, Isopropyl Alcohol, Panthenol, Sodium Ascorbate, Xanthan Gum",
+            "category": {
+                "id": 13
+            }
+        },
+        {
+            "id": 109,
+            "name": "The Paris Review",
+            "description": "Get lost in the world of literature with The Paris Review, featuring interviews with renowned authors, captivating short stories, and insightful book reviews. Discover new voices, revisit old favorites, and delve deeper into the art of storytelling.",
+            "price": 20,
+            "material": "Magazine",
+            "category": {
+                "id": 7
+            }
+        },
+        {
+            "id": 110,
+            "name": "OPPO Reno 8 Lite",
+            "description": "Capture life's moments in stunning detail with the AI-powered triple-lens camera system. Long-lasting battery and a vibrant AMOLED display let you stay entertained all day long. Stylish polycarbonate construction offers durability and value.",
+            "price": 349.99,
+            "material": "Polycarbonate",
+            "category": {
+                "id": 2
+            }
+        },
+        {
+            "id": 111,
+            "name": "Osprey Farpoint/Fairview Travel Backpack",
+            "description": "Comfortable and versatile travel backpack. Gender-specific designs, multiple compartments, breathable suspension.",
+            "price": 199.99,
+            "material": "Polyester, nylon",
+            "category": {
+                "id": 11
+            }
+        },
+        {
+            "id": 112,
+            "name": "Casper Original Hybrid Mattress",
+            "description": "This hybrid mattress combines the comfort of memory foam with the support of innerspring coils. It's designed to provide a cool, comfortable sleep and comes with a 100-night trial.",
+            "price": 1.495,
+            "material": "Memory foam, innerspring coils",
+            "category": {
+                "id": 5
+            }
+        },
+        {
+            "id": 113,
+            "name": "Marshall Stanmore II Bluetooth Speaker",
+            "description": "Fill your room with iconic Marshall sound. Rugged design with classic leather details and powerful audio makes it perfect for any party or gathering.",
+            "price": 279,
+            "material": "Leather, plastic",
+            "category": {
+                "id": 8
+            }
+        },
+        {
+            "id": 114,
+            "name": "LEGO Classic Creative Brick Box",
+            "description": "Unleash endless creativity with this classic collection of Lego bricks! Build anything you can imagine with vibrant colors, shapes, and sizes, perfect for children of all ages.",
+            "price": 49.99,
+            "material": "Plastic",
+            "category": {
+                "id": 12
+            }
+        },
+        {
+            "id": 115,
+            "name": "Secretlab Titan Evo 2022 Series Gaming Chair",
+            "description": "Experience all-day comfort and support with the Titan Evo 2022, featuring adjustable lumbar support, breathable upholstery, and a variety of color options.",
+            "price": 449.99,
+            "material": "Fabric, leather, metal",
+            "category": {
+                "id": 4
+            }
+        },
+        {
+            "id": 116,
+            "name": "All-Clad Stainless Steel Cookware Set",
+            "description": "This professional-grade cookware set features durable stainless steel construction and even heat distribution. It's perfect for serious home cooks who want the best tools for their kitchen.",
+            "price": 799.99,
+            "material": "Stainless steel",
+            "category": {
+                "id": 5
+            }
+        },
+        {
+            "id": 117,
+            "name": "Realme Pad Mini",
+            "description": "Your perfect entertainment and productivity companion. The compact design boasts a vibrant HD display and powerful Unisoc T616 processor. Durable aluminum construction delivers a premium feel at an affordable price.",
+            "price": 249.99,
+            "material": "Aluminum",
+            "category": {
+                "id": 2
+            }
+        },
+        {
+            "id": 118,
+            "name": "Filofax Personal Organizer",
+            "description": "Plan your days and schedule with this classic leather organizer. Includes weekly pages, note sections, and pockets for cards and receipts. Stay organized and stylish throughout your busy day.",
+            "price": 79.99,
+            "material": "Leather, paper",
+            "category": {
+                "id": 6
+            }
+        },
+        {
+            "id": 119,
+            "name": "Atomic Habits by James Clear",
+            "description": "Learn the tiny behaviors that can lead to remarkable results. James Clear's Atomic Habits reveals practical strategies for improving your life - one small step at a time. Achieve your goals, break bad habits, and build good ones with this insightful and actionable guide.",
+            "price": 14.99,
+            "material": "Paperback",
+            "category": {
+                "id": 7
+            }
+        },
+        {
+            "id": 120,
+            "name": "Nespresso VertuoPlus Coffee & Espresso Machine",
+            "description": "Enjoy barista-quality coffee at home with this sleek and convenient machine. It brews both classic and espresso coffees with the simple press of a button.",
+            "price": 229.99,
+            "material": "Plastic, stainless steel",
+            "category": {
+                "id": 5
+            }
+        },
+        {
+            "id": 121,
+            "name": "BenQ GV30 Portable Projector",
+            "description": "Bring the big screen experience anywhere with this compact and versatile projector. Enjoy movies, games, and more with bright, crisp visuals. Durable design and built-in battery make it perfect for outdoor adventures.",
+            "price": 499,
+            "material": "Plastic, rubber",
+            "category": {
+                "id": 3
+            }
+        },
+        {
+            "id": 122,
+            "name": "Acer Aspire 5",
+            "description": "Affordable laptop with a 10th Gen Xntel Core i5 processor, enough power for everyday tasks, a long-lasting battery, and a lightweight design.",
+            "price": 599.99,
+            "material": "Plastic",
+            "category": {
+                "id": 1
+            }
+        },
+        {
+            "id": 123,
+            "name": "Bosch Icon Wiper Blades (Pair)",
+            "description": "Experience superior all-weather performance with these premium wiper blades. Featuring a patented beam design and advanced rubber compound, they offer exceptional clearing in rain, snow, and sleet.",
+            "price": 49.99,
+            "material": "Rubber, plastic, metal",
+            "category": {
+                "id": 15
+            }
+        },
+        {
+            "id": 124,
+            "name": "Sony PlayStation 5",
+            "description": "Experience next-generation gaming with the PlayStation 5 console, boasting ultra-fast loading times, stunning visuals, and immersive 3D audio.",
+            "price": 499.99,
+            "material": "Plastic",
+            "category": {
+                "id": 4
+            }
+        },
+        {
+            "id": 125,
+            "name": "Nova X7 Pro",
+            "description": "Capture stunning moments with the triple-lens camera system, enjoy immersive entertainment on the vibrant AMOLED display, and stay productive with the powerful Snapdragon 8 Gen 1 processor. Crafted from sleek, durable glass and metal.",
+            "price": 799.99,
+            "material": "Glass, metal",
+            "category": {
+                "id": 2
+            }
+        },
+        {
+            "id": 126,
+            "name": "Cuisinart Compact Air Fryer",
+            "description": "Make healthy and delicious meals quickly and easily with this air fryer. Features multiple cooking presets, digital controls, and easy cleanup.",
+            "price": 99.99,
+            "material": "Plastic, metal",
+            "category": {
+                "id": 9
+            }
+        },
+        {
+            "id": 127,
+            "name": "GoPro HERO10 Black Action Camera",
+            "description": "Capture your most epic adventures with this versatile action camera. Shoot stunning 5.3K video, ultra-smooth 240fps slow-motion, and high-resolution photos, all while remaining waterproof and durable.",
+            "price": 449.99,
+            "material": "Plastic, glass",
+            "category": {
+                "id": 14
+            }
+        },
+        {
+            "id": 128,
+            "name": "Nintendo Switch OLED Model",
+            "description": "Enjoy vibrant colors and improved contrast on the Switch OLED's larger screen, perfect for both handheld and docked play. Explore dozens of exclusive games and classic franchises alike.",
+            "price": 349.99,
+            "material": "Plastic",
+            "category": {
+                "id": 4
+            }
+        },
+        {
+            "id": 129,
+            "name": "Wilson Pro Staff Team V13.0 Tennis Racquet",
+            "description": "Unleash your inner Federer with this lightweight and powerful racquet. Featuring a large sweet spot and stiff flex, it offers control and precision for players of all levels.",
+            "price": 199.99,
+            "material": "Graphite, Kevlar",
+            "category": {
+                "id": 14
+            }
+        },
+        {
+            "id": 130,
+            "name": "GoPro HERO10 Black",
+            "description": "Versatile action camera. High-resolution video, stabilization technology.",
+            "price": 449.99,
+            "material": "Plastic, glass",
+            "category": {
+                "id": 11
+            }
+        },
+        {
+            "id": 131,
+            "name": "Logitech G502 Lightspeed Wireless Gaming Mouse",
+            "description": "Dominate the competition with the G502 Lightspeed, featuring a customizable DPI sensor, 11 programmable buttons, and ultra-fast wireless connectivity.",
+            "price": 149.99,
+            "material": "Plastic",
+            "category": {
+                "id": 4
+            }
+        },
+        {
+            "id": 132,
+            "name": "Cuisinart Food Processor",
+            "description": "This powerful food processor makes chopping, grating, and puréeing a breeze. It comes with multiple attachments for different tasks, making it a versatile kitchen tool.",
+            "price": 179.99,
+            "material": "Plastic, stainless steel",
+            "category": {
+                "id": 5
+            }
+        },
+        {
+            "id": 133,
+            "name": "Spalding NBA Team Backpack",
+            "description": "Show off your team spirit with this stylish and functional backpack. Featuring ample storage space for all your training essentials, a comfortable and adjustable design, and your favorite team's logo, it's the perfect companion for the court or gym.",
+            "price": 44.99,
+            "material": "Polyester, nylon",
+            "category": {
+                "id": 14
+            }
+        },
+        {
+            "id": 134,
+            "name": "Black Diamond Spot Headlamp",
+            "description": "Compact and powerful headlamp. Multiple brightness settings, adjustable angle.",
+            "price": 49.99,
+            "material": "Plastic, nylon",
+            "category": {
+                "id": 11
+            }
+        },
+        {
+            "id": 135,
+            "name": "Patagonia Down Sweater Hoody",
+            "description": "Lightweight jacket with water-resistant shell, 800-fill-power down insulation",
+            "price": 349.99,
+            "material": "Down, nylon",
+            "category": {
+                "id": 10
+            }
+        },
+        {
+            "id": 136,
+            "name": "Stanley FatMax Xtreme Folding Toolbox",
+            "description": "Keep your tools organized and easily accessible with this durable toolbox. Featuring a spacious interior with removable compartments, a folding handle, and weatherproof construction, it's perfect for job sites and the garage.",
+            "price": 79.99,
+            "material": "Plastic, metal",
+            "category": {
+                "id": 15
+            }
+        },
+        {
+            "id": 137,
+            "name": "Apple MacBook Air M2",
+            "description": "Sleek and stylish laptop with Apple's M2 chip for incredible performance and efficiency, a beautiful Retina display, and all-day battery life.",
+            "price": 1499,
+            "material": "Aluminum",
+            "category": {
+                "id": 1
+            }
+        },
+        {
+            "id": 138,
+            "name": "REI Co-op Camp Dome Tent",
+            "description": "Spacious and easy-to-pitch tent. Durable construction, weather-resistant design.",
+            "price": 149.99,
+            "material": "Polyester, nylon",
+            "category": {
+                "id": 11
+            }
+        },
+        {
+            "id": 139,
+            "name": "Corsair K70 RGB MK.2 Low Profile Mechanical Keyboard",
+            "description": "Upgrade your setup with the K70's low-profile Cherry MX mechanical switches, vibrant RGB lighting, and durable aluminum construction.",
+            "price": 179.99,
+            "material": "Aluminum, plastic",
+            "category": {
+                "id": 4
+            }
+        },
+        {
+            "id": 140,
+            "name": "Humanscale Freedom Headrest Chair",
+            "description": "Elevate your workspace with this ergonomic chair featuring adjustable lumbar support, a pivoting headrest, and breathable mesh fabric. Stay comfortable and productive throughout the workday.",
+            "price": 499.99,
+            "material": "Mesh fabric, aluminum",
+            "category": {
+                "id": 6
+            }
+        },
+        {
+            "id": 141,
+            "name": "CeraVe Daily Facial Moisturizing Lotion",
+            "description": "This fragrance-free, non-comedogenic lotion provides lightweight hydration for normal to dry skin. Formulated with hyaluronic acid and ceramides to lock in moisture and restore the skin barrier.",
+            "price": 14.99,
+            "material": "Water, glycerin, dimethicone, niacinamide, hyaluronic acid, ceramides",
+            "category": {
+                "id": 13
+            }
+        },
+        {
+            "id": 142,
+            "name": "REN Clean Skincare Ready Steady Glow Daily AHA Tonic",
+            "description": "This gentle exfoliating toner removes dead skin cells, brightens the complexion, and promotes a healthy glow. Suitable for most skin types, except for sensitive skin.",
+            "price": 32,
+            "material": "Aqua (Water), Lactic Acid, Glycolic Acid, Willow Bark Extract, Glycerin, Aloe Vera, Panthenol",
+            "category": {
+                "id": 13
+            }
+        },
+        {
+            "id": 143,
+            "name": "Osprey Daypack",
+            "description": "Versatile daypack. Comfortable straps, organized compartments, hydration sleeve.",
+            "price": 69.99,
+            "material": "Polyester, nylon",
+            "category": {
+                "id": 11
+            }
+        },
+        {
+            "id": 144,
+            "name": "Hydro Flask Trail Series Water Bottle",
+            "description": "Durable and insulated water bottle. Leak-proof lid, easy-to-carry handle.",
+            "price": 34.99,
+            "material": "Stainless steel",
+            "category": {
+                "id": 11
+            }
+        },
+        {
+            "id": 145,
+            "name": "Roland FP-30 Digital Piano",
+            "description": "Elevate your practice or performances with this sleek and versatile digital piano. Authentic acoustic piano sounds, weighted keys, and advanced features provide a rich playing experience.",
+            "price": 1.499,
+            "material": "Plastic, wood",
+            "category": {
+                "id": 8
+            }
+        },
+        {
+            "id": 146,
+            "name": "The New Yorker magazine",
+            "description": "Delve into thought-provoking essays, witty cartoons, and insightful reporting on politics, culture, and current events. The New Yorker's iconic cartoons and sharp writing offer a unique perspective on the world around you.",
+            "price": 8.99,
+            "material": "Magazine",
+            "category": {
+                "id": 7
+            }
+        },
+        {
+            "id": 147,
+            "name": "Redmi Note 12 Pro Max",
+            "description": "Capture professional-grade photos with the 108MP quad-camera system, experience hyper-smooth performance with the MediaTek Dimensity 1200 chip, and enjoy all-day battery life. Sleek glass and metal design exudes style and durability.",
+            "price": 549.99,
+            "material": "Glass, metal",
+            "category": {
+                "id": 2
+            }
+        },
+        {
+            "id": 148,
+            "name": "HP Spectre x360 14",
+            "description": "Convertible laptop with a versatile 360-degree hinge, vibrant OLED touchscreen, powerful Xntel Core i7 processor, and long battery life.",
+            "price": 1399.99,
+            "material": "Aluminum and magnesium alloy",
+            "category": {
+                "id": 1
+            }
+        },
+        {
+            "id": 149,
+            "name": "ASUS ROG Strix G15",
+            "description": "Gaming laptop with a powerful NVIDIA GeForce RTX 3070 graphics card, a high-refresh-rate display for smooth gameplay, and a durable aluminum chassis.",
+            "price": 1799.99,
+            "material": "Aluminum and plastic",
+            "category": {
+                "id": 1
+            }
+        },
+        {
+            "id": 150,
+            "name": "Jabra Elite 7 Active Earbuds",
+            "description": "Get active without sacrificing sound quality. These sweatproof earbuds deliver powerful audio and secure fit for workouts and everyday adventures. Long-lasting battery and active noise cancellation keep you focused on your goals.",
+            "price": 199.99,
+            "material": "Plastic, rubber",
+            "category": {
+                "id": 3
+            }
+        },
+        {
+            "name": "2131",
+            "price": 3123213,
+            "description": "123212131312312",
+            "id": 151
+        }
+    ]
+}
