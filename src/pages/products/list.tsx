@@ -11,7 +11,7 @@ const ProductList = () => {
             setIsLoading(true);
             try {
                 const response = await axios.get(`http://localhost:3000/products123`);
-                if (response.status !== 200) {
+                if (respon !== 200) {
                     throw new Error("An error occurred while fetching the data");
                 }
                 setData(response.data);
@@ -29,7 +29,7 @@ const ProductList = () => {
     return (
         <div>
             <ul>
-                {data.map((item: IProduct, index) => (
+                {data.item.map((item: IProduct, index) => (
                     // optional chaining => ?.
                     <li key={item?.id}>
                         {item?.name} - {item?.price}
