@@ -1,36 +1,22 @@
 import React, { useEffect, useState } from "react";
 import { IProduct } from "../../types/product";
 import axios from "axios";
+import { useQuery } from "@tanstack/react-query";
 
 const ProductList = () => {
-    const [data, setData] = useState([]);
-    const [isLoading, setIsLoading] = useState(false);
-    const [error, setError] = useState(null);
-    useEffect(() => {
-        const fetchProducts = async () => {
-            setIsLoading(true);
-            try {
-                const response = await axios.get(`http://localhost:3000/products123`);
-                if (respon !== 200) {
-                    throw new Error("An error occurred while fetching the data");
-                }
-                setData(response.data);
-            } catch (error: any) {
-                setError(error?.response?.statusText);
-            } finally {
-                setIsLoading(false);
-            }
-        };
-        fetchProducts();
-    }, []);
-
+    const { data, isLoading, error, isError } = useQuery({
+        queryKey: ["products"],
+        queryFn: async () => {
+            const response = await axios.get(`http://localhost:3000/products`);
+            return response.data;
+        },
+    });
     if (isLoading) return <div>Loading...</div>;
-    if (error) return <div>{error}</div>;
+    if (isError) return <div>{error.message}</div>;
     return (
         <div>
             <ul>
-                {data.item.map((item: IProduct, index) => (
-                    // optional chaining => ?.
+                {data.map((item: IProduct) => (
                     <li key={item?.id}>
                         {item?.name} - {item?.price}
                     </li>
