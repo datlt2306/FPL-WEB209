@@ -6,7 +6,7 @@ import { productSchema } from "../validations/product.schema";
 interface ProductFormProps {
     onSubmit: (data: Omit<Product, "id">) => void;
     initialData?: Product;
-    isLoading: boolean;
+    isLoading?: boolean;
 }
 
 export function ProductForm({ onSubmit, initialData, isLoading }: ProductFormProps) {
