@@ -1,26 +1,28 @@
 import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
 import { Link } from "react-router-dom";
+import { getList } from "../../api/dataProvider";
 
 const ProductList = () => {
-    const { data, isLoading, error } = useQuery({
+    const { data, isLoading, isError, error } = useQuery({
         queryKey: ["products"],
-        queryFn: async () => {
-            const { data } = await axios.get("http://localhost:3000/products");
-            return data;
+        queryFn: () => {
+            return getList({ resource: "products" });
         },
     });
-    if (isLoading) return <div>Loading...</div>;
-    if (error) return <div>Error: {error?.message}</div>;
+
+    if (isLoading) return <div>Loading....</div>;
+    if (isError) return <div>Error: {error.message}</div>;
     return (
         <div>
             <h1>Product List</h1>
             <Link to="/products/add">Add Product</Link>
-            {data?.data?.map((item: any, index: number) => (
-                <li key={item?.id}>
-                    <span>{item?.name}</span>
-                </li>
-            ))}
+            <ul>
+                {data.map((item: any) => (
+                    <li key={item.id}>
+                        <span>{item.name}</span>
+                    </li>
+                ))}
+            </ul>
         </div>
     );
 };
