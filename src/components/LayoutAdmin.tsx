@@ -10,7 +10,11 @@ import { Button, Layout, Menu, theme } from "antd";
 
 const { Header, Sider, Content } = Layout;
 
-const LayoutAdmin: React.FC = () => {
+type LayoutAdminProps = {
+    children: React.ReactNode;
+};
+
+const LayoutAdmin = ({ children }: LayoutAdminProps) => {
     const [collapsed, setCollapsed] = useState(false);
     const {
         token: { colorBgContainer, borderRadiusLG },
@@ -65,7 +69,7 @@ const LayoutAdmin: React.FC = () => {
                         borderRadius: borderRadiusLG,
                     }}
                 >
-                    Content
+                    {children}
                 </Content>
             </Layout>
         </Layout>
