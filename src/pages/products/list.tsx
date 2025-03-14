@@ -1,6 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 const ProductList = () => {
@@ -8,7 +7,7 @@ const ProductList = () => {
         queryKey: ["products"],
         queryFn: async () => (await axios.get(`http://localhost:3000/products`)).data,
     });
-    if (isLoading) return <div>Loading.aå..</div>;
+    if (isLoading) return <div>Loading...</div>;
     if (error) return <div>Error: {error?.message}</div>;
     return (
         <div>

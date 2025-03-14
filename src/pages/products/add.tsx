@@ -1,10 +1,9 @@
-import React from "react";
+import { useMutation } from "@tanstack/react-query";
+import axios from "axios";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import ProductForm from "../../components/PrductForm";
 import { Product } from "../../types/product";
-import axios from "axios";
-import { useMutation } from "@tanstack/react-query";
 
 export function ProductAdd() {
     const navigate = useNavigate();

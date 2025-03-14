@@ -3,12 +3,13 @@ import ProductList from "./pages/products/list";
 import ProductAdd from "./pages/products/add";
 import ProductEdit from "./pages/products/edit";
 import Counter from "./components/Counter";
+import LayoutAdmin from "./components/LayoutAdmin";
 
 function App() {
     return (
         <>
-            <Counter />
             <Routes>
+                <Route path="admin" element={<LayoutAdmin />}></Route>
                 <Route path="products">
                     <Route index element={<ProductList />} />
                     <Route path="add" element={<ProductAdd />} />
