@@ -17,7 +17,7 @@ const ProductList = () => {
             <h1>Product List</h1>
             <Link to="/products/add">Add Product</Link>
             <ul>
-                {data.map((item: any) => (
+                {data?.data.map((item: any) => (
                     <li key={item.id}>
                         <span>{item.name}</span>
                     </li>
