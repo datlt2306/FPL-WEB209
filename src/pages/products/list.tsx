@@ -1,135 +1,31 @@
-// import React, { useEffect, useState } from "react";
-// import { IProduct } from "../../types/product";
-// import axios from "axios";
-// import { useQuery } from "@tanstack/react-query";
-
 import { useQuery } from "@tanstack/react-query";
-import { Breadcrumb, Layout, Menu, Table } from "antd";
-import { Content, Footer, Header } from "antd/es/layout/layout";
-import Sider from "antd/es/layout/Sider";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 const ProductList = () => {
-    const columns = [
-        {
-            title: "Name",
-            dataIndex: "name",
-            key: "name",
-        },
-        {
-            title: "Age",
-            dataIndex: "age",
-            key: "age",
-        },
-        {
-            title: "Address",
-            dataIndex: "address",
-            key: "address",
-        },
-    ];
-    const { data, isLoading, error, isError } = useQuery({
+    const { data, isLoading, error } = useQuery({
         queryKey: ["products"],
         queryFn: async () => {
-            const response = await axios.get(`http://localhost:3000/products`);
-            return response.data.map((product: any) => {
-                return {
-                    key: product.id,
-                    name: product.name,
-                    age: product.price,
-                    address: product.description,
-                };
-            });
+            const { data } = await axios.get("http://localhost:3000/products");
+            return data;
         },
     });
-    // if (isLoading) return <div>Loading...</div>;
-    // if (isError) return <div>{error.message}</div>;
+    if (isLoading) return <div>Loading...</div>;
+    if (error) return <div>Error: {error?.message}</div>;
     return (
-        // <div>
-        //     <ul>
-        //         {data.map((item: IProduct) => (
-        //             <li key={item?.id}>
-        //                 {item?.name} - {item?.price}
-        //             </li>
-        //         ))}
-        //     </ul>
-        // </div>
-
-        <Layout>
-            <Header
-                style={{
-                    display: "flex",
-                    alignItems: "center",
-                }}
-            >
-                <div className="demo-logo" />
-                <Menu
-                    theme="dark"
-                    mode="horizontal"
-                    defaultSelectedKeys={["2"]}
-                    items={[
-                        { key: "1", label: "nav 1" },
-                        { key: "2", label: "nav 2" },
-                        { key: "3", label: "nav 2" },
-                    ]}
-                    style={{
-                        flex: 1,
-                        minWidth: 0,
-                    }}
-                />
-            </Header>
-            <div
-                style={{
-                    padding: "0 48px",
-                }}
-            >
-                <Breadcrumb
-                    style={{
-                        margin: "16px 0",
-                    }}
-                >
-                    <Breadcrumb.Item>Home</Breadcrumb.Item>
-                    <Breadcrumb.Item>List</Breadcrumb.Item>
-                    <Breadcrumb.Item>App</Breadcrumb.Item>
-                </Breadcrumb>
-                <Layout
-                    style={{
-                        padding: "24px 0",
-                    }}
-                >
-                    <Sider width={200}>
-                        <Menu
-                            mode="inline"
-                            defaultSelectedKeys={["1"]}
-                            defaultOpenKeys={["sub1"]}
-                            style={{
-                                height: "100%",
-                            }}
-                            items={[
-                                { key: "1", label: "nav 1" },
-                                { key: "2", label: "nav 2" },
-                                { key: "3", label: "nav 2" },
-                            ]}
-                        />
-                    </Sider>
-                    <Content
-                        style={{
-                            padding: "0 24px",
-                            minHeight: 280,
-                        }}
-                    >
-                        <Table dataSource={data} columns={columns} />;
-                    </Content>
-                </Layout>
-            </div>
-            <Footer
-                style={{
-                    textAlign: "center",
-                }}
-            >
-                Ant Design ©{new Date().getFullYear()} Created by Ant UED
-            </Footer>
-        </Layout>
+        <div>
+            <h1>Product List</h1>
+            <Link to="/products/add">Add Product</Link>
+            {data?.data?.map((item: any, index: number) => (
+                <li key={item?.id}>
+                    <span>{item?.name}</span>
+                </li>
+            ))}
+        </div>
     );
 };
 
 export default ProductList;
+
+// client state
+// server state
