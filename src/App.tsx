@@ -1,19 +1,35 @@
-import { Route, Routes } from "react-router-dom";
+import { Navigate, Outlet, Route, Routes } from "react-router-dom";
 import ProductList from "./pages/products/list";
 import ProductAdd from "./pages/products/add";
 import ProductEdit from "./pages/products/edit";
 import Counter from "./Counter";
+import LayoutAdmin from "./components/LayoutAdmin";
+import Authenticated from "./components/Authenticated";
 
 function App() {
     return (
         <>
-            {/* <Counter /> */}
             <Routes>
-                <Route path="products">
-                    <Route index element={<ProductList />} />
-                    <Route path="add" element={<ProductAdd />} />
-                    {/* <Route path="edit/:id" element={<ProductEdit />} /> */}
+                <Route
+                    path="admin"
+                    element={
+                        <Authenticated fallback={<Navigate to="/login" replace />}>
+                            <LayoutAdmin>
+                                <Outlet />
+                            </LayoutAdmin>
+                        </Authenticated>
+                    }
+                >
+                    <Route index element={<Navigate to="dashboard" />} />
+                    <Route path="dashboard" element={<h1>Dashboard</h1>} />
+                    <Route path="products">
+                        <Route index element={<ProductList />} />
+                        <Route path="add" element={<ProductAdd />} />
+                        <Route path="edit/:id" element={<ProductEdit />} />
+                    </Route>
                 </Route>
+                <Route path="login" element={<h1>Login</h1>} />
+                <Route path="*" element={<h1>404 Not Found</h1>} />
             </Routes>
         </>
     );
