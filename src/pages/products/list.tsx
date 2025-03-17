@@ -1,18 +1,32 @@
-import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
 import { Link } from "react-router-dom";
-import { getList } from "../../api/dataProvider";
+import useList from "../../hooks/useList";
+import { useState } from "react";
+import { Button, Drawer } from "antd";
+import ProductDrawer from "../../components/ProductDrawer";
 
 const ProductList = () => {
-    const { data, isLoading, error } = useQuery({
-        queryKey: ["products"],
-        queryFn: async () => getList({ resource: "products" }),
-    });
+    const [open, setOpen] = useState(false);
+
+    const { data, isLoading, error } = useList({ resource: "products" });
+
+    const showDrawer = () => {
+        setOpen(true);
+    };
+
+    const onClose = () => {
+        setOpen(false);
+    };
+
     if (isLoading) return <div>Loading...</div>;
     if (error) return <div>Error: {error?.message}</div>;
     return (
         <div>
             <h1>Product List</h1>
+
+            <Button type="primary" onClick={showDrawer}>
+                Open
+            </Button>
+            <ProductDrawer onClose={onClose} open={open} />
             <Link to="/products/add">Add Product</Link>
             {data?.data?.map((item: any, index: number) => (
                 <li key={item?.id}>
@@ -24,6 +38,9 @@ const ProductList = () => {
 };
 
 export default ProductList;
+// viết call API = hiển thị danh sách,thêm
+// viết 1 hook = useList, useCreate
+// viết 1 component = ProductDrawer
 
 // client state
 // server state

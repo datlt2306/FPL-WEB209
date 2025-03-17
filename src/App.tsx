@@ -23,8 +23,8 @@ function App() {
                     <Route path="dashboard" element={<h1>Dashboard</h1>} />
                     <Route path="products">
                         <Route index element={<ProductList />} />
-                        <Route path="add" element={<ProductAdd />} />
-                        <Route path="edit/:id" element={<ProductEdit />} />
+                        {/* <Route path="add" element={<ProductAdd />} />
+                        <Route path="edit/:id" element={<ProductEdit />} /> */}
                     </Route>
                 </Route>
                 <Route path="login" element={<h1>Login</h1>} />
