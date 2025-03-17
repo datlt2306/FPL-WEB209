@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { getList } from "../api/dataProvider";
+import { getList } from "../provider/dataProvider";
 
 
 type useListParams = {
