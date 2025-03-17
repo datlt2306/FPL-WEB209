@@ -1,17 +1,15 @@
 import { useQuery } from "@tanstack/react-query";
 import { Link } from "react-router-dom";
-import { getList } from "../../api/dataProvider";
+import axios from "axios";
+import { getList } from "../../provider/dataProvider";
+import useList from "../../hooks/useList";
 
 const ProductList = () => {
-    const { data, isLoading, isError, error } = useQuery({
-        queryKey: ["products"],
-        queryFn: () => {
-            return getList({ resource: "products" });
-        },
-    });
+    const { data, isLoading, isError, error } = useList({ resource: "products" });
 
     if (isLoading) return <div>Loading....</div>;
     if (isError) return <div>Error: {error.message}</div>;
+    if (!data) return <div>Không có sản phẩm</div>;
     return (
         <div>
             <h1>Product List</h1>
