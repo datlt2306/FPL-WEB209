@@ -1,11 +1,15 @@
 import axios from "axios"
 
 
-const API_URL = `http://localhost:3000`
+const API_URL = `https://api.fake-rest.refine.dev`
 // getList({ resrouce: "product"})
 
 type getListParams = {
     resource: string
+}
+type createOneParams = {
+    resource: string,
+    variables: any
 }
 const dataProvider = {
     getList: async ({ resource }: getListParams) => {
@@ -13,7 +17,13 @@ const dataProvider = {
         return {
             data: response.data
         }
+    },
+    createOne: async ({ resource, variables }: createOneParams) => {
+        const response = await axios.post(`${API_URL}/${resource}`, variables);
+        return {
+            data: response.data
+        }
     }
 }
 
-export const { getList } = dataProvider;
+export const { getList, createOne } = dataProvider;

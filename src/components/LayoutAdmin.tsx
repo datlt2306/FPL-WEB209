@@ -56,9 +56,11 @@ const LayoutAdmin = ({ children }: LayoutAdminProps) => {
                 </Header>
                 <Content
                     style={{
-                        margin: "24px 16px",
+                        margin: "24px auto",
                         padding: 24,
                         minHeight: 280,
+                        maxWidth: "1200px",
+                        width: "100%",
                         background: colorBgContainer,
                         borderRadius: borderRadiusLG,
                     }}
