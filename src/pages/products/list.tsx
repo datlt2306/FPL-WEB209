@@ -3,6 +3,8 @@ import useList from "../../hooks/useList";
 import { useState } from "react";
 import { Button, Drawer } from "antd";
 import ProductDrawer from "../../components/ProductDrawer";
+import { useQuery } from "@tanstack/react-query";
+import { getList } from "../../provider/dataProvider";
 
 const ProductList = () => {
     const [open, setOpen] = useState(false);

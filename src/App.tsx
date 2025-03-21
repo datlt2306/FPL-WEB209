@@ -4,10 +4,12 @@ import ProductAdd from "./pages/products/add";
 import ProductEdit from "./pages/products/edit";
 import ProductList from "./pages/products/list";
 import Authenticated from "./components/Authenticated";
+import Counter from "./Counter";
 
 function App() {
     return (
         <>
+            <Counter />
             <Routes>
                 <Route
                     path="admin"
@@ -23,8 +25,8 @@ function App() {
                     <Route path="dashboard" element={<h1>Dashboard</h1>} />
                     <Route path="products">
                         <Route index element={<ProductList />} />
-                        {/* <Route path="add" element={<ProductAdd />} />
-                        <Route path="edit/:id" element={<ProductEdit />} /> */}
+                        <Route path="add" element={<ProductAdd />} />
+                        {/* <Route path="edit/:id" element={<ProductEdit />} /> */}
                     </Route>
                 </Route>
                 <Route path="login" element={<h1>Login</h1>} />

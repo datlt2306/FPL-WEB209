@@ -6,15 +6,16 @@ type useCreateParams = {
     resource: string;
 }
 const useCreate = ({ resource }: useCreateParams) => {
-    // gọi useQueryClient để làm mới API ( gọi lại API )
     const queryClient = useQueryClient();
     return useMutation({
-        mutationFn: (variables: string) => {
+        mutationFn: (variables) => {
             return createOne({ resource, variables })
         },
-        onSuccess: () => queryClient.invalidateQueries({
-            queryKey: [resource]
-        })
+        onSuccess: () => {
+            queryClient.invalidateQueries({
+                queryKey: [resource]
+            })
+        }
     })
 }
 export default useCreate;

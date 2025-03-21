@@ -1,37 +1,53 @@
-import { useMutation } from "@tanstack/react-query";
-import axios from "axios";
-import toast from "react-hot-toast";
+import { Button, Form, Input, InputNumber, Radio, Select } from "antd";
+import useCreate from "../../hooks/useCreate";
 import { useNavigate } from "react-router-dom";
-import ProductForm from "../../components/PrductForm";
-import { Product } from "../../types/product";
 
 export function ProductAdd() {
     const navigate = useNavigate();
-    // const [isLoading, setIsLoading] = React.useState(false);
-    const { mutate } = useMutation({
-        mutationFn: async (data: any) => {
-            return await axios.post(`http://localhost:3000/products`, data);
-        },
-        onSuccess: () => {
-            toast.success("Product created successfully");
-            navigate("/products");
-        },
-        onError: (error: any) => {
-            return toast.error(error?.response?.data?.message || "Something went wrong");
-        },
-    });
-
-    const handleSubmit = async (data: Omit<Product, "id">) => {
-        mutate(data);
-    };
-
+    const { mutate } = useCreate({ resource: "products" });
+    const onFinish = (formData: any) =>
+        mutate(formData, {
+            onSuccess: () => {
+                alert("Thêm sản phẩm thành công");
+                navigate("/admin/products");
+            },
+        });
     return (
-        <div className="container mx-auto px-4 py-8">
-            <h1 className="text-2xl font-bold mb-6">Add New Product</h1>
-            <div className="max-w-2xl mx-auto bg-white shadow-md rounded-lg p-6">
-                <ProductForm onSubmit={handleSubmit} />
-            </div>
+        <div>
+            <Form layout="vertical" onFinish={onFinish} style={{ width: "50%", margin: "auto" }}>
+                <Form.Item label={"Tên sản phẩm"} name="name">
+                    <Input />
+                </Form.Item>
+                <Form.Item label={"Giá sản phẩm"} name="price">
+                    <InputNumber />
+                </Form.Item>
+                <Form.Item label="Danh mục sản phẩm" name="category">
+                    <Select>
+                        <Select.Option value="1">Danh mục 1</Select.Option>
+                        <Select.Option value="2">Danh mục 2</Select.Option>
+                    </Select>
+                </Form.Item>
+                <Form.Item label="Mô tả sản phẩm" name="description">
+                    <Input.TextArea rows={5} />
+                </Form.Item>
+                <Form.Item label="Tình trạng" name="status">
+                    <Radio.Group>
+                        <Radio value={true}> Còn hàng </Radio>
+                        <Radio value={false}> Hết hàng </Radio>
+                    </Radio.Group>
+                </Form.Item>
+                <Form.Item>
+                    <Button type="primary" htmlType="submit">
+                        Save
+                    </Button>
+                </Form.Item>
+            </Form>
         </div>
     );
 }
 export default ProductAdd;
+
+// DataProvider
+// hooks
+// view
+// App.tsx để thêm router
