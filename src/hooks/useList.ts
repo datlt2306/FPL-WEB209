@@ -9,9 +9,7 @@ type useListParams = {
 const useList = ({ resource }: useListParams) => {
     return useQuery({
         queryKey: [resource],
-        queryFn: () => {
-            return getList({ resource });
-        },
+        queryFn: () => getList({ resource }),
     });
 
 }

@@ -11,11 +11,13 @@ type createOneParams = {
     resource: string,
     variables: any
 }
+// services => call api => GET|POST|PUT|DELETE
 const dataProvider = {
     getList: async ({ resource }: getListParams) => {
         const response = await axios.get(`${API_URL}/${resource}`);
         return {
-            data: response.data
+            data: response.data,
+            total: response.data.length
         }
     },
     createOne: async ({ resource, variables }: createOneParams) => {
