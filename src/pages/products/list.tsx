@@ -1,9 +1,12 @@
-import { Button, Table } from "antd";
+import { Button, message, Popconfirm, Table } from "antd";
 import { Link } from "react-router-dom";
 import useList from "../../hooks/useList";
+import useDelete from "../../hooks/useDelete";
 
 const ProductList = () => {
+    const [messageApi, contextHolder] = message.useMessage();
     const { data, isLoading, isError, error } = useList({ resource: "products" });
+    const { mutate } = useDelete({ resource: "products" });
 
     const dataSource = data?.data?.map((item: any) => ({
         key: item.id,
@@ -11,17 +14,36 @@ const ProductList = () => {
     }));
     const columns = [
         { title: "Tên sản phẩm", dataIndex: "name", key: "name" },
-        { title: "Giá", dataIndex: "price", key: "price" },
+        {
+            title: "Giá",
+            dataIndex: "price",
+            key: "price",
+            render: (price: number) => {
+                return <strong>{price}</strong>;
+            },
+        },
         { title: "Mô tả", dataIndex: "description", key: "description" },
         {
             dataIndex: "action",
-            render: () => {
+            render: (_: any, item: any) => {
                 return (
                     <div className="flex space-x-2">
-                        <Button type="primary" danger>
-                            Xóa
+                        <Popconfirm
+                            title="Bạn có chắc chắn muốn xóa không?"
+                            onConfirm={() => {
+                                mutate(item.id, {
+                                    onSuccess: () => messageApi.success("Xóa thành công"),
+                                    onError: (error: any) => console.log(error?.response?.data),
+                                });
+                            }}
+                        >
+                            <Button type="primary" danger>
+                                Xóa
+                            </Button>
+                        </Popconfirm>
+                        <Button type="primary">
+                            <Link to={`/admin/products/edit/${item.id}`}>Cập nhật</Link>
                         </Button>
-                        <Button type="primary">Cập nhật</Button>
                     </div>
                 );
             },
@@ -40,6 +62,7 @@ const ProductList = () => {
                 </Link>
             </div>
             <Table dataSource={dataSource} columns={columns} />
+            {contextHolder}
         </div>
     );
 };

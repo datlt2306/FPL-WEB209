@@ -7,6 +7,8 @@ import LayoutAdmin from "./components/LayoutAdmin";
 import Authenticated from "./components/Authenticated";
 import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
+import SignupPage from "./pages/auth/signup";
+import SigninPage from "./pages/auth/signin";
 
 function App() {
     return (
@@ -30,7 +32,8 @@ function App() {
                         <Route path="edit/:id" element={<ProductEdit />} />
                     </Route>
                 </Route>
-                <Route path="login" element={<h1>Login</h1>} />
+                <Route path="signin" element={<SigninPage />} />
+                <Route path="signup" element={<SignupPage />} />
                 <Route path="*" element={<h1>404 Not Found</h1>} />
             </Routes>
         </>

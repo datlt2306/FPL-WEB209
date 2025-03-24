@@ -1,14 +1,7 @@
-import { Loader2, Save } from "lucide-react";
-import { useState } from "react";
-import { useForm } from "react-hook-form";
-// import { productApi } from "../services/productApi";
-import axios from "axios";
-import { ProductFormData } from "../../types/product";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import useCreate from "../../hooks/useCreate";
 import { Button, Form, Input, InputNumber, message, Radio, Select } from "antd";
-import { Link, useNavigate } from "react-router-dom";
-// import { createProduct } from "../../api/product";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import useOne from "../../hooks/useOne";
+import useUpdate from "../../hooks/useUpdate";
 const formItemLayout = {
     labelCol: {
         xs: { span: 24 },
@@ -19,16 +12,18 @@ const formItemLayout = {
         sm: { span: 14 },
     },
 };
-export const ProductForm = () => {
+export const ProductEdit = () => {
+    const { id } = useParams();
+    const { data, isLoading } = useOne({ resource: "products", id: Number(id) });
     const [messageApi, contextHolder] = message.useMessage();
+    const { mutate } = useUpdate({ resource: "products", id: Number(id) });
 
     const navigate = useNavigate();
-    const { mutate } = useCreate({ resource: "products" });
 
     const onFinish = (formData: any) => {
         mutate(formData, {
             onSuccess: () => {
-                messageApi.success("Thêm sản phẩm thành công");
+                messageApi.success("Cập nhật sản phẩm thành công");
                 setTimeout(() => {
                     navigate("/admin/products");
                 }, 1000);
@@ -36,15 +31,16 @@ export const ProductForm = () => {
             onError: (error: any) => console.log(error?.response?.data),
         });
     };
+    if (isLoading) return <div>Loading...</div>;
     return (
         <>
             <div className="flex items-center justify-between mb-4">
-                <h1 className="text-xl font-semibold">Thêm Sản phẩm</h1>
+                <h1 className="text-xl font-semibold">Cập nhật Sản phẩm</h1>
                 <Link to="/admin/products">
                     <Button type="primary">Quay lại</Button>
                 </Link>
             </div>
-            <Form {...formItemLayout} onFinish={onFinish}>
+            <Form onFinish={onFinish} {...formItemLayout} initialValues={data?.data}>
                 <Form.Item
                     label="Tên sản phẩm"
                     name="name"
@@ -90,4 +86,4 @@ export const ProductForm = () => {
         </>
     );
 };
-export default ProductForm;
+export default ProductEdit;

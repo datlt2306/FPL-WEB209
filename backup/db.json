@@ -1549,5 +1549,13 @@
 =======
 >>>>>>> b19f7f3 (add product creation functionality with a drawer component and integrate it with the data provider):db.json
     }
+  ],
+  "users": [
+    {
+      "email": "admin@gmail.com",
+      "password": "$2a$10$ErsDTI2frf8h3iwgODR7j.KT00SjNNYhne6FwSpHa8eg9Sg1pdig6",
+      "confirm": "admin@gmail.com",
+      "id": 1
+    }
   ]
 }
