@@ -1494,8 +1494,7 @@
   "users": [
     {
       "email": "admin@gmail.com",
-      "password": "$2a$10$1UIORriYmRPljbIrJGW9IeNOEJFKvZJnpbm/t0iqEwKiMqkUVpeAO",
-      "confirm": "admin@gmail.com",
+      "password": "$2a$10$Vb47IwgedtEr4u4/464ppu4oaiSg/EZBpzDr386dG/Xa64o8RiP0K",
       "id": 1
     }
   ]

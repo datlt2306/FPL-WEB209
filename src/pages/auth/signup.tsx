@@ -7,8 +7,12 @@ export function SignupPage() {
     const [messageApi, contextHolder] = message.useMessage();
     const navigate = useNavigate();
     const { mutate } = useSignup({ resource: "signup" });
-    const onFinish = (formData: any) =>
-        mutate(formData, {
+    const onFinish = (formData: any) => {
+        const newObject = {
+            email: formData.email,
+            password: formData.password,
+        };
+        mutate(newObject as any, {
             onSuccess: () => {
                 messageApi.success("Thêm sản phẩm thành công");
                 setTimeout(() => {
@@ -19,6 +23,8 @@ export function SignupPage() {
                 messageApi.error(error?.response?.data);
             },
         });
+    };
+
     return (
         <div className="max-w-screen-md mx-auto">
             <div className="flex justify-between items-center py-5 ">
