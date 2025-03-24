@@ -1,24 +1,47 @@
-import { Button, Form, Input, InputNumber, Radio, Select } from "antd";
+import { Button, Form, Input, InputNumber, message, Radio, Select } from "antd";
 import useCreate from "../../hooks/useCreate";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export function ProductAdd() {
+    const [messageApi, contextHolder] = message.useMessage();
     const navigate = useNavigate();
     const { mutate } = useCreate({ resource: "products" });
     const onFinish = (formData: any) =>
         mutate(formData, {
             onSuccess: () => {
-                alert("Thêm sản phẩm thành công");
-                navigate("/admin/products");
+                messageApi.success("Thêm sản phẩm thành công");
+                setTimeout(() => {
+                    navigate("/admin/products");
+                }, 1000);
+            },
+            onError: (error: any) => {
+                messageApi.error(error?.response?.data);
             },
         });
     return (
         <div>
+            <div className="flex justify-between items-center py-5">
+                <h1 className="font-semibold text-xl">Thêm sản phẩm</h1>
+                <Button type="primary">
+                    <Link to="/admin/products">Quay lại</Link>
+                </Button>
+            </div>
             <Form layout="vertical" onFinish={onFinish} style={{ width: "50%", margin: "auto" }}>
-                <Form.Item label={"Tên sản phẩm"} name="name">
+                <Form.Item
+                    label={"Tên sản phẩm"}
+                    name="name"
+                    rules={[{ required: true, message: "Tên sản phẩm không được để trống" }]}
+                >
                     <Input />
                 </Form.Item>
-                <Form.Item label={"Giá sản phẩm"} name="price">
+                <Form.Item
+                    label={"Giá sản phẩm"}
+                    name="price"
+                    rules={[
+                        { required: true, message: "Giá sản phẩm không được để trống" },
+                        { type: "number", min: 0, message: "Giá sản phẩm không được để âm" },
+                    ]}
+                >
                     <InputNumber />
                 </Form.Item>
                 <Form.Item label="Danh mục sản phẩm" name="category">
@@ -42,6 +65,7 @@ export function ProductAdd() {
                     </Button>
                 </Form.Item>
             </Form>
+            {contextHolder}
         </div>
     );
 }

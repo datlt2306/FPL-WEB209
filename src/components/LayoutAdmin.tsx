@@ -7,6 +7,7 @@ import {
     VideoCameraOutlined,
 } from "@ant-design/icons";
 import { Button, Layout, Menu, theme } from "antd";
+import { Link } from "react-router-dom";
 
 const { Header, Sider, Content } = Layout;
 
@@ -32,17 +33,12 @@ const LayoutAdmin = ({ children }: LayoutAdminProps) => {
                         {
                             key: "1",
                             icon: <UserOutlined />,
-                            label: "nav 1",
+                            label: <Link to="/admin/dashboard">Dashboard</Link>,
                         },
                         {
                             key: "2",
                             icon: <VideoCameraOutlined />,
-                            label: "nav 2",
-                        },
-                        {
-                            key: "3",
-                            icon: <UploadOutlined />,
-                            label: "nav 3",
+                            label: <Link to="/admin/products">Products</Link>,
                         },
                     ]}
                 />

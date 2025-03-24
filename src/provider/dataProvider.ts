@@ -16,9 +16,19 @@ type updateType = {
     variables: any;
     id: number
 }
+type deleteType = {
+    resource: string;
+    id: number
+}
 const dataProvider = {
     getList: async ({ resource }: getListType) => {
         const response = await config.get(`/${resource}`);
+        return {
+            data: response.data
+        }
+    },
+    getOne: async ({ resource, id }: getOneType) => {
+        const response = await config.get(`/${resource}/${id}`);
         return {
             data: response.data
         }
@@ -30,12 +40,16 @@ const dataProvider = {
         }
     },
     updateOne: async ({ resource, id, variables }: updateType) => {
-        const response = await config.post(`/${resource}/${id}`, variables);
+        const response = await config.put(`/${resource}/${id}`, variables);
         return {
             data: response.data
         }
     },
+    deleteOne: async ({ resource, id }: deleteType) => {
+        const response = await config.delete(`/${resource}/${id}`);
+        return {
+            success: true
+        }
+    },
 }
-export const { getList, createOne, updateOne } = dataProvider;
-
-// axios.post(`http://localhost:3000/products`, data);  
+export const { getList, createOne, updateOne, deleteOne, getOne } = dataProvider;
