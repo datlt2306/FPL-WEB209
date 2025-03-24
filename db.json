@@ -1538,5 +1538,13 @@
       "status": "Hết hàng",
       "id": 157
     }
+  ],
+  "users": [
+    {
+      "email": "admin@gmail.com",
+      "password": "$2a$10$ErsDTI2frf8h3iwgODR7j.KT00SjNNYhne6FwSpHa8eg9Sg1pdig6",
+      "confirm": "admin@gmail.com",
+      "id": 1
+    }
   ]
 }
