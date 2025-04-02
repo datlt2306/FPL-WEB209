@@ -1,0 +1,41 @@
+{
+    "name": "vite-project",
+    "private": true,
+    "version": "0.0.0",
+    "type": "module",
+    "scripts": {
+        "dev": "vite",
+        "server": "json-server-auth db.json --watch",
+        "build": "tsc && vite build",
+        "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+        "preview": "vite preview"
+    },
+    "dependencies": {
+        "@hookform/resolvers": "^4.1.3",
+        "@tailwindcss/vite": "^4.0.14",
+        "@tanstack/react-query": "^5.67.3",
+        "antd": "^5.24.3",
+        "axios": "^1.8.2",
+        "joi": "^17.13.3",
+        "json-server": "^0.17.4",
+        "json-server-auth": "^2.1.0",
+        "react": "^18.2.0",
+        "react-dom": "^18.2.0",
+        "react-hook-form": "^7.54.2",
+        "react-hot-toast": "^2.5.2",
+        "react-router-dom": "^7.3.0",
+        "tailwindcss": "^4.0.14"
+    },
+    "devDependencies": {
+        "@types/react": "^18.2.56",
+        "@types/react-dom": "^18.2.19",
+        "@typescript-eslint/eslint-plugin": "^7.0.2",
+        "@typescript-eslint/parser": "^7.0.2",
+        "@vitejs/plugin-react": "^4.2.1",
+        "eslint": "^8.56.0",
+        "eslint-plugin-react-hooks": "^4.6.0",
+        "eslint-plugin-react-refresh": "^0.4.5",
+        "typescript": "^5.2.2",
+        "vite": "^5.1.4"
+    }
+}
