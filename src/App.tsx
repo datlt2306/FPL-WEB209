@@ -38,3 +38,19 @@ function App() {
 }
 
 export default App;
+/**
+ * state => useState
+ * client state => component state - global state ( useContext, useReducer )
+ *
+ * count, setCount
+ * modeColor, setModeColor
+ * what?
+ * when? sử dụng global state ( client state )? server state (react-query)
+ * tech stack:
+ * - FE : reactjs,
+ *  + state: react-query (server state), useContext, useReducer ( client state - global),
+ * - BE: nodejs, expressjs, mongodb
+ * MERN stack
+ * MEAN STack
+ * server state ~ client state
+ */

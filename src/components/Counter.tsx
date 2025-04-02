@@ -1,18 +1,12 @@
-import React from "react";
+import { useContext } from "react";
+import { counterContext } from "../main";
 
 const Counter = () => {
-    const [count, setCount] = React.useState(0);
-    const increment = () => setCount(count + 1);
-    const decrement = () => setCount(count - 1);
+    const counter = useContext(counterContext);
+    console.log(counter);
     return (
         <div>
             <h1>Counter</h1>
-            <button onClick={increment}>Increment</button>
-            <button onClick={decrement}>Decrement</button>
-            <p>
-                Count
-                <span>{count}</span>
-            </p>
         </div>
     );
 };

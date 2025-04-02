@@ -2,6 +2,7 @@ import { Button, message, Popconfirm, Table } from "antd";
 import { Link } from "react-router-dom";
 import useDelete from "../../hooks/useDelete";
 import useList from "../../hooks/useList";
+import Counter from "../../components/Counter";
 
 const ProductList = () => {
     console.log("123");
@@ -59,6 +60,7 @@ const ProductList = () => {
     ];
     return (
         <div>
+            <Counter />
             <div className="flex justify-between items-center py-5">
                 <h1 className="font-semibold text-xl">Product List</h1>
                 <Button type="primary">
