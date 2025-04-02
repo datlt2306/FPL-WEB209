@@ -4,6 +4,7 @@ import useDelete from "../../hooks/useDelete";
 import useList from "../../hooks/useList";
 
 const ProductList = () => {
+    console.log("123");
     const { data, isLoading, error } = useList({ resource: "products" });
     const { mutate } = useDelete({ resource: "products" });
     const [messageApi, contextHolder] = message.useMessage();
