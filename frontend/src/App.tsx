@@ -44,37 +44,37 @@ function App() {
                     <AntdApp>
                         <DevtoolsProvider>
                             <Refine
-                                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+                                dataProvider={dataProvider("http://localhost:8080/api")}
                                 notificationProvider={useNotificationProvider}
                                 routerProvider={routerBindings}
                                 authProvider={authProvider}
                                 resources={[
                                     {
                                         name: "blog_posts",
-                                        list: "/blog-posts",
-                                        create: "/blog-posts/create",
-                                        edit: "/blog-posts/edit/:id",
-                                        show: "/blog-posts/show/:id",
+                                        list: "/admin/blog-posts",
+                                        create: "/admin/blog-posts/create",
+                                        edit: "/admin/blog-posts/edit/:id",
+                                        show: "/admin/blog-posts/show/:id",
                                         meta: {
                                             canDelete: true,
                                         },
                                     },
                                     {
                                         name: "products",
-                                        list: "/products",
-                                        create: "/products/create",
-                                        edit: "/products/edit/:id",
-                                        show: "/products/show/:id",
+                                        list: "/admin/products",
+                                        create: "/admin/products/create",
+                                        edit: "/admin/products/edit/:id",
+                                        show: "/admin/products/show/:id",
                                         meta: {
                                             canDelete: true,
                                         },
                                     },
                                     {
                                         name: "categories",
-                                        list: "/categories",
-                                        create: "/categories/create",
-                                        edit: "/categories/edit/:id",
-                                        show: "/categories/show/:id",
+                                        list: "/admin/categories",
+                                        create: "/admin/categories/create",
+                                        edit: "/admin/categories/edit/:id",
+                                        show: "/admin/categories/show/:id",
                                         meta: {
                                             canDelete: true,
                                         },

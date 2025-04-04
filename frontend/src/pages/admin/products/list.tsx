@@ -12,7 +12,7 @@ import React from "react";
 
 const ProductList = () => {
     const { tableProps } = useTable({
-        syncWithLocation: true,
+        syncWithLocation: false,
     });
 
     const { data: categoryData, isLoading: categoryIsLoading } = useMany({
@@ -50,7 +50,7 @@ const ProductList = () => {
                             )
                         }
                     />
-                    <Table.Column dataIndex="status" title={"Status"} />
+                    <Table.Column dataIndex="stock" title={"Số lượng"} />
                     <Table.Column
                         dataIndex={["createdAt"]}
                         title={"Created at"}

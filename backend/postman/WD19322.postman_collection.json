@@ -1,0 +1,77 @@
+{
+    "info": {
+        "_postman_id": "a49c4084-0e1c-4453-a40f-200acc11b811",
+        "name": "WD19322 - API Sản phẩm",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+        {
+            "name": "Lấy danh sách sản phẩm",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                    "raw": "{{base_url}}/api/products",
+                    "host": ["{{base_url}}"],
+                    "path": ["api", "products"]
+                }
+            }
+        },
+        {
+            "name": "Lấy sản phẩm theo ID",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                    "raw": "{{base_url}}/api/products/:id",
+                    "host": ["{{base_url}}"],
+                    "path": ["api", "products", ":id"]
+                }
+            }
+        },
+        {
+            "name": "Tạo sản phẩm mới",
+            "request": {
+                "method": "POST",
+                "header": [{ "key": "Content-Type", "value": "application/json" }],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\"name\":\"Sản phẩm mẫu\",\"price\":100,\"description\":\"Mô tả sản phẩm\",\"stock\":50}"
+                },
+                "url": {
+                    "raw": "{{base_url}}/api/products",
+                    "host": ["{{base_url}}"],
+                    "path": ["api", "products"]
+                }
+            }
+        },
+        {
+            "name": "Cập nhật sản phẩm",
+            "request": {
+                "method": "PUT",
+                "header": [{ "key": "Content-Type", "value": "application/json" }],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\"name\":\"Sản phẩm cập nhật\",\"price\":150,\"description\":\"Mô tả cập nhật\",\"stock\":30}"
+                },
+                "url": {
+                    "raw": "{{base_url}}/api/products/:id",
+                    "host": ["{{base_url}}"],
+                    "path": ["api", "products", ":id"]
+                }
+            }
+        },
+        {
+            "name": "Xóa sản phẩm",
+            "request": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                    "raw": "{{base_url}}/api/products/:id",
+                    "host": ["{{base_url}}"],
+                    "path": ["api", "products", ":id"]
+                }
+            }
+        }
+    ]
+}
