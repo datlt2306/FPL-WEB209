@@ -15,7 +15,10 @@ const ProductList = () => {
     const { tableProps } = useTable({
         syncWithLocation: false,
     });
+<<<<<<< HEAD
 
+=======
+>>>>>>> 6b1ab22 (chore: remove stale-dolls-smile project files and migrate frontend configuration)
     const { data: categoryData, isLoading: categoryIsLoading } = useMany({
         resource: "categories",
         ids: tableProps?.dataSource?.map((item) => item?.category?.id).filter(Boolean) ?? [],
@@ -23,12 +26,19 @@ const ProductList = () => {
             enabled: !!tableProps?.dataSource,
         },
     });
+<<<<<<< HEAD
 
+=======
+>>>>>>> 6b1ab22 (chore: remove stale-dolls-smile project files and migrate frontend configuration)
     return (
         <div>
             <List>
                 <Table {...tableProps} rowKey="id">
+<<<<<<< HEAD
                     <Table.Column dataIndex="_id" title={"ID"} />
+=======
+                    <Table.Column dataIndex="id" title={"ID"} />
+>>>>>>> 6b1ab22 (chore: remove stale-dolls-smile project files and migrate frontend configuration)
                     <Table.Column dataIndex="name" title={"Tên sản phẩm"} />
                     <Table.Column
                         dataIndex="description"
@@ -45,7 +55,11 @@ const ProductList = () => {
                             categoryIsLoading ? (
                                 <>Loading...</>
                             ) : (
+<<<<<<< HEAD
                                 categoryData?.data?.find((item) => item.id === value?.id)?.name
+=======
+                                categoryData?.data?.find((item) => item.id === value?.id)?.title
+>>>>>>> 6b1ab22 (chore: remove stale-dolls-smile project files and migrate frontend configuration)
                             )
                         }
                     />
@@ -60,9 +74,15 @@ const ProductList = () => {
                         dataIndex="actions"
                         render={(_, record: BaseRecord) => (
                             <Space>
+<<<<<<< HEAD
                                 <EditButton hideText size="small" recordItemId={record._id} />
                                 <ShowButton hideText size="small" recordItemId={record._id} />
                                 <DeleteButton hideText size="small" recordItemId={record._id} />
+=======
+                                <EditButton hideText size="small" recordItemId={record.id} />
+                                <ShowButton hideText size="small" recordItemId={record.id} />
+                                <DeleteButton hideText size="small" recordItemId={record.id} />
+>>>>>>> 6b1ab22 (chore: remove stale-dolls-smile project files and migrate frontend configuration)
                             </Space>
                         )}
                     />

@@ -4,6 +4,7 @@ import { Form, Input, Select } from "antd";
 
 const ProductEdit = () => {
     const { formProps, saveButtonProps, query, formLoading } = useForm({});
+<<<<<<< HEAD
     console.log("formProps", formProps);
     const productData = query?.data?.data;
 
@@ -12,6 +13,16 @@ const ProductEdit = () => {
         defaultValue: productData?.category,
         queryOptions: {
             enabled: !!productData?.category,
+=======
+
+    const blogPostsData = query?.data?.data;
+
+    const { selectProps: categorySelectProps } = useSelect({
+        resource: "categories",
+        defaultValue: blogPostsData?.category,
+        queryOptions: {
+            enabled: !!blogPostsData?.category,
+>>>>>>> 6b1ab22 (chore: remove stale-dolls-smile project files and migrate frontend configuration)
         },
     });
 

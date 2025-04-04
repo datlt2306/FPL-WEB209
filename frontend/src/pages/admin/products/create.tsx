@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { Create, useForm, useSelect } from "@refinedev/antd";
 import MDEditor from "@uiw/react-md-editor";
 import { Form, Input, InputNumber, Select } from "antd";
@@ -67,3 +68,12 @@ export const ProductCreate = () => {
         </Create>
     );
 };
+=======
+import React from "react";
+
+const ProductCreate = () => {
+    return <div>ProductCreate</div>;
+};
+
+export default ProductCreate;
+>>>>>>> 6b1ab22 (chore: remove stale-dolls-smile project files and migrate frontend configuration)
