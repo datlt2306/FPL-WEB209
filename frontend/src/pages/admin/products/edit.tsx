@@ -4,14 +4,14 @@ import { Form, Input, Select } from "antd";
 
 const ProductEdit = () => {
     const { formProps, saveButtonProps, query, formLoading } = useForm({});
-
-    const blogPostsData = query?.data?.data;
+    console.log("formProps", formProps);
+    const productData = query?.data?.data;
 
     const { selectProps: categorySelectProps } = useSelect({
         resource: "categories",
-        defaultValue: blogPostsData?.category,
+        defaultValue: productData?.category,
         queryOptions: {
-            enabled: !!blogPostsData?.category,
+            enabled: !!productData?.category,
         },
     });
 

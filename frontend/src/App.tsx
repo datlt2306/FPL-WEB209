@@ -29,7 +29,7 @@ import { Login } from "./pages/auth/login";
 import { Register } from "./pages/auth/register";
 import LayoutStore from "./components/LayoutStore";
 import ProductList from "./pages/admin/products/list";
-import ProductCreate from "./pages/admin/products/create";
+import { ProductCreate } from "./pages/admin/products/create";
 import ProductEdit from "./pages/admin/products/edit";
 import ProductShow from "./pages/admin/products/show";
 
@@ -41,7 +41,7 @@ function App() {
                     <AntdApp>
                         <DevtoolsProvider>
                             <Refine
-                                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+                                dataProvider={dataProvider("http://localhost:8080/api")}
                                 notificationProvider={useNotificationProvider}
                                 routerProvider={routerBindings}
                                 authProvider={authProvider}
