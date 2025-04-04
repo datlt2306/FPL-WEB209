@@ -1,10 +1,21 @@
+<<<<<<< HEAD
 import { Product } from "../models";
+=======
+import Product from "../models/product.model.js";
+>>>>>>> 95cb95d (feat: implement product management API and frontend integration with create, read, update, and delete functionality)
 
 // Create a new product
 export const createProduct = async (req, res) => {
     try {
         const product = await Product.create(req.body);
+<<<<<<< HEAD
         return res.status(201).json(product);
+=======
+        return res.status(201).json({
+            message: "Product created successfully",
+            data: product,
+        });
+>>>>>>> 95cb95d (feat: implement product management API and frontend integration with create, read, update, and delete functionality)
     } catch (error) {
         return res.status(400).json({
             message: error.message,
@@ -16,6 +27,7 @@ export const createProduct = async (req, res) => {
 export const getAllProducts = async (req, res) => {
     try {
         const products = await Product.find();
+<<<<<<< HEAD
         const newProducts = products.map((product) => {
             return {
                 ...product.toObject(),
@@ -23,6 +35,9 @@ export const getAllProducts = async (req, res) => {
             };
         });
         return res.status(200).json(newProducts);
+=======
+        return res.status(200).json(products);
+>>>>>>> 95cb95d (feat: implement product management API and frontend integration with create, read, update, and delete functionality)
     } catch (error) {
         return res.status(500).json({
             message: error.message,

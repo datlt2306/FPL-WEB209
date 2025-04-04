@@ -35,10 +35,14 @@ const ProductList = () => {
             <List>
                 <Table {...tableProps} rowKey="id">
 <<<<<<< HEAD
+<<<<<<< HEAD
                     <Table.Column dataIndex="_id" title={"ID"} />
 =======
                     <Table.Column dataIndex="id" title={"ID"} />
 >>>>>>> 6b1ab22 (chore: remove stale-dolls-smile project files and migrate frontend configuration)
+=======
+                    <Table.Column dataIndex="_id" title={"ID"} />
+>>>>>>> 95cb95d (feat: implement product management API and frontend integration with create, read, update, and delete functionality)
                     <Table.Column dataIndex="name" title={"Tên sản phẩm"} />
                     <Table.Column
                         dataIndex="description"
@@ -75,6 +79,7 @@ const ProductList = () => {
                         render={(_, record: BaseRecord) => (
                             <Space>
 <<<<<<< HEAD
+<<<<<<< HEAD
                                 <EditButton hideText size="small" recordItemId={record._id} />
                                 <ShowButton hideText size="small" recordItemId={record._id} />
                                 <DeleteButton hideText size="small" recordItemId={record._id} />
@@ -83,6 +88,11 @@ const ProductList = () => {
                                 <ShowButton hideText size="small" recordItemId={record.id} />
                                 <DeleteButton hideText size="small" recordItemId={record.id} />
 >>>>>>> 6b1ab22 (chore: remove stale-dolls-smile project files and migrate frontend configuration)
+=======
+                                <EditButton hideText size="small" recordItemId={record._id} />
+                                <ShowButton hideText size="small" recordItemId={record._id} />
+                                <DeleteButton hideText size="small" recordItemId={record._id} />
+>>>>>>> 95cb95d (feat: implement product management API and frontend integration with create, read, update, and delete functionality)
                             </Space>
                         )}
                     />

@@ -5,6 +5,7 @@ import { Form, Input, Select } from "antd";
 const ProductEdit = () => {
     const { formProps, saveButtonProps, query, formLoading } = useForm({});
 <<<<<<< HEAD
+<<<<<<< HEAD
     console.log("formProps", formProps);
     const productData = query?.data?.data;
 
@@ -16,13 +17,21 @@ const ProductEdit = () => {
 =======
 
     const blogPostsData = query?.data?.data;
+=======
+    console.log("formProps", formProps);
+    const productData = query?.data?.data;
+>>>>>>> 95cb95d (feat: implement product management API and frontend integration with create, read, update, and delete functionality)
 
     const { selectProps: categorySelectProps } = useSelect({
         resource: "categories",
-        defaultValue: blogPostsData?.category,
+        defaultValue: productData?.category,
         queryOptions: {
+<<<<<<< HEAD
             enabled: !!blogPostsData?.category,
 >>>>>>> 6b1ab22 (chore: remove stale-dolls-smile project files and migrate frontend configuration)
+=======
+            enabled: !!productData?.category,
+>>>>>>> 95cb95d (feat: implement product management API and frontend integration with create, read, update, and delete functionality)
         },
     });
 
