@@ -29,15 +29,7 @@ import { Login } from "./pages/auth/login";
 import { Register } from "./pages/auth/register";
 import LayoutStore from "./components/LayoutStore";
 import ProductList from "./pages/admin/products/list";
-<<<<<<< HEAD
-<<<<<<< HEAD
 import { ProductCreate } from "./pages/admin/products/create";
-=======
-import ProductCreate from "./pages/admin/products/create";
->>>>>>> 6b1ab22 (chore: remove stale-dolls-smile project files and migrate frontend configuration)
-=======
-import { ProductCreate } from "./pages/admin/products/create";
->>>>>>> 95cb95d (feat: implement product management API and frontend integration with create, read, update, and delete functionality)
 import ProductEdit from "./pages/admin/products/edit";
 import ProductShow from "./pages/admin/products/show";
 
@@ -49,15 +41,7 @@ function App() {
                     <AntdApp>
                         <DevtoolsProvider>
                             <Refine
-<<<<<<< HEAD
-<<<<<<< HEAD
                                 dataProvider={dataProvider("http://localhost:8080/api")}
-=======
-                                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
->>>>>>> 6b1ab22 (chore: remove stale-dolls-smile project files and migrate frontend configuration)
-=======
-                                dataProvider={dataProvider("http://localhost:8080/api")}
->>>>>>> 95cb95d (feat: implement product management API and frontend integration with create, read, update, and delete functionality)
                                 notificationProvider={useNotificationProvider}
                                 routerProvider={routerBindings}
                                 authProvider={authProvider}
