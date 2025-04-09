@@ -1,13 +1,18 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 import { Product } from "../models";
 =======
 import Product from "../models/product.model.js";
 >>>>>>> 95cb95d (feat: implement product management API and frontend integration with create, read, update, and delete functionality)
+=======
+import { Product } from "../models";
+>>>>>>> f226b31 (feat: add category management with CRUD operations and integrate into product model)
 
 // Create a new product
 export const createProduct = async (req, res) => {
     try {
         const product = await Product.create(req.body);
+<<<<<<< HEAD
 <<<<<<< HEAD
         return res.status(201).json(product);
 =======
@@ -16,6 +21,9 @@ export const createProduct = async (req, res) => {
             data: product,
         });
 >>>>>>> 95cb95d (feat: implement product management API and frontend integration with create, read, update, and delete functionality)
+=======
+        return res.status(201).json(product);
+>>>>>>> f226b31 (feat: add category management with CRUD operations and integrate into product model)
     } catch (error) {
         return res.status(400).json({
             message: error.message,
@@ -28,6 +36,9 @@ export const getAllProducts = async (req, res) => {
     try {
         const products = await Product.find();
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> f226b31 (feat: add category management with CRUD operations and integrate into product model)
         const newProducts = products.map((product) => {
             return {
                 ...product.toObject(),
@@ -35,9 +46,12 @@ export const getAllProducts = async (req, res) => {
             };
         });
         return res.status(200).json(newProducts);
+<<<<<<< HEAD
 =======
         return res.status(200).json(products);
 >>>>>>> 95cb95d (feat: implement product management API and frontend integration with create, read, update, and delete functionality)
+=======
+>>>>>>> f226b31 (feat: add category management with CRUD operations and integrate into product model)
     } catch (error) {
         return res.status(500).json({
             message: error.message,

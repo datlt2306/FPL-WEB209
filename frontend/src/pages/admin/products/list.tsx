@@ -16,9 +16,13 @@ const ProductList = () => {
         syncWithLocation: false,
     });
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 >>>>>>> 6b1ab22 (chore: remove stale-dolls-smile project files and migrate frontend configuration)
+=======
+
+>>>>>>> f226b31 (feat: add category management with CRUD operations and integrate into product model)
     const { data: categoryData, isLoading: categoryIsLoading } = useMany({
         resource: "categories",
         ids: tableProps?.dataSource?.map((item) => item?.category?.id).filter(Boolean) ?? [],
@@ -27,9 +31,13 @@ const ProductList = () => {
         },
     });
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 >>>>>>> 6b1ab22 (chore: remove stale-dolls-smile project files and migrate frontend configuration)
+=======
+
+>>>>>>> f226b31 (feat: add category management with CRUD operations and integrate into product model)
     return (
         <div>
             <List>
@@ -60,10 +68,14 @@ const ProductList = () => {
                                 <>Loading...</>
                             ) : (
 <<<<<<< HEAD
+<<<<<<< HEAD
                                 categoryData?.data?.find((item) => item.id === value?.id)?.name
 =======
                                 categoryData?.data?.find((item) => item.id === value?.id)?.title
 >>>>>>> 6b1ab22 (chore: remove stale-dolls-smile project files and migrate frontend configuration)
+=======
+                                categoryData?.data?.find((item) => item.id === value?.id)?.name
+>>>>>>> f226b31 (feat: add category management with CRUD operations and integrate into product model)
                             )
                         }
                     />
