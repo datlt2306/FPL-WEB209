@@ -15,6 +15,7 @@ const ProductList = () => {
     const { tableProps } = useTable({
         syncWithLocation: false,
     });
+
     const { data: categoryData, isLoading: categoryIsLoading } = useMany({
         resource: "categories",
         ids: tableProps?.dataSource?.map((item) => item?.category?.id).filter(Boolean) ?? [],
@@ -22,6 +23,7 @@ const ProductList = () => {
             enabled: !!tableProps?.dataSource,
         },
     });
+
     return (
         <div>
             <List>
@@ -43,7 +45,7 @@ const ProductList = () => {
                             categoryIsLoading ? (
                                 <>Loading...</>
                             ) : (
-                                categoryData?.data?.find((item) => item.id === value?.id)?.title
+                                categoryData?.data?.find((item) => item.id === value?.id)?.name
                             )
                         }
                     />
